@@ -1,0 +1,33 @@
+
+.h-card-left {
+    color: #515151;
+    padding: 10px;
+    padding-top: 20px;
+    .h-card-footer{
+        padding-top: 20px;
+    }
+    button{
+        background-color:  #FCF09A;
+        border: none;
+        border-radius: 5px;
+        width: 75%;
+        padding: 10px;
+        
+    }
+}
+.h-card-right {
+    position: absolute;
+    right: -50px;
+    top: -10px;
+    img{
+        width: 100%;
+        border-radius: 18px;
+        
+    }
+}
+.h-card{
+    display: flex;
+    background-color: #FEFCEB;
+    padding: 10px;
+    position: relative;
+}

@@ -1,0 +1,68 @@
+.price-day{
+    display: flex;
+}
+.price-pet{
+    display: flex;
+}
+.total-price{
+    display: flex;
+}
+.r-btn-blue{
+    background-color: #DAF1FA;
+}
+.r-form{
+    p,span{
+        margin-top: 5px;
+    }
+    .r-form-child,.r-form-pet,.r-form-adult{
+        display: flex;
+    }
+}
+.r-btn {
+    &:disabled{
+        border: 1px solid #bcbcbc;
+        background-color: #f1f1f1;
+        &::before {
+            color: #bcbcbc;
+        }
+    }
+}
+.dash{
+    width:30px;
+    height: 30px;
+    border: 1px solid #515151;
+    border-radius: 50%;
+    margin: 0 5px;
+    &::before {
+        display: block;
+        text-align: center;
+        font-size: 12px;
+        margin: 3px auto;
+        color: #515151;
+        content: "—";
+    }
+    
+}
+.add{
+    width: 30px;
+    height: 30px;
+    border: 1px solid #515151;
+    border-radius: 50%;
+    margin: 0 5px;
+    &::after{
+        display: block;
+        text-align: center;
+        font-size: 25px;
+        margin: -20px auto;
+        color: #515151;
+
+        content: "+";
+    }
+}
+.choose-pet-section{
+    img{
+
+        width: 100px;
+        height: 100px;
+    }
+}
