@@ -2,13 +2,11 @@ import { Link } from 'react-router-dom'
 import React from 'react'
 import Ball from '../img/layout/毬.svg' //圖片
 
-function Sidebar() {
+function SideBar() {
   return (
-    <div className="sidebar">
+    <sidebar className="sidebar">
       {/* <img src={require('../img/layout/毬.svg')} alt="" /> */}
-      <Link to="/">
-        <img src={Ball} alt="毬" />
-      </Link>
+
       <ul>
         <li>
           <Link to="/latestNews">最新消息</Link>
@@ -29,8 +27,8 @@ function Sidebar() {
           <Link to="/activity">活動</Link>
         </li>
       </ul>
-    </div>
+    </sidebar>
   )
 }
 
-export default Sidebar
+export default SideBar
