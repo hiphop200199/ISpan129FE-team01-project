@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
 import React from 'react'
-import Ball from '../img/layout/毬.svg' //圖片
+//圖片
+// import Ball from '../img/layout/毬.svg'
 
-function SideBar() {
+function Menu() {
   return (
-    <sidebar className="sidebar">
+    <menu className="menu">
       {/* <img src={require('../img/layout/毬.svg')} alt="" /> */}
 
       <ul>
@@ -27,8 +28,8 @@ function SideBar() {
           <Link to="/activity">活動</Link>
         </li>
       </ul>
-    </sidebar>
+    </menu>
   )
 }
 
-export default SideBar
+export default Menu
