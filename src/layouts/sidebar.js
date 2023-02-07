@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import React from 'react'
 import Ball from '../img/layout/毬.svg' //圖片
+import Person from '../img/layout/profile.png'
+import Chat from '../img/layout/chatBubble.png'
 
 function Sidebar() {
   return (
@@ -28,6 +30,12 @@ function Sidebar() {
         <li>
           <Link to="/activity">活動</Link>
         </li>
+        <Link to="/sign">
+          <img id="profile" src={Person} alt="註冊" />
+        </Link>
+        <Link to="*">
+          <img id="chat" src={Chat} alt="聊天" />
+        </Link>
       </ul>
     </div>
   )

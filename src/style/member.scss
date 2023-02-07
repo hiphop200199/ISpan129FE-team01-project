@@ -1,0 +1,83 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.member-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 40px);
+    
+    & .member-route{
+        position: absolute;
+        left:15px;
+        top: 50px;
+        font-size: 16px;
+    }
+    & .member-main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 830px;
+        & .member-title{
+            font-size: 24px;
+            font-weight: 700;
+            color: #515151;
+            margin: 0px 0px 25px 60px;
+        }
+        & .member-subtitle{
+            font-size: 16px;
+            color: #515151;
+            margin:25px 0px 5px 85px;
+        }
+        & .member-form{
+            display: flex;
+            flex-direction: column;
+            & #member-label-check-password  input,.member-label  input{
+                
+                    margin: 2px 10px;
+                    padding: 15px;
+                    border-radius: 15px;
+                    border:1px solid #EDC975;
+                    outline: none;
+                    width: 730px;
+                   
+            }
+            & #member-label-check-password{
+                margin-left: none;
+                font-size: 20px;
+                color: #c9c9c9;
+            }
+            & .member-label{
+                font-size: 20px;
+                color: #c9c9c9;
+                margin-left: 40px;
+                & #email::placeholder{
+                    font-size: 12px;
+                }
+               
+               
+            }
+            & #member-label-policy{
+                font-size: 16px;
+                & #policy{
+                    margin:15px 15px 5px 100px; 
+                }
+               }
+            & #submit{
+                width: 630px;
+                border-radius: 30px;
+                background-color: #DAF1FA;
+                color: #515151;
+                font-size: 16px;
+                border: none;
+                padding: 10px;
+                margin: 15px auto auto 150px;
+            }
+        }
+        
+    }
+}

@@ -17,13 +17,24 @@
 .sidebar{
     display: flex;
     flex-direction: column;
-    // justify-content: space-around; 
+     /*justify-content: space-around; */
     align-items: center;
     img{
         display: block;
         margin: auto;
         width: 80%;
         height: 100px;
+        margin-top: 80px;
+    }
+    img#profile,img#chat{
+        width: 50px;
+        height: 50px;
+    }
+    img#profile{
+        margin: 80px auto 10px auto; 
+    }
+    img#chat{
+        margin: 15px auto 10px auto;
     }
 }
 // .sidebar > img{
@@ -35,6 +46,7 @@
     width: 100%;
     list-style: none;
     text-align: center;
+    margin-top: 50px;
     margin-left: 0;
     padding-left: 0;
 }
