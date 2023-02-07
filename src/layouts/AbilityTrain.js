@@ -9,7 +9,7 @@ import { icon } from '@fortawesome/fontawesome-svg-core'
 function AbilityTrain() {
   return (
     <div className='ability-train'>
-      <a href="http://"><FontAwesomeIcon icon={faUser} /></a>
+      <Link to="/member"><FontAwesomeIcon icon={faUser} /></Link>
       <a href="http://"><FontAwesomeIcon icon={faComment} /></a>
     </div>
   )
