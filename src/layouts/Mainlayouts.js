@@ -7,24 +7,22 @@ import Menu from './Menu'
 import AbilityTrain from './AbilityTrain'
 function MainLayouts() {
   return (
-    <>
-      <div className="wrap">
-        <nav className="nav">
-          <img src={Ball} alt="" />
-          <Menu />
-          <AbilityTrain />
-        </nav>
-        <main className="content-border">
-          <div className="content">
-            <Outlet />
-          </div>
-          <button className="cart">
-            {/* <FontAwesomeIcon icon={fa.faCartShopping} /> */}
-            <FontAwesomeIcon icon={faCartShopping} />
-          </button>
-        </main>
-      </div>
-    </>
+    <div className="wrap">
+      <nav className="nav">
+        <img src={Ball} alt="" />
+        <Menu />
+        <AbilityTrain />
+      </nav>
+      <main className="content-border">
+        <div className="content">
+          <Outlet />
+        </div>
+        <button className="cart">
+          {/* <FontAwesomeIcon icon={fa.faCartShopping} /> */}
+          <FontAwesomeIcon icon={faCartShopping} />
+        </button>
+      </main>
+    </div>
   )
 }
 
