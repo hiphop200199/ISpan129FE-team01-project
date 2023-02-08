@@ -9,6 +9,7 @@ import LatestNews from './pages/latestNews/LatestNews'
 import Meals from './pages/meals/Meals'
 import NotFound from './pages/NotFound'
 import Product from './pages/product/Product'
+import RegisterMember from './pages/member/RegisterMember'
 
 //引入頁面元件
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="course" element={<Course />}></Route>
           <Route path="activity" element={<Activity />}></Route>
           <Route path="*" element={<NotFound />} />
+          <Route path="member" element={<RegisterMember />} />
         </Route>
       </Routes>
     </BrowserRouter>
