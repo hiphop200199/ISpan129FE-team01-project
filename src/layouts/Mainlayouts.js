@@ -5,12 +5,15 @@ import { Outlet } from 'react-router-dom'
 import Ball from '../img/layout/毬.svg' //圖片
 import Menu from './Menu'
 import AbilityTrain from './AbilityTrain'
+import { Link } from 'react-router-dom'
 function MainLayouts() {
   return (
     <>
       <div className="wrap">
         <nav className="nav">
-          <img src={Ball} alt="" />
+          <Link to="/">
+            <img src={Ball} alt="" />
+          </Link>
           <Menu />
           <AbilityTrain />
         </nav>
