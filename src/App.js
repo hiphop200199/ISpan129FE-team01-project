@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import MainLayouts from './layouts/MainLayouts'
 import Activity from './pages/activity/Activity'
 import Course from './pages/course/Course'
-import Sign from './pages/sign/Sign'
 import HomePage from './pages/HomePage'
 import Hotel from './pages/hotel/Hotel'
 import Reserve from './pages/hotel/Reserve'
@@ -28,7 +27,6 @@ function App() {
           <Route path="latestNews" element={<LatestNews />}></Route>
           <Route path="course" element={<Course />}></Route>
           <Route path="activity" element={<Activity />}></Route>
-          <Route path="sign" element={<Sign />}></Route>
           <Route path="*" element={<NotFound />} />
           <Route path="member" element={<RegisterMember />} />
           <Route path="cart" element={<Cart />} />
