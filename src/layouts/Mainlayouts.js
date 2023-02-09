@@ -1,27 +1,33 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAtom } from '@fortawesome/free-solid-svg-icons'
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { Outlet } from 'react-router-dom'
-import Sidebar from './sidebar'
-function Mainlayouts() {
+import Ball from '../img/layout/毬.svg' //圖片
+import Menu from './Menu'
+import AbilityTrain from './AbilityTrain'
+import { Link } from 'react-router-dom'
+import Cart from '../pages/cart/Cart'
+function MainLayouts() {
   return (
-    <>
-      <div className="wrap">
-        <div className="nav">
-          <Sidebar />
+    <div className="wrap">
+      <nav className="nav">
+        <img src={Ball} alt="" />
+        <Menu />
+        <AbilityTrain />
+      </nav>
+      <main className="content-border">
+        <div className="content">
+          <Outlet />
         </div>
-        <main className="content-border">
-          <div className="content">
-            <Outlet />
-          </div>
-          <button className="cart">
+        <button className="cart">
+          <Link to="/cart">
             {/* <FontAwesomeIcon icon={fa.faCartShopping} /> */}
-            <FontAwesomeIcon icon={faAtom} />
-          </button>
-        </main>
-      </div>
-    </>
+            <FontAwesomeIcon icon={faCartShopping} />
+          </Link>
+        </button>
+      </main>
+    </div>
   )
 }
 
-export default Mainlayouts
+export default MainLayouts
