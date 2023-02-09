@@ -5,6 +5,8 @@ import { Outlet } from 'react-router-dom'
 import Ball from '../img/layout/毬.svg' //圖片
 import Menu from './Menu'
 import AbilityTrain from './AbilityTrain'
+import { Link } from 'react-router-dom'
+import Cart from '../pages/cart/Cart'
 function MainLayouts() {
   return (
     <div className="wrap">
@@ -18,8 +20,10 @@ function MainLayouts() {
           <Outlet />
         </div>
         <button className="cart">
-          {/* <FontAwesomeIcon icon={fa.faCartShopping} /> */}
-          <FontAwesomeIcon icon={faCartShopping} />
+          <Link to="/cart">
+            {/* <FontAwesomeIcon icon={fa.faCartShopping} /> */}
+            <FontAwesomeIcon icon={faCartShopping} />
+          </Link>
         </button>
       </main>
     </div>
