@@ -30,12 +30,6 @@ function Sidebar() {
         <li>
           <Link to="/activity">活動</Link>
         </li>
-        <Link to="/sign">
-          <img id="profile" src={Person} alt="註冊" />
-        </Link>
-        <Link to="*">
-          <img id="chat" src={Chat} alt="聊天" />
-        </Link>
       </ul>
     </div>
   )

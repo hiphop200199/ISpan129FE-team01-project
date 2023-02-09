@@ -9,13 +9,6 @@
     justify-content: center;
     align-items: center;
     height: calc(100vh - 40px);
-    
-    & .member-route{
-        position: absolute;
-        left:15px;
-        top: 50px;
-        font-size: 16px;
-    }
     & .member-main{
         display: flex;
         flex-direction: column;

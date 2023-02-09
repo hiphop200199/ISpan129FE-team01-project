@@ -4,7 +4,6 @@ const Sign = () => {
   return (
     <>
       <div className="member-container">
-        <h4 className="member-route">首頁&gt;會員註冊</h4>
         <section className="member-main">
           <h1 className="member-title">會員註冊</h1>
           <span className="member-subtitle">
