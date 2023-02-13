@@ -53,60 +53,66 @@ function Reserve() {
               </div>
               <div className="r-form-adult">
                 <p>成人</p>
-                <button
-                  className="dash r-btn"
-                  disabled={adultCount <= 0 ? true : false}
-                  onClick={() => {
-                    if (adultCount > 0) {
-                      setAdultCount(adultCount - 1)
-                    }
-                  }}
-                ></button>
-                <span>{adultCount}</span>
-                <button
-                  className="add r-btn"
-                  onClick={() => {
-                    setAdultCount(adultCount + 1)
-                  }}
-                ></button>
+                <div className="calculate-btn-box">
+                  <button
+                    className="dash calculate-btn"
+                    disabled={adultCount <= 0 ? true : false}
+                    onClick={() => {
+                      if (adultCount > 0) {
+                        setAdultCount(adultCount - 1)
+                      }
+                    }}
+                  ></button>
+                  <span>{adultCount}</span>
+                  <button
+                    className="add calculate-btn"
+                    onClick={() => {
+                      setAdultCount(adultCount + 1)
+                    }}
+                  ></button>
+                </div>
               </div>
               <div className="r-form-child">
                 <p>兒童</p>
-                <button
-                  className="dash r-btn"
-                  disabled={childCount <= 0 ? true : false}
-                  onClick={() => {
-                    if (childCount > 0) {
-                      setChildCount(childCount - 1)
-                    }
-                  }}
-                ></button>
-                <span>{childCount}</span>
-                <button
-                  className="add r-btn"
-                  onClick={() => {
-                    setChildCount(childCount + 1)
-                  }}
-                ></button>
+                <div className="calculate-btn-box">
+                  <button
+                    className="dash calculate-btn"
+                    disabled={childCount <= 0 ? true : false}
+                    onClick={() => {
+                      if (childCount > 0) {
+                        setChildCount(childCount - 1)
+                      }
+                    }}
+                  ></button>
+                  <span>{childCount}</span>
+                  <button
+                    className="add calculate-btn"
+                    onClick={() => {
+                      setChildCount(childCount + 1)
+                    }}
+                  ></button>
+                </div>
               </div>
               <div className="r-form-pet">
                 <p>寵物 (請點選寵物數量查看寵物窩)</p>
-                <button
-                  className="dash r-btn"
-                  disabled={petCount <= 0 ? true : false}
-                  onClick={() => {
-                    if (petCount > 0) {
-                      setPetCount(petCount - 1)
-                    }
-                  }}
-                ></button>
-                <span>{petCount}</span>
-                <button
-                  className="add r-btn"
-                  onClick={() => {
-                    setPetCount(petCount + 1)
-                  }}
-                ></button>
+                <div className="calculate-btn-box">
+                  <button
+                    className="dash calculate-btn"
+                    disabled={petCount <= 0 ? true : false}
+                    onClick={() => {
+                      if (petCount > 0) {
+                        setPetCount(petCount - 1)
+                      }
+                    }}
+                  ></button>
+                  <span>{petCount}</span>
+                  <button
+                    className="add calculate-btn"
+                    onClick={() => {
+                      setPetCount(petCount + 1)
+                    }}
+                  ></button>
+                </div>
               </div>
               {petCount > 0 ? (
                 <div className="choose-pet-section">

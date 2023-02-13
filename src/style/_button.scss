@@ -1,0 +1,105 @@
+.btn{
+  border-radius: var(--button-radius-1);
+  font-weight: bold;
+  color: var(--text-black);
+  .fa-caret-right{
+    vertical-align: middle;
+    path{
+      fill: var(--primary);
+    }
+  }
+}
+.btn-lg{
+  min-width: 300px;
+  font-size: var(--font-size-h1) ;//可調整高度
+}
+.btn-primary{
+  background-color: var(--light-blue);
+  border:5px solid var(--light-blue);
+  &:hover,&:active,&:focus-visible{
+    background-color: var(--text-white)!important;
+    border-color: var(--primary)!important;
+    color: var(--text-black)!important;
+  }
+}
+.btn-secondary{
+  background-color: var(--secondary);
+  border:5px solid var(--secondary);
+  &:hover,&:active,&:focus-visible{
+    background-color: var(--light-yellow)!important;
+    border-color: var(--light-yellow)!important;
+    color: var(--text-black)!important;
+  }
+}
+.btn-outline-primary{
+  border:5px solid var(--light-blue);
+  &:hover,&:active,&:focus-visible{
+    background-color: var(--text-white);
+    border-color: var(--primary);
+    color: var(--text-black);
+  }
+}
+.min-width-auto{
+  min-width: auto;
+}
+
+.btn-md{
+  font-size: var(--font-size-h4);
+}
+
+.btn-sm {
+  font-size: var(--font-size-h5);
+  //圓角5px
+  &.radius-5px{
+    border-radius: var(--button-radius-2);
+  }
+}
+
+//加減數量按鈕
+.calculate-btn-box{
+  display: flex;
+  align-items: center;
+}
+
+.calculate-btn {
+  &:disabled{
+      border: 0px solid #bcbcbc;
+      background-color: var(--light-yellow);
+      &::before {
+          color: #bcbcbc;
+      }
+  }
+}
+.dash{
+  background-color: var(--secondary);
+  border-radius: 15px 0 0 15px;
+  width:30px;
+  height: 30px;
+  border: 0px solid #515151;
+  margin: 0 5px;
+  &::before {
+      display: block;
+      text-align: center;
+      font-size: 12px;
+      margin: 3px auto;
+      color: #515151;
+      content: "—";
+  }
+  
+}
+.add{
+  background-color: var(--secondary);
+  border-radius: 0 15px 15px 0;
+  width: 30px;
+  height: 30px;
+  border: 0px solid #515151;
+  margin: 0 5px;
+  &::after{
+      display: block;
+      text-align: center;
+      font-size: 25px;
+      margin: -20px -10px;
+      color: #515151;
+      content: "+";
+  }
+}

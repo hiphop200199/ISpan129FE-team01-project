@@ -11,7 +11,8 @@ import NotFound from './pages/NotFound'
 import Product from './pages/product/Product'
 import RegisterMember from './pages/member/RegisterMember'
 import Cart from './pages/cart/Cart'
-
+import ButtonTemplate from './template/button'
+import FormTemplate from './template/form'
 //引入頁面元件
 
 function App() {
@@ -30,6 +31,8 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="member" element={<RegisterMember />} />
           <Route path="cart" element={<Cart />} />
+          <Route path="button" element={<ButtonTemplate />}></Route>
+          <Route path="form" element={<FormTemplate />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

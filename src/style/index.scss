@@ -1,6 +1,9 @@
+@import '_default.scss';
 // 導入bootstrap所有的樣式與預設變數
 @import '~bootstrap/scss/bootstrap';
 // 其他自訂樣式
 @import '_layout.scss';
 @import '_card.scss';
 @import 'reserve.scss';
+@import '_button.scss';
+@import '_form.scss';
