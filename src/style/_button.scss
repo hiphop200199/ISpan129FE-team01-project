@@ -1,4 +1,5 @@
 .btn{
+  padding: var(--button-padding-LR) var(--button-padding-TB);
   border-radius: var(--button-radius-1);
   font-weight: bold;
   color: var(--text-black);
@@ -17,22 +18,23 @@
   background-color: var(--light-blue);
   border:5px solid var(--light-blue);
   &:hover,&:active,&:focus-visible{
-    background-color: var(--text-white)!important;
-    border-color: var(--primary)!important;
-    color: var(--text-black)!important;
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--text-white);
   }
 }
 .btn-secondary{
-  background-color: var(--secondary);
-  border:5px solid var(--secondary);
+  background-color: var(--light-yellow);
+  border:5px solid var(--light-yellow);
   &:hover,&:active,&:focus-visible{
-    background-color: var(--light-yellow)!important;
-    border-color: var(--light-yellow)!important;
-    color: var(--text-black)!important;
+    background-color: var(--light-yellow);
+    border:5px solid var(--secondary);
+    color: var(--text-black);
   }
 }
 .btn-outline-primary{
   border:5px solid var(--light-blue);
+  background-color: var(--text-white);
   &:hover,&:active,&:focus-visible{
     background-color: var(--text-white);
     border-color: var(--primary);
@@ -98,7 +100,6 @@
       display: block;
       text-align: center;
       font-size: 25px;
-      margin: -20px -10px;
       color: #515151;
       content: "+";
   }
