@@ -11,7 +11,9 @@ function MainLayouts() {
   return (
     <div className="wrap">
       <nav className="nav">
-        <img src={Ball} alt="" />
+        <Link to="/">
+          <img src={Ball} alt="" />
+        </Link>
         <Menu />
         <AbilityTrain />
       </nav>

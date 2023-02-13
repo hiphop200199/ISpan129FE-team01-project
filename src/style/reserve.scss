@@ -1,3 +1,56 @@
+
+.banner{
+    margin: auto;
+    max-width: 1000px;
+    display: flex;
+    .rd-img-left{
+        margin: 10px 5px 10px 10px;
+        width: 50%;
+        height: 300px;
+        background-image: url(../img/hotels/standard-double-room.jpg);
+        background-size: cover;
+            
+    }
+    .rd-img-right{
+        margin: 5px 0;
+        display: flex;
+        flex-wrap: wrap;
+        width: 50%;
+        
+        .img{
+            width: calc(50% - 10px);
+            margin: 5px;
+            height: 145px;
+            background-size: cover;
+        }
+        .img1{
+            
+            
+            background-image: url(../img/hotels/toilet.jpg);
+        }
+        .img2{
+            
+            
+            background-image: url(../img/hotels/standard-round.jpg);
+        }
+        .img3{
+            
+            background-image: url(../img/hotels/standard-round1.jpg);
+        }
+        .img4{
+        
+            background-image: url(../img/hotels/standard-round2.jpg);
+        }
+    }
+}
+
+
+.rd-container{
+    display: flex;
+    .title{
+        display: flex;
+    }
+}
 .price-day{
     display: flex;
 }
@@ -10,6 +63,11 @@
 .r-btn-blue{
     background-color: #DAF1FA;
 }
+
+.r-wrap{
+    border: 1px solid #515151;
+    padding: 30px;
+}
 .r-form{
     p,span{
         margin-top: 5px;
@@ -18,47 +76,8 @@
         display: flex;
     }
 }
-.r-btn {
-    &:disabled{
-        border: 1px solid #bcbcbc;
-        background-color: #f1f1f1;
-        &::before {
-            color: #bcbcbc;
-        }
-    }
-}
-.dash{
-    width:30px;
-    height: 30px;
-    border: 1px solid #515151;
-    border-radius: 50%;
-    margin: 0 5px;
-    &::before {
-        display: block;
-        text-align: center;
-        font-size: 12px;
-        margin: 3px auto;
-        color: #515151;
-        content: "—";
-    }
-    
-}
-.add{
-    width: 30px;
-    height: 30px;
-    border: 1px solid #515151;
-    border-radius: 50%;
-    margin: 0 5px;
-    &::after{
-        display: block;
-        text-align: center;
-        font-size: 25px;
-        margin: -20px auto;
-        color: #515151;
 
-        content: "+";
-    }
-}
+
 .choose-pet-section{
     img{
 
