@@ -7,6 +7,7 @@ import Menu from './Menu'
 import AbilityTrain from './AbilityTrain'
 import { Link } from 'react-router-dom'
 import Cart from '../pages/cart/Cart'
+// import Cart from '../pages/cart/Cart'
 function MainLayouts() {
   return (
     <div className="wrap">
