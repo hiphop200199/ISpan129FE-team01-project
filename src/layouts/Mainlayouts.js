@@ -4,7 +4,7 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { Outlet } from 'react-router-dom'
 import Ball from '../img/layout/毬.svg' //圖片
 import Menu from './Menu'
-import MemberAndChat from './MemberAndChat'
+import AbilityTrain from './AbilityTrain'
 import { Link } from 'react-router-dom'
 import Cart from '../pages/cart/Cart'
 // import Cart from '../pages/cart/Cart'
@@ -16,7 +16,7 @@ function MainLayouts() {
           <img src={Ball} alt="" />
         </Link>
         <Menu />
-        <MemberAndChat />
+        <AbilityTrain />
       </nav>
       <main className="content-border">
         <div className="content">

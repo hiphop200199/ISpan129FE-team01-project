@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
-import Mainlayouts from './layouts/Mainlayouts'
+import MainLayouts from './layouts/MainLayouts'
 import Activity from './pages/activity/Activity'
 import Course from './pages/course/Course'
 import HomePage from './pages/HomePage'
@@ -20,7 +20,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Mainlayouts />}>
+        <Route path="/" element={<MainLayouts />}>
           <Route index element={<HomePage />}></Route>
           <Route path="product" element={<Product />}></Route>
           <Route path="meals" element={<Meals />}></Route>
