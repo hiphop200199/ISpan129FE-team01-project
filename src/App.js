@@ -14,6 +14,7 @@ import Login from './pages/member/Login'
 import Cart from './pages/cart/Cart'
 import ButtonTemplate from './template/button'
 import FormTemplate from './template/form'
+import CheckoutFlow from './template/CheckoutFlow'
 //引入頁面元件
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route path="member" element={<Login />} />
           <Route path="register" element={<RegisterMember />} />
           <Route path="cart" element={<Cart />} />
+          <Route path="CheckoutFlow" element={<CheckoutFlow />} />
           <Route path="button" element={<ButtonTemplate />}></Route>
           <Route path="form" element={<FormTemplate />}></Route>
         </Route>
