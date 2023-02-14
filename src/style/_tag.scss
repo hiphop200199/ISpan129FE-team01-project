@@ -1,0 +1,40 @@
+.tag-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .tag {
+    display: inline-block;
+    justify-content: center; /* 水平置中 */
+    align-items: center; /* 垂直置中 */
+    width: 110px; /* 設置寬度 */
+    height: 30px; /* 設置高度 */
+    padding: 20px;
+    font-size: 20px; /* 設置文字大小 */
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    background-color: #CFEDF9;
+    border: 1px solid #ddd;
+    // border-radius: 5px;
+    margin-right: -5px;
+    line-height: 30px; /* 設置行高等於高度 */
+    
+    &:first-of-type {
+      background-color: #47BBE8;
+      color: #fff;
+    }
+    
+    &:hover {
+      background-color: #ddd;
+    }
+    
+    &.active {
+      background-color: #47BBE8;
+      color: #fff;
+    }
+  }
+  
