@@ -5,9 +5,9 @@ function FormTemplate() {
     <>
       <div className="form-container">
         <form>
-          <div class="mb-3">
+          <div className="mb-3">
             <select
-              class="form-select mb-3"
+              className="form-select mb-3"
               aria-label="Default select example"
             >
               <option selected>信用卡</option>
@@ -15,26 +15,26 @@ function FormTemplate() {
             </select>
             <input
               type="email"
-              class="form-control"
+              className="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
               placeholder="卡號"
             />
           </div>
           <div className="d-flex">
-            <div class="mb-3 col-6 pr-1">
+            <div className="mb-3 col-6 pr-1">
               <input
                 type="email"
-                class="form-control"
+                className="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 placeholder="到期日"
               />
             </div>
-            <div class="mb-3 col-6 pl-1">
+            <div className="mb-3 col-6 pl-1">
               <input
                 type="email"
-                class="form-control"
+                className="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 placeholder="安全碼"
@@ -42,24 +42,24 @@ function FormTemplate() {
             </div>
           </div>
 
-          <div class="mb-3 form-check">
+          <div className="mb-3 form-check">
             <input
               type="checkbox"
-              class="form-check-input"
+              className="form-check-input"
               id="exampleCheck1"
             />
-            <label class="form-check-label" for="exampleCheck1">
+            <label className="form-check-label" for="exampleCheck1">
               Check me out
             </label>
           </div>
-          <div class="form-check">
+          <div className="form-check">
             <input
-              class="form-check-input"
+              className="form-check-input"
               type="radio"
               name="flexRadioDefault"
               id="flexRadioDefault1"
             />
-            <label class="form-check-label" for="flexRadioDefault1">
+            <label className="form-check-label" for="flexRadioDefault1">
               Default radio
             </label>
           </div>

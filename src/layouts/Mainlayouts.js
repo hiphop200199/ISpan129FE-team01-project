@@ -24,8 +24,8 @@ function MainLayouts() {
         </div>
         <button className="cart">
           <Link to="/cart">
-            {/* <FontAwesomeIcon icon={fa.faCartShopping} /> */}
             <FontAwesomeIcon icon={faCartShopping} />
+            {/* <FontAwesomeIcon icon={fa.faCartShopping} /> */}
           </Link>
         </button>
       </main>

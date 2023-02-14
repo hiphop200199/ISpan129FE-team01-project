@@ -27,7 +27,7 @@
   background-color: var(--light-yellow);
   border:5px solid var(--light-yellow);
   &:hover,&:active,&:focus-visible{
-    background-color: var(--light-yellow);
+    background-color: var(--secondary);
     border:5px solid var(--secondary);
     color: var(--text-black);
   }
