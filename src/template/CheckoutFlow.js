@@ -21,10 +21,18 @@ function CheckoutFlow() {
           </div>
         </div>
       </aside>
-      <main className='checkoutFlow'>
+      <main className="checkoutFlow">
         <div className="tabs">
-          <input type="radio" className="tabs__radio" name="tabs-example" id="tab1" checked />
-          <label for="tab1" className="tabs__label">商城</label>
+          <input
+            type="radio"
+            className="tabs__radio"
+            name="tabs-example"
+            id="tab1"
+            checked
+          />
+          <label for="tab1" className="tabs__label">
+            商城
+          </label>
           <div className="tabs__content">
             <table>
               <thead>
@@ -40,7 +48,9 @@ function CheckoutFlow() {
               </thead>
               <tbody>
                 <tr>
-                  <td><img src="https://picsum.photos/id/237/90/90" alt="" /></td>
+                  <td>
+                    <img src="https://picsum.photos/id/237/90/90" alt="" />
+                  </td>
                   <td>狗飼料</td>
                   <td>200g/包</td>
                   <td>NT.300</td>
@@ -49,7 +59,9 @@ function CheckoutFlow() {
                   <td>從購物車刪除</td>
                 </tr>
                 <tr>
-                  <td><img src="https://picsum.photos/id/237/90/90" alt="" /></td>
+                  <td>
+                    <img src="https://picsum.photos/id/237/90/90" alt="" />
+                  </td>
                   <td>狗飼料</td>
                   <td>200g/包</td>
                   <td>NT.300</td>
@@ -60,8 +72,15 @@ function CheckoutFlow() {
               </tbody>
             </table>
           </div>
-          <input type="radio" className="tabs__radio" name="tabs-example" id="tab2" />
-          <label for="tab2" className="tabs__label">課程</label>
+          <input
+            type="radio"
+            className="tabs__radio"
+            name="tabs-example"
+            id="tab2"
+          />
+          <label for="tab2" className="tabs__label">
+            課程
+          </label>
           <div className="tabs__content">
             <table>
               <thead>
@@ -76,7 +95,9 @@ function CheckoutFlow() {
                 </tr>
               </thead>
               <tr>
-                <td><img src="https://picsum.photos/90/90?pet" alt="" /></td>
+                <td>
+                  <img src="https://picsum.photos/90/90?pet" alt="" />
+                </td>
                 <td>狗飼料</td>
                 <td>200g/包</td>
                 <td>NT.300</td>
@@ -86,10 +107,24 @@ function CheckoutFlow() {
               </tr>
             </table>
           </div>
-          <input type="radio" className="tabs__radio" name="tabs-example" id="tab3" />
-          <label for="tab3" className="tabs__label">餐點</label>
-          <input type="radio" className="tabs__radio" name="tabs-example" id="tab4" />
-          <label for="tab4" className="tabs__label">活動</label>
+          <input
+            type="radio"
+            className="tabs__radio"
+            name="tabs-example"
+            id="tab3"
+          />
+          <label for="tab3" className="tabs__label">
+            餐點
+          </label>
+          <input
+            type="radio"
+            className="tabs__radio"
+            name="tabs-example"
+            id="tab4"
+          />
+          <label for="tab4" className="tabs__label">
+            活動
+          </label>
         </div>
         <div className="checkout-section">
           <div className="total-amount">
@@ -105,7 +140,6 @@ function CheckoutFlow() {
           <article className="product">
             <div className="card">
               <img src="" alt="" />
-
             </div>
           </article>
         </section>
