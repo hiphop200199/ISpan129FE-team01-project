@@ -1,6 +1,16 @@
 import React from 'react'
+import { useState } from 'react'
 
 function CheckoutFlow() {
+  const [tagCheck, setTagCheck] = useState('check')
+  const handleChange = (event) => {
+    if (!tagCheck) {
+      setTagCheck('check')
+    } else {
+      setTagCheck('')
+    }
+  }
+
   return (
     <>
       <aside className="order-step-guide">
@@ -28,7 +38,8 @@ function CheckoutFlow() {
             className="tabs__radio"
             name="tabs-example"
             id="tab1"
-            checked
+            onChange={handleChange}
+            checked={tagCheck}
           />
           <label for="tab1" className="tabs__label">
             商城
@@ -43,7 +54,7 @@ function CheckoutFlow() {
                   <th>價格</th>
                   <th>數量</th>
                   <th>小計</th>
-                  <th>操作</th>
+                  {/* <th>操作</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -56,7 +67,7 @@ function CheckoutFlow() {
                   <td>NT.300</td>
                   <td>1</td>
                   <td>NT300</td>
-                  <td>從購物車刪除</td>
+                  {/* <td>從購物車刪除</td> */}
                 </tr>
                 <tr>
                   <td>
@@ -67,7 +78,7 @@ function CheckoutFlow() {
                   <td>NT.300</td>
                   <td>1</td>
                   <td>NT300</td>
-                  <td>從購物車刪除</td>
+                  {/* <td>從購物車刪除</td> */}
                 </tr>
               </tbody>
             </table>
@@ -77,6 +88,8 @@ function CheckoutFlow() {
             className="tabs__radio"
             name="tabs-example"
             id="tab2"
+            onChange={handleChange}
+            // checked={tagCheck}
           />
           <label for="tab2" className="tabs__label">
             課程
@@ -91,7 +104,7 @@ function CheckoutFlow() {
                   <th>價格</th>
                   <th>數量</th>
                   <th>小計</th>
-                  <th>操作</th>
+                  {/* <th>操作</th> */}
                 </tr>
               </thead>
               <tr>
@@ -103,7 +116,7 @@ function CheckoutFlow() {
                 <td>NT.300</td>
                 <td>1</td>
                 <td>NT300</td>
-                <td>從購物車刪除</td>
+                {/* <td>從購物車刪除</td> */}
               </tr>
             </table>
           </div>
@@ -112,6 +125,8 @@ function CheckoutFlow() {
             className="tabs__radio"
             name="tabs-example"
             id="tab3"
+            onChange={handleChange}
+            // checked={tagCheck}
           />
           <label for="tab3" className="tabs__label">
             餐點
@@ -121,6 +136,8 @@ function CheckoutFlow() {
             className="tabs__radio"
             name="tabs-example"
             id="tab4"
+            onChange={handleChange}
+            // checked={tagCheck}
           />
           <label for="tab4" className="tabs__label">
             活動
