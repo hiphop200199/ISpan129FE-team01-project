@@ -11,51 +11,50 @@ function RegisterMember() {
           </span>
           <form className="member-form">
             <label className="member-label">
-              姓名
-              <input id="name" type="text" name="name" />
+              <input id="name" type="text" name="name" placeholder="姓名" />
             </label>
 
             <label className="member-label">
-              電話
-              <input id="phone" type="tel" name="phone" />
+              <input id="phone" type="tel" name="phone" placeholder="電話" />
             </label>
 
             <label className="member-label">
-              信箱
+              <input id="email" type="email" name="email" placeholder="信箱" />
+            </label>
+
+            <label className="member-label">
               <input
-                id="email"
-                type="email"
-                name="email"
-                placeholder="信箱將作為登入帳號，敬請填寫正確資訊，以免喪失會員權益"
+                id="address"
+                type="text"
+                name="address"
+                placeholder="地址"
               />
             </label>
 
             <label className="member-label">
-              地址
-              <input id="address" type="text" name="address" />
-            </label>
-
-            <label className="member-label">
-              生日
               <input id="birthday" type="date" name="birthday" />
             </label>
 
             <label className="member-label">
-              密碼
-              <input id="password" type="password" name="password" />
+              <input
+                id="password"
+                type="password"
+                name="password"
+                placeholder="密碼"
+              />
             </label>
 
-            <label id="member-label-check-password">
-              確認密碼
+            <label className="member-label">
               <input
                 id="check-password"
                 type="password"
                 name="check-password"
+                placeholder="確認密碼"
               />
             </label>
 
             <label id="member-label-policy">
-              <input id="policy" type="checkbox" name="policy"></input>
+              <input id="policy" type="checkbox" name="policy" />
               我已經閱讀並同意隱私權保護政策條款
             </label>
 
