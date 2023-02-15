@@ -14,7 +14,7 @@ import Login from './pages/member/Login'
 import Cart from './pages/cart/Cart'
 import ButtonTemplate from './template/button'
 import FormTemplate from './template/form'
-import CheckoutFlow from './template/CheckoutFlow'
+import CheckoutFlow from './pages/checkoutflow/CheckoutFlow'
 //引入頁面元件
 
 function App() {
