@@ -1,5 +1,6 @@
 // import React from 'react'
 // // import Card from './Card'
+export { default as Card } from './Card'
 
 // import FormTemplate from './form'
 export { default as FormTemplate } from './form'

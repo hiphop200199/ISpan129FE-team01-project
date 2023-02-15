@@ -12,7 +12,7 @@ import Product from './pages/product/Product'
 import RegisterMember from './pages/member/RegisterMember'
 import Login from './pages/member/Login'
 import Cart from './pages/cart/Cart'
-// import Card from './template/Card'
+import Card from './template/Card'
 import index from './template'
 // import FormTemplate from './template/form'
 import CheckoutFlow from './pages/checkoutflow/CheckoutFlow'
@@ -36,7 +36,7 @@ function App() {
           <Route path="register" element={<RegisterMember />} />
           <Route path="cart" element={<Cart />} />
           <Route path="CheckoutFlow" element={<CheckoutFlow />} />
-          {/* <Route path="button" element={<ButtonTemplate />}></Route> */}
+          <Route path="Card" element={<Card />}></Route>
           {/* <Route path="form" element={<FormTemplate />}></Route> */}
         </Route>
       </Routes>

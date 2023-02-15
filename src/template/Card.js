@@ -1,4 +1,4 @@
-import photo from '../../img/productDetails/cheese.jpg'
+import photo from '../img/productDetails/cheese.jpg'
 function Card() {
   return (
     <>
