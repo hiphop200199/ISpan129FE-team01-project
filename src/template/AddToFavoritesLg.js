@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
-function AddToFavorites() {
+function AddToFavoritesLg() {
   return (
     <>
       {/* 大的按鈕: 加入收藏 */}
@@ -11,4 +11,4 @@ function AddToFavorites() {
     </>
   )
 }
-export default AddToFavorites
+export default AddToFavoritesLg
