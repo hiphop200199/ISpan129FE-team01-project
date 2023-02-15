@@ -13,7 +13,8 @@ import RegisterMember from './pages/member/RegisterMember'
 import Login from './pages/member/Login'
 import Cart from './pages/cart/Cart'
 import Card from './template/Card'
-import index from './template'
+import Header from './layouts/Header'
+// import index from './template'
 // import FormTemplate from './template/form'
 import CheckoutFlow from './pages/checkoutflow/CheckoutFlow'
 //引入頁面元件
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainLayouts />}>
           <Route index element={<HomePage />}></Route>
+          <Route path="Header" element={<Header />}></Route>
           <Route path="product" element={<Product />}></Route>
           <Route path="meals" element={<Meals />}></Route>
           <Route path="hotel" element={<Hotel />}></Route>
