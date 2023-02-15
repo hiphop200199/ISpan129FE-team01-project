@@ -203,7 +203,7 @@ tr>td:first-child {
   line-height: 1.5rem;
 }
 
-h1::after {
+.product-title::after {
   content: "";
   display: inline-block;
   vertical-align: middle;

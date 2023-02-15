@@ -153,7 +153,7 @@ function CheckoutFlow() {
           </div>
         </div>
         <section className="recommended-products">
-          <h1>猜你喜歡</h1>
+          <h1 className="product-title">猜你喜歡</h1>
           <article className="product">
             <div className="card">
               <img src="" alt="" />
