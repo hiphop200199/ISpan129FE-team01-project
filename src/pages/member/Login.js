@@ -1,69 +1,61 @@
 import React, { useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleRight } from '@fortawesome/free-solid-svg-icons'
+import RegisterMember from './RegisterMember'
+import { Link } from 'react-router-dom'
 function Login() {
-  const [errorMessages, setErrorMessages] = useState({})
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  // const [errorMessages, setErrorMessages] = useState({})
+  // const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const renderErrorMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    )
+  // const renderErrorMessage = (name) =>
+  //   name === errorMessages.name && (
+  //     <div className="error">{errorMessages.message}</div>
+  //   )
 
   return (
-    <>
-      <div class="login-container">
-        <div class="row justify-content-center">
-          <div class="col-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">登入</h5>
-                <form name="form1" onsubmit="sendForm(event)">
-                  <div class="mb-3">
-                    <label
-                      for="email"
-                      class="form-label"
-                      placeholder="請輸入信箱"
-                      required
-                    >
-                      帳號
-                    </label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      id="email"
-                      name="email"
-                      required
-                    />
-                    <div class="form-text"></div>
-                  </div>
-                  <div class="mb-3">
-                    <label for="password" class="form-label">
-                      密碼
-                    </label>
-                    <input
-                      type="password"
-                      class="form-control"
-                      id="password"
-                      name="password"
-                      required
-                    />
-                    <div class="form-text"></div>
-                  </div>
-                  <div>
-                    <span>忘記密碼?</span>
-                    <br />
-                    <span>登入時遇到問題?</span>
-                  </div>
+    <section className="login-container">
+      <div className="login-main">
+        <form className="login-form">
+          <h1>會員登入</h1>
+          <div className="typeArea">
+            <label className="login-label">
+              <input
+                id="email"
+                type="email"
+                name="email"
+                placeholder="請輸入email"
+                required
+              />
+            </label>
 
-                  <button type="submit" class="btn btn-primary">
-                    登入
-                  </button>
-                </form>
-              </div>
-            </div>
+            <label className="login-label">
+              <input
+                id="password"
+                type="password"
+                name="password"
+                placeholder="請輸入密碼"
+                required
+              />
+            </label>
           </div>
+          <div className="function">
+            <p>忘記密碼?</p>
+            <p>登入時遇到問題?</p>
+          </div>
+
+          <button type="submit" className=" btn btn-lg btn-primary-for-login">
+            登入
+          </button>
+        </form>
+        <div className="other">
+          <button className="btn btn-primary btn-lg">Google登入</button>
+          <Link to="/register" className="register">
+            <FontAwesomeIcon icon={faCircleRight} />
+            註冊會員
+          </Link>
         </div>
       </div>
-    </>
+    </section>
   )
 }
 export default Login
