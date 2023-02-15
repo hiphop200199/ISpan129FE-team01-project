@@ -1,4 +1,5 @@
 import photo from '../../img/productDetails/cheese.jpg'
+import { AddToCartLg, AddToFavoritesLg } from '../../template'
 function Product() {
   return (
     <>
@@ -15,8 +16,10 @@ function Product() {
             </p>
             <h2 className="product-price">NT.300</h2>
             <div className="product-button-wrapper">
-              <button className="product-add-collection">加入收藏</button>
-              <button className="product-add-cart">加入購物車</button>
+              {/* <button className="product-add-collection">加入收藏</button>
+              <button className="product-add-cart">加入購物車</button> */}
+              <AddToFavoritesLg />
+              <AddToCartLg />
             </div>
           </div>
         </section>
