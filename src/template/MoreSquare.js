@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
-function MoreRound() {
+function MoreSquare() {
   return (
     <>
       {/* 黃色小按鈕(圓弧形): 看更多，已結束，立即訂房 */}
@@ -14,4 +14,4 @@ function MoreRound() {
     </>
   )
 }
-export default MoreRound
+export default MoreSquare
