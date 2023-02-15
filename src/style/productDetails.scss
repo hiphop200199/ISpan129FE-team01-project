@@ -33,12 +33,14 @@
             margin-inline: 1vmax;
            display: flex;
            flex-direction: column;
+           justify-content: space-between;
            
            width: clamp(400px,42%,530px);
            height: 98%;
            font-weight: 900;
            & .product-name{
             font-size: 48px;
+            margin:0;
            }
            & .product-unit{
             font-size: 24px;
@@ -50,7 +52,8 @@
            & .product-price{
             margin-block-end: max(1vmax,35px);
             font-size: 24px;
-            font-weight: 900;
+            margin: 0;
+            // font-weight: 900;
            }
            & .product-button-wrapper{
             display: flex;
