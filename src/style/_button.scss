@@ -32,6 +32,15 @@
     color: var(--text-black);
   }
 }
+.btn-primary-for-login{
+  background-color: var(--light-yellow);
+  border:5px solid var(--light-yellow);
+  &:hover,&:active,&:focus-visible{
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--text-black);
+  }
+}
 .btn-outline-primary{
   border:5px solid var(--light-blue);
   background-color: var(--text-white);
