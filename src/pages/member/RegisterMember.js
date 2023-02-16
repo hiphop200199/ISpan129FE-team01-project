@@ -1,11 +1,13 @@
 import { useState } from 'react'
-
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 function RegisterMember() {
   const [user, setUser] = useState({
     name: '',
     email: '',
     address: '',
     password: '',
+    phone: '',
+    birthday: '',
     showPassword: false, //用於切換密碼欄位類型使用
     password2: '',
     showPassword2: false, //用於切換密碼欄位類型使用
@@ -13,6 +15,7 @@ function RegisterMember() {
   //用於記錄錯誤訊息之用
   const [fieldErrors, setFieldErrors] = useState({
     name: '',
+    phone: '',
     email: '',
     password: '',
     password2: '',
@@ -40,7 +43,7 @@ function RegisterMember() {
   const handleSubmit = (e) => {
     //第一航要阻擋預設的form送出行為
     e.preventDefault()
-
+    const location = Location
     //獲得目前的表單輸入值
     //1.從state獲得
     console.log(user)
@@ -60,11 +63,26 @@ function RegisterMember() {
     //做 資料整理/整合工作
 
     //做 送至伺服器(fetch, ajax...) ->submit
+    fetch('http://localhost:3002/auth/register', {
+      method: 'POST',
+      // headers: { 'Content-Type': 'application/json' },
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        if (data.success) {
+          alert('註冊成功')
+          location.href = 'localhost:3000/member'
+        } else {
+          alert('註冊失敗')
+        }
+      })
   }
   //表單有發生驗證錯誤時，會觸發事件
   const handelInvalid = (e) => {
     e.preventDefault()
-    // console.log('檢查有錯誤:', e.target.name, e.target.validationMessage);
+    console.log('檢查有錯誤:', e.target.name, e.target.validationMessage)
 
     //紀錄錯誤訊息
     setFieldErrors({
@@ -102,10 +120,12 @@ function RegisterMember() {
                 type="text"
                 name="name"
                 placeholder="姓名"
-                value={user.fullname}
+                value={user.name}
                 onChange={handleFieldChange}
                 required
               />
+              <br />
+              <span className="error">{fieldErrors.name}</span>
             </label>
 
             <label className="member-label">
@@ -115,9 +135,13 @@ function RegisterMember() {
                 name="phone"
                 placeholder="電話"
                 required
+                value={user.phone}
+                onChange={handleFieldChange}
               />
+              <br />
+              <span className="error">{fieldErrors.phone}</span>
             </label>
-            <span className="error">{fieldErrors.fullname}</span>
+
             <label className="member-label">
               <input
                 id="email"
@@ -128,6 +152,8 @@ function RegisterMember() {
                 value={user.email}
                 onChange={handleFieldChange}
               />
+              <br />
+              <span className="error">{fieldErrors.email}</span>
             </label>
 
             <label className="member-label">
@@ -142,27 +168,54 @@ function RegisterMember() {
             </label>
 
             <label className="member-label">
-              <input id="birthday" type="date" name="birthday" />
+              <input
+                id="birthday"
+                type="date"
+                name="birthday"
+                value={user.birthday}
+                onChange={handleFieldChange}
+              />
             </label>
 
             <label className="member-label">
               <input
                 id="password"
-                type="password"
+                type={user.showPassword ? 'text' : 'password'}
                 name="password"
+                value={user.password}
+                onChange={handleFieldChange}
                 placeholder="密碼"
                 required
+                minLength={6} //最少輸入6字元
+                maxLength={10} //最多輸入10字元
               />
+              <br />
+              <span className="error">{fieldErrors.password}</span>
+              <br />
+              {/* <input
+                className="check-input"
+                type="checkbox"
+                name="showPassword"
+                checked={user.showPassword}
+                onChange={handleFieldChange}
+              />
+              顯示輸入的密碼 */}
             </label>
 
             <label className="member-label">
               <input
-                id="check-password"
-                type="password"
-                name="check-password"
+                id="password2"
+                type={user.showPassword2 ? 'text' : 'password'}
+                name="password2"
                 placeholder="確認密碼"
+                value={user.password2}
+                onChange={handleFieldChange}
                 required
+                minLength={6}
+                maxLength={10}
               />
+              <br />
+              <span className="error">{fieldErrors.password2}</span>
             </label>
 
             <label id="member-label-policy">
@@ -176,6 +229,37 @@ function RegisterMember() {
               value="註冊"
             >
               註冊
+            </button>
+            <hr />
+            <button
+              type="button"
+              onClick={() => {
+                setUser({
+                  name: '王美美',
+                  email: 'asd@gmail.com',
+                  password: '123456',
+                  password2: '123456',
+                  showPassword: true,
+                  showPassword2: true,
+                })
+              }}
+            >
+              填入正確範例資料
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setUser({
+                  name: 'aaaaa',
+                  email: 'asd',
+                  password: '179055',
+                  password2: '179056',
+                  showPassword: true,
+                  showPassword2: true,
+                })
+              }}
+            >
+              填入錯誤範例資料
             </button>
           </form>
         </section>
