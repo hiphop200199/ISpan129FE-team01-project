@@ -10,7 +10,9 @@ import Meals from './pages/meals/Meals'
 import NotFound from './pages/NotFound'
 import Product from './pages/product/Product'
 import RegisterMember from './pages/member/RegisterMember'
+import EditMember from './pages/member/EditMember'
 import Login from './pages/member/Login'
+import AddPet from './pages/member/AddPet'
 import Cart from './pages/cart/Cart'
 import ButtonTemplate from './template/button'
 import FormTemplate from './template/form'
@@ -32,6 +34,8 @@ function App() {
           <Route path="*" element={<NotFound />} />
           <Route path="member" element={<Login />} />
           <Route path="register" element={<RegisterMember />} />
+          <Route path="edit" element={<EditMember />} />
+          <Route path="add" element={<AddPet />} />
           <Route path="cart" element={<Cart />} />
           <Route path="button" element={<ButtonTemplate />}></Route>
           <Route path="form" element={<FormTemplate />}></Route>

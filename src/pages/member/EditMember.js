@@ -1,59 +1,106 @@
-import React from 'react'
-
+import { useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleUser, faPlus } from '@fortawesome/free-solid-svg-icons'
 function EditMember() {
+  const [image, setImage] = useState(null)
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onload = () => {
+        setImage(reader.result)
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
   return (
-    <>
-      <div className="memberEdit-container">
-        <section className="memberEdit-main">
-          <h1 className="memberEdit-title">我的個人資料</h1>
-          <form className="member-editform">
-            <label className="member-label">
-              姓名
-              <input id="name" type="text" name="name" />
-            </label>
+    <div className="member-container">
+      <section className="member-main">
+        <h1 className="member-title">我的個人資料</h1>
+        <form className="member-form">
+          <label htmlFor="upload-image" className="upload-icon">
+            {!image && <FontAwesomeIcon icon={faCircleUser} />}
+            <input
+              type="file"
+              id="upload-image"
+              accept="image/*"
+              onChange={handleImageChange}
+              hidden
+            />
+          </label>
+          {image && (
+            <img src={image} alt="上傳預覽圖片" width={200} height={200} />
+          )}
+          <label className="member-label">
+            <input
+              id="name"
+              type="text"
+              name="name"
+              placeholder="姓名"
+              value=""
+            />
+          </label>
 
-            <label className="member-label">
-              電話
-              <input id="phone" type="tel" name="phone" />
-            </label>
+          <label className="member-label">
+            <input
+              id="phone"
+              type="tel"
+              name="phone"
+              placeholder="電話"
+              value=""
+            />
+          </label>
 
-            <label className="member-label">
-              信箱
-              <input id="email" type="email" name="email" />
-            </label>
+          <label className="member-label">
+            <input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="信箱"
+              value=""
+            />
+          </label>
 
-            <label className="member-label">
-              地址
-              <input id="address" type="text" name="address" />
-            </label>
+          <label className="member-label">
+            <input
+              id="address"
+              type="text"
+              name="address"
+              placeholder="地址"
+              value=""
+            />
+          </label>
 
-            <label className="member-label">
-              生日
-              <input id="birthday" type="date" name="birthday" />
-            </label>
+          <label className="member-label">
+            <input id="birthday" type="date" name="birthday" value="" />
+          </label>
 
-            <label className="member-label">
-              密碼
-              <input id="password" type="password" name="password" />
-              <i class="fa-solid fa-eye"></i>
-            </label>
-
-            <label id="member-label-check-password">
-              確認密碼
-              <input
-                id="check-password"
-                type="password"
-                name="check-password"
-              />
-              <i class="fa-solid fa-eye"></i>
-            </label>
-
-            <input id="submit" type="submit" value="確認" />
-          </form>
-        </section>
-      </div>
-    </>
+          <label className="member-label">
+            <input
+              id="password"
+              type="password"
+              name="password"
+              placeholder="密碼"
+              value=""
+            />
+          </label>
+          <div className="click">
+            <button
+              type="button"
+              class="btn btn-outline-primary btn-lg"
+              onclick="history.back();"
+            >
+              返回
+            </button>
+            <button type="submit" class="btn btn-primary btn-lg">
+              確認
+            </button>
+          </div>
+        </form>
+      </section>
+    </div>
   )
 }
-
 export default EditMember

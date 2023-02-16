@@ -1,6 +1,6 @@
 @import '_default.scss';
 // 導入bootstrap所有的樣式與預設變數
-// @import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/bootstrap';
 // 其他自訂樣式
 @import '_layout.scss';
 @import '_card.scss';
@@ -9,6 +9,6 @@
 @import 'editMember.scss';
 @import 'login.scss';
 @import 'productDetails.scss';
-
+@import 'addPet.scss';
 @import '_button.scss';
 @import '_form.scss';
