@@ -1,8 +1,11 @@
 import photo from '../../img/productDetails/cheese.jpg'
 import { AddToCartLg, AddToFavoritesLg } from '../../template'
+import Header from '../../layouts/header'
+import HeaderSearch from '../../layouts/HeaderSearch'
 function Product() {
   return (
     <>
+      <Header />
       <div className="product-container">
         <section className="product-introduction">
           <div className="product-photo-wrapper">
