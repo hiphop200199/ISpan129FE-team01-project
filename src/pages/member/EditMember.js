@@ -1,7 +1,10 @@
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleUser, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from 'react-router-dom'
 function EditMember() {
+  const navigate = useNavigate()
+
   const [image, setImage] = useState(null)
 
   const handleImageChange = (event) => {
@@ -39,7 +42,7 @@ function EditMember() {
               type="text"
               name="name"
               placeholder="姓名"
-              value=""
+              // value=""
             />
           </label>
 
@@ -49,7 +52,7 @@ function EditMember() {
               type="tel"
               name="phone"
               placeholder="電話"
-              value=""
+              // value=""
             />
           </label>
 
@@ -59,7 +62,7 @@ function EditMember() {
               type="email"
               name="email"
               placeholder="信箱"
-              value=""
+              // value=""
             />
           </label>
 
@@ -69,12 +72,12 @@ function EditMember() {
               type="text"
               name="address"
               placeholder="地址"
-              value=""
+              // value=""
             />
           </label>
 
           <label className="member-label">
-            <input id="birthday" type="date" name="birthday" value="" />
+            <input id="birthday" type="date" name="birthday" />
           </label>
 
           <label className="member-label">
@@ -83,18 +86,18 @@ function EditMember() {
               type="password"
               name="password"
               placeholder="密碼"
-              value=""
+              // value=""
             />
           </label>
           <div className="click">
             <button
               type="button"
-              class="btn btn-outline-primary btn-lg"
-              onclick="history.back();"
+              className="btn btn-outline-primary btn-lg"
+              onClick={() => navigate(-1)}
             >
               返回
             </button>
-            <button type="submit" class="btn btn-primary btn-lg">
+            <button type="submit" className="btn btn-primary btn-lg">
               確認
             </button>
           </div>
