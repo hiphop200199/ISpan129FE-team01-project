@@ -1,4 +1,5 @@
 import photo from '../img/productDetails/cheese.jpg'
+import MoreRound from './MoreRound'
 function Card() {
   return (
     <>
@@ -12,7 +13,8 @@ function Card() {
         </section>
         <section className="buttons">
           <button className="button-collection">&#9825;</button>
-          <button className="button-moreInfo">看更多</button>
+          {/* <button className="button-moreInfo">看更多</button> */}
+          <MoreRound />
         </section>
         <img src={photo} />
       </div>
