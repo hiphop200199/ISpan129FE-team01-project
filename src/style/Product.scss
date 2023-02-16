@@ -1,0 +1,20 @@
+.slider-height{
+    padding-top: 30px;
+    display: flex;
+    margin: auto;
+    // max-height: 10%;
+    // max-width: 50%;
+    img{
+        // width: 60%;
+    }
+}
+.cardGroup{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 100px;
+
+    &Card{
+        // width: 20%;
+    }
+}
