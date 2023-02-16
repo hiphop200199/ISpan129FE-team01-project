@@ -10,10 +10,10 @@
     }
   }
 }
-.btn-lg{
-  min-width: 300px;
-  font-size: var(--font-size-h1) ;//可調整高度
-}
+// .btn-lg{
+//   min-width: 300px;
+//   font-size: var(--font-size-h1) ;//可調整高度
+// }
 .btn-primary{
   background-color: var(--light-blue);
   border:5px solid var(--light-blue);
@@ -27,8 +27,17 @@
   background-color: var(--light-yellow);
   border:5px solid var(--light-yellow);
   &:hover,&:active,&:focus-visible{
-    background-color: var(--light-yellow);
+    background-color: var(--secondary);
     border:5px solid var(--secondary);
+    color: var(--text-black);
+  }
+}
+.btn-primary-for-login{
+  background-color: var(--light-yellow);
+  border:5px solid var(--light-yellow);
+  &:hover,&:active,&:focus-visible{
+    background-color: var(--secondary);
+    border-color: var(--secondary);
     color: var(--text-black);
   }
 }

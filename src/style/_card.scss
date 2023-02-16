@@ -51,6 +51,72 @@
         
     }
 }
-.h-card-text{
-  font-size: var(--font-size-h5);
+.h-card{
+    display: flex;
+    background-color: #FEFCEB;
+    padding: 10px;
+    position: relative;
+}
+
+/*商品頁卡片元件*/
+.productCard{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--light-yellow);
+    width:560px;
+    height: 360px;
+    border-radius: 30px;
+    padding: 30px;
+    & .text-part{
+        display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+        & .title{
+            font-size: 36px;
+            font-weight: 900;
+        }
+        & .description{
+            font-size: var(--font-size-h2);
+            color: var(--text-black);
+            width: 50%;
+            font-weight: 700;
+            margin-block: 10px 15px;
+            
+        }
+        & .price{
+            font-size: var(--font-size-h2);
+            color: var(--text-black);
+            font-family: sans-serif;
+        }
+    }
+    
+    & .buttons{
+        display: flex;
+        & .button-collection{
+            border: none;
+            background-color: transparent;
+            font-weight: 700;
+            color: var(--text-black);
+            font-size: 28px;
+        }
+        & .button-moreInfo{
+            border: none;
+            background-color: var(--secondary);
+            font-size: var(--font-size-h2);
+            font-weight: 700;
+            color: var(--text-black);
+            border-radius: var(--button-radius-2);
+            padding:0px 20px;
+            margin-inline: 5px;
+        }
+    }
+    & img{
+        position: absolute;
+        width: 42%;
+        height: 80%;
+        right: -12%;
+        top: 12%;
+    }
 }
