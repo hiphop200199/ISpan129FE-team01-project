@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
 function RegisterMember() {
   const [user, setUser] = useState({
     name: '',
@@ -39,11 +40,12 @@ function RegisterMember() {
     //以下要依照通用的三步驟原則來更新狀態
     setUser({ ...user, [e.target.name]: e.target.value }) //ex: email:e.target.value...
   }
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     //第一航要阻擋預設的form送出行為
     e.preventDefault()
-    const location = Location
+
     //獲得目前的表單輸入值
     //1.從state獲得
     console.log(user)
@@ -73,7 +75,8 @@ function RegisterMember() {
         console.log(data)
         if (data.success) {
           alert('註冊成功')
-          location.href = 'localhost:3000/member'
+          navigate('/login') //註冊成功即跳轉至登入畫面
+          // location.href = 'localhost:3000/member'
         } else {
           alert('註冊失敗')
         }
