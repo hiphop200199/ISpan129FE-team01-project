@@ -78,5 +78,26 @@
             font-weight: bold;
           }
         }
-      }
+        // .memberlist{
+        //   display: flex;
+        //   flex-direction: column;
+        .editMember{
+          border-bottom: 3px solid #47BBE8 ;
+        }
+        .myList{
+          border-bottom: 3px solid #47BBE8 ;
+        }
+        .orderList{
+          border-bottom: 3px solid #47BBE8 ;
+        }
+        .petList{
+          border-bottom: 3px solid #47BBE8 ;
+        }
+      // }
+    } 
   }   
+  // .memberlist{
+  //     display: flex;
+  //     flex-direction: column;
+  // }
+  
