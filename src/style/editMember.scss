@@ -1,9 +1,3 @@
-.upload-icon{
-  // max-width: 200px;
-  // .upload-img{
-  //   width: 100%;
-  // }
-}
 .fa-circle-user{
   height:50px ;
 }
@@ -56,4 +50,10 @@
 .click{
   display: flex;
   justify-content: space-between;
+  .btn.btn-primary.btn-lg{
+    min-width: 50%;
+  }
+  .btn.btn-outline-primary.btn-lg{
+    min-width: 50%;
+  }
 }
