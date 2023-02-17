@@ -36,7 +36,7 @@ function App() {
           <Route path="course" element={<Course />}></Route>
           <Route path="activity" element={<Activity />}></Route>
           <Route path="*" element={<NotFound />} />
-          <Route path="member" element={<Login />} />
+          <Route path="login" element={<Login />} />
           <Route path="register" element={<RegisterMember />} />
           <Route path="edit" element={<EditMember />} />
           <Route path="add" element={<AddPet />} />
