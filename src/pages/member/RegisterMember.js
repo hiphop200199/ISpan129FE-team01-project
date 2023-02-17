@@ -194,7 +194,6 @@ function RegisterMember() {
               />
               <br />
               <span className="error">{fieldErrors.password}</span>
-              <br />
               {/* <input
                 className="check-input"
                 type="checkbox"
@@ -234,36 +233,40 @@ function RegisterMember() {
               註冊
             </button>
             <hr />
-            <button
-              type="button"
-              onClick={() => {
-                setUser({
-                  name: '王美美',
-                  email: 'asd@gmail.com',
-                  password: '123456',
-                  password2: '123456',
-                  showPassword: true,
-                  showPassword2: true,
-                })
-              }}
-            >
-              填入正確範例資料
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setUser({
-                  name: 'aaaaa',
-                  email: 'asd',
-                  password: '179055',
-                  password2: '179056',
-                  showPassword: true,
-                  showPassword2: true,
-                })
-              }}
-            >
-              填入錯誤範例資料
-            </button>
+            <div className="example">
+              <button
+                className="correct-btn"
+                type="button"
+                onClick={() => {
+                  setUser({
+                    name: '王美美',
+                    email: 'asd@gmail.com',
+                    password: '123456',
+                    password2: '123456',
+                    showPassword: true,
+                    showPassword2: true,
+                  })
+                }}
+              >
+                填入正確範例資料
+              </button>
+              <button
+                type="button"
+                className="false-btn"
+                onClick={() => {
+                  setUser({
+                    name: 'aaaaa',
+                    email: 'asd',
+                    password: '179055',
+                    password2: '179056',
+                    showPassword: true,
+                    showPassword2: true,
+                  })
+                }}
+              >
+                填入錯誤範例資料
+              </button>
+            </div>
           </form>
         </section>
       </div>
