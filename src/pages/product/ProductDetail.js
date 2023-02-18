@@ -2,7 +2,7 @@ import photo from '../../img/productDetails/cheese.jpg'
 import { AddToCartLg, AddToFavoritesLg } from '../../template'
 import Header from '../../layouts/header'
 import HeaderSearch from '../../layouts/HeaderSearch'
-function Product() {
+function ProductDetail() {
   return (
     <>
       <Header />
@@ -72,4 +72,4 @@ function Product() {
     </>
   )
 }
-export default Product
+export default ProductDetail

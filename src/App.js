@@ -8,7 +8,7 @@ import Reserve from './pages/hotel/Reserve'
 import LatestNews from './pages/latestNews/LatestNews'
 import Meals from './pages/meals/Meals'
 import NotFound from './pages/NotFound'
-import Product from './pages/product/Product'
+import ProductDetail from './pages/product/ProductDetail'
 import RegisterMember from './pages/member/RegisterMember'
 import EditMember from './pages/member/EditMember'
 import Login from './pages/member/Login'
@@ -28,7 +28,7 @@ function App() {
         <Route path="/" element={<MainLayouts />}>
           <Route index element={<HomePage />}></Route>
           <Route path="Header" element={<Header />}></Route>
-          <Route path="product" element={<Product />}></Route>
+          <Route path="product" element={<ProductDetail />}></Route>
           <Route path="meals" element={<Meals />}></Route>
           <Route path="hotel" element={<Hotel />}></Route>
           <Route path="reserve" element={<Reserve />}></Route>
