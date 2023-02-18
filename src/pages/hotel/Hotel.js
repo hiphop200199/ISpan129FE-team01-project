@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import Card from '../../template/Card'
+import MoreSquare from '../../template/MoreSquare'
 
 function Hotel() {
   const [room, setRoom] = useState([])
@@ -18,12 +20,22 @@ function Hotel() {
         text: '一大床(5呎*6.6呎)',
         img: 'hotel-single.jpg',
       },
+      {
+        title: '雙床雙人房',
+        subtitle: '1800',
+        text: '一大床(5呎*6.6呎)',
+        img: 'hotel-single.jpg',
+      },
     ])
     console.log('room', room)
   }, [])
 
   return (
     <>
+      {/* <Card photo={room[0] && room[0].img} /> */}
+      <Card photo={'hotel-single.jpg'} />
+      <Card photo={'logo192.png'} />
+
       <div className="card-wrap">
         {room.map((item, i) => {
           const img = require(`../../img/hotels/${item.img}`)
@@ -37,7 +49,7 @@ function Hotel() {
                 </div>
                 <div className="h-card-footer">
                   <Link to="/reserve">
-                    <button type="button">立即訂房</button>
+                    <MoreSquare />
                   </Link>
                   {/* <a href="">
               <button type="button">立即訂房</button>
@@ -52,7 +64,7 @@ function Hotel() {
           )
         })}
         {/* 死的 */}
-        <div className="h-card col-6">
+        {/* <div className="h-card col-6">
           <div className="h-card-left col-6">
             <div className="h-card-header">
               <h3 className="h-card-title">單人房</h3>
@@ -61,17 +73,14 @@ function Hotel() {
             </div>
             <div className="h-card-footer">
               <Link to="/">
-                <button type="button">立即訂房</button>
+                <MoreSquare />
               </Link>
-              {/* <a href="">
-              <button type="button">立即訂房</button>
-            </a> */}
             </div>
           </div>
           <div className="h-card-right col-7">
             <img src={require('../../img/hotels/hotel-single.jpg')} alt="" />
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   )
