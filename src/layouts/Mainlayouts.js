@@ -3,33 +3,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import { Outlet } from 'react-router-dom'
 import Ball from '../img/layout/毬.svg' //圖片
-import Menu from './Menu'
-import AbilityTrain from './AbilityTrain'
+import Sidebar from './Sidebar'
 import { Link } from 'react-router-dom'
 import Cart from '../pages/cart/Cart'
 // import Cart from '../pages/cart/Cart'
 function MainLayouts() {
   return (
-    <div className="wrap">
-      <nav className="nav">
-        <Link to="/">
-          <img src={Ball} alt="" />
-        </Link>
-        <Menu />
-        <AbilityTrain />
-      </nav>
-      <main className="content-border">
-        <div className="content">
-          <Outlet />
+    <>
+      <Sidebar />
+      <main>
+        <div className="radiustop">
+          <div className="radiusbottom">
+            <div className="routepage">
+              <Outlet />
+            </div>
+          </div>
         </div>
-        <button className="cart">
-          <Link to="/cart">
-            <FontAwesomeIcon icon={faCartShopping} />
-            {/* <FontAwesomeIcon icon={fa.faCartShopping} /> */}
-          </Link>
-        </button>
       </main>
-    </div>
+    </>
   )
 }
 
