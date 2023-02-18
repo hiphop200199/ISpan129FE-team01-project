@@ -1,5 +1,5 @@
 import photo from '../img/productDetails/cheese.jpg'
-import MoreRound from './MoreRound'
+// import MoreRound from './MoreRound'
 function Card() {
   return (
     <>
