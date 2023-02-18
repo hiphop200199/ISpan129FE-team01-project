@@ -4,9 +4,12 @@ import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
 function MoreRound() {
   return (
     <>
-      {/* 大的按鈕: 下一步，確認送出，回首頁 */}
-      <button type="button" className="btn btn-primary btn-lg min-width-auto">
-        下一步
+      {/* 黃色小按鈕(方形): 看更多，已結束，立即訂房 */}
+      <button
+        type="button"
+        className="btn btn-secondary btn-sm min-width-auto radius-5px"
+      >
+        看更多
       </button>
     </>
   )

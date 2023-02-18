@@ -18,9 +18,13 @@
         text-align: center;
         text-decoration: none;
         background-color: #FCF09A;
-        padding: 5px 5px;
+        padding: 5px 15px;
         margin-right:10px;
         border-radius: 60px;
+        font-weight: bold;
+        }
+        :visited{
+            color: var(--text-black);
         }
     }
     
