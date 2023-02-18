@@ -13,8 +13,7 @@ function Card({ photo }) {
         </section>
         <section className="buttons">
           <button className="button-collection">&#9825;</button>
-          {/* <button className="button-moreInfo">看更多</button> */}
-          <MoreRound />
+          <button className="button-moreInfo">看更多</button>
         </section>
         {/* 圖片動態引入 ，圖片須放在public資料夾*/}
         <img src={'http://localhost:3000/' + photo} alt="" />
