@@ -7,7 +7,7 @@ function RegisterMember() {
     email: '',
     address: '',
     password: '',
-    phone: '',
+    mobile: '',
     birthday: '',
     showPassword: false, //用於切換密碼欄位類型使用
     password2: '',
@@ -16,7 +16,7 @@ function RegisterMember() {
   //用於記錄錯誤訊息之用
   const [fieldErrors, setFieldErrors] = useState({
     name: '',
-    phone: '',
+    mobile: '',
     email: '',
     password: '',
     password2: '',
@@ -133,16 +133,16 @@ function RegisterMember() {
 
             <label className="member-label">
               <input
-                id="phone"
+                id="mobile"
                 type="tel"
-                name="phone"
+                name="mobile"
                 placeholder="電話"
                 required
-                value={user.phone}
+                value={user.mobile}
                 onChange={handleFieldChange}
               />
               <br />
-              <span className="error">{fieldErrors.phone}</span>
+              <span className="error">{fieldErrors.mobile}</span>
             </label>
 
             <label className="member-label">
