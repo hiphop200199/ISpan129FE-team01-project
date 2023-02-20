@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
+import moment from 'moment-timezone'
 function EditMember() {
   const [user, setUser] = useState({
     name: '',
@@ -23,6 +24,18 @@ function EditMember() {
   const [image, setImage] = useState(null)
   const navigate = useNavigate()
   // const [isSuccess, setIsSuccess] = useState(false)
+
+  // 設定統一時區
+  moment.tz.setDefault('Asia/Taipei')
+
+  // 將日期字串轉換為moment物件
+  const date = moment(user.birthday, 'YYYY-MM-DD')
+
+  // 轉換時區
+  const dateInTimezone = date.clone().tz('Asia/Taipei')
+
+  // 取得轉換後的日期字串
+  const yyyyMMddDate = dateInTimezone.format('YYYY-MM-DD')
 
   useEffect(() => {
     const id = localStorage.getItem('id')
@@ -67,51 +80,6 @@ function EditMember() {
       })
       .catch((error) => console.error(error))
   }
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   const formData = new FormData(e.target)
-
-  //   if (user.password !== user.password2) {
-  //     setFieldErrors({
-  //       ...fieldErrors,
-  //       password: '密碼與確認密碼欄位值不相同',
-  //       password2: '密碼與確認密碼欄位值不相同',
-  //     })
-  //     return
-  //   }
-
-  //   fetch('http://localhost:3002/login', {
-  //     method: 'POST',
-  //     body: formData,
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data)
-  //       if (data.success) {
-  //         const token = data.token
-  //         const mid = data.user.mid
-
-  //         fetch('http://localhost:3002/member/${mid}', {
-  //           method: 'PUT',
-  //           headers: {
-  //             // 'Content-Type': 'application/json',
-  //             Authorization: 'Bearer ${token}',
-  //           },
-  //           body: JSON.stringify(user),
-  //         })
-  //           .then((response) => response.json())
-  //           .then((data) => {
-  //             console.log(data)
-  //             setIsSuccess(data.success)
-  //           })
-  //       } else {
-  //         alert('登入失敗')
-  //       }
-  //     })
-  // }
-  // if (isSuccess) {
-  //   return <p>編輯成功！</p>
-  // }
 
   //圖片
   const handleImageChange = (event) => {
@@ -216,7 +184,7 @@ function EditMember() {
               id="birthday"
               type="date"
               name="birthday"
-              value={user.birthday}
+              value={yyyyMMddDate}
               onChange={(e) =>
                 setUser({
                   ...user,
