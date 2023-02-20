@@ -35,8 +35,10 @@ function Login() {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log('data:', data)
         if (data.success) {
           localStorage.setItem('email', data.email)
+          localStorage.setItem('id', data.id)
           setEmail(data.email)
           setIsAuthenticated(true)
           alert('登入成功')
@@ -64,6 +66,7 @@ function Login() {
   //登出
   function handleLogout() {
     localStorage.removeItem('email')
+    localStorage.removeItem('id')
     setEmail('')
     setIsAuthenticated(false)
     navigate('/')
@@ -131,7 +134,9 @@ function Login() {
               </label>
             </div>
             <div className="function">
-              <p>忘記密碼?</p>
+              <Link to="/ForgetPassword">
+                <p>忘記密碼?</p>
+              </Link>
               <p>登入時遇到問題?</p>
             </div>
 
