@@ -9,6 +9,7 @@ import LatestNews from './pages/latestNews/LatestNews'
 import Meals from './pages/meals/Meals'
 import NotFound from './pages/NotFound'
 import ProductDetail from './pages/product/ProductDetail'
+import Product from './pages/product/Product'
 import RegisterMember from './pages/member/RegisterMember'
 import EditMember from './pages/member/EditMember'
 import Login from './pages/member/Login'
@@ -28,7 +29,9 @@ function App() {
         <Route path="/" element={<MainLayouts />}>
           <Route index element={<HomePage />}></Route>
           <Route path="Header" element={<Header />}></Route>
-          <Route path="product" element={<ProductDetail />}></Route>
+          {/* product帶入type_id的quretString */}
+          <Route path="product/1" element={<Product />}></Route>
+          <Route path="productDetail" element={<ProductDetail />}></Route>
           <Route path="meals" element={<Meals />}></Route>
           <Route path="hotel" element={<Hotel />}></Route>
           <Route path="reserve" element={<Reserve />}></Route>
