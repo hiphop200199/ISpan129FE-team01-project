@@ -18,18 +18,18 @@
   background-color: var(--light-blue);
   border:5px solid var(--light-blue);
   &:hover,&:active,&:focus-visible{
-    background-color: var(--primary);
-    border-color: var(--primary);
-    color: var(--text-white);
+    background-color: var(--primary) ;
+    border-color: var(--primary) ;
+    color: var(--text-white) ;
   }
 }
 .btn-secondary{
   background-color: var(--light-yellow);
   border:5px solid var(--light-yellow);
   &:hover,&:active,&:focus-visible{
-    background-color: var(--secondary);
-    border:5px solid var(--secondary);
-    color: var(--text-black);
+    background-color: var(--secondary) ;
+    border:5px solid var(--secondary) ;
+    color: var(--text-black) ;
   }
 }
 .btn-primary-for-login{
@@ -108,7 +108,7 @@
   &::after{
       display: block;
       text-align: center;
-      font-size: 25px;
+      font-size: 21px;
       color: #515151;
       content: "+";
   }

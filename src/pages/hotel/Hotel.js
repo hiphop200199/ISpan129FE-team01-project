@@ -18,13 +18,25 @@ function Hotel() {
         title: '標準雙人房',
         subtitle: '1800',
         text: '一大床(5呎*6.6呎)',
-        img: 'hotel-single.jpg',
+        img: 'standard-double-room.jpg',
       },
       {
         title: '雙床雙人房',
         subtitle: '1800',
         text: '一大床(5呎*6.6呎)',
-        img: 'hotel-single.jpg',
+        img: 'twin-double-room.jpg',
+      },
+      {
+        title: '三人房',
+        subtitle: '2400',
+        text: '一大床(5呎*6.6呎)',
+        img: 'tripple-room.jpg',
+      },
+      {
+        title: '四人房',
+        subtitle: '3000',
+        text: '一大床(5呎*6.6呎)',
+        img: 'quadruple room.jpg',
       },
     ])
     console.log('room', room)
@@ -32,9 +44,16 @@ function Hotel() {
 
   return (
     <>
+      <img
+        src={require('../../img/hotels/hotel.js-banner.jpg')}
+        alt="girl&dog"
+        height="600"
+      />
+      <div className="h-text-title">住宿房型</div>
+      {/* photo */}
       {/* <Card photo={room[0] && room[0].img} /> */}
-      <Card photo={'hotel-single.jpg'} />
-      <Card photo={'logo192.png'} />
+      {/* <Card photo={'hotel-single.jpg'} /> */}
+      {/* <Card photo={'logo192.png'} /> */}
 
       <div className="card-wrap">
         {room.map((item, i) => {
@@ -48,6 +67,7 @@ function Hotel() {
                   <p className="h-card-text">{item.text}</p>
                 </div>
                 <div className="h-card-footer">
+                  <span>&#9825;</span>
                   <Link to="/reserve">
                     <MoreSquare />
                   </Link>
