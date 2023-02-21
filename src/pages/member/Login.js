@@ -84,6 +84,11 @@ function Login() {
                 我的個人資料
               </Link>
               <br />
+              <Link to="/changePassword" className="changePassword">
+                <FontAwesomeIcon icon={faPencil} />
+                更改密碼
+              </Link>
+              <br />
               <Link to="/myList" className="myList">
                 <FontAwesomeIcon icon={faHeart} />
                 我的收藏
