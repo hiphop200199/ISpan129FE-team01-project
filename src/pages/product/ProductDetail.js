@@ -1,8 +1,20 @@
 import photo from '../../img/productDetails/cheese.jpg'
 import { AddToCartLg, AddToFavoritesLg } from '../../template'
 import Header from '../../layouts/header'
-import HeaderSearch from '../../layouts/HeaderSearch'
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+
 function ProductDetail() {
+  const [data, setData] = useState([])
+  // 取得qureyStying的值
+  const { id } = useParams()
+  // 取得DB的資料
+  //(跨表取得img table的商品圖片)
+  // useEffect(() => {
+  //   fetch(`/api/product?type_id=${id}`)
+  //     .then((res) => res.json())
+  //     .then((product) => setData(product))
+  // }, [type])
   return (
     <>
       <Header />
