@@ -114,29 +114,31 @@ function Login() {
           </div>
         ) : (
           <form className="login-form" onSubmit={handleSubmit}>
-            <h1>會員登入</h1>
+            <h2>會員登入</h2>
             <div className="typeArea">
-              <label className="login-label">
-                <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  placeholder="請輸入email"
-                  required
-                  onChange={handleEmail}
-                />
-              </label>
-
-              <label className="login-label">
-                <input
-                  id="password"
-                  type="password"
-                  name="password"
-                  placeholder="請輸入密碼"
-                  required
-                  onChange={handlePassword}
-                />
-              </label>
+              {/* <label className="login-label"> */}
+              <input
+                className="form-control"
+                id="email"
+                type="email"
+                name="email"
+                placeholder="請輸入email"
+                required
+                onChange={handleEmail}
+              />
+              {/* </label> */}
+              <br />
+              {/* <label className="login-label"> */}
+              <input
+                className="form-control"
+                id="password"
+                type="password"
+                name="password"
+                placeholder="請輸入密碼"
+                required
+                onChange={handlePassword}
+              />
+              {/* </label> */}
             </div>
             <div className="function">
               <Link to="/ForgetPassword">
