@@ -1,10 +1,4 @@
-
-.col-6{
-  width: 50%;
-}
-.col-7{
-  width: 58.3%;
-}
+// 住宿頁卡片元件
 .card-wrap{
   display: flex;
   flex-wrap: wrap;
@@ -12,16 +6,15 @@
   // max-width: 1800px;
 }
 
-
-
 .h-card{
   margin: 20px;
   background-color: #FEFCEB;
   padding: 10px;
   position: relative;
   width: calc(50% - 100px);
+  //奇數欄卡片
   &:nth-child(odd){
-    margin: 20px 60px 20px 20px;
+    margin: 20px 80px 20px 20px;
   }
 }
 
@@ -31,12 +24,15 @@
     padding-top: 20px;
     .h-card-footer{
         padding-top: 40px;
+        span{
+          margin-right: 10px;
+        }
     }
     button{
         background-color:  #FCF09A;
         border: none;
         border-radius: 5px;
-        width: 75%;
+        width: 50%;
         padding: 10px;
         
     }
@@ -48,7 +44,8 @@
     img{
         width: 100%;
         border-radius: 18px;
-        
+        height: 31vh;
+        object-fit: cover;
     }
 }
 .h-card{
