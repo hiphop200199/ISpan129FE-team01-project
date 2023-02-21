@@ -12,10 +12,10 @@ function Product() {
   // 取得DB的資料
   //(跨表取得img table的商品圖片)
   useEffect(() => {
-    fetch(`/api/product?type_id=${type}`)
+    fetch(`/api/product?product_type=${type}`)
       .then((res) => res.json())
       .then((product) => setData(product))
-  })
+  }, [type])
   return (
     <>
       <Header />
@@ -25,7 +25,7 @@ function Product() {
       <div className="content">
         {data.map((product) => (
           //data={product}傳入這筆資料的欄位給子元件
-          <Card key={data.id} data={product} />
+          <Card key={product.id} data={product} />
         ))}
       </div>
     </>
