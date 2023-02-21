@@ -4,17 +4,36 @@ import Header from '../../layouts/header'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
-function ProductDetail() {
+function ProductDetail(product) {
   const [data, setData] = useState([])
   // 取得qureyStying的值
   const { id } = useParams()
   // 取得DB的資料
-  //(跨表取得img table的商品圖片)
-  // useEffect(() => {
-  //   fetch(`/api/product?type_id=${id}`)
-  //     .then((res) => res.json())
+  // (跨表取得img table的商品圖片)
+  useEffect(() => {
+    // 檢查ID
+    console.log("id from URL:", id)
+    fetch(`/api/product_id=${id}`)
+      .then((res) => res.json())
+      .then((product) => {
+        if (product) {
+          setData(product)
+        } else {
+          // 商品不存在，導向 404 頁面或顯示錯誤訊息
+        }
+      }).catch((error) => console.error("Error fetching product data:", error))
+  }, [id])
   //     .then((product) => setData(product))
-  // }, [type])
+  // }, [id])
+  const {
+    product_id: productId,
+    product_name: name,
+    type_id,
+    product_class,
+    product_price: price,
+    product_description: description,
+    product_unit: unit,
+  } = data
   return (
     <>
       <Header />
@@ -24,12 +43,12 @@ function ProductDetail() {
             <img className="product-photo" src={photo} alt="product-photo" />
           </div>
           <div className="product-information">
-            <h1 className="product-name">潔牙零食</h1>
-            <span className="product-unit">200g/包</span>
+            <h1 className="product-name">潔牙零食{name}</h1>
+            <span className="product-unit">200g/包{unit}</span>
             <p className="product-article">
               想必大家都能了解潔牙零食的重要性。話雖如此，浦利尼斯二世在不經意間這樣說過，痛苦有個限度，恐懼則綿綿無際。這句話看似簡單，但其中的陰鬱不禁讓人深思。泰戈爾相信，完全理智的心，恰如一柄全是鋒刃的刀，會叫使用它的人手上流血。帶著這句話，我們還要更加慎重的審視這個問題。
             </p>
-            <h2 className="product-price">NT.300</h2>
+            <h2 className="product-price">NT.{price}</h2>
             <div className="product-button-wrapper">
               {/* <button className="product-add-collection">加入收藏</button>
               <button className="product-add-cart">加入購物車</button> */}
