@@ -2,14 +2,18 @@ import React from 'react'
 import { useState } from 'react'
 
 function CheckoutFlow() {
-  const [tagCheck, setTagCheck] = useState('check')
+  const [tagCheck, setTagCheck] = useState('tab1')
   const handleChange = (event) => {
-    if (!tagCheck) {
-      setTagCheck('check')
-    } else {
-      setTagCheck('')
-    }
+    setTagCheck(event.target.id)
   }
+  // const [tagCheck, setTagCheck] = useState('check')
+  // const handleChange = (event) => {
+  //   if (!tagCheck) {
+  //     setTagCheck('check')
+  //   } else {
+  //     setTagCheck('')
+  //   }
+  // }
 
   return (
     <>
@@ -39,7 +43,9 @@ function CheckoutFlow() {
             name="tabs-example"
             id="tab1"
             onChange={handleChange}
-            checked={tagCheck}
+            checked={tagCheck === 'tab1'}
+          // onChange={handleChange}
+          // checked={tagCheck}
           />
           <label for="tab1" className="tabs__label">
             商城
@@ -89,7 +95,9 @@ function CheckoutFlow() {
             name="tabs-example"
             id="tab2"
             onChange={handleChange}
-            // checked={tagCheck}
+            onChange={handleChange}
+            checked={tagCheck === 'tab2'}
+          // checked={tagCheck}
           />
           <label for="tab2" className="tabs__label">
             課程
@@ -126,7 +134,8 @@ function CheckoutFlow() {
             name="tabs-example"
             id="tab3"
             onChange={handleChange}
-            // checked={tagCheck}
+            checked={tagCheck === 'tab3'}
+          // checked={tagCheck}
           />
           <label for="tab3" className="tabs__label">
             餐點
@@ -137,7 +146,8 @@ function CheckoutFlow() {
             name="tabs-example"
             id="tab4"
             onChange={handleChange}
-            // checked={tagCheck}
+            checked={tagCheck === 'tab4'}
+          // checked={tagCheck}
           />
           <label for="tab4" className="tabs__label">
             活動
