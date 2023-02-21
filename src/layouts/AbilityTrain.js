@@ -8,9 +8,13 @@ import { icon } from '@fortawesome/fontawesome-svg-core'
 
 function AbilityTrain() {
   return (
-    <div className='ability-train'>
-      <Link to="/member"><FontAwesomeIcon icon={faUser} /></Link>
-      <a href="http://"><FontAwesomeIcon icon={faComment} /></a>
+    <div className="ability-train">
+      <Link to="/login">
+        <FontAwesomeIcon icon={faUser} />
+      </Link>
+      <a href="http://">
+        <FontAwesomeIcon icon={faComment} />
+      </a>
     </div>
   )
 }

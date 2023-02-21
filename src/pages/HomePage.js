@@ -1,24 +1,74 @@
 import blackDog from '../img/layout/camylla-battani-JgdgKvYgiwI-unsplash.jpg'
 import brownDog from '../img/layout/ayla-verschueren-bpkBLrotO28-unsplash.jpg'
-import Slider from 'react-slick'
+import React, { useRef, useState } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay, Pagination, Navigation } from 'swiper'
 
-const settings = {
-  dots: true,
-  infinite: true,
-  slidesToShow: 1, // 一次顯示幾張
-  slidesToScroll: 1, // 按下一頁的時候，要跑幾張
-  autoplay: true,
-  speed: 3000,
-  autoplaySpeed: 5000,
-  cssEase: 'linear',
-}
+import 'swiper/swiper-bundle.css'
 function HomePage() {
+  const progressCircle = useRef(null)
+  const progressContent = useRef(null)
+  const onAutoplayTimeLeft = (s, time, progress) => {
+    progressCircle.current.style.setProperty('--progress', 1 - progress)
+    progressContent.current.textContent = `${Math.ceil(time / 1000)}s`
+  }
   return (
     <>
-      <Slider {...settings}>
-        <img src={brownDog} alt="brownDog" />
-        <img src={blackDog} alt="blackDog" />
-      </Slider>
+      <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper"
+      >
+        <SwiperSlide>
+          <img src={blackDog} alt="" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={brownDog} alt="" />
+        </SwiperSlide>
+      </Swiper>
+      <div class="homehotel">
+        <div class="homehotel-box">
+          <div className="homehotel-zoomin">
+            <img src={require('../img/hotels/hotel-single.jpg')} alt="" />
+          </div>
+        </div>
+        <div class="homehotel-box">
+          <div className="homehotel-zoomin">
+            <img src={require('../img/hotels/quadruple room.jpg')} alt="" />
+          </div>
+          <div></div>
+        </div>
+        <div class="homehotel-box">
+          <div className="homehotel-zoomin">
+            <img
+              src={require('../img/hotels/standard-double-room.jpg')}
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="homehotel-box">
+          <div className="homehotel-zoomin">
+            <img src={require('../img/hotels/tripple-room.jpg')} alt="" />
+          </div>
+        </div>
+        <div class="homehotel-box">
+          <div className="homehotel-zoomin">
+            <img src={require('../img/hotels/twin-double-room.jpg')} alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="homehotel-moreroom">
+        <a href="/">查看更多房型</a>
+      </div>
     </>
   )
 }

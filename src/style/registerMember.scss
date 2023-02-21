@@ -8,7 +8,7 @@
     display: flex;
     justify-content:  center;
     align-items: center;
-    height: calc(100vh - 40px);
+    height: calc(100vh - -60px);
      .member-main{
         display: flex;
         flex-direction: column;
@@ -69,17 +69,31 @@
                     padding: 10px;
                 }
                }
-            #submit{
-                width: 630px;
-                border-radius: 30px;
-                background-color: #DAF1FA;
-                color: #515151;
-                font-size: 16px;
-                border: none;
-                padding: 10px;
-                // margin: 15px auto auto 110px;
+            .btn.btn-primary.btn-lg{
+                width:80%;
             }
-        }
-        
+            // #submit{
+            //     width: 630px;
+            //     border-radius: 30px;
+            //     background-color: #DAF1FA;
+            //     color: #515151;
+            //     font-size: 16px;
+            //     border: none;
+            //     padding: 10px;
+            //     // margin: 15px auto auto 110px;
+            // }
+            .example{
+                width: 100%;
+                display: flex;
+                justify-content:space-around;
+                padding:10px;
+                .correct-btn,.false-btn{
+                    border-radius: 15px;
+                    background-color: var(--primary);
+                    border:5px solid var(--primary);
+                    color: var(--text-white);
+                }
+            }
+        }   
     }
 }

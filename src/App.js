@@ -8,11 +8,14 @@ import Reserve from './pages/hotel/Reserve'
 import LatestNews from './pages/latestNews/LatestNews'
 import Meals from './pages/meals/Meals'
 import NotFound from './pages/NotFound'
-import Product from './pages/product/Product'
+import ProductDetail from './pages/product/ProductDetail'
 import RegisterMember from './pages/member/RegisterMember'
+import EditMember from './pages/member/EditMember'
 import Login from './pages/member/Login'
+import AddPet from './pages/member/AddPet'
 import Cart from './pages/cart/Cart'
 import Card from './template/Card'
+import Header from './layouts/header'
 import index from './template'
 // import FormTemplate from './template/form'
 import CheckoutFlow from './pages/checkoutflow/CheckoutFlow'
@@ -24,7 +27,8 @@ function App() {
       <Routes>
         <Route path="/" element={<MainLayouts />}>
           <Route index element={<HomePage />}></Route>
-          <Route path="product" element={<Product />}></Route>
+          <Route path="Header" element={<Header />}></Route>
+          <Route path="product" element={<ProductDetail />}></Route>
           <Route path="meals" element={<Meals />}></Route>
           <Route path="hotel" element={<Hotel />}></Route>
           <Route path="reserve" element={<Reserve />}></Route>
@@ -32,8 +36,10 @@ function App() {
           <Route path="course" element={<Course />}></Route>
           <Route path="activity" element={<Activity />}></Route>
           <Route path="*" element={<NotFound />} />
-          <Route path="member" element={<Login />} />
+          <Route path="login" element={<Login />} />
           <Route path="register" element={<RegisterMember />} />
+          <Route path="edit" element={<EditMember />} />
+          <Route path="add" element={<AddPet />} />
           <Route path="cart" element={<Cart />} />
           <Route path="CheckoutFlow" element={<CheckoutFlow />} />
           <Route path="Card" element={<Card />}></Route>

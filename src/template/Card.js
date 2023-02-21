@@ -1,5 +1,6 @@
-import photo from '../img/productDetails/cheese.jpg'
-function Card() {
+// import photo from '../img/productDetails/cheese.jpg'
+function Card({ photo }) {
+  // { photo }帶入參數
   return (
     <>
       <div className="productCard">
@@ -14,7 +15,9 @@ function Card() {
           <button className="button-collection">&#9825;</button>
           <button className="button-moreInfo">看更多</button>
         </section>
-        <img src={photo} />
+        {/* 圖片動態引入 ，圖片須放在public資料夾*/}
+        <img src={'http://localhost:3000/' + photo} alt="" />
+        {/* <img src={photo} alt="" /> */}
       </div>
     </>
   )
