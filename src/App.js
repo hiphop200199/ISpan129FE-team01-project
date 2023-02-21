@@ -12,6 +12,8 @@ import ProductDetail from './pages/product/ProductDetail'
 import RegisterMember from './pages/member/RegisterMember'
 import EditMember from './pages/member/EditMember'
 import Login from './pages/member/Login'
+import ForgetPassword from './pages/member/ForgetPassword'
+import ResetPassword from './pages/member/ResetPassword'
 import AddPet from './pages/member/AddPet'
 import Cart from './pages/cart/Cart'
 import Card from './template/Card'
@@ -19,6 +21,7 @@ import Header from './layouts/header'
 import index from './template'
 // import FormTemplate from './template/form'
 import CheckoutFlow from './pages/checkoutflow/CheckoutFlow'
+// import OrderList from './pages/member/OrderList'
 import ReserveConfirm from './pages/hotel/ReserveConfirm'
 //引入頁面元件
 
@@ -40,7 +43,10 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<RegisterMember />} />
           <Route path="edit" element={<EditMember />} />
+          <Route path="ForgetPassword" element={<ForgetPassword />} />
+          <Route path="ResetPassword" element={<ResetPassword />} />
           <Route path="add" element={<AddPet />} />
+          {/* <Route path="orderList" element={<OrderList />} /> */}
           <Route path="cart" element={<Cart />} />
           <Route path="CheckoutFlow" element={<CheckoutFlow />} />
           <Route path="Card" element={<Card />}></Route>
