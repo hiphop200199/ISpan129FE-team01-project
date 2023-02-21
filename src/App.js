@@ -11,6 +11,7 @@ import NotFound from './pages/NotFound'
 import ProductDetail from './pages/product/ProductDetail'
 import RegisterMember from './pages/member/RegisterMember'
 import EditMember from './pages/member/EditMember'
+import ChangePassword from './pages/member/ChangePassword'
 import Login from './pages/member/Login'
 import ForgetPassword from './pages/member/ForgetPassword'
 import ResetPassword from './pages/member/ResetPassword'
@@ -44,6 +45,7 @@ function App() {
           <Route path="edit" element={<EditMember />} />
           <Route path="ForgetPassword" element={<ForgetPassword />} />
           <Route path="ResetPassword" element={<ResetPassword />} />
+          <Route path="changePassword" element={<ChangePassword />} />
           <Route path="add" element={<AddPet />} />
           {/* <Route path="orderList" element={<OrderList />} /> */}
           <Route path="cart" element={<Cart />} />
