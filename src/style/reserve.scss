@@ -7,11 +7,12 @@
 .banner{
     margin: auto;
     // max-width: 1800px;
+    border-radius: 15px;
     display: flex;
     .rd-img-left{
         margin: 10px 5px 10px 10px;
         width: 50%;
-        height: 300px;
+        height: 50vh;
         background-image: url(../img/hotels/standard-double-room.jpg);
         background-size: cover;
             
@@ -25,7 +26,7 @@
         .img{
             width: calc(50% - 10px);
             margin: 5px;
-            height: 145px;
+            height: 24.1vh;
             background-size: cover;
         }
         .img1{
@@ -54,12 +55,33 @@
     display: flex;
     margin: auto;
     .rd-content-left {
+      padding: 1rem;
       width: 50%;
+      ul{
+        padding-left: 1rem;
+        li{
+          list-style: circle;
+          font-size: var(--font-size-h5);
+          margin-top: 1rem;
+        }
+      }
+      span{
+        font-weight: bold;
+      }
   }
     .rd-content-right {
     width: 50%;
-    padding: 30px;
-    border: 1px solid var(--text-black);
+    border: 15px solid var(--light-blue);
+    border-radius: 10px;
+    box-shadow: 4 4 8 -1 #000000 75%;
+    background-color: var(--light-blue);
+    .r-wrap{
+      margin: 0px;
+      padding: 30px;
+      border: 1px solid var(--light-blue);
+      background-color: white;
+      border-radius:calc(25px - 15px);
+    }
   }
     .title{
         display: flex;
@@ -111,6 +133,7 @@
 
 
 .choose-pet-section{
+  display: flex;
     img{
 
         width: 100px;
