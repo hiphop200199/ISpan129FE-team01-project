@@ -23,19 +23,22 @@ function ForgetPassword() {
     <section className="login-container">
       <div className="login-main">
         <form className="login-form" onSubmit={handleSubmit}>
-          <h1>忘記密碼</h1>
+          <h3>忘記密碼</h3>
           <div className="typeArea">
-            <label className="login-label">
-              <input
-                type="email"
-                value={email}
-                placeholder="請輸入email"
-                required
-                onChange={(event) => setEmail(event.target.value)}
-              />
-            </label>
+            <input
+              className="form-control"
+              type="email"
+              value={email}
+              placeholder="請輸入email"
+              required
+              onChange={(event) => setEmail(event.target.value)}
+            />
           </div>
-          <button className="btn btn-primary-for-login" type="submit">
+          <br />
+          <button
+            className="btn btn-primary-for-login min-width-auto"
+            type="submit"
+          >
             重設密碼
           </button>
         </form>
