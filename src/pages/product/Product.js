@@ -12,7 +12,8 @@ function Product() {
   // 取得DB的資料
   //(跨表取得img table的商品圖片)
   useEffect(() => {
-    fetch(`/api/product?product_type=${type}`)
+    fetch(`http://localhost:3002/product/list-product/1`)
+      // fetch(`/api/product?product_type=${type}`)
       .then((res) => res.json())
       .then((product) => setData(product))
   }, [type])
