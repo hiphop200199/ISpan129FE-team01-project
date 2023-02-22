@@ -1,22 +1,41 @@
-import React from 'react'
-import Header from '../../layouts/header'
-import HeaderSearch from '../../layouts/HeaderSearch'
-import { useState, useEffect } from 'react'
-import { Card } from '../../template'
-import { useParams } from 'react-router-dom'
+import React from 'react';
+import Header from '../../layouts/header';
+import HeaderSearch from '../../layouts/HeaderSearch';
+import { useState, useEffect } from 'react';
+import { Card } from '../../template';
+import { useLocation, useParams } from 'react-router-dom';
 
 function Product() {
-  const [data, setData] = useState([])
-  // 取得qureyStying的值
-  const { type } = useParams()
-  // 取得DB的資料
-  //(跨表取得img table的商品圖片)
+  const { typeID } = useParams();
+  const [data, setData] = useState([]);
+
   useEffect(() => {
-    fetch(`http://localhost:3002/product/list-product/1`)
-      // fetch(`/api/product?product_type=${type}`)
+    fetch(`http://localhost:3002/product/product/list-product/${typeID}`)
       .then((res) => res.json())
       .then((product) => setData(product))
-  }, [type])
+      .catch((err) => console.error(err));
+  }, [typeID]);
+
+
+  // 取得DB的資料(跨表取得img table的商品圖片)
+  // useEffect(() => {
+  //   fetch(`http://localhost:3002/product/list-product/${type}${search}`)
+  //     .then((res) => res.json())
+  //     .then((product) => setData(product));
+  // }, [type, search]);
+
+  // 取得DB的資料
+  //(跨表取得img table的商品圖片)
+  // useEffect(() => {
+  //   fetch(`http://localhost:3002/product/list-product/${type}`)
+  //     // fetch(`/api/product?product_type=${type}`)
+  //     .then((res) => res.json())
+  //     .then((product) => setData(product));
+  // }, [type]);
+  // if (typeof type === "undefined" || typeof type !== "string" || type.trim() === "") {
+  //   // type 為空或未定義
+  //   console.log('type error')
+  // }
   return (
     <>
       <Header />
