@@ -11,22 +11,22 @@ function Card({ data }, { photo }) {
     product_name,
     type_id,
     product_class,
-    product_price,
+    products_price,
     product_description,
   } = data
   return (
     <>
       <div className="productCard">
-        <span hidden>{product_id}</span>
+        <span>{product_id}</span>
         <section className="text-part">
           <h2 className="title">{product_name}</h2>
-          <span hidden>{product_class}</span>
+          <span>{product_class}</span>
           <p className="description">{product_description}</p>
-          <span className="price">NT. {product_price}</span>
+          <span className="price">NT. {products_price}</span>
         </section>
         <section className="buttons">
           <button className="button-collection">&#9825;</button>
-          <MoreSquare />
+          <MoreSquare product_id={product_id} />
         </section>
         {/* 圖片動態引入 ，圖片須放在public資料夾*/}
         <img src={`http://localhost:3000/${photo}`} alt="" />
