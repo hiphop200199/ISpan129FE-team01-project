@@ -26,7 +26,7 @@ function Card({ data }, { photo }) {
         </section>
         <section className="buttons">
           <button className="button-collection">&#9825;</button>
-          <MoreSquare product_id={product_id} />
+          <MoreSquare type_id={type_id} product_id={product_id} />
         </section>
         {/* 圖片動態引入 ，圖片須放在public資料夾*/}
         <img src={`http://localhost:3000/${photo}`} alt="" />
