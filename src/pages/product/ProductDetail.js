@@ -7,11 +7,11 @@ import { useParams } from 'react-router-dom'
 function ProductDetail() {
   const [product, setProduct] = useState({})
   // 取得qureyStying的值
-  const { id } = useParams()
+  const { product_id } = useParams()
   // 取得DB的資料
   useEffect(() => {
-    console.log('id from URL:', id)
-    fetch(`/api/product/${id}`)
+    console.log('id from URL:', product_id)
+    fetch(`http://localhost:3002/product/list-detail/${product_id}`)
       .then((res) => {
         if (!res.ok) {
           throw new Error('network res was not ok')
@@ -27,7 +27,7 @@ function ProductDetail() {
         }
       })
       .catch((error) => console.error('Error fetching product data:', error))
-  }, [id])
+  }, [product_id])
   //     .then((product) => setData(product))
   // }, [id])
   const {
