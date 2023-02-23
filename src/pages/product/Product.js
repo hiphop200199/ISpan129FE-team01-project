@@ -14,7 +14,7 @@ function Product() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log(typeID)
+        // console.log(typeID)
         const res = await fetch(
           `http://localhost:3002/product/list-product/${typeID}`
         )
@@ -27,32 +27,13 @@ function Product() {
 
         const product = await res.json()
         setData(product)
-        console.log(data)
+        // console.log(data)
       } catch (err) {
         console.log(err)
       }
     }
     fetchData()
   }, [typeID])
-  // 取得DB的資料(跨表取得img table的商品圖片)
-  // useEffect(() => {
-  //   fetch(`http://localhost:3002/product/list-product/${type}${search}`)
-  //     .then((res) => res.json())
-  //     .then((product) => setData(product));
-  // }, [type, search]);
-
-  // 取得DB的資料
-  //(跨表取得img table的商品圖片)
-  // useEffect(() => {
-  //   fetch(`http://localhost:3002/product/list-product/${type}`)
-  //     // fetch(`/api/product?product_type=${type}`)
-  //     .then((res) => res.json())
-  //     .then((product) => setData(product));
-  // }, [type]);
-  // if (typeof type === "undefined" || typeof type !== "string" || type.trim() === "") {
-  //   // type 為空或未定義
-  //   console.log('type error')
-  // }
   return (
     <>
       <Header />
