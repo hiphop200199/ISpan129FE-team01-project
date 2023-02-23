@@ -112,9 +112,12 @@
     display: flex;
     justify-content: space-around;
     .check-in,.check-out{
-      display: flex;
-      justify-content: center;
+      // display: flex;
+      // justify-content: center;
       width: 50%;
+      p{
+        margin-bottom: 0;
+      }
     }
     p,span{
         margin-top: 5px;
