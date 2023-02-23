@@ -1,21 +1,32 @@
-import React from 'react';
-import Header from '../../layouts/header';
-import HeaderSearch from '../../layouts/HeaderSearch';
-import { useState, useEffect } from 'react';
-import { Card } from '../../template';
-import { useLocation, useParams } from 'react-router-dom';
+import React from 'react'
+import Header from '../../layouts/header'
+import HeaderSearch from '../../layouts/HeaderSearch'
+import { useState, useEffect } from 'react'
+import { Card } from '../../template'
+import { useLocation, useParams } from 'react-router-dom'
+import { faCny } from '@fortawesome/free-solid-svg-icons'
 
 function Product() {
-  const { typeID } = useParams();
-  const [data, setData] = useState([]);
+  const { typeID } = useParams()
+  const [data, setData] = useState([])
 
   useEffect(() => {
-    fetch(`http://localhost:3002/product/product/list-product/${typeID}`)
-      .then((res) => res.json())
-      .then((product) => setData(product))
-      .catch((err) => console.error(err));
-  }, [typeID]);
-
+    const fetchData = async () => {
+      try {
+        const res = await fetch(
+          `http://localhost:3002/product/product/list-product/${typeID}`
+        )
+        if (!res.ok) {
+          throw new Error('Network res was not ok')
+        }
+        const product = await res.json()
+        setData(product)
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    fetchData()
+  }, [typeID])
 
   // 取得DB的資料(跨表取得img table的商品圖片)
   // useEffect(() => {
@@ -41,14 +52,17 @@ function Product() {
       <Header />
       <HeaderSearch />
       <h2>這裡之後放輪播器</h2>
-      <Card />
-      <div className="content">
-        {data.map((product) => (
-          //data={product}傳入這筆資料的欄位給子元件
-          <Card key={product.id} data={product} />
-        ))}
-      </div>
+      <CardList data={data} />
     </>
+  )
+}
+function CardList({ data }) {
+  return (
+    <div className="content">
+      {data.map((product) => (
+        <Card key={product.id} data={product} />
+      ))}
+    </div>
   )
 }
 
