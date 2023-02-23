@@ -5,7 +5,7 @@ import photo from '../img/productDetails/cheese.jpg'
 import MoreSquare from './MoreSquare'
 import MoreRound from './MoreRound'
 
-function Card(props, photo) {
+function Card({ data }, { photo }) {
   const {
     product_id,
     product_name,
@@ -13,7 +13,7 @@ function Card(props, photo) {
     product_class,
     product_price,
     product_description,
-  } = props
+  } = data
   return (
     <>
       <div className="productCard">
@@ -29,7 +29,7 @@ function Card(props, photo) {
           <MoreSquare />
         </section>
         {/* 圖片動態引入 ，圖片須放在public資料夾*/}
-        <img src={'http://localhost:3000/' + photo} alt="" />
+        <img src={`http://localhost:3000/${photo}`} alt="" />
         {/* <img src={'http://localhost:3000/' + photo} alt="" /> */}
         {/* <img src={photo} alt="" /> */}
       </div>
