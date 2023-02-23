@@ -4,24 +4,29 @@ import Header from '../../layouts/header'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
-function ProductDetail(product) {
-  const [data, setData] = useState([])
+function ProductDetail() {
+  const [product, setProduct] = useState({})
   // 取得qureyStying的值
   const { id } = useParams()
   // 取得DB的資料
-  // (跨表取得img table的商品圖片)
   useEffect(() => {
-    // 檢查ID
-    console.log("id from URL:", id)
-    fetch(`/api/product_id=${id}`)
-      .then((res) => res.json())
+    console.log('id from URL:', id)
+    fetch(`/api/product/${id}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('network res was not ok')
+        }
+        return res.json()
+      })
       .then((product) => {
         if (product) {
-          setData(product)
+          setProduct(product)
         } else {
           // 商品不存在，導向 404 頁面或顯示錯誤訊息
+          throw new Error('Product not found')
         }
-      }).catch((error) => console.error("Error fetching product data:", error))
+      })
+      .catch((error) => console.error('Error fetching product data:', error))
   }, [id])
   //     .then((product) => setData(product))
   // }, [id])
@@ -33,7 +38,7 @@ function ProductDetail(product) {
     product_price: price,
     product_description: description,
     product_unit: unit,
-  } = data
+  } = product
   return (
     <>
       <Header />
