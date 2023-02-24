@@ -7,8 +7,13 @@ import { useLocation, useParams } from 'react-router-dom'
 import { faCny } from '@fortawesome/free-solid-svg-icons'
 
 function Product() {
+  const location = useLocation()
   const { typeID } = useParams()
   const [data, setData] = useState([])
+
+  console.log(location.search)
+  const usp = new URLSearchParams(location.search)
+  console.log(usp.get('a'))
 
   // 取得DB資料
   useEffect(() => {
@@ -35,16 +40,16 @@ function Product() {
     fetchData()
   }, [typeID])
   return (
-    <>
+    <div className="productPage">
       <Header />
       <HeaderSearch />
       <h2>這裡之後放輪播器</h2>
-      <div className="content">
+      <div className="productContent">
         {data.map((product) => (
-          <Card key={product.id} data={product} />
+          <Card className="col-6" key={product.id} data={product} />
         ))}
       </div>
-    </>
+    </div>
   )
 }
 
