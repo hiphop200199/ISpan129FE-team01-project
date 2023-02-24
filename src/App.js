@@ -24,6 +24,8 @@ import index from './template'
 import CheckoutFlow from './pages/checkoutflow/CheckoutFlow'
 // import OrderList from './pages/member/OrderList'
 import ReserveConfirm from './pages/hotel/ReserveConfirm'
+import CourseSearch from './pages/course/CourseSearch'
+import CourseDetail from './pages/course/CourseDetail'
 //引入頁面元件
 
 function App() {
@@ -39,6 +41,8 @@ function App() {
           <Route path="reserve" element={<Reserve />}></Route>
           <Route path="latestNews" element={<LatestNews />}></Route>
           <Route path="course" element={<Course />}></Route>
+          <Route path="courseSearch" element={<CourseSearch />}></Route>
+          <Route path="courseDetail" element={<CourseDetail />}></Route>
           <Route path="activity" element={<Activity />}></Route>
           <Route path="*" element={<NotFound />} />
           <Route path="login" element={<Login />} />

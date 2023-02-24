@@ -66,6 +66,7 @@
     height: 360px;
     border-radius: 30px;
     padding: 30px;
+    margin-block: 1vmax;
     & .text-part{
         display: flex;
     flex-direction: column;
@@ -107,11 +108,15 @@
             border-radius: var(--button-radius-2);
             padding:0px 20px;
             margin-inline: 5px;
+            transition: 0.5s;
+            &:hover{
+                filter: brightness(105%);
+            }
         }
     }
     & img{
         position: absolute;
-        width: 42%;
+        width: 46%;
         height: 80%;
         right: -12%;
         top: 12%;
