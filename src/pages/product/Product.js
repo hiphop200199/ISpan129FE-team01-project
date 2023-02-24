@@ -3,7 +3,7 @@ import Header from '../../layouts/header'
 import HeaderSearch from '../../layouts/HeaderSearch'
 import { useState, useEffect } from 'react'
 import { Card } from '../../template'
-import { useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { faCny } from '@fortawesome/free-solid-svg-icons'
 
 function Product() {
@@ -35,16 +35,16 @@ function Product() {
     fetchData()
   }, [typeID])
   return (
-    <>
+    <div className="productPage">
       <Header />
       <HeaderSearch />
       <h2>這裡之後放輪播器</h2>
-      <div className="content">
+      <div className="productContent">
         {data.map((product) => (
-          <Card key={product.id} data={product} />
+          <Card className="col-6" key={product.id} data={product} />
         ))}
       </div>
-    </>
+    </div>
   )
 }
 
