@@ -3,12 +3,17 @@ import Header from '../../layouts/header'
 import HeaderSearch from '../../layouts/HeaderSearch'
 import { useState, useEffect } from 'react'
 import { Card } from '../../template'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import { faCny } from '@fortawesome/free-solid-svg-icons'
 
 function Product() {
+  const location = useLocation()
   const { typeID } = useParams()
   const [data, setData] = useState([])
+
+  console.log(location.search)
+  const usp = new URLSearchParams(location.search)
+  console.log(usp.get('a'))
 
   // 取得DB資料
   useEffect(() => {
