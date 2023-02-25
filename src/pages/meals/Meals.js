@@ -6,14 +6,14 @@ import { Card } from '../../template'
 import { useLocation, useParams } from 'react-router-dom'
 import { faCny } from '@fortawesome/free-solid-svg-icons'
 import MoreSquare from '../../template/MoreSquare'
-import { Link } from 'react-router-dom'
+import { Link, } from 'react-router-dom'
 
 function Meals() {
   return (
     <div className="MealsPage">
       <Header />
       <HeaderSearch />
-     <Link to="/reserve">
+     <Link to="/food">
                     <MoreSquare />
                   </Link>
       <h2>餐點</h2>

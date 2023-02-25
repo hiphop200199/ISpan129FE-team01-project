@@ -8,7 +8,7 @@ function HeaderSearch() {
     <>
       <div class="main-button">
         <div className="button__list">
-          <Link to="/reserve">餐點</Link>
+          <Link to="/food">餐點</Link>
           <Link to="/">飲品</Link>
           <Link to="/">狗狗</Link>
           <Link to="/">貓咪</Link>
