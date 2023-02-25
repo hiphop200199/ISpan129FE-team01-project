@@ -2,12 +2,20 @@ import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Calendar from '../../img/hotels/calendar-plus-regular.svg'
+import ReactDatePicker, { registerLocale } from 'react-datepicker'
+import zhTW from 'date-fns/locale/zh-TW'
+import 'react-datepicker/dist/react-datepicker.css'
+
+registerLocale('zh-TW', zhTW)
 
 function Reserve() {
   const [petCount, setPetCount] = useState(0)
   const [childCount, setChildCount] = useState(0)
   const [adultCount, setAdultCount] = useState(0)
   const navigate = useNavigate()
+  const [startDate, setStartDate] = useState(new Date())
+  const [endDate, setEndDate] = useState(new Date())
+
   return (
     <>
       <div className="rd-wrap">
@@ -59,12 +67,22 @@ function Reserve() {
               <div className="r-form">
                 <div className="r-form-day">
                   <div className="check-in">
-                    <img src={Calendar} alt="Calendar" width={30} height={30} />
+                    {/* <img src={Calendar} alt="Calendar" width={30} height={30} /> */}
                     <p>入住日期</p>
+                    <ReactDatePicker
+                      locale="zh-TW"
+                      selected={startDate}
+                      onChange={(date) => setStartDate(date)}
+                    />
                   </div>
                   <div className="check-out">
-                    <img src={Calendar} alt="Calendar" width={30} height={30} />
+                    {/* <img src={Calendar} alt="Calendar" width={30} height={30} /> */}
                     <p>退房日期</p>
+                    <ReactDatePicker
+                      selected={endDate}
+                      locale="zh-TW"
+                      onChange={(date) => setEndDate(date)}
+                    />
                   </div>
                 </div>
                 <div className="r-form-adult">
