@@ -31,7 +31,10 @@ function App() {
           <Route path="Header" element={<Header />}></Route>
           {/* product帶入type_id的quretString */}
           <Route path="/product/:typeID" element={<Product />}></Route>
-          <Route path="product/Detail/:id" element={<ProductDetail />}></Route>
+          <Route
+            path="/product/Detail/:product_id"
+            element={<ProductDetail />}
+          ></Route>
           <Route path="meals" element={<Meals />}></Route>
           <Route path="hotel" element={<Hotel />}></Route>
           <Route path="reserve" element={<Reserve />}></Route>
@@ -46,6 +49,7 @@ function App() {
           <Route path="cart" element={<Cart />} />
           <Route path="CheckoutFlow" element={<CheckoutFlow />} />
           <Route path="Card" element={<Card />}></Route>
+          <Route path="index" element={<index />}></Route>
           {/* <Route path="form" element={<FormTemplate />}></Route> */}
         </Route>
       </Routes>
