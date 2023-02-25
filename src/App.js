@@ -22,7 +22,7 @@ import Header from './layouts/header'
 import index from './template'
 // import FormTemplate from './template/form'
 import CheckoutFlow from './pages/checkoutflow/CheckoutFlow'
-// import OrderList from './pages/member/OrderList'
+import OrderList from './pages/member/OrderList'
 import ReserveConfirm from './pages/hotel/ReserveConfirm'
 //引入頁面元件
 
@@ -48,7 +48,7 @@ function App() {
           <Route path="ResetPassword" element={<ResetPassword />} />
           <Route path="changePassword" element={<ChangePassword />} />
           <Route path="add" element={<AddPet />} />
-          {/* <Route path="orderList" element={<OrderList />} /> */}
+          <Route path="orderList" element={<OrderList />} />
           <Route path="cart" element={<Cart />} />
           <Route path="CheckoutFlow" element={<CheckoutFlow />} />
           <Route path="Card" element={<Card />}></Route>

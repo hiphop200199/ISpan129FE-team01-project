@@ -55,16 +55,14 @@ function ChangePassword() {
       <section className="login-container">
         <div className="login-main">
           <form className="login-form" onSubmit={handleSubmit}>
-            <h1>更新密碼</h1>
-            <div className="typeArea">
-              <input
-                className="form-control"
-                type="password"
-                value={password}
-                placeholder="新密碼:"
-                onChange={(event) => setPassword(event.target.value)}
-              />
-            </div>
+            <h3>更新密碼</h3>
+            <input
+              className="form-control"
+              type="password"
+              value={password}
+              placeholder="新密碼:"
+              onChange={(event) => setPassword(event.target.value)}
+            />
             <br />
             <input
               className="form-control"

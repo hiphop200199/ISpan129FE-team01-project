@@ -42,27 +42,38 @@ function ResetPassword() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label>
-          新密碼:
-          <input
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-        <br />
-        <label>
-          確認密碼:
-          <input
-            type="password"
-            value={password2}
-            onChange={(event) => setPassword2(event.target.value)}
-          />
-        </label>
-        <br />
-        <button type="submit">送出</button>
-      </form>
+      <section className="login-container">
+        <div className="login-main">
+          <form className="login-form" onSubmit={handleSubmit}>
+            <h3>重設密碼</h3>
+            <input
+              className="form-control"
+              type="password"
+              value={password}
+              placeholder="新密碼:"
+              onChange={(event) => setPassword(event.target.value)}
+              required
+              minLength={6}
+              maxLength={10}
+            />
+            <br />
+            <input
+              className="form-control"
+              type="password"
+              value={password2}
+              placeholder="確認密碼:"
+              onChange={(event) => setPassword2(event.target.value)}
+              required
+              minLength={6}
+              maxLength={10}
+            />
+            <br />
+            <button className="btn btn-primary-for-login" type="submit">
+              送出
+            </button>
+          </form>
+        </div>
+      </section>
     </>
   )
 }
