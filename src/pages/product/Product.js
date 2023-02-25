@@ -4,16 +4,16 @@ import HeaderSearch from '../../layouts/HeaderSearch'
 import { useState, useEffect } from 'react'
 import { Card } from '../../template'
 import { useLocation, useParams } from 'react-router-dom'
-import { faCny } from '@fortawesome/free-solid-svg-icons'
+// import { faCny } from '@fortawesome/free-solid-svg-icons'
 
 function Product() {
-  const location = useLocation()
+  // const location = useLocation()
   const { typeID } = useParams()
   const [data, setData] = useState([])
 
-  console.log(location.search)
-  const usp = new URLSearchParams(location.search)
-  console.log(usp.get('a'))
+  // console.log(location.search)
+  // const usp = new URLSearchParams(location.search)
+  // console.log(usp.get('a'))
 
   // 取得DB資料
   useEffect(() => {
@@ -38,6 +38,7 @@ function Product() {
       }
     }
     fetchData()
+    // console.log(typeID)
   }, [typeID])
   return (
     <div className="productPage">
@@ -46,7 +47,12 @@ function Product() {
       <h2>這裡之後放輪播器</h2>
       <div className="productContent">
         {data.map((product) => (
-          <Card className="col-6" key={product.id} data={product} />
+          <Card
+            className="col-6"
+            key={product.id}
+            data={product}
+            typeID={typeID}
+          />
         ))}
       </div>
     </div>
