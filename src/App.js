@@ -11,6 +11,7 @@ import Food from './pages/meals/Food'
 import Drinks from './pages/meals/Drinks'
 import Dog from './pages/meals/Dog'
 import Cat from './pages/meals/Cat'
+import MealsDetail from './pages/meals/MealsDetail'
 import NotFound from './pages/NotFound'
 import ProductDetail from './pages/product/ProductDetail'
 import RegisterMember from './pages/member/RegisterMember'
@@ -22,6 +23,7 @@ import ResetPassword from './pages/member/ResetPassword'
 import AddPet from './pages/member/AddPet'
 import Cart from './pages/cart/Cart'
 import Card from './template/Card'
+
 import Header from './layouts/header'
 import index from './template'
 // import FormTemplate from './template/form'
@@ -43,6 +45,7 @@ function App() {
           <Route path="Drinks" element={<Drinks />}></Route>
           <Route path="Dog" element={<Dog />}></Route>
           <Route path="Cat" element={<Cat />}></Route>
+          <Route path="MealsDetail" element={<MealsDetail />}></Route>
           <Route path="hotel" element={<Hotel />}></Route>
           <Route path="reserve" element={<Reserve />}></Route>
           <Route path="latestNews" element={<LatestNews />}></Route>
@@ -61,6 +64,8 @@ function App() {
           <Route path="CheckoutFlow" element={<CheckoutFlow />} />
           <Route path="Card" element={<Card />}></Route>
           <Route path="ReserveConfirm" element={<ReserveConfirm />}></Route>
+         
+
           {/* <Route path="form" element={<FormTemplate />}></Route> */}
         </Route>
       </Routes>

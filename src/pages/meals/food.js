@@ -50,6 +50,7 @@ function Food() {
             text: '牛肉的漢堡',
             img: 'foodbeef2.jpg',
           },
+          
         
       ])
       console.log('food', food)
@@ -75,7 +76,7 @@ function Food() {
                   </div>
                   <div className="h-card-footer">
                     <span>&#9825;</span>
-                    <Link to="/reserve">
+                    <Link to="/MealsDetail">
                       <MoreSquare />
                     </Link>
                     

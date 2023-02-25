@@ -1,8 +1,10 @@
-import photo from '../../img/productDetails/cheese.jpg'
+import photo from '../../img/meals/food/food.jpg'
 import { AddToCartLg, AddToFavoritesLg } from '../../template'
 import Header from '../../layouts/header'
 import HeaderSearch from '../../layouts/HeaderSearch'
-function ProductDetail() {
+
+
+function MealsDetail() {
   return (
     <>
       <Header />
@@ -12,16 +14,18 @@ function ProductDetail() {
             <img className="product-photo" src={photo} alt="product-photo" />
           </div>
           <div className="product-information">
-            <h1 className="product-name">潔牙零食</h1>
+            <h1 className="product-name">提拉米蘇米蘭</h1>
             <span className="product-unit">200g/包</span>
             <p className="product-article">
-              想必大家都能了解潔牙零食的重要性。話雖如此，浦利尼斯二世在不經意間這樣說過，痛苦有個限度，恐懼則綿綿無際。這句話看似簡單，但其中的陰鬱不禁讓人深思。泰戈爾相信，完全理智的心，恰如一柄全是鋒刃的刀，會叫使用它的人手上流血。帶著這句話，我們還要更加慎重的審視這個問題。
+            蛋糕般柔軟可口的義大利皇家經典米蘭麵包，外層包裹著濃郁巧克力、咖啡香氣的提拉米蘇，入口更可同時吃到水滴巧克力帶來的絕佳口感，溫潤香甜氣息口口都唇齒留香令人難忘，今年聖誕節必須”被帶走”的幸福滋味。
             </p>
             <h2 className="product-price">NT.300</h2>
             <div className="product-button-wrapper">
               {/* <button className="product-add-collection">加入收藏</button>
               <button className="product-add-cart">加入購物車</button> */}
               <AddToFavoritesLg />
+              <AddToCartLg />
+
               <AddToCartLg />
             </div>
           </div>
@@ -30,33 +34,33 @@ function ProductDetail() {
           <ul className="product-switches">
             <li className="product-switch">
               <a href="#" className="product-switch-link">
-                商品規格
+                餐點規格
               </a>
             </li>
             <li className="product-switch">
               <a href="#act2" className="product-switch-link">
-                商品規格
+                注意事項
               </a>
             </li>
-            <li className="product-switch">
+            {/* <li className="product-switch">
               <a href="#act3" className="product-switch-link">
                 商品規格
               </a>
-            </li>
+            </li> */}
           </ul>
         </section>
         <section className="product-spec">
           <ul className="product-list">
             <li className="product-litem">
-              <p>分類:首頁&gt;商品&gt;精緻零食</p>
+              <p>分類:首頁&gt;餐點&gt;食物</p>
             </li>
             <li className="product-litem">
               <p className="product-brand">
-                品牌:<span className="product-brand-name">Merrick</span>
+                成分:<span className="meals-ingredients">義大利石磨麵粉、天然奶油、乾酪、咖啡醬、水滴巧克力、白巧克力、榛果黑可可咖啡豆粉、咖啡豆粉、鮮奶、義大利天然水式酵母、AA級優質蛋</span>
               </p>
             </li>
             <li className="product-litem">
-              <p>產地:美國</p>
+              <p>餐點卡路里:300 cal</p>
             </li>
             <li className="product-litem">
               <p>【適用寵物種類】全犬種</p>
@@ -72,4 +76,4 @@ function ProductDetail() {
     </>
   )
 }
-export default ProductDetail
+export default MealsDetail

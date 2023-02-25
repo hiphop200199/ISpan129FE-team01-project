@@ -74,7 +74,7 @@ function Food() {
                   </div>
                   <div className="h-card-footer">
                     <span>&#9825;</span>
-                    <Link to="/reserve">
+                    <Link to="/MealsDetail">
                       <MoreSquare />
                     </Link>
                     
