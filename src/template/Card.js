@@ -5,15 +5,16 @@ import photo from '../img/productDetails/cheese.jpg'
 import MoreSquare from './MoreSquare'
 import MoreRound from './MoreRound'
 
-function Card({ data }, { photo }) {
+function Card({ data, typeID }) {
+
   const {
     product_id,
     product_name,
-    type_id,
     product_class,
     products_price,
     products_descripttion,
   } = data
+  console.log(typeID)
   return (
     <div className="productCard">
       <span hidden>{product_id}</span>
@@ -25,7 +26,8 @@ function Card({ data }, { photo }) {
       {/* </section> */}
       <section className="buttons">
         <button className="button-collection">&#9825;</button>
-        <MoreSquare type_id={type_id} product_id={product_id} />
+        <MoreSquare product_id={product_id} typeID={typeID} />
+        {/* <MoreSquare typeID={typeID} product_id={product_id} /> */}
       </section>
       {/* 圖片動態引入 ，圖片須放在public資料夾*/}
       <img src={`http://localhost:3000/${photo}`} alt="" />
