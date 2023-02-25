@@ -5,52 +5,80 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 function ProductDetail() {
-  const [product, setProduct] = useState({})
-  // 取得qureyStying的值
-  const { product_id } = useParams()
-  // 取得DB的資料
+  const [product, setProduct] = useState({});
+  // 取得query string的值
+  const { product_id } = useParams();
+  // // 取得DB的資料
+  // useEffect(() => {
+  //   // console.log('id from URL:', product_id);
+  //   if (!product_id) return;
+  //   fetch(`http://localhost:3002/product/list-detail/${product_id}`)
+  //     .then((res) => {
+  //       if (!res.ok) {
+  //         throw new Error('network res was not ok');
+  //       }
+  //       return res.json();
+  //     })
+  //     .then((product) => {
+  //       if (product) {
+  //         setProduct(...product);
+  //         console.log(product)
+  //       } else {
+  //         // 商品不存在，導向 404 頁面或顯示錯誤訊息
+  //         throw new Error('Product not found');
+  //       }
+  //     })
+  //     .catch((error) =>
+  //       console.error('Error fetching product data:', error)
+  //     );
+  // }, [product_id]);
+  async function fetchProductDetails() {
+    try {
+      const res = await fetch(`http://localhost:3002/product/list-detail/${product_id}`);
+      if (!res.ok) {
+        throw new Error('network res was not ok');
+      }
+      const product = await res.json();
+      if (product) {
+        setProduct(...product);
+        console.log(product)
+      } else {
+        // 商品不存在，導向 404 頁面或顯示錯誤訊息
+        throw new Error('Product not found');
+      }
+    } catch (error) {
+      console.error('Error fetching product data:', error);
+    }
+  }
+
   useEffect(() => {
-    console.log('id from URL:', product_id)
-    fetch(`http://localhost:3002/product/list-detail/${product_id}`)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error('network res was not ok')
-        }
-        return res.json()
-      })
-      .then((product) => {
-        if (product) {
-          setProduct(product)
-        } else {
-          // 商品不存在，導向 404 頁面或顯示錯誤訊息
-          throw new Error('Product not found')
-        }
-      })
-      .catch((error) => console.error('Error fetching product data:', error))
-  }, [product_id])
-  //     .then((product) => setData(product))
-  // }, [id])
+    if (!product_id) return;
+    fetchProductDetails();
+  }, [product_id]);
+
   const {
-    product_id: productId,
+    product_id: productID,
+    product_type: typeID,
     product_name: name,
-    type_id,
-    product_class,
-    product_price: price,
-    product_description: description,
+    product_class: productClass,
+    products_descripttion: descripttion,
+    products_price: price,
     product_unit: unit,
-  } = product
+    // product_image_url: imageUrl,
+  } = product;
   return (
     <>
       <Header />
       <div className="product-container">
         <section className="product-introduction">
           <div className="product-photo-wrapper">
-            <img className="product-photo" src={photo} alt="product-photo" />
+            {/* <img className="product-photo" src={photo} alt="product-photo" /> */}
           </div>
           <div className="product-information">
-            <h1 className="product-name">潔牙零食{name}</h1>
-            <span className="product-unit">200g/包{unit}</span>
+            <h1 className="product-name">{name}</h1>
+            <span className="product-unit">{unit}</span>
             <p className="product-article">
+              {descripttion}
               想必大家都能了解潔牙零食的重要性。話雖如此，浦利尼斯二世在不經意間這樣說過，痛苦有個限度，恐懼則綿綿無際。這句話看似簡單，但其中的陰鬱不禁讓人深思。泰戈爾相信，完全理智的心，恰如一柄全是鋒刃的刀，會叫使用它的人手上流血。帶著這句話，我們還要更加慎重的審視這個問題。
             </p>
             <h2 className="product-price">NT.{price}</h2>
