@@ -62,6 +62,8 @@ function ChangePassword() {
               value={password}
               placeholder="新密碼:"
               onChange={(event) => setPassword(event.target.value)}
+              minLength={6}
+              maxLength={10}
             />
             <br />
             <input
@@ -70,6 +72,8 @@ function ChangePassword() {
               value={password2}
               placeholder="確認密碼:"
               onChange={(event) => setPassword2(event.target.value)}
+              minLength={6}
+              maxLength={10}
             />
             <br />
             <button className="btn btn-primary-for-login" type="submit">
