@@ -8,51 +8,51 @@ import { faCny } from '@fortawesome/free-solid-svg-icons'
 import MoreSquare from '../../template/MoreSquare'
 import { Link } from 'react-router-dom'
 
-function Food() {
-    const [originalFood, setOriginalFood] = useState([])
-    const [food, setFood] = useState([])
+function Drinks() {
+    const [drinks, setDrinks] = useState([])
     // didMount
     useEffect(() => {
-      setFood([
+      setDrinks([
         {
-          title: '提拉米蘇米蘭',
+          title: '橙色蘇打',
           subtitle: '120',
-          text: '蛋糕般柔軟的皇家米蘭麵包',
-          img: 'food.jpg',
+          text: '汽水',
+          img: 'drinks1.jpg',
         },
         {
-            title: '雞肉沙拉',
-            subtitle: '180',
-            text: '雞肉加上生菜沙拉',
-            img: 'food1.jpg',
-          },
-          {
-            title: '雞肉飯',
-            subtitle: '170',
-            text: '雞肉拌飯',
-            img: 'food2.jpg',
-          },
-          {
-            title: '紅燒牛肉',
-            subtitle: '150',
-            text: '牛肉料理',
-            img: 'foodbeef.jpg',
-          },
-          {
-            title: '牛排',
-            subtitle: '240',
-            text: '上好的牛排',
-            img: 'foodbeef1.jpg',
-          },
-          {
-            title: '牛肉漢堡',
-            subtitle: '130',
-            text: '牛肉的漢堡',
-            img: 'foodbeef2.jpg',
-          },
+          title: '咖啡',
+          subtitle: '120',
+          text: '現磨咖啡',
+          img: 'drinks2.jpg',
+        },
+        {
+          title: '藍色蘇打',
+          subtitle: '120',
+          text: '汽水',
+          img: 'drinks3.jpg',
+        },
+        {
+          title: '橙色蘇打',
+          subtitle: '120',
+          text: '汽水',
+          img: 'drinks1.jpg',
+        },
+        {
+          title: '咖啡',
+          subtitle: '120',
+          text: '現磨咖啡',
+          img: 'drinks2.jpg',
+        },
+        {
+          title: '藍色蘇打',
+          subtitle: '120',
+          text: '汽水',
+          img: 'drinks3.jpg',
+        },
+        
         
       ])
-      console.log('food', food)
+      console.log('drinks', drinks)
     }, [])
   
     return (
@@ -60,11 +60,11 @@ function Food() {
         <Header />
       <HeaderSearch />
         
-        <div className="h-text-title">餐點</div>
+        <div className="h-text-title">飲料</div>
          
         <div className="card-wrap">
-          {food.map((item, i) => {
-            const img = require(`../../img/meals/food/${item.img}`)
+          {drinks.map((item, i) => {
+            const img = require(`../../img/meals/drinks/${item.img}`)
             return (
               <div className="h-card col-6" key={i}>
                 <div className="h-card-left col-6">
@@ -93,5 +93,5 @@ function Food() {
       </>
     )
   }
-  export default Food
+  export default Drinks
   

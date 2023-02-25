@@ -8,6 +8,9 @@ import Reserve from './pages/hotel/Reserve'
 import LatestNews from './pages/latestNews/LatestNews'
 import Meals from './pages/meals/Meals'
 import Food from './pages/meals/Food'
+import Drinks from './pages/meals/Drinks'
+import Dog from './pages/meals/Dog'
+import Cat from './pages/meals/Cat'
 import NotFound from './pages/NotFound'
 import ProductDetail from './pages/product/ProductDetail'
 import RegisterMember from './pages/member/RegisterMember'
@@ -37,6 +40,9 @@ function App() {
           <Route path="product" element={<ProductDetail />}></Route>
           <Route path="meals" element={<Meals />}></Route>
           <Route path="Food" element={<Food />}></Route>
+          <Route path="Drinks" element={<Drinks />}></Route>
+          <Route path="Dog" element={<Dog />}></Route>
+          <Route path="Cat" element={<Cat />}></Route>
           <Route path="hotel" element={<Hotel />}></Route>
           <Route path="reserve" element={<Reserve />}></Route>
           <Route path="latestNews" element={<LatestNews />}></Route>

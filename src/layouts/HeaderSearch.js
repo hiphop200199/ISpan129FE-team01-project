@@ -4,14 +4,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 function HeaderSearch() {
+  
   return (
     <>
       <div class="main-button">
         <div className="button__list">
-          <Link to="/food">餐點</Link>
-          <Link to="/">飲品</Link>
-          <Link to="/">狗狗</Link>
-          <Link to="/">貓咪</Link>
+          <Link to="/Food">餐點</Link>
+          <Link to="/Drinks">飲品</Link>
+          <Link to="/Dog">狗狗</Link>
+          <Link to="/Cat">貓咪</Link>
         </div>
         <form class="header-search">
           <input type="search" placeholder="搜尋" name="" />

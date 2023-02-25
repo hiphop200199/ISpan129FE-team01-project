@@ -6,16 +6,16 @@ import { Card } from '../../template'
 import { useLocation, useParams } from 'react-router-dom'
 import { faCny } from '@fortawesome/free-solid-svg-icons'
 import MoreSquare from '../../template/MoreSquare'
-import { Link, } from 'react-router-dom'
+// import { Link, } from 'react-router-dom'
 
 function Meals() {
   return (
     <div className="MealsPage">
       <Header />
       <HeaderSearch />
-     <Link to="/food">
+     {/* <Link to="/food">
                     <MoreSquare />
-                  </Link>
+                  </Link> */}
       <h2>餐點</h2>
       {/* <div className="productContent">
         {data.map((product) => (

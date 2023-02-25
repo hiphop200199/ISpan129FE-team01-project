@@ -9,7 +9,6 @@ import MoreSquare from '../../template/MoreSquare'
 import { Link } from 'react-router-dom'
 
 function Food() {
-    const [originalFood, setOriginalFood] = useState([])
     const [food, setFood] = useState([])
     // didMount
     useEffect(() => {
@@ -21,34 +20,34 @@ function Food() {
           img: 'food.jpg',
         },
         {
-            title: '雞肉沙拉',
-            subtitle: '180',
-            text: '雞肉加上生菜沙拉',
-            img: 'food1.jpg',
+            title: '提拉米蘇米蘭',
+            subtitle: '120',
+            text: '蛋糕般柔軟的皇家米蘭麵包',
+            img: 'food.jpg',
           },
           {
-            title: '雞肉飯',
-            subtitle: '170',
-            text: '雞肉拌飯',
-            img: 'food2.jpg',
+            title: '提拉米蘇米蘭',
+            subtitle: '120',
+            text: '蛋糕般柔軟的皇家米蘭麵包',
+            img: 'food.jpg',
           },
           {
-            title: '紅燒牛肉',
-            subtitle: '150',
-            text: '牛肉料理',
-            img: 'foodbeef.jpg',
-          },
-          {
-            title: '牛排',
-            subtitle: '240',
-            text: '上好的牛排',
-            img: 'foodbeef1.jpg',
-          },
-          {
-            title: '牛肉漢堡',
+            title: '提拉米蘇米蘭',
             subtitle: '130',
-            text: '牛肉的漢堡',
-            img: 'foodbeef2.jpg',
+            text: '蛋糕般柔軟的皇家米蘭麵包',
+            img: 'food.jpg',
+          },
+          {
+            title: '提拉米蘇米蘭',
+            subtitle: '120',
+            text: '蛋糕般柔軟的皇家米蘭麵包',
+            img: 'food.jpg',
+          },
+          {
+            title: '提拉米蘇米蘭',
+            subtitle: '120',
+            text: '蛋糕般柔軟的皇家米蘭麵包',
+            img: 'food.jpg',
           },
         
       ])
@@ -60,7 +59,7 @@ function Food() {
         <Header />
       <HeaderSearch />
         
-        <div className="h-text-title">餐點</div>
+        <div className="h-text-title">貓咪</div>
          
         <div className="card-wrap">
           {food.map((item, i) => {
