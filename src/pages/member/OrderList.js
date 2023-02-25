@@ -1,5 +1,7 @@
 import { check } from 'prettier'
-import React from 'react'
+import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react'
 import 'datejs'
 
@@ -15,64 +17,21 @@ function OrderList({ id }) {
       })
       const order = await res.json()
       console.log(`http://localhost:3002/orderList/order/${id}`, order)
-      // const {
-      //   member_id,
-      //   order_date,
-      //   order_detail_id,
-      //   order_id,
-      //   products_id,
-      //   products_price,
-      //   products_quantity,
-      //   recipient_address,
-      //   recipient_name,
-      //   recipient_phone,
-      //   status,
-      //   type_id,
-      // } = order
+
       const [...orders] = order
       setOrders(order)
     }
     fetchData()
-    // const email = localStorage.getItem('email')
-    // fetch(`http://localhost:3002/orderList/order/${id}`, {
-    //   method: 'GET',
-    // })
-    // .then((response) => response.json())
-    // .then((data) => {
-    //   // console.log('data', data)
-    //   const orderList = await response.json()
-    //   console.log(orderList)
-    // })
-    // .catch((error) => console.error(error))
   }, [id])
   // console.log(order)
-
-  // const filteredOrders = order.filter((order) => {
-  //   return tagCheck === '所有' ? true : order.type_id === tagCheck
-  // })
-
-  // const filteredOrders = order.filter((filteredOrder) => {
-  //   if (tagCheck === '所有') {
-  //     return true
-  //   } else {
-  //     return filteredOrder.type_id === tagCheck
-  //   }
-  // })
 
   const handleChange = (typeId) => {
     setTagCheck(typeId)
   }
 
-  // const handleChange = (event) => {
-  //   if (!tagCheck) {
-  //     setTagCheck('check')
-  //   } else {
-  //     setTagCheck('')
-  //   }
-  // }
-
   return (
     <>
+      <h1 className="orderTitle">查看訂單紀錄</h1>
       <main className="checkoutFlow">
         <div className="tabs">
           <input
@@ -83,7 +42,7 @@ function OrderList({ id }) {
             onChange={() => {
               handleChange(0)
             }}
-            checked={tagCheck === '0'}
+            checked={tagCheck === 0}
             // checked={tagCheck === '所有'}
           />
           <label htmlFor="tab1" className="tabs__label">
@@ -98,7 +57,7 @@ function OrderList({ id }) {
             onChange={() => {
               handleChange(1)
             }}
-            checked={tagCheck === '1'}
+            checked={tagCheck === 1}
             // checked={tagCheck}
           />
           <label htmlFor="tab2" className="tabs__label">
@@ -113,24 +72,10 @@ function OrderList({ id }) {
             onChange={() => {
               handleChange(4)
             }}
-            checked={tagCheck === '4'}
+            checked={tagCheck === 4}
           />
           <label htmlFor="tab3" className="tabs__label">
             餐點
-          </label>
-          <input
-            type="radio"
-            className="tabs__radio"
-            name="tabs-example"
-            id="tab4"
-            type_id="5"
-            onChange={() => {
-              handleChange(5)
-            }}
-            checked={tagCheck === '5'}
-          />
-          <label htmlFor="tab4" className="tabs__label">
-            活動
           </label>
           <input
             type="radio"
@@ -141,7 +86,7 @@ function OrderList({ id }) {
             onChange={() => {
               handleChange(2)
             }}
-            checked={tagCheck === '2'}
+            checked={tagCheck === 2}
           />
           <label htmlFor="tab5" className="tabs__label">
             課程
@@ -155,7 +100,7 @@ function OrderList({ id }) {
             onChange={() => {
               handleChange(3)
             }}
-            checked={tagCheck === '3'}
+            checked={tagCheck === 3}
           />
           <label htmlFor="tab5" className="tabs__label">
             住宿
@@ -169,7 +114,7 @@ function OrderList({ id }) {
                   <th>分類</th>
                   <th>訂單狀態</th>
                   <th>訂單金額</th>
-                  <th>操作</th>
+                  <th>查看明細</th>
                 </tr>
               </thead>
               <tbody>
@@ -191,7 +136,11 @@ function OrderList({ id }) {
                         </td>
                         <td>{order.status === 0 ? '未付款' : '已付款'}</td>
                         <td>{order.products_price}</td>
-                        <td>查看明細</td>
+                        <td>
+                          <Link to="/orderDetail">
+                            <FontAwesomeIcon icon={faEye} />
+                          </Link>
+                        </td>
                       </tr>
                     ))
                   : order
@@ -215,39 +164,16 @@ function OrderList({ id }) {
                           </td>
                           <td>{order.status === 0 ? '未付款' : '已付款'}</td>
                           <td>{order.products_price}</td>
-                          <td>查看明細</td>
+                          <td>
+                            <Link to="/orderDetail">
+                              <FontAwesomeIcon icon={faEye} />
+                            </Link>
+                          </td>
                         </tr>
                       ))}
               </tbody>
             </table>
           </div>
-          {/* <div>{tagCheck}</div> */}
-          {/* <div className="tabs__content">
-            <table>
-              <thead>
-                <tr>
-                  <th>訂單編號</th>
-                  <th>訂單日期</th>
-                  <th>分類</th>
-                  <th>訂單狀態</th>
-                  <th>訂單金額</th>
-                  <th>操作</th>
-                </tr>
-              </thead>
-              <tbody>
-                {order.map((order) => (
-                  <tr key={order.order_id}>
-                    <td>{order.order_id}</td>
-                    <td>{order.order_date}</td>
-                    <td>{order.type_id}</td>
-                    <td>{order.status}</td>
-                    <td>{order.products_price}</td>
-                    <td>查看明細</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div> */}
         </div>
       </main>
     </>
