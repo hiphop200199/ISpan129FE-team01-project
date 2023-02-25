@@ -8,10 +8,10 @@ function HeaderSearch() {
     <>
       <div class="main-button">
         <div className="button__list">
-          <Link to="/">罐頭飼料</Link>
-          <Link to="/">外出用品</Link>
-          <Link to="/">耐磨玩具</Link>
-          <Link to="/">服飾項圈</Link>
+          <Link to="/reserve">餐點</Link>
+          <Link to="/">飲品</Link>
+          <Link to="/">狗狗</Link>
+          <Link to="/">貓咪</Link>
         </div>
         <form class="header-search">
           <input type="search" placeholder="搜尋" name="" />

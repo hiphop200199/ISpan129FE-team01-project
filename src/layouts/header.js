@@ -14,12 +14,12 @@ function Header() {
             </Link>
           </li>
           <li>
-            <Link to="/Product" className="Breadcrumb__link">
-              商城
+            <Link to="/Meals" className="Breadcrumb__link">
+              餐點
             </Link>
           </li>
           <li class="current">
-            <em aria-current="page">商品詳細</em>
+            <em aria-current="page">餐點詳細</em>
           </li>
         </ol>
       </nav>
