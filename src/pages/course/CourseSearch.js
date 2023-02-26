@@ -3,10 +3,17 @@ import dog from '../../img/course/dog.jpg'
 import child from '../../img/course/child.jpg'
 import corgi from '../../img/course/corgi.jpg'
 import dogAndBoy from '../../img/course/dog-and-boy.jpg'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 function CourseSearch() {
   const [courseName, setCourseName] = useState('')
   const [showCourses, setShowCourses] = useState([])
+  useEffect(() => {
+    axios.get('http://localhost:3002/courses').then((res) => {
+      const courses = res.data
+      setShowCourses({ courses })
+    })
+  }, [])
   return (
     <>
       <div className="course-container">
