@@ -13,6 +13,7 @@ function Card({ data, typeID }) {
     product_class,
     products_price,
     products_descripttion,
+    product_image,
   } = data
   console.log(typeID)
   return (
@@ -30,7 +31,7 @@ function Card({ data, typeID }) {
         {/* <MoreSquare typeID={typeID} product_id={product_id} /> */}
       </section>
       {/* 圖片動態引入 ，圖片須放在public資料夾*/}
-      <img src={`http://localhost:3000/${photo}`} alt="" />
+      <img src={`http://localhost:3002/${product_image}`} alt="" />
       {/* <img src={'http://localhost:3000/' + photo} alt="" /> */}
       {/* <img src={photo} alt="" /> */}
     </div>
