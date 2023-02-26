@@ -10,16 +10,16 @@ function Course() {
         <section className="upper-part">
           <section className="tags">
             <Link to="/courseSearch">
-              <button className="tag">共通主題</button>
+              <button className="tag">寵物訓練</button>
             </Link>
             <Link to="/courseSearch">
-              <button className="tag">狗狗主題</button>
+              <button className="tag">寵物互動</button>
             </Link>
             <Link to="/courseSearch">
-              <button className="tag">人寵互動</button>
+              <button className="tag">寵物知識</button>
             </Link>
             <Link to="/courseSearch">
-              <button className="tag">貓咪主題</button>
+              <button className="tag">寵物照顧</button>
             </Link>
           </section>
           <section className="search-bar">
