@@ -3,6 +3,7 @@ import child from '../../img/course/child.jpg'
 import corgi from '../../img/course/corgi.jpg'
 import dogAndBoy from '../../img/course/dog-and-boy.jpg'
 import { Link } from 'react-router-dom'
+
 function Course() {
   return (
     <>
@@ -10,21 +11,8 @@ function Course() {
         <section className="upper-part">
           <section className="tags">
             <Link to="/courseSearch">
-              <button className="tag">寵物訓練</button>
+              <button className="tag">進入課程搜尋</button>
             </Link>
-            <Link to="/courseSearch">
-              <button className="tag">寵物互動</button>
-            </Link>
-            <Link to="/courseSearch">
-              <button className="tag">寵物知識</button>
-            </Link>
-            <Link to="/courseSearch">
-              <button className="tag">寵物照顧</button>
-            </Link>
-          </section>
-          <section className="search-bar">
-            <input type="search" id="search" placeholder="搜尋" />
-            <button id="search-button">&#128269;</button>
           </section>
         </section>
         <section className="photos">

@@ -3,11 +3,25 @@ import dog from '../../img/course/dog.jpg'
 import child from '../../img/course/child.jpg'
 import corgi from '../../img/course/corgi.jpg'
 import dogAndBoy from '../../img/course/dog-and-boy.jpg'
+import { useState } from 'react'
 function CourseSearch() {
+  const [courseName, setCourseName] = useState('')
+  const [showCourses, setShowCourses] = useState([])
   return (
     <>
       <div className="course-container">
         <section className="tags">
+          <section className="search-bar">
+            <input
+              type="search"
+              id="search"
+              onChange={(e) => {
+                setCourseName(e.target.value)
+              }}
+              placeholder="搜尋"
+            />
+            <button id="search-button">&#128269;</button>
+          </section>
           <Link to="/courseSearch">
             <button className="tag">寵物訓練</button>
           </Link>
@@ -21,6 +35,7 @@ function CourseSearch() {
             <button className="tag">寵物照顧</button>
           </Link>
         </section>
+
         <section className="course-search-results">
           <article className="course-cards">
             <div className="productCard">
