@@ -1,6 +1,6 @@
 import React from 'react'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import Calendar from '../../img/hotels/calendar-plus-regular.svg'
 import ReactDatePicker, { registerLocale } from 'react-datepicker'
 import zhTW from 'date-fns/locale/zh-TW'
@@ -9,12 +9,62 @@ import 'react-datepicker/dist/react-datepicker.css'
 registerLocale('zh-TW', zhTW)
 
 function Reserve() {
-  const [petCount, setPetCount] = useState(0)
-  const [childCount, setChildCount] = useState(0)
-  const [adultCount, setAdultCount] = useState(0)
   const navigate = useNavigate()
-  const [startDate, setStartDate] = useState(new Date())
-  const [endDate, setEndDate] = useState(new Date())
+  const [roomDetail, setRoomDetail] = useState({})
+  const [reserveData, setReserveData] = useState({
+    roomCount: 1,
+    petCount: 0,
+    childCount: 0,
+    adultCount: 1,
+    startDate: new Date(),
+    endDate: new Date().setDate(new Date().getDate() + 1),
+    differenceInDay: 1,
+    money: 0,
+    total: 0,
+  })
+  const { product_id } = useParams()
+
+  useEffect(() => {
+    fetch(`http://localhost:3002/product/list-detail/${product_id}`)
+      .then((res) => res.json())
+      .then((room) => {
+        setRoomDetail(room[0])
+        const changeReserveDataObj = {
+          money: room[0].products_price,
+          total:
+            room[0].products_price *
+            reserveData.differenceInDay *
+            reserveData.roomCount,
+        }
+        setReserveData({
+          ...reserveData,
+          ...changeReserveDataObj,
+        })
+      })
+      .catch((err) => console.error(err))
+  }, [product_id])
+
+  function calculateNumberOfNights(checkinDate, checkoutDate, keyName) {
+    const oneDay = 24 * 60 * 60 * 1000 // 一天的毫秒數
+    const checkinTime = new Date(checkinDate).getTime() // 入住日期的時間戳
+    const checkoutTime = new Date(checkoutDate).getTime() // 退房日期的時間戳
+    const differenceInTime = checkoutTime - checkinTime // 入住日到退房日的時間差，單位為毫秒
+    const differenceInDays = Math.round(differenceInTime / oneDay) // 入住日到退房日的天數
+    const changeObj = {
+      differenceInDay: differenceInDays,
+      [keyName]: keyName === 'startDate' ? checkinDate : checkoutDate,
+      money: Number(roomDetail.products_price) * Number(differenceInDays),
+      // dateKeyName 是指入住日 或 退房日的key name，所以是當選入住日時keyName為startDate；選退房日時keyName為endDate
+      total:
+        Number(roomDetail.products_price) *
+        differenceInDays *
+        reserveData.roomCount,
+    }
+    setReserveData({
+      ...reserveData,
+      ...changeObj,
+    })
+  }
 
   return (
     <>
@@ -32,11 +82,12 @@ function Reserve() {
         <div className="rd-container">
           <div className="rd-content-left">
             <div className="title">
-              <h1>標準雙人房</h1>
-              <h2>1800</h2>
+              <h1>{roomDetail.product_name}</h1>
+              <h2>{roomDetail.products_price}</h2>
             </div>
             <p>
-              <span>床型尺寸：</span>一張標準雙人床
+              <span>床型尺寸：</span>
+              {roomDetail.products_descripttion}
             </p>
             <p>
               <span>客房設施：</span>空調, 地毯, 隔音, 清潔用品, 吊衣架, 淋浴,
@@ -70,19 +121,76 @@ function Reserve() {
                     {/* <img src={Calendar} alt="Calendar" width={30} height={30} /> */}
                     <p>入住日期</p>
                     <ReactDatePicker
+                      showIcon
+                      dateFormat="yyyy/MM/dd"
                       locale="zh-TW"
-                      selected={startDate}
-                      onChange={(date) => setStartDate(date)}
+                      selected={reserveData.startDate}
+                      onChange={(date) => {
+                        // setReserveData({ ...reserveData, startDate: date })
+                        calculateNumberOfNights(
+                          date,
+                          reserveData.endDate,
+                          'startDate'
+                        )
+                      }}
                     />
                   </div>
                   <div className="check-out">
                     {/* <img src={Calendar} alt="Calendar" width={30} height={30} /> */}
                     <p>退房日期</p>
                     <ReactDatePicker
-                      selected={endDate}
+                      showIcon
+                      dateFormat="yyyy/MM/dd"
+                      selected={reserveData.endDate}
                       locale="zh-TW"
-                      onChange={(date) => setEndDate(date)}
+                      onChange={(date) => {
+                        // setReserveData({ ...reserveData, endDate: date })
+                        calculateNumberOfNights(
+                          reserveData.startDate,
+                          date,
+                          'endDate'
+                        )
+                      }}
                     />
+                  </div>
+                </div>
+                <div className="r-form-adult">
+                  <p>房間數量</p>
+                  <div className="calculate-btn-box">
+                    <button
+                      className="dash calculate-btn"
+                      disabled={reserveData.roomCount <= 1 ? true : false}
+                      onClick={() => {
+                        if (reserveData.roomCount > 1) {
+                          setReserveData({
+                            ...reserveData,
+                            ...{
+                              roomCount: reserveData.roomCount - 1,
+                              total:
+                                roomDetail.products_price *
+                                reserveData.differenceInDay *
+                                (reserveData.roomCount - 1),
+                            },
+                          })
+                        }
+                      }}
+                    ></button>
+                    <span>{reserveData.roomCount}</span>
+                    <button
+                      className="add calculate-btn"
+                      onClick={() => {
+                        setReserveData({
+                          ...reserveData,
+                          ...{
+                            roomCount: reserveData.roomCount + 1,
+                            total:
+                              roomDetail.products_price *
+                              reserveData.differenceInDay *
+                              (reserveData.roomCount + 1),
+                          },
+                        })
+                      }}
+                    ></button>
                   </div>
                 </div>
                 <div className="r-form-adult">
@@ -90,18 +198,24 @@ function Reserve() {
                   <div className="calculate-btn-box">
                     <button
                       className="dash calculate-btn"
-                      disabled={adultCount <= 0 ? true : false}
+                      disabled={reserveData.adultCount <= 1 ? true : false}
                       onClick={() => {
-                        if (adultCount > 0) {
-                          setAdultCount(adultCount - 1)
+                        if (reserveData.adultCount > 1) {
+                          setReserveData({
+                            ...reserveData,
+                            adultCount: reserveData.adultCount - 1,
+                          })
                         }
                       }}
                     ></button>
-                    <span>{adultCount}</span>
+                    <span>{reserveData.adultCount}</span>
                     <button
                       className="add calculate-btn"
                       onClick={() => {
-                        setAdultCount(adultCount + 1)
+                        setReserveData({
+                          ...reserveData,
+                          adultCount: reserveData.adultCount + 1,
+                        })
                       }}
                     ></button>
                   </div>
@@ -111,18 +225,24 @@ function Reserve() {
                   <div className="calculate-btn-box">
                     <button
                       className="dash calculate-btn"
-                      disabled={childCount <= 0 ? true : false}
+                      disabled={reserveData.childCount <= 0 ? true : false}
                       onClick={() => {
-                        if (childCount > 0) {
-                          setChildCount(childCount - 1)
+                        if (reserveData.childCount > 0) {
+                          setReserveData({
+                            ...reserveData,
+                            childCount: reserveData.childCount - 1,
+                          })
                         }
                       }}
                     ></button>
-                    <span>{childCount}</span>
+                    <span>{reserveData.childCount}</span>
                     <button
                       className="add calculate-btn"
                       onClick={() => {
-                        setChildCount(childCount + 1)
+                        setReserveData({
+                          ...reserveData,
+                          childCount: reserveData.childCount + 1,
+                        })
                       }}
                     ></button>
                   </div>
@@ -132,23 +252,29 @@ function Reserve() {
                   <div className="calculate-btn-box">
                     <button
                       className="dash calculate-btn"
-                      disabled={petCount <= 0 ? true : false}
+                      disabled={reserveData.petCount <= 0 ? true : false}
                       onClick={() => {
-                        if (petCount > 0) {
-                          setPetCount(petCount - 1)
+                        if (reserveData.petCount > 0) {
+                          setReserveData({
+                            ...reserveData,
+                            petCount: reserveData.petCount - 1,
+                          })
                         }
                       }}
                     ></button>
-                    <span>{petCount}</span>
+                    <span>{reserveData.petCount}</span>
                     <button
                       className="add calculate-btn"
                       onClick={() => {
-                        setPetCount(petCount + 1)
+                        setReserveData({
+                          ...reserveData,
+                          petCount: reserveData.petCount + 1,
+                        })
                       }}
                     ></button>
                   </div>
                 </div>
-                {petCount > 0 ? (
+                {reserveData.petCount > 0 ? (
                   <div className="choose-pet-section">
                     <div className="form-check">
                       <label className="form-check-label" for="catBed">
@@ -185,14 +311,19 @@ function Reserve() {
               </div>
               <div className="r-price">
                 <div className="price-day">
-                  <p>$1800 TWD *1晚</p>
-                  <p>$1800 TWD </p>
-                </div>
+                  <p>
+                    ${reserveData.money} TWD *{reserveData.differenceInDay}晚
+                  </p>
 
+                  <p>${reserveData.money} TWD </p>
+                </div>
+                <div className="room-count">
+                  <p>*{reserveData.roomCount}間</p>
+                </div>
                 <hr />
                 <div className="total-price">
                   <p>總價</p>
-                  <p>$2300 TWD</p>
+                  <p>${reserveData.total} TWD</p>
                 </div>
               </div>
               <div className="r-btn-box">
@@ -204,7 +335,14 @@ function Reserve() {
                 </button>
                 {/* <Link to="/ReserveConfirm"> */}
                 <button
-                  onClick={() => navigate('/ReserveConfirm')}
+                  onClick={() => {
+                    console.log('reserveData-', reserveData)
+                    navigate('/ReserveConfirm')
+                    sessionStorage.setItem(
+                      'reserveData',
+                      JSON.stringify(reserveData)
+                    )
+                  }}
                   type="button"
                   className="btn btn-primary btn-lg min-width-auto ml-10px"
                 >

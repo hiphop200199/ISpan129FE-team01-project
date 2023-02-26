@@ -31,8 +31,8 @@ function App() {
           <Route path="Header" element={<Header />}></Route>
           <Route path="product" element={<Product />}></Route>
           <Route path="meals" element={<Meals />}></Route>
-          <Route path="hotel" element={<Hotel />}></Route>
-          <Route path="reserve" element={<Reserve />}></Route>
+          <Route path="hotel/:typeID" element={<Hotel />}></Route>
+          <Route path="reserve/:product_id" element={<Reserve />}></Route>
           <Route path="latestNews" element={<LatestNews />}></Route>
           <Route path="course" element={<Course />}></Route>
           <Route path="activity" element={<Activity />}></Route>

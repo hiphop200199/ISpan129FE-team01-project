@@ -1,46 +1,53 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Card from '../../template/Card'
 import MoreSquare from '../../template/MoreSquare'
 
 function Hotel() {
   const [room, setRoom] = useState([])
+  const { typeID } = useParams()
   // didMount
   useEffect(() => {
-    setRoom([
-      {
-        title: '單人房',
-        subtitle: '1200',
-        text: '一小床(3.5呎*6.2呎)',
-        img: 'hotel-single.jpg',
-      },
-      {
-        title: '標準雙人房',
-        subtitle: '1800',
-        text: '一大床(5呎*6.6呎)',
-        img: 'standard-double-room.jpg',
-      },
-      {
-        title: '雙床雙人房',
-        subtitle: '1800',
-        text: '一大床(5呎*6.6呎)',
-        img: 'twin-double-room.jpg',
-      },
-      {
-        title: '三人房',
-        subtitle: '2400',
-        text: '一大床(5呎*6.6呎)',
-        img: 'tripple-room.jpg',
-      },
-      {
-        title: '四人房',
-        subtitle: '3000',
-        text: '一大床(5呎*6.6呎)',
-        img: 'quadruple room.jpg',
-      },
-    ])
-    console.log('room', room)
-  }, [])
+    fetch(`http://localhost:3002/product/list-product/${typeID}`)
+      .then((res) => res.json())
+      .then((room) => setRoom(room))
+      .catch((err) => console.error(err))
+  }, [typeID])
+  console.log('dd', room)
+  // setRoom([
+  //   {
+  //     title: '單人房',
+  //     subtitle: '1200',
+  //     text: '一小床(3.5呎*6.2呎)',
+  //     img: 'hotel-single.jpg',
+  //   },
+  //   {
+  //     title: '標準雙人房',
+  //     subtitle: '1800',
+  //     text: '一大床(5呎*6.6呎)',
+  //     img: 'standard-double-room.jpg',
+  //   },
+  //   {
+  //     title: '雙床雙人房',
+  //     subtitle: '1800',
+  //     text: '一大床(5呎*6.6呎)',
+  //     img: 'twin-double-room.jpg',
+  //   },
+  //   {
+  //     title: '三人房',
+  //     subtitle: '2400',
+  //     text: '一大床(5呎*6.6呎)',
+  //     img: 'tripple-room.jpg',
+  //   },
+  //   {
+  //     title: '四人房',
+  //     subtitle: '3000',
+  //     text: '一大床(5呎*6.6呎)',
+  //     img: 'quadruple room.jpg',
+  //   },
+  // ])
+  // console.log('room', room)
+  // }, [])
 
   return (
     <>
@@ -57,18 +64,20 @@ function Hotel() {
 
       <div className="card-wrap">
         {room.map((item, i) => {
-          const img = require(`../../img/hotels/${item.img}`)
+          {
+            /* const img = require(`../../img/hotels/${item.img}`) */
+          }
           return (
             <div className="h-card col-6" key={i}>
               <div className="h-card-left col-6">
                 <div className="h-card-header">
-                  <h3 className="h-card-title">{item.title}</h3>
-                  <p className="h-card-subtitle">NT.{item.subtitle}</p>
-                  <p className="h-card-text">{item.text}</p>
+                  <h3 className="h-card-title">{item.product_name}</h3>
+                  <p className="h-card-subtitle">NT.{item.products_price}</p>
+                  <p className="h-card-text">{item.products_descripttion}</p>
                 </div>
                 <div className="h-card-footer">
                   <span>&#9825;</span>
-                  <Link to="/reserve">
+                  <Link to={`/reserve/${item.product_id}`}>
                     <MoreSquare />
                   </Link>
                   {/* <a href="">
@@ -77,7 +86,7 @@ function Hotel() {
                 </div>
               </div>
               <div className="h-card-right col-7">
-                <img src={img} alt="" />
+                {/* <img src={img} alt="" /> */}
                 {/* <img src={require({item.img})} alt="" /> */}
               </div>
             </div>
