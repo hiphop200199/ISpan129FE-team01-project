@@ -142,12 +142,17 @@ function Reserve() {
                           'startDate'
                         )
                       }}
+                      minDate={new Date()}
+                      startDate={reserveData.startDate}
+                      endDate={reserveData.endDate}
                     />
                   </div>
                   <div className="check-out">
-                    {/* <img src={Calendar} alt="Calendar" width={30} height={30} /> */}
                     <p>退房日期</p>
                     <ReactDatePicker
+                      className={
+                        reserveData.differenceInDay <= 0 ? 'err-border' : ''
+                      }
                       dateFormat="yyyy/MM/dd"
                       selected={reserveData.endDate}
                       locale="zh-TW"
@@ -159,9 +164,19 @@ function Reserve() {
                           'endDate'
                         )
                       }}
+                      minDate={reserveData.startDate}
+                      startDate={reserveData.startDate}
+                      endDate={reserveData.endDate}
                     />
                   </div>
                 </div>
+                {reserveData.differenceInDay <= 0 ? (
+                  <small className="err-msg">
+                    退房日期不得與入住日期相同，至少須住一晚
+                  </small>
+                ) : (
+                  ''
+                )}
                 <div className="r-form-adult">
                   <p>房間數量</p>
                   <div className="calculate-btn-box">
@@ -263,10 +278,20 @@ function Reserve() {
                       disabled={reserveData.petCount <= 0 ? true : false}
                       onClick={() => {
                         if (reserveData.petCount > 0) {
-                          setReserveData({
-                            ...reserveData,
-                            petCount: reserveData.petCount - 1,
-                          })
+                          if (reserveData.petCount === 1) {
+                            setReserveData({
+                              ...reserveData,
+                              ...{
+                                petCount: reserveData.petCount - 1,
+                                selectPet: '',
+                              },
+                            })
+                          } else {
+                            setReserveData({
+                              ...reserveData,
+                              petCount: reserveData.petCount - 1,
+                            })
+                          }
                         }
                       }}
                     ></button>
@@ -282,6 +307,11 @@ function Reserve() {
                     ></button>
                   </div>
                 </div>
+                {reserveData.petCount > 0 && reserveData.selectPet === '' ? (
+                  <small className="err-msg">請選擇寵物窩!!</small>
+                ) : (
+                  ''
+                )}
                 {reserveData.petCount > 0 ? (
                   <div className="choose-pet-section">
                     <div className="form-check">
@@ -357,6 +387,10 @@ function Reserve() {
                   }}
                   type="button"
                   className="btn btn-primary btn-lg min-width-auto ml-10px"
+                  disabled={
+                    reserveData.differenceInDay <= 0 ||
+                    (reserveData.petCount > 0 && reserveData.selectPet === '')
+                  } //如果退房日跟入住日同一天，預訂為disabled   或者  有點選寵物數量卻沒選擇寵物窩，預訂為disabled
                 >
                   預訂
                 </button>
