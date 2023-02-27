@@ -131,7 +131,6 @@ function Reserve() {
                     {/* <img src={Calendar} alt="Calendar" width={30} height={30} /> */}
                     <p>入住日期</p>
                     <ReactDatePicker
-                      showIcon
                       dateFormat="yyyy/MM/dd"
                       locale="zh-TW"
                       selected={reserveData.startDate}
@@ -149,7 +148,6 @@ function Reserve() {
                     {/* <img src={Calendar} alt="Calendar" width={30} height={30} /> */}
                     <p>退房日期</p>
                     <ReactDatePicker
-                      showIcon
                       dateFormat="yyyy/MM/dd"
                       selected={reserveData.endDate}
                       locale="zh-TW"
