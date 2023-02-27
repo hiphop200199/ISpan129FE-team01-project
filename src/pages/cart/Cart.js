@@ -1,14 +1,31 @@
 import React, { useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Cart = () => {
-  const [items, setItems] = useState([])
+  const [items, setItems] = useState(
+    JSON.parse(localStorage.getItem('cart')) || []
+  )
+  // const {
+  //   product_id: productID,
+  //   product_type: typeID,
+  //   product_name: name,
+  //   products_price: price,
+  //   product_image: imageUrl,
+  // } = items
+  // console.log(items)
+  // const addItem = (item) => {
+  //   setItems([...items, item])
+  // }
 
-  const addItem = (item) => {
-    setItems([...items, item])
-  }
-
+  // const removeItem = (index) => {
+  //   setItems(items.filter((item, i) => i !== index))
+  // }
   const removeItem = (index) => {
-    setItems(items.filter((item, i) => i !== index))
+    // 在點擊“移除”按鈕時，從購物車中刪除該商品
+    const newItems = [...items.slice(0, index), ...items.slice(index + 1)]
+    localStorage.setItem('cart', JSON.stringify(newItems))
+    // 更新狀態以重新渲染畫面
+    setItems(newItems)
   }
 
   return (
@@ -17,27 +34,37 @@ const Cart = () => {
         <h2>購物車</h2>
         <table>
           <thead>
-            <tr>
+            {/* <tr>
               <th>名稱</th>
               <th>價格</th>
               <th>數量</th>
               <th>操作</th>
-            </tr>
+            </tr> */}
           </thead>
           <tbody>
-            {items.map((item, index) => (
-              <tr key={item.name}>
-                <td>{item.name}</td>
-                <td>{item.price}</td>
-                <td>{item.quantity}</td>
-                <td>
-                  <button onClick={() => removeItem(index)}>移除</button>
-                </td>
-              </tr>
-            ))}
+            {items.map(
+              (
+                { product_id, product_name, products_price, product_image, product_qry },
+                index
+              ) => (
+                <tr key={product_id}>
+                  <td>
+                    <img
+                      src={`http://localhost:3002/uploads/${product_image}`}
+                      alt={product_name}
+                    />
+                  </td>
+                  <td>{product_name}</td>
+                  <td>{products_price}</td>
+                  <td>{product_qry}</td>
+                  <td>
+                    <button onClick={() => removeItem(index)}>移除</button>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
-        <form
+        {/* <form
           onSubmit={(event) => {
             event.preventDefault()
             addItem({
@@ -52,7 +79,8 @@ const Cart = () => {
           <input type="number" name="price" placeholder="價格" />
           <input type="number" name="quantity" placeholder="數量" />
           <button type="submit">加入購物車</button>
-        </form>
+        </form> */}
+        <button>結帳</button>
       </main>
     </div>
   )

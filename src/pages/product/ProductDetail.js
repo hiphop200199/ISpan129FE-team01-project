@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import photo from '../../img/productDetails/cheese.jpg'
 import { AddToCartLg, AddToFavoritesLg } from '../../template'
 import Header from '../../layouts/header'
@@ -8,40 +9,19 @@ function ProductDetail() {
   const [product, setProduct] = useState({});
   // 取得query string的值
   const { product_id } = useParams();
-  // // 取得DB的資料
-  // useEffect(() => {
-  //   // console.log('id from URL:', product_id);
-  //   if (!product_id) return;
-  //   fetch(`http://localhost:3002/product/list-detail/${product_id}`)
-  //     .then((res) => {
-  //       if (!res.ok) {
-  //         throw new Error('network res was not ok');
-  //       }
-  //       return res.json();
-  //     })
-  //     .then((product) => {
-  //       if (product) {
-  //         setProduct(...product);
-  //         console.log(product)
-  //       } else {
-  //         // 商品不存在，導向 404 頁面或顯示錯誤訊息
-  //         throw new Error('Product not found');
-  //       }
-  //     })
-  //     .catch((error) =>
-  //       console.error('Error fetching product data:', error)
-  //     );
-  // }, [product_id]);
   async function fetchProductDetails() {
     try {
-      const res = await fetch(`http://localhost:3002/product/list-detail/${product_id}`);
+      const res = await fetch(
+        `http://localhost:3002/product/list-detail/${product_id}`
+      )
       if (!res.ok) {
         throw new Error('network res was not ok');
       }
+      console.log(res.baseURL)
       const product = await res.json();
       if (product) {
         setProduct(...product);
-        console.log(product)
+        // console.log(product)
       } else {
         // 商品不存在，導向 404 頁面或顯示錯誤訊息
         throw new Error('Product not found');
@@ -64,7 +44,7 @@ function ProductDetail() {
     products_descripttion: descripttion,
     products_price: price,
     product_unit: unit,
-    // product_image_url: imageUrl,
+    product_image: imageUrl,
   } = product;
   return (
     <>
@@ -72,7 +52,11 @@ function ProductDetail() {
       <div className="product-container">
         <section className="product-introduction">
           <div className="product-photo-wrapper">
-            {/* <img className="product-photo" src={photo} alt="product-photo" /> */}
+            <img
+              className="product-photo"
+              src={'http://localhost:3002/uploads/' + imageUrl}
+              alt="product-photo"
+            />
           </div>
           <div className="product-information">
             <h1 className="product-name">{name}</h1>
@@ -86,7 +70,7 @@ function ProductDetail() {
               {/* <button className="product-add-collection">加入收藏</button>
               <button className="product-add-cart">加入購物車</button> */}
               <AddToFavoritesLg />
-              <AddToCartLg />
+              <AddToCartLg product={product} />
             </div>
           </div>
         </section>
