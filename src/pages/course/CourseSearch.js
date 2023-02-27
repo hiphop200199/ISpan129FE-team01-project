@@ -44,6 +44,30 @@ function CourseSearch() {
         </section>
 
         <section className="course-search-results">
+          {showCourses.map((item) => {
+            return (
+              <article className="course-cards">
+                <div className="productCard">
+                  <section className="text-part">
+                    <h2 className="title">{item.name}</h2>
+                    <span className="product-unit">{item.unit}</span>
+                    <p className="description">{item.descripttion}</p>
+                    <span className="price">{item.price}</span>
+                  </section>
+                  <section className="buttons">
+                    <button className="button-collection">&#9825;</button>
+                    <Link to="/courseDetail">
+                      <button className="button-moreInfo">看更多</button>
+                    </Link>
+                  </section>
+                  {/* 圖片動態引入 ，圖片須放在public資料夾*/}
+                  <img src={dog} alt="" />
+                  {/* <img src={photo} alt="" /> */}
+                </div>
+              </article>
+            )
+          })}
+
           <article className="course-cards">
             <div className="productCard">
               <section className="text-part">
