@@ -52,29 +52,33 @@
 
 
 .rd-container{
-    display: flex;
-    margin: auto;
-    .rd-content-left {
-      padding: 1rem;
-      width: 50%;
-      ul{
-        padding-left: 1rem;
-        li{
-          list-style: circle;
-          font-size: var(--font-size-h5);
-          margin-top: 1rem;
-        }
-      }
-      span{
-        font-weight: bold;
-      }
-  }
-    .rd-content-right {
+  display: flex;
+  margin: auto;
+  .rd-content-left {
+    padding: 1rem;
     width: 50%;
+    ul{
+      padding-left: 1rem;
+      li{
+        list-style: circle;
+        font-size: var(--font-size-h5);
+        margin-top: 1rem;
+      }
+    }
+    span{
+      font-weight: bold;
+    }
+    .notice {
+      margin-top: 2rem;
+  }
+  }
+  .rd-content-right {
+    width: 49%;
     border: 15px solid var(--light-blue);
     border-radius: 10px;
     box-shadow: 4 4 8 -1 #000000 75%;
     background-color: var(--light-blue);
+    margin-left: 12px;
     .r-wrap{
       margin: 0px;
       padding: 30px;
@@ -83,9 +87,12 @@
       border-radius:calc(25px - 15px);
     }
   }
-    .title{
-        display: flex;
-    }
+  .title{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1.5rem;
+  }
 }
 .price-day{
     display: flex;
@@ -111,9 +118,16 @@
   .r-form-day{
     display: flex;
     justify-content: space-around;
+    input[type="text"] {
+      width: 100%;
+    }
+    .check-in {
+      padding-right: 5px;
+    }
+    .check-out{
+      padding-left: 5px;
+    }
     .check-in,.check-out{
-      // display: flex;
-      // justify-content: center;
       width: 50%;
       p{
         margin-bottom: 0;
@@ -154,5 +168,38 @@
   }
   .ml-10px{
     margin-left: 10px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .rd-container{
+    .rd-content-left {
+      padding: 1rem 0;
+    }
+  }
+  .banner {
+    .rd-img-left {
+      margin: 10px 5px 10px 0px;
+    }
+    .rd-img-right{
+      .img {
+        width: calc(50% - 5px);
+        &:nth-child(odd){
+          margin: 5px 5px 5px 0;
+        }
+        &:nth-child(even){
+          margin: 5px 0 5px 5px;
+        }
+      }
+    }
+  } 
+  .rwd-container {
+    display: block;
+    &.card-wrap {
+      margin-right: 40px;
+    }
+    .rwd-col-12 {
+      width: 100%;
+    }
   }
 }

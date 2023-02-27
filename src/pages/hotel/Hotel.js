@@ -62,13 +62,13 @@ function Hotel() {
       {/* <Card photo={'hotel-single.jpg'} /> */}
       {/* <Card photo={'logo192.png'} /> */}
 
-      <div className="card-wrap">
+      <div className="card-wrap rwd-container">
         {room.map((item, i) => {
           {
             /* const img = require(`../../img/hotels/${item.img}`) */
           }
           return (
-            <div className="h-card col-6" key={i}>
+            <div className="h-card col-6 rwd-col-12" key={i}>
               <div className="h-card-left col-6">
                 <div className="h-card-header">
                   <h3 className="h-card-title">{item.product_name}</h3>

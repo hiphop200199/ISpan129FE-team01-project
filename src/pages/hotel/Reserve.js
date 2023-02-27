@@ -16,6 +16,7 @@ function Reserve() {
     petCount: 0,
     childCount: 0,
     adultCount: 1,
+    selectPet: '',
     startDate: new Date(),
     endDate: new Date().setDate(new Date().getDate() + 1),
     differenceInDay: 1,
@@ -66,12 +67,21 @@ function Reserve() {
     })
   }
 
+  function petOptionChange(event) {
+    console.log('event-', event)
+    console.log('event.target.value-', event.target.value)
+    setReserveData({
+      ...reserveData,
+      selectPet: event.target.value,
+    })
+  }
+
   return (
     <>
       <div className="rd-wrap">
-        <div className="banner">
-          <div className="rd-img-left"></div>
-          <div className="rd-img-right">
+        <div className="banner rwd-container">
+          <div className="rd-img-left rwd-col-12"></div>
+          <div className="rd-img-right rwd-col-12">
             <div className="img img1"></div>
             <div className="img img2"></div>
 
@@ -79,11 +89,11 @@ function Reserve() {
             <div className="img img4"></div>
           </div>
         </div>
-        <div className="rd-container">
-          <div className="rd-content-left">
+        <div className="rd-container rwd-container">
+          <div className="rd-content-left rwd-col-12">
             <div className="title">
               <h1>{roomDetail.product_name}</h1>
-              <h2>{roomDetail.products_price}</h2>
+              <h2>NT.{roomDetail.products_price}</h2>
             </div>
             <p>
               <span>床型尺寸：</span>
@@ -113,7 +123,7 @@ function Reserve() {
               </ul>
             </div>
           </div>
-          <div className="rd-content-right">
+          <div className="rd-content-right rwd-col-12">
             <div className="r-wrap">
               <div className="r-form">
                 <div className="r-form-day">
@@ -277,7 +287,7 @@ function Reserve() {
                 {reserveData.petCount > 0 ? (
                   <div className="choose-pet-section">
                     <div className="form-check">
-                      <label className="form-check-label" for="catBed">
+                      <label className="form-check-label" htmlFor="forest">
                         <img
                           src={require('../../img/hotels/cat-room1.png')}
                           alt=""
@@ -285,13 +295,15 @@ function Reserve() {
                       </label>
                       <input
                         className="form-check-input"
-                        type={'radio'}
-                        id="catBed"
+                        type="radio"
+                        id="forest"
                         name="petBed"
+                        value="forest"
+                        onChange={petOptionChange}
                       />
                     </div>
                     <div className="form-check">
-                      <label className="form-check-label" for="dogBed">
+                      <label className="form-check-label" htmlFor="house">
                         <img
                           src={require('../../img/hotels/cat-room2.jpg')}
                           alt=""
@@ -299,9 +311,11 @@ function Reserve() {
                       </label>
                       <input
                         className="form-check-input"
-                        type={'radio'}
-                        id="dogBed"
+                        type="radio"
+                        id="house"
                         name="petBed"
+                        value="house"
+                        onChange={petOptionChange}
                       />
                     </div>
                   </div>
