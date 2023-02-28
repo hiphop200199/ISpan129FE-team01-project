@@ -1,46 +1,63 @@
-import blackDog from '../../img/layout/camylla-battani-JgdgKvYgiwI-unsplash.jpg'
-import brownDog from '../../img/layout/ayla-verschueren-bpkBLrotO28-unsplash.jpg'
-import chris from '../../img/layout/activityred.jpg'
-import React, { useRef, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation } from "swiper";
-
-
-import 'swiper/swiper-bundle.css'
+import React from 'react'
+import { useState, useEffect } from 'react'
+import EventRegistration from '../../template/EventRegistration'
+import { Link } from 'react-router-dom'
 function Activity() {
-  const progressCircle = useRef(null);
-  const progressContent = useRef(null);
-  const onAutoplayTimeLeft = (s, time, progress) => {
-    progressCircle.current.style.setProperty('--progress', 1 - progress);
-    progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
-  };
+  const [activity, setActivity] = useState([])
+
+  useEffect(() => {
+    fetch(`http://localhost:3002/activity/api`, {})
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('data', data)
+        setActivity(data.rows)
+      })
+      .catch((error) => console.error(error))
+  }, [])
   return (
     <>
-      <Swiper
-        spaceBetween={30}
-        centeredSlides={true}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
-      >
-        <SwiperSlide>
-          <img src={blackDog} alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={brownDog} alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={chris} alt="" />
-        </SwiperSlide>
-      </Swiper>
+      {/* <Header />
+      <HeaderSearch /> */}
+
+      <div className="card-wrap">
+        {activity.map((el) => {
+          return (
+            <div className="h-card col-6">
+              <div className="h-card-left col-6">
+                <div className="h-card-header">
+                  <span hidden>{el.activity_id}</span>
+                  <p className="h-card-title">{el.activity_name}</p>
+                  <p className="h-card-subtitle">
+                    活動日期:
+                    {new Date(el.activity_datestart).toString('yyyy-MM-dd')}
+                  </p>
+                  <p className="h-card-text">
+                    截止日期:
+                    {new Date(el.activity_enddate).toString('yyyy-mm-dd')}
+                  </p>
+                  <span hidden>{el.activity_pettype}</span>
+                  <span hidden>{el.activity_location}</span>
+                  <span hidden>{el.activity_decription}</span>
+                  <span hidden>{el.activity_notice}</span>
+                </div>
+                <div className="h-card-footer">
+                  <Link to="/ActivityDetail">
+                    <EventRegistration />
+                  </Link>
+                </div>
+              </div>
+              <div className="h-card-right col-7">
+                <img
+                  src={`http://localhost:3002/uploads/${el.activity_image}/`}
+                  alt=""
+                />
+              </div>
+            </div>
+          )
+        })}
+      </div>
     </>
   )
 }
+
 export default Activity
