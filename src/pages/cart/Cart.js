@@ -2,26 +2,13 @@ import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Cart = () => {
+  // 取得購物車的資料並轉成Json
   const [items, setItems] = useState(
     JSON.parse(localStorage.getItem('cart')) || []
   )
-  // const {
-  //   product_id: productID,
-  //   product_type: typeID,
-  //   product_name: name,
-  //   products_price: price,
-  //   product_image: imageUrl,
-  // } = items
-  // console.log(items)
-  // const addItem = (item) => {
-  //   setItems([...items, item])
-  // }
-
-  // const removeItem = (index) => {
-  //   setItems(items.filter((item, i) => i !== index))
-  // }
+  // 在點擊“移除”按鈕時，從購物車中刪除該商品
   const removeItem = (index) => {
-    // 在點擊“移除”按鈕時，從購物車中刪除該商品
+    // 切割購物車的Json資料
     const newItems = [...items.slice(0, index), ...items.slice(index + 1)]
     localStorage.setItem('cart', JSON.stringify(newItems))
     // 更新狀態以重新渲染畫面
