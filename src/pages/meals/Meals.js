@@ -7,7 +7,7 @@ import { useLocation, useParams } from 'react-router-dom'
 import { faCny } from '@fortawesome/free-solid-svg-icons'
 import MoreSquare from '../../template/MoreSquare'
 // import { Link, } from 'react-router-dom'
-
+import TagSwitchingExample from '../../template/tag';
 function Meals() {
   return (
     <div className="MealsPage">
@@ -17,6 +17,7 @@ function Meals() {
                     <MoreSquare />
                   </Link> */}
       <h2>餐點</h2>
+                  <TagSwitchingExample/>
       {/* <div className="productContent">
         {data.map((product) => (
           <Card className="col-6" key={product.id} data={product} />

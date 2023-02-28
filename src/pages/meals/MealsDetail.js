@@ -2,7 +2,7 @@ import photo from '../../img/meals/food/food.jpg'
 import { AddToCartLg, AddToFavoritesLg } from '../../template'
 import Header from '../../layouts/header'
 import HeaderSearch from '../../layouts/HeaderSearch'
-
+import TagSwitchingExample from '../../template/tag';
 
 function MealsDetail() {
   return (
@@ -31,6 +31,8 @@ function MealsDetail() {
           </div>
         </section>
         <section className="product-switcher">
+          {/* <TagSwitchingExample/> */}
+        
           <ul className="product-switches">
             <li className="product-switch">
               <a href="#" className="product-switch-link">
@@ -42,11 +44,11 @@ function MealsDetail() {
                 注意事項
               </a>
             </li>
-            {/* <li className="product-switch">
+            <li className="product-switch">
               <a href="#act3" className="product-switch-link">
                 商品規格
               </a>
-            </li> */}
+            </li>
           </ul>
         </section>
         <section className="product-spec">
