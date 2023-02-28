@@ -2,6 +2,25 @@ import React, { useState, useEffect } from 'react'
 import { format } from 'date-fns'
 
 function ReserveConfirm() {
+  const [formData, setFormData] = useState({
+    payment: '',
+    cardNumber: '',
+    expiryDate: '', //到期日
+    securityCode: '',
+    remark: '',
+    name: '',
+    email: '',
+    phone: '',
+  })
+
+  // 假如當下輸入email的值，執行 onChange 中的 handleChange 時，重新賦予formData.email的值
+  //改input的值時把，原本的值(...formData)變成輸入的值
+  function handleChange(event) {
+    const { name, value } = event.target // input tag
+    // ...formData 為 改變前的 obj值，[name]: value 為需要改變的key : value，以input eamil來說 input中name取名為email 所以[name] 是 email，value則為當下輸入的值
+    // setFormData({ ...formData, [name]: value })為何要這樣寫?  (舉例 ...formData 如果不寫，最後obj只剩下 email: ''，其他欄位會消失)
+    setFormData({ ...formData, [name]: value })
+  }
   const [reserveConfirm, setReserveConfirm] = useState({
     roomCount: 1,
     petCount: 0,
@@ -10,7 +29,7 @@ function ReserveConfirm() {
     selectPet: '',
     startDate: new Date(),
     endDate: new Date().setDate(new Date().getDate() + 1),
-    differenceInDay: 1,
+    differenceInDay: 1, // 入住日到退房日的天數
     money: 0,
     total: 0,
   })
@@ -34,10 +53,16 @@ function ReserveConfirm() {
             <div className="mb-3">
               <select
                 className="form-select mb-3"
-                aria-label="Default select example"
+                value={formData.payment}
+                name="payment"
+                onChange={handleChange}
               >
-                <option selected>信用卡</option>
-                <option value="1">現場付款</option>
+                <option value="" disabled>
+                  {/* 對應到payment: ''，如果為payment: 'onSite'則顯示現場付款*/}
+                  請選擇付款方式
+                </option>
+                <option value="creditCard">信用卡</option>
+                <option value="onSite">現場付款</option>
               </select>
               <input
                 type="email"
@@ -45,6 +70,9 @@ function ReserveConfirm() {
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
                 placeholder="卡號"
+                value={formData.cardNumber}
+                onChange={handleChange}
+                name="cardNumber"
               />
             </div>
             <div className="d-flex">
@@ -55,6 +83,9 @@ function ReserveConfirm() {
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
                   placeholder="到期日"
+                  value={formData.expiryDate}
+                  onChange={handleChange}
+                  name="expiryDate"
                 />
               </div>
               <div className="mb-3 col-6 pl-1">
@@ -64,6 +95,9 @@ function ReserveConfirm() {
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
                   placeholder="安全碼"
+                  value={formData.securityCode}
+                  onChange={handleChange}
+                  name="securityCode"
                 />
               </div>
             </div>
@@ -73,6 +107,9 @@ function ReserveConfirm() {
                 id="exampleFormControlTextarea1"
                 rows="3"
                 placeholder="備註..."
+                value={formData.remark}
+                onChange={handleChange}
+                name="remark"
               ></textarea>
             </div>
             <hr />
@@ -85,6 +122,8 @@ function ReserveConfirm() {
                 name="name"
                 placeholder="姓名"
                 required
+                value={formData.name}
+                onChange={handleChange}
               />
             </div>
             <div className="mb-3 ">
@@ -95,6 +134,8 @@ function ReserveConfirm() {
                 name="email"
                 placeholder="信箱"
                 required
+                value={formData.email}
+                onChange={handleChange}
               />
             </div>
             <div className="mb-3 ">
@@ -105,6 +146,8 @@ function ReserveConfirm() {
                 name="phone"
                 placeholder="電話"
                 required
+                value={formData.phone}
+                onChange={handleChange}
               />
             </div>
           </form>
@@ -178,6 +221,9 @@ function ReserveConfirm() {
               <button
                 type="button"
                 className="btn btn-primary btn-lg min-width-auto ml-10px"
+                onClick={() => {
+                  console.log('formData', formData)
+                }}
               >
                 結帳
               </button>
