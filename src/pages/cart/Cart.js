@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { Link } from 'react-router-dom'
 
 const Cart = () => {
   // 取得購物車的資料並轉成Json
@@ -67,7 +68,9 @@ const Cart = () => {
           <input type="number" name="quantity" placeholder="數量" />
           <button type="submit">加入購物車</button>
         </form> */}
-        <button>結帳</button>
+        <button>
+          <Link to={'/CheckoutFlow'}>結帳</Link>
+        </button>
       </main>
     </div>
   )
