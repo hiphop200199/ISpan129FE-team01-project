@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import Calendar from '../../img/hotels/calendar-plus-regular.svg'
 import ReactDatePicker, { registerLocale } from 'react-datepicker'
 import zhTW from 'date-fns/locale/zh-TW'
 import 'react-datepicker/dist/react-datepicker.css'
@@ -41,10 +40,24 @@ function Reserve() {
           ...reserveData,
           ...changeReserveDataObj,
         })
+        getRoomDetailImg(room[0])
       })
       .catch((err) => console.error(err))
   }, [product_id])
 
+  const getRoomDetailImg = (roomData) => {
+    if (roomData.product_image) {
+      fetch(`http://localhost:3002/uploads/${roomData.product_image}/`)
+        .then((res) => {
+          roomData.product_image = res.url
+        })
+        .catch((err) => console.error(err))
+    } else {
+      roomData.product_image = ''
+    }
+  }
+
+  //
   function calculateNumberOfNights(checkinDate, checkoutDate, keyName) {
     const oneDay = 24 * 60 * 60 * 1000 // 一天的毫秒數
     const checkinTime = new Date(checkinDate).getTime() // 入住日期的時間戳
@@ -80,7 +93,10 @@ function Reserve() {
     <>
       <div className="rd-wrap">
         <div className="banner rwd-container">
-          <div className="rd-img-left rwd-col-12"></div>
+          <div
+            style={{ backgroundImage: `url(${roomDetail.product_image})` }}
+            className="rd-img-left rwd-col-12"
+          ></div>
           <div className="rd-img-right rwd-col-12">
             <div className="img img1"></div>
             <div className="img img2"></div>
@@ -354,7 +370,8 @@ function Reserve() {
               <div className="r-price">
                 <div className="price-day">
                   <p>
-                    ${reserveData.money} TWD *{reserveData.differenceInDay}晚
+                    ${roomDetail.products_price} TWD *
+                    {reserveData.differenceInDay}晚
                   </p>
 
                   <p>${reserveData.money} TWD </p>

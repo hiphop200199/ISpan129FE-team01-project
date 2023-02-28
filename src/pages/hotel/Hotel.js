@@ -4,16 +4,37 @@ import Card from '../../template/Card'
 import MoreSquare from '../../template/MoreSquare'
 
 function Hotel() {
-  const [room, setRoom] = useState([])
+  const [room, setRoom] = useState([]) //房型資料
+  // typeID 取 App.js檔案中 path="hotel/:typeID" (:typeID是定義Param)，而typeID如何取得?是由ex: http://localhost:3000/hotel/3 那他的參數值就是3。目前hotel/3寫死是從Menu.js來的
   const { typeID } = useParams()
   // didMount
   useEffect(() => {
     fetch(`http://localhost:3002/product/list-product/${typeID}`)
       .then((res) => res.json())
-      .then((room) => setRoom(room))
+      .then((room) => {
+        setRoom(room)
+        getRoomImg(room)
+      })
       .catch((err) => console.error(err))
   }, [typeID])
-  console.log('dd', room)
+  // roomData:自己定義的名稱(目前是從list-product取來的房型資料)
+  const getRoomImg = (roomData) => {
+    // console.log('roomData', roomData)
+    roomData.forEach((element) => {
+      if (element.product_image) {
+        fetch(`http://localhost:3002/uploads/${element.product_image}/`)
+          .then((res) => {
+            // console.log('res', res)
+            element.product_image = res.url //改變原本房型圖片的值，element.product_image原本為'1c48b72f-c418-4a69-bb29-6d88170827f2.jpg'
+            // console.log('element.product_image', element.product_image)
+          })
+          .catch((err) => console.error(err))
+      } else {
+        element.product_image = ''
+      }
+      // console.log(element, 'element')
+    })
+  }
   // setRoom([
   //   {
   //     title: '單人房',
@@ -64,9 +85,6 @@ function Hotel() {
 
       <div className="card-wrap rwd-container">
         {room.map((item, i) => {
-          {
-            /* const img = require(`../../img/hotels/${item.img}`) */
-          }
           return (
             <div className="h-card col-6 rwd-col-12" key={i}>
               <div className="h-card-left col-6">
@@ -86,7 +104,8 @@ function Hotel() {
                 </div>
               </div>
               <div className="h-card-right col-7">
-                {/* <img src={img} alt="" /> */}
+                {/* {item.product_image} */}
+                <img src={`${item.product_image}`} alt="" />
                 {/* <img src={require({item.img})} alt="" /> */}
               </div>
             </div>
