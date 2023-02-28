@@ -14,7 +14,6 @@ function ReserveConfirm() {
   })
 
   // 假如當下輸入email的值，執行 onChange 中的 handleChange 時，重新賦予formData.email的值
-  //改input的值時把，原本的值(...formData)變成輸入的值
   function handleChange(event) {
     const { name, value } = event.target // input tag
     // ...formData 為 改變前的 obj值，[name]: value 為需要改變的key : value，以input eamil來說 input中name取名為email 所以[name] 是 email，value則為當下輸入的值
@@ -64,43 +63,49 @@ function ReserveConfirm() {
                 <option value="creditCard">信用卡</option>
                 <option value="onSite">現場付款</option>
               </select>
-              <input
-                type="email"
-                className="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-                placeholder="卡號"
-                value={formData.cardNumber}
-                onChange={handleChange}
-                name="cardNumber"
-              />
             </div>
-            <div className="d-flex">
-              <div className="mb-3 col-6 pr-1">
-                <input
-                  type="email"
-                  className="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="到期日"
-                  value={formData.expiryDate}
-                  onChange={handleChange}
-                  name="expiryDate"
-                />
-              </div>
-              <div className="mb-3 col-6 pl-1">
-                <input
-                  type="email"
-                  className="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
-                  placeholder="安全碼"
-                  value={formData.securityCode}
-                  onChange={handleChange}
-                  name="securityCode"
-                />
-              </div>
-            </div>
+            {/* 如果選擇信用卡付款，顯示卡號、到期日、安全碼欄位 */}
+            {formData.payment === 'creditCard' ? (
+              <>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="卡號"
+                    value={formData.cardNumber}
+                    onChange={handleChange}
+                    name="cardNumber"
+                  />
+                </div>
+
+                <div className="d-flex">
+                  <div className="mb-3 col-6 pr-1">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="到期日"
+                      value={formData.expiryDate}
+                      onChange={handleChange}
+                      name="expiryDate"
+                    />
+                  </div>
+
+                  <div className="mb-3 col-6 pl-1">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="安全碼"
+                      value={formData.securityCode}
+                      onChange={handleChange}
+                      name="securityCode"
+                    />
+                  </div>
+                </div>
+              </>
+            ) : (
+              ''
+            )}
+
             <div className="mb-3 ">
               <textarea
                 class="form-control"
