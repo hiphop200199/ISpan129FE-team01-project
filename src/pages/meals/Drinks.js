@@ -9,10 +9,16 @@ import MoreSquare from '../../template/MoreSquare'
 import { Link } from 'react-router-dom'
 
 function Drinks() {
-    const [drinks, setDrinks] = useState([])
+  const [searchValue, setSearchValue] = useState('');
+  const [originalDrinks, setOriginalDrinks] = useState([]);
+    const [drinks, setDrinks] = useState([]);
+    const [filteredDrinks, setFilteredDrinks] = useState([]);
+
+    const handleSearch = (value) => {
+      setSearchValue(value); };
     // didMount
     useEffect(() => {
-      setDrinks([
+      const initialDrinks = ([
         {
           title: '橙色蘇打',
           subtitle: '120',
@@ -51,14 +57,25 @@ function Drinks() {
         },
         
         
-      ])
-      console.log('drinks', drinks)
-    }, [])
+      ]);
+      setOriginalDrinks(initialDrinks);
+      setDrinks(initialDrinks);
+    }, []);
+
+    // 根据搜索框的值过滤食品数据
+  useEffect(() => {
+    if (searchValue) {
+      const filteredDrinks = originalDrinks.filter((item) => item.title.includes(searchValue));
+      setDrinks(filteredDrinks);
+    } else {
+      setDrinks(originalDrinks);
+    }
+  }, [searchValue, originalDrinks]);
   
     return (
       <>
         <Header />
-      <HeaderSearch />
+      <HeaderSearch onSearch={handleSearch} />
         
         <div className="h-text-title">飲料</div>
          
