@@ -4,6 +4,14 @@
 }
 .click{
   display: flex;
-  justify-content: center;
-  align-items: center;
+  // justify-content: center;
+  align-items:flex-start;
+}
+.checkoutFlow{
+  .more-button{
+    color: var(--light-blue);
+    &:hover{
+      color: var(--primary);
+    }
+  }
 }
