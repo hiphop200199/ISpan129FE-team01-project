@@ -17,59 +17,13 @@ function Hotel() {
       })
       .catch((err) => console.error(err))
   }, [typeID])
-  // roomData:自己定義的名稱(目前是從list-product取來的房型資料)
-  // const getRoomImg = (roomData) => {
-  //   // console.log('roomData', roomData)
-  //   roomData.forEach((element) => {
-  //     if (element.product_image) {
-  //       fetch(`http://localhost:3002/uploads/${element.product_image}/`)
-  //         .then((res) => {
-  //           // console.log('res', res)
-  //           element.product_image = res.url //改變原本房型圖片的值，element.product_image原本為'1c48b72f-c418-4a69-bb29-6d88170827f2.jpg'
-  //           // console.log('element.product_image', element.product_image)
-  //         })
-  //         .catch((err) => console.error(err))
-  //     } else {
-  //       element.product_image = ''
-  //     }
-  //     // console.log(element, 'element')
-  //   })
-  // }
-  // setRoom([
-  //   {
-  //     title: '單人房',
-  //     subtitle: '1200',
-  //     text: '一小床(3.5呎*6.2呎)',
-  //     img: 'hotel-single.jpg',
-  //   },
-  //   {
-  //     title: '標準雙人房',
-  //     subtitle: '1800',
-  //     text: '一大床(5呎*6.6呎)',
-  //     img: 'standard-double-room.jpg',
-  //   },
-  //   {
-  //     title: '雙床雙人房',
-  //     subtitle: '1800',
-  //     text: '一大床(5呎*6.6呎)',
-  //     img: 'twin-double-room.jpg',
-  //   },
-  //   {
-  //     title: '三人房',
-  //     subtitle: '2400',
-  //     text: '一大床(5呎*6.6呎)',
-  //     img: 'tripple-room.jpg',
-  //   },
-  //   {
-  //     title: '四人房',
-  //     subtitle: '3000',
-  //     text: '一大床(5呎*6.6呎)',
-  //     img: 'quadruple room.jpg',
-  //   },
-  // ])
-  // console.log('room', room)
-  // }, [])
 
+  const test = () => {
+    const str = []
+    room.map((item) => str.push(item.products_descripttion))
+    return console.log(str)
+  }
+  test()
   return (
     <>
       <img
@@ -91,7 +45,11 @@ function Hotel() {
                 <div className="h-card-header">
                   <h3 className="h-card-title">{item.product_name}</h3>
                   <p className="h-card-subtitle">NT.{item.products_price}</p>
-                  <p className="h-card-text">{item.products_descripttion}</p>
+                  <p className="h-card-text">
+                    {item.products_descripttion.split('').map((str) => {
+                      return str === ',' ? <br /> : str
+                    })}
+                  </p>
                 </div>
                 <div className="h-card-footer">
                   <span>&#9825;</span>
