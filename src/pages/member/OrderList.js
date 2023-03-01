@@ -1,13 +1,15 @@
 import { check } from 'prettier'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, navigate } from 'react'
 import 'datejs'
 
 function OrderList({ id }) {
   const [tagCheck, setTagCheck] = useState(0)
   const [order, setOrders] = useState([])
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const id = localStorage.getItem('id')
@@ -137,7 +139,7 @@ function OrderList({ id }) {
                         <td>{order.status === 0 ? '未付款' : '已付款'}</td>
                         <td>{order.products_price}</td>
                         <td>
-                          <Link to="/orderDetail">
+                          <Link to={`/orderDetail/${order.order_detail_id}`}>
                             <FontAwesomeIcon icon={faEye} />
                           </Link>
                         </td>
@@ -165,7 +167,7 @@ function OrderList({ id }) {
                           <td>{order.status === 0 ? '未付款' : '已付款'}</td>
                           <td>{order.products_price}</td>
                           <td>
-                            <Link to="/orderDetail">
+                            <Link to={`/orderDetail/${order.order_detail_id}`}>
                               <FontAwesomeIcon icon={faEye} />
                             </Link>
                           </td>
@@ -174,6 +176,15 @@ function OrderList({ id }) {
               </tbody>
             </table>
           </div>
+        </div>
+        <div className="click">
+          <button
+            type="button"
+            className="btn btn-primary btn-md"
+            onClick={() => navigate(-1)}
+          >
+            返回
+          </button>
         </div>
       </main>
     </>
