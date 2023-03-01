@@ -55,27 +55,25 @@ function CourseSearch() {
         </section>
 
         <section className="course-search-results">
-          {[courses].map((item, i) => {
+          {courses.map((item, i) => {
             return (
-              <article className="course-cards" key={i}>
-                <div className="productCard">
-                  <section className="text-part">
-                    <h2 className="title"></h2>
-                    <span className="product-unit"></span>
-                    <p className="description"></p>
-                    <span className="price"></span>
-                  </section>
-                  <section className="buttons">
-                    <button className="button-collection">&#9825;</button>
-                    <Link to="/courseDetail">
-                      <button className="button-moreInfo">看更多</button>
-                    </Link>
-                  </section>
-                  {/* 圖片動態引入 ，圖片須放在public資料夾*/}
-                  <img src={dog} alt="" />
-                  {/* <img src={photo} alt="" /> */}
-                </div>
-              </article>
+              <div className="productCard" key={i}>
+                <section className="text-part">
+                  <h2 className="title">{item.product_name}</h2>
+                  <span className="product-unit"></span>
+                  <p className="description"></p>
+                  <span className="price"></span>
+                </section>
+                <section className="buttons">
+                  <button className="button-collection">&#9825;</button>
+                  <Link to="/courseDetail">
+                    <button className="button-moreInfo">看更多</button>
+                  </Link>
+                </section>
+                {/* 圖片動態引入 ，圖片須放在public資料夾*/}
+                <img src={dog} alt="" />
+                {/* <img src={photo} alt="" /> */}
+              </div>
             )
           })}
         </section>
