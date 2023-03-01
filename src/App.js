@@ -36,8 +36,8 @@ function App() {
             element={<ProductDetail />}
           ></Route>
           <Route path="meals" element={<Meals />}></Route>
-          <Route path="hotel" element={<Hotel />}></Route>
-          <Route path="reserve" element={<Reserve />}></Route>
+          <Route path="hotel/:typeID" element={<Hotel />}></Route>
+          <Route path="/reserve/:product_id" element={<Reserve />}></Route>
           <Route path="latestNews" element={<LatestNews />}></Route>
           <Route path="course" element={<Course />}></Route>
           <Route path="activity" element={<Activity />}></Route>
@@ -53,7 +53,7 @@ function App() {
           {/* <Route path="form" element={<FormTemplate />}></Route> */}
         </Route>
       </Routes>
-    </BrowserRouter >
+    </BrowserRouter>
   )
 }
 
