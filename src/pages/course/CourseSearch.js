@@ -11,7 +11,7 @@ function CourseSearch() {
       .then((res) => res.json())
       .then((data) => setCourses(data))
       .catch((error) => console.log(error))
-  }, [])
+  }, [typeID])
   //console.log(courses)
   const trainingCourses = () => {}
   const interactiveCourses = () => {}
