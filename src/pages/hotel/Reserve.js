@@ -40,22 +40,22 @@ function Reserve() {
           ...reserveData,
           ...changeReserveDataObj,
         })
-        getRoomDetailImg(room[0])
+        // getRoomDetailImg(room[0])
       })
       .catch((err) => console.error(err))
   }, [product_id])
 
-  const getRoomDetailImg = (roomData) => {
-    if (roomData.product_image) {
-      fetch(`http://localhost:3002/uploads/${roomData.product_image}/`)
-        .then((res) => {
-          roomData.product_image = res.url
-        })
-        .catch((err) => console.error(err))
-    } else {
-      roomData.product_image = ''
-    }
-  }
+  // const getRoomDetailImg = (roomData) => {
+  //   if (roomData.product_image) {
+  //     fetch(`http://localhost:3002/uploads/${roomData.product_image}/`)
+  //       .then((res) => {
+  //         roomData.product_image = res.url
+  //       })
+  //       .catch((err) => console.error(err))
+  //   } else {
+  //     roomData.product_image = ''
+  //   }
+  // }
 
   //
   function calculateNumberOfNights(checkinDate, checkoutDate, keyName) {
@@ -94,7 +94,9 @@ function Reserve() {
       <div className="rd-wrap">
         <div className="banner rwd-container">
           <div
-            style={{ backgroundImage: `url(${roomDetail.product_image})` }}
+            style={{
+              backgroundImage: `url(http://localhost:3002/uploads/${roomDetail.product_image})`,
+            }}
             className="rd-img-left rwd-col-12"
           ></div>
           <div className="rd-img-right rwd-col-12">
