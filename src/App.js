@@ -23,6 +23,7 @@ import index from './template'
 // import FormTemplate from './template/form'
 import CheckoutFlow from './pages/checkoutflow/CheckoutFlow'
 import OrderList from './pages/member/OrderList'
+import OrderDetail from './pages/member/OrderDetail'
 import ReserveConfirm from './pages/hotel/ReserveConfirm'
 //引入頁面元件
 
@@ -49,6 +50,7 @@ function App() {
           <Route path="changePassword" element={<ChangePassword />} />
           <Route path="add" element={<AddPet />} />
           <Route path="orderList" element={<OrderList />} />
+          <Route path="orderDetail/:order_id" element={<OrderDetail />} />
           <Route path="cart" element={<Cart />} />
           <Route path="CheckoutFlow" element={<CheckoutFlow />} />
           <Route path="Card" element={<Card />}></Route>
