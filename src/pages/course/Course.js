@@ -10,7 +10,7 @@ function Course() {
       <div className="course-container">
         <section className="upper-part">
           <section className="tags">
-            <Link to="/courseSearch">
+            <Link to="/courseSearch/2">
               <button className="tag">進入課程搜尋</button>
             </Link>
           </section>

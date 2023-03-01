@@ -41,7 +41,7 @@ function App() {
           <Route path="reserve" element={<Reserve />}></Route>
           <Route path="latestNews" element={<LatestNews />}></Route>
           <Route path="course" element={<Course />}></Route>
-          <Route path="courseSearch" element={<CourseSearch />}></Route>
+          <Route path="courseSearch/:typeID" element={<CourseSearch />}></Route>
           <Route path="courseDetail" element={<CourseDetail />}></Route>
           <Route path="activity" element={<Activity />}></Route>
           <Route path="*" element={<NotFound />} />
