@@ -32,7 +32,13 @@ const Cart = () => {
           <tbody>
             {items.map(
               (
-                { product_id, product_name, products_price, product_image, product_qry },
+                {
+                  product_id,
+                  product_name,
+                  products_price,
+                  product_image,
+                  product_qry,
+                },
                 index
               ) => (
                 <tr key={product_id}>
@@ -49,7 +55,8 @@ const Cart = () => {
                     <button onClick={() => removeItem(index)}>移除</button>
                   </td>
                 </tr>
-              ))}
+              )
+            )}
           </tbody>
         </table>
         {/* <form
