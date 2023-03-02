@@ -77,6 +77,7 @@ function Login() {
       <div className="login-main">
         {isAuthenticated ? (
           <div className="afterLogin">
+            <h5>歡迎光臨~毬!</h5>
             <h5>{email}</h5>
             <div className="memberlist">
               <Link to="/edit" className="editMember">
@@ -99,10 +100,10 @@ function Login() {
                 查看訂單紀錄
               </Link>
               <br />
-              <Link to="/petList" className="petList">
+              {/* <Link to="/petList" className="petList">
                 <FontAwesomeIcon icon={faPaw} />
                 查看寵物資訊
-              </Link>
+              </Link> */}
             </div>
             <br />
             <button
