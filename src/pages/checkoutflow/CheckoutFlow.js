@@ -1,23 +1,40 @@
 import React from 'react'
 import { useState } from 'react'
-import { Step, NextStepLg } from '../../template'
+import { Step, NextStepLg, PreviousStep, SquareAccounts } from '../../template'
 
 function CheckoutFlow() {
+  // 取得購物車頁籤
   const [tagCheck, setTagCheck] = useState('tab1')
   const handleChange = (event) => {
     setTagCheck(event.target.id)
   }
-  const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem('cart')) || []
-  )
-  console.log(items)
-  // if (items) {
-  //   setItems(JSON.parse(localStorage.getItem('cart')))
-  // }
+  // 取得購物車資料
+  const items = JSON.parse(localStorage.getItem('cart')) || []
+  // console.log(items)
+
+  // 計算購物車商品總額
+  const totalPrice = () => {
+    let cartTotal = 0
+    items.forEach((items) => {
+      const itemTotal = items.product_qry * items.products_price
+      cartTotal += itemTotal
+    })
+    return cartTotal
+  }
+  const total = totalPrice()
+
+  const [showNextStep, setShowNextStep] = useState(true)
+  const [showFrom, setShowForm] = useState(false)
+  // 點擊下一步後顯示表單, 並隱藏下一步的按鈕
+  const handleClickNext = () => {
+    setShowForm(true)
+    setShowNextStep(false)
+  }
+
   return (
     <>
       <Step />
-      <main className="checkoutFlow ">
+      <main className="checkoutFlow d-flex justify-content-center align-items-center">
         <div className="tabs col-10 ">
           <input
             type="radio"
@@ -29,7 +46,7 @@ function CheckoutFlow() {
             // onChange={handleChange}
             // checked={tagCheck}
           />
-          <label for="tab1" className="tabs__label">
+          <label htmlFor="tab1" className="tabs__label">
             我的購物車
           </label>
           <div className="tabs__content">
@@ -76,17 +93,27 @@ function CheckoutFlow() {
             </table>
           </div>
         </div>
-        <div className="button_group col-10 m-auto">
-          <NextStepLg />
+        <div className="d-flex flex-column col-10 m-auto">
+          <div className="d-flex justify-content-between border-bottom mb-2 pb-2">
+            <p className="m-0 p-0">運費:</p>
+            <p className="m-0 p-0">全館免運</p>
+          </div>
+          <div className="d-flex justify-content-between mb-2 pb-2">
+            <p className="m-0 p-0">合計:</p>
+            <p className="m-0 pe-3">{total}</p>
+          </div>
+          <div className="d-flex justify-content-end">
+            <NextStepLg />
+          </div>
         </div>
-        <section className="recommended-products">
+        {/* <section className="recommended-products">
           <h1 className="product-title col-10">猜你喜歡</h1>
           <article className="product">
             <div className="card">
               <img src="" alt="" />
             </div>
           </article>
-        </section>
+        </section> */}
       </main>
     </>
   )
