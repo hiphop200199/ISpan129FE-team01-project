@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { Step } from '../../template'
+import { Step, NextStepLg } from '../../template'
 
 function CheckoutFlow() {
   const [tagCheck, setTagCheck] = useState('tab1')
@@ -17,8 +17,8 @@ function CheckoutFlow() {
   return (
     <>
       <Step />
-      <main className="checkoutFlow">
-        <div className="tabs">
+      <main className="checkoutFlow ">
+        <div className="tabs col-10 ">
           <input
             type="radio"
             className="tabs__radio"
@@ -76,8 +76,11 @@ function CheckoutFlow() {
             </table>
           </div>
         </div>
+        <div className="button_group col-10 m-auto">
+          <NextStepLg />
+        </div>
         <section className="recommended-products">
-          <h1 className="product-title">猜你喜歡</h1>
+          <h1 className="product-title col-10">猜你喜歡</h1>
           <article className="product">
             <div className="card">
               <img src="" alt="" />
