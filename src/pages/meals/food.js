@@ -9,13 +9,13 @@ import MoreSquare from '../../template/MoreSquare'
 import { Link } from 'react-router-dom'
 
 function Food() {
-  const [searchValue, setSearchValue] = useState('');
-  const [originalFood, setOriginalFood] = useState([]);
-  const [food, setFood] = useState([]);
-  
+  const [searchValue, setSearchValue] = useState('')
+  const [originalFood, setOriginalFood] = useState([])
+  const [food, setFood] = useState([])
+
   const handleSearch = (value) => {
-    setSearchValue(value);
-  };
+    setSearchValue(value)
+  }
   // 在组件加载时获取食品数据
   useEffect(() => {
     const initialFood = [
@@ -55,60 +55,57 @@ function Food() {
         text: '牛肉的漢堡',
         img: 'foodbeef2.jpg',
       },
-    ];
-  
-    setOriginalFood(initialFood);
-    setFood(initialFood);
-  }, []);
-  
+    ]
+
+    setOriginalFood(initialFood)
+    setFood(initialFood)
+  }, [])
+
   // 根据搜索框的值过滤食品数据
   useEffect(() => {
     if (searchValue) {
-      const filteredFood = originalFood.filter((item) => item.title.includes(searchValue));
-      setFood(filteredFood);
+      const filteredFood = originalFood.filter((item) =>
+        item.title.includes(searchValue)
+      )
+      setFood(filteredFood)
     } else {
-      setFood(originalFood);
+      setFood(originalFood)
     }
-  }, [searchValue, originalFood]);
-    
-  
-    return (
-      <>
-        <Header />
-        <HeaderSearch onSearch={handleSearch} />
-        
-        <div className="h-text-title">餐點</div>
-         
-        <div className="card-wrap">
-          {food.map((item, i) => {
-            const img = require(`../../img/meals/food/${item.img}`)
-            return (
-              <div className="h-card col-6" key={i}>
-                <div className="h-card-left col-6">
-                  <div className="h-card-header">
-                    <h3 className="h-card-title">{item.title}</h3>
-                    <p className="h-card-subtitle">NT.{item.subtitle}</p>
-                    <p className="h-card-text">{item.text}</p>
-                  </div>
-                  <div className="h-card-footer">
-                    <span>&#9825;</span>
-                    <Link to="/MealsDetail">
-                      <MoreSquare />
-                    </Link>
-                    
-                  </div>
+  }, [searchValue, originalFood])
+
+  return (
+    <>
+      <Header />
+      <HeaderSearch onSearch={handleSearch} />
+
+      <div className="h-text-title">餐點</div>
+
+      <div className="card-wrap">
+        {food.map((item, i) => {
+          const img = require(`../../img/meals/food/${item.img}`)
+          return (
+            <div className="h-card col-6" key={i}>
+              <div className="h-card-left col-6">
+                <div className="h-card-header">
+                  <h3 className="h-card-title">{item.title}</h3>
+                  <p className="h-card-subtitle">NT.{item.subtitle}</p>
+                  <p className="h-card-text">{item.text}</p>
                 </div>
-                <div className="h-card-right col-7">
-                  <img src={img} alt="" />
-                  
+                <div className="h-card-footer">
+                  <span>&#9825;</span>
+                  <Link to="/MealsDetail">
+                    <MoreSquare />
+                  </Link>
                 </div>
               </div>
-            )
-          })}
-          
-        </div>
-      </>
-    )
-  }
-  export default Food
-  
+              <div className="h-card-right col-7">
+                <img src={img} alt="" />
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </>
+  )
+}
+export default Food

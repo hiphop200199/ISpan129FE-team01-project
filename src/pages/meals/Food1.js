@@ -17,58 +17,6 @@ function Food1() {
       })
       .catch((err) => console.error(err))
   }, [typeID])
-  // roomData:自己定義的名稱(目前是從list-product取來的房型資料)
-  // const getRoomImg = (roomData) => {
-  //   // console.log('roomData', roomData)
-  //   roomData.forEach((element) => {
-  //     if (element.product_image) {
-  //       fetch(`http://localhost:3002/uploads/${element.product_image}/`)
-  //         .then((res) => {
-  //           // console.log('res', res)
-  //           element.product_image = res.url //改變原本房型圖片的值，element.product_image原本為'1c48b72f-c418-4a69-bb29-6d88170827f2.jpg'
-  //           // console.log('element.product_image', element.product_image)
-  //         })
-  //         .catch((err) => console.error(err))
-  //     } else {
-  //       element.product_image = ''
-  //     }
-  //     // console.log(element, 'element')
-  //   })
-  // }
-  // setRoom([
-  //   {
-  //     title: '單人房',
-  //     subtitle: '1200',
-  //     text: '一小床(3.5呎*6.2呎)',
-  //     img: 'hotel-single.jpg',
-  //   },
-  //   {
-  //     title: '標準雙人房',
-  //     subtitle: '1800',
-  //     text: '一大床(5呎*6.6呎)',
-  //     img: 'standard-double-room.jpg',
-  //   },
-  //   {
-  //     title: '雙床雙人房',
-  //     subtitle: '1800',
-  //     text: '一大床(5呎*6.6呎)',
-  //     img: 'twin-double-room.jpg',
-  //   },
-  //   {
-  //     title: '三人房',
-  //     subtitle: '2400',
-  //     text: '一大床(5呎*6.6呎)',
-  //     img: 'tripple-room.jpg',
-  //   },
-  //   {
-  //     title: '四人房',
-  //     subtitle: '3000',
-  //     text: '一大床(5呎*6.6呎)',
-  //     img: 'quadruple room.jpg',
-  //   },
-  // ])
-  // console.log('room', room)
-  // }, [])
 
   return (
     <>
@@ -78,13 +26,10 @@ function Food1() {
         height="600"
       /> */}
       <div className="h-text-title">住宿房型</div>
-      {/* photo */}
-      {/* <Card photo={room[0] && room[0].img} /> */}
-      {/* <Card photo={'hotel-single.jpg'} /> */}
-      {/* <Card photo={'logo192.png'} /> */}
 
       <div className="card-wrap rwd-container">
         {food.map((item, i) => {
+          const img = require(`../../img/meals/food/${item.img}`)
           return (
             <div className="h-card col-6 rwd-col-12" key={i}>
               <div className="h-card-left col-6">
