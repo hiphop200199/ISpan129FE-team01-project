@@ -41,9 +41,9 @@ function App() {
           <Route index element={<HomePage />}></Route>
           <Route path="Header" element={<Header />}></Route>
           <Route path="product" element={<ProductDetail />}></Route>
-          <Route path="meals" element={<Meals />}></Route>
+          <Route path="meals/:typeID" element={<Meals />}></Route>
           <Route path="Food" element={<Food />}></Route>
-          <Route path="Food1" element={<Food1 />}></Route>
+          <Route path="Food1/:typeID" element={<Food1 />}></Route>
           <Route path="Drinks" element={<Drinks />}></Route>
           <Route path="Dog" element={<Dog />}></Route>
           <Route path="Cat" element={<Cat />}></Route>
