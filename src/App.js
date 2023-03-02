@@ -7,7 +7,7 @@ import Hotel from './pages/hotel/Hotel'
 import Reserve from './pages/hotel/Reserve'
 import LatestNews from './pages/latestNews/LatestNews'
 import Meals from './pages/meals/Meals'
-import Food from './pages/meals/Food'
+import Food1 from './pages/meals/Food1'
 import Drinks from './pages/meals/Drinks'
 import Dog from './pages/meals/Dog'
 import Cat from './pages/meals/Cat'
@@ -41,7 +41,7 @@ function App() {
           <Route path="Header" element={<Header />}></Route>
           <Route path="product" element={<ProductDetail />}></Route>
           <Route path="meals" element={<Meals />}></Route>
-          <Route path="Food" element={<Food />}></Route>
+          <Route path="Food1" element={<Food1 />}></Route>
           <Route path="Drinks" element={<Drinks />}></Route>
           <Route path="Dog" element={<Dog />}></Route>
           <Route path="Cat" element={<Cat />}></Route>
@@ -64,7 +64,6 @@ function App() {
           <Route path="CheckoutFlow" element={<CheckoutFlow />} />
           <Route path="Card" element={<Card />}></Route>
           <Route path="ReserveConfirm" element={<ReserveConfirm />}></Route>
-         
 
           {/* <Route path="form" element={<FormTemplate />}></Route> */}
         </Route>
