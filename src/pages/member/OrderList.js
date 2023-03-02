@@ -1,7 +1,7 @@
 import { check } from 'prettier'
 import { json, Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye } from '@fortawesome/free-solid-svg-icons'
+import { faEye, faAnglesLeft } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react'
 import 'datejs'
 
@@ -35,13 +35,7 @@ function OrderList({ id }) {
   return (
     <>
       <div className="click">
-        <button
-          type="button"
-          className="btn btn-primary btn-md"
-          onClick={() => navigate(-1)}
-        >
-          返回
-        </button>
+        <FontAwesomeIcon icon={faAnglesLeft} onClick={() => navigate(-1)} />
       </div>
       <h1 className="orderTitle">查看訂單紀錄</h1>
       {/* <div className="info">{JSON.stringify(order)}</div> */}
@@ -183,7 +177,10 @@ function OrderList({ id }) {
                           <td>{order.status === 0 ? '未付款' : '已付款'}</td>
                           <td>{order.products_price}</td>
                           <td>
-                            <Link to={`/orderDetail/${order.order_id}`}>
+                            <Link
+                              to={`/orderDetail/${order.order_id}`}
+                              className="more-button"
+                            >
                               <FontAwesomeIcon icon={faEye} />
                             </Link>
                           </td>
@@ -199,7 +196,3 @@ function OrderList({ id }) {
 }
 
 export default OrderList
-
-// .filter((el) => {
-//   return +el.type_id === tagCheck
-// })
