@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import Card from '../../template/Card'
+// import Card from '../../template/Card'
 import MoreSquare from '../../template/MoreSquare'
 
 function Food1() {
@@ -29,7 +29,9 @@ function Food1() {
 
       <div className="card-wrap rwd-container">
         {food.map((item, i) => {
-          const img = require(`../../img/meals/food/${item.img}`)
+          {
+            /* const img = require(`../../img/meals/food/${item.img}`) */
+          }
           return (
             <div className="h-card col-6 rwd-col-12" key={i}>
               <div className="h-card-left col-6">
