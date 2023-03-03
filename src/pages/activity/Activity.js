@@ -4,7 +4,7 @@ import { EventRegistration } from '../../template'
 import { Link, useParams } from 'react-router-dom'
 import SignUp from '../../template/SignUp'
 
-import Activityphoto from '../../img/activityphoto.json'
+// import Activityphoto from '../../img/activityphoto.json'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -42,11 +42,11 @@ function Activity() {
         modules={[Autoplay, Pagination, Navigation]}
         loop={true}
       >
-        {Activityphoto.map((photo, idx) => (
+        {/* {Activityphoto.map((photo, idx) => (
           <SwiperSlide key={idx}>
             <img src={photo.url} alt="" width="100%" />
           </SwiperSlide>
-        ))}
+        ))} */}
       </Swiper>
 
       <div className="card-wrap">
