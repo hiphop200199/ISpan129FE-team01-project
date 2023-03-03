@@ -50,6 +50,28 @@
     color: var(--text-black);
   }
 }
+
+.btn-outline-none{
+  background-color: var(--light-yellow);
+  border:5px solid var(--light-yellow);
+  color: var(--text-black) ;
+  &:hover,&:active,&:focus-visible{
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: var(--text-white);
+  }
+  
+}
+.max-width-auto{
+  width: 100%;
+  background-color: var(--secondary);
+  border:5px solid var(--secondary);
+  &:hover,&:active,&:focus-visible{
+    background-color: var(--light-yellow) ;
+    border:5px solid var(--light-yellow) ;
+    color: var(--text-black) ;
+  }
+}
 .min-width-auto{
   min-width: auto;
 }
