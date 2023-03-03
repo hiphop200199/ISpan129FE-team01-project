@@ -73,39 +73,34 @@ function Login() {
   }
 
   return (
-    <section className="login-container">
+    <section className="login-container ">
       <div className="login-main">
         {isAuthenticated ? (
-          <div className="afterLogin">
-            <h5>歡迎光臨~毬!</h5>
-            <h5>{email}</h5>
-            <div className="memberlist">
-              <Link to="/edit" className="editMember">
+          <div className="afterLogin m-3">
+            <h5 className="mb-3">歡迎光臨~毬!</h5>
+            <h5 className="mb-3">{email}</h5>
+            <div className="memberlist d-flex border-bottom mb-3 flex-column justify-content-center">
+              <Link to="/edit" className="editMember mb-3">
                 <FontAwesomeIcon icon={faPencil} />
                 我的個人資料
               </Link>
-              <br />
-              <Link to="/changePassword" className="changePassword">
+              <Link to="/changePassword" className="changePassword mb-3">
                 <FontAwesomeIcon icon={faPencil} />
                 更改密碼
               </Link>
-              <br />
-              <Link to="/myList" className="myList">
+              <Link to="/myList" className="myList mb-3">
                 <FontAwesomeIcon icon={faHeart} />
                 我的收藏
               </Link>
-              <br />
-              <Link to="/orderList" className="orderList">
+              <Link to="/orderList" className="orderList mb-3">
                 <FontAwesomeIcon icon={faRectangleList} />
                 查看訂單紀錄
               </Link>
-              <br />
-              {/* <Link to="/petList" className="petList">
+              <Link to="/activityRecord" className="activityRecord mb-3">
                 <FontAwesomeIcon icon={faPaw} />
-                查看寵物資訊
-              </Link> */}
+                查看報名活動紀錄
+              </Link>
             </div>
-            <br />
             <button
               className="btn btn-outline-primary btn-lg"
               onClick={handleLogout}
@@ -156,8 +151,11 @@ function Login() {
         )}
         {!isAuthenticated ? (
           <div className="other">
-            <button className="btn btn-primary btn-lg">Google登入</button>
-            <Link to="/register" className="register">
+            {/* <button className="btn btn-primary btn-lg">Google登入</button> */}
+            <Link
+              to="/register"
+              className="register d-flex justify-content-center "
+            >
               <FontAwesomeIcon icon={faCircleRight} />
               註冊會員
             </Link>
