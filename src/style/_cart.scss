@@ -17,10 +17,15 @@
       align-items: center;
       &.aside {
         margin: auto;
-        .more_color {
-          color: var(--text-white);
-        }
       }
+    }
+  }
+  a {
+    color: var(--text-black);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--light-blue);
     }
   }
 }
