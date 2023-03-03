@@ -18,6 +18,13 @@ function ButtonTemplate() {
         <button type="button" className="btn btn-primary btn-lg min-width-auto">
           下一步
         </button>
+        {/* 大的按鈕: 結帳 */}
+        <button
+          type="button"
+          className="btn btn-primary btn-lg min-width-auto ml-10px"
+        >
+          結帳
+        </button>
 
         {/* 大的按鈕: 繼續選購，回上一步 */}
         <button
