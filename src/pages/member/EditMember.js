@@ -3,6 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
 import moment from 'moment-timezone'
+// import { CloudinaryContext, Image, Transformation } from 'cloudinary-react'
+// import axios from 'axios'
+// import { set } from 'date-fns'
+
 function EditMember() {
   const [user, setUser] = useState({
     name: '',
@@ -11,6 +15,7 @@ function EditMember() {
     mobile: '',
     address: '',
     birthday: '',
+    // avatar: '',
   })
   const [fieldErrors, setFieldErrors] = useState({
     name: '',
@@ -19,11 +24,12 @@ function EditMember() {
     mobile: '',
     address: '',
     birthday: '',
+    avatar: '',
   })
 
-  const [image, setImage] = useState(null)
+  const [image, setImage] = useState('')
+
   const navigate = useNavigate()
-  // const [isSuccess, setIsSuccess] = useState(false)
 
   // 設定統一時區
   moment.tz.setDefault('Asia/Taipei')
@@ -52,6 +58,9 @@ function EditMember() {
       .then((data) => {
         console.log('data', data)
         setUser(data)
+        // if (user.avatar !== '') {
+        //   setImage(user.avatar)
+        // }
       })
       .catch((error) => console.error(error))
   }, [])
@@ -82,35 +91,78 @@ function EditMember() {
   }
 
   //圖片
-  const handleImageChange = (event) => {
-    const file = event.target.files[0]
-    if (file) {
-      const reader = new FileReader()
-      reader.onload = () => {
-        setImage(reader.result)
-      }
-      reader.readAsDataURL(file)
-    }
-  }
+  // const handleImageChange = async(event) => {
+  //   const file = event.target.files[0]
+  //   const formData = new FormData()
+  //   formData.append('file', file)
+  // formData.append('upload_preset', 'pnnm2cbe')
+
+  // axios
+  //   .post('https://api.cloudinary.com/v1_1/dwc9top1o/image/upload', formData)
+  //   .then((res) => {
+  //     setImage(res.data.secure_url)
+  //   })
+  //   .catch((err) => {
+  //     console.error(err)
+  //   })
+  //   try{
+  //     const res = await fetch ('http://localhost:3002/member/upload',{
+  //       method:'GET',
+  //       body:'formData',
+  //     })
+  //     const data= await res.json()
+  //     console.log(data)
+  //   }catch(error){
+  //     console.log(error)
+  //   }
+  // }
+
+  // const uploadImage = (files) => {
+  //   // console.log(files[0])
+  //   const formData = new FormData()
+  //   formData.append('file', image)
+  //   formData.append('upload_prset', 'pnnm2cbe')
+
+  //   axios
+  //     .post('https://api.cloudinary.com/v1_1/dwc9top1o/image/upload', formData)
+  //     .then((res) => {
+  //       console.log(res)
+  //     })
+  // }
 
   return (
     <div className="member-container">
       <section className="member-main">
         <h1 className="member-title">我的個人資料</h1>
         <form className="member-form" onSubmit={handleSubmit}>
-          <label htmlFor="upload-image" className="upload-icon">
-            {!image && <FontAwesomeIcon icon={faCircleUser} />}
-            <input
-              type="file"
-              id="upload-image"
-              accept="image/*"
-              onChange={handleImageChange}
-              hidden
-            />
-          </label>
-          {image && (
-            <img src={image} alt="上傳預覽圖片" width={200} height={200} />
-          )}
+          {/* <div>
+            {image !== '' ? (
+              <Image
+                src={image}
+                publicId={image}
+                cloudName="dwc9top1o"
+                onError={(err) => console.log(err)}
+                secure
+              >
+                <Transformation width="200" height="200" crop="thumb" />
+              </Image>
+            ) : (
+              <>
+                <label htmlFor="upload-image" className="upload-icon">
+                  <FontAwesomeIcon icon={faCircleUser} />
+                </label>
+                <input
+                  type="file"
+                  name="avatar"
+                  id="upload-image"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  hidden
+                />
+              </>
+            )}
+          </div> */}
+
           <label className="member-label">
             <input
               id="name"
@@ -194,33 +246,15 @@ function EditMember() {
             />
             {fieldErrors.birthday && <span>{fieldErrors.birthday}</span>}
           </label>
-
-          {/* <label className="member-label">
-            <input
-              id="password"
-              type="password"
-              name="password"
-              placeholder="目前密碼"
-              value={user.password}
-              onChange={(e) =>
-                setUser({
-                  ...user,
-                  password: e.target.value,
-                })
-              }
-            />
-            {fieldErrors.password && <span>{fieldErrors.password}</span>}
-          </label> */}
-
-          <div className="click">
+          <div className="click d-flex justify-content-evenly">
             <button
               type="button"
-              className="btn btn-outline-primary btn-lg"
+              className="btn btn-outline-primary btn-lg me-3"
               onClick={() => navigate(-1)}
             >
               返回
             </button>
-            <button type="submit" className="btn btn-primary btn-lg">
+            <button type="submit" className="btn btn-primary btn-lg ms-3">
               確認
             </button>
           </div>
