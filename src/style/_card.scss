@@ -23,6 +23,9 @@
   color: #515151;
   padding: 10px;
   padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   .h-card-footer {
     padding-top: 40px;
   }
@@ -34,11 +37,14 @@
     padding: 10px;
 
     padding-top: 20px;
-    .h-card-footer {
-      padding-top: 40px;
-      span {
-        margin-right: 10px;
-      }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .h-card-footer{
+        padding-top: 40px;
+        span{
+          margin-right: 10px;
+        }
     }
     // button{
     //     background-color:  #FCF09A;

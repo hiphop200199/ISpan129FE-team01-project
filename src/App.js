@@ -45,7 +45,7 @@ function App() {
           ></Route>
           <Route path="meals" element={<Meals />}></Route>
           <Route path="hotel/:typeID" element={<Hotel />}></Route>
-          <Route path="/reserve/:product_id" element={<Reserve />}></Route>
+          <Route path="reserve/:product_id" element={<Reserve />}></Route>
           <Route path="latestNews" element={<LatestNews />}></Route>
           <Route path="course" element={<Course />}></Route>
           <Route path="activity" element={<Activity />}></Route>
@@ -70,8 +70,6 @@ function App() {
           <Route path="cart" element={<Cart />} />
           <Route path="CheckoutFlow" element={<CheckoutFlow />} />
           <Route path="Card" element={<Card />}></Route>
-
-          
 
           <Route path="ReserveConfirm" element={<ReserveConfirm />}></Route>
           <Route path="index" element={<index />}></Route>

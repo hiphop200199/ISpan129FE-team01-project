@@ -171,3 +171,8 @@
     content: "+";
   }
 }
+
+.btn:disabled, .btn.disabled, fieldset:disabled .btn {
+  background-color: var(--light-blue);
+  border-color: var(--light-blue);
+}
