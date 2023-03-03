@@ -1,26 +1,27 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 function Header() {
   return (
     <>
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <ol class="breadcrumbList">
+      <nav className="breadcrumb" aria-label="Breadcrumb">
+        <ol className="breadcrumbList">
           <li>
             <Link to="/" className="Breadcrumb__link">
               首頁
             </Link>
           </li>
           <li>
-            <Link to="/Product" className="Breadcrumb__link">
-              商城
+            <Link to="/Meals" className="Breadcrumb__link">
+              餐點
             </Link>
           </li>
-          <li class="current">
+
+          <li className="current">
             <em aria-current="page">商品詳細</em>
+
           </li>
+          
         </ol>
       </nav>
     </>
