@@ -37,19 +37,19 @@ function CourseSearch() {
             </button>
           </section>
 
-          <button className="tag" onClick={trainingCourses}>
+          <button className="course-search-tag" onClick={trainingCourses}>
             寵物訓練
           </button>
 
-          <button className="tag" onClick={interactiveCourses}>
+          <button className="course-search-tag" onClick={interactiveCourses}>
             寵物互動
           </button>
 
-          <button className="tag" onClick={petKnowledges}>
+          <button className="course-search-tag" onClick={petKnowledges}>
             寵物知識
           </button>
 
-          <button className="tag" onClick={takeCarePets}>
+          <button className="course-search-tag" onClick={takeCarePets}>
             寵物照顧
           </button>
         </section>
