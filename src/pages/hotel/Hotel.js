@@ -12,8 +12,12 @@ function Hotel() {
     fetch(`http://localhost:3002/product/list-product/${typeID}`)
       .then((res) => res.json())
       .then((room) => {
+        //讓每一個物件裡都有love值
+        room.forEach((item) => {
+          item.love = false
+        })
+
         setRoom(room)
-        // getRoomImg(room)
       })
       .catch((err) => console.error(err))
   }, [typeID])
@@ -52,7 +56,19 @@ function Hotel() {
                   </p>
                 </div>
                 <div className="h-card-footer">
-                  <span>&#9825;</span>
+                  {/* 愛心 */}
+                  <span
+                    onClick={() => {
+                      const newItems = [...room]
+                      newItems[i] = {
+                        ...newItems[i],
+                        love: !newItems[i].love,
+                      }
+                      setRoom(newItems)
+                    }}
+                  >
+                    {item.love ? <span>&#9829;</span> : <span>&#9825;</span>}
+                  </span>
                   <Link to={`/reserve/${item.product_id}`}>
                     <MoreSquare />
                   </Link>
