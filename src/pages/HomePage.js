@@ -36,6 +36,7 @@ function HomePage() {
           <img src={brownDog} alt="" />
         </SwiperSlide>
       </Swiper>
+
       <section>
         <div class="homehotel-moreroom">
           <Link to="/hotel">查看更多房型</Link>

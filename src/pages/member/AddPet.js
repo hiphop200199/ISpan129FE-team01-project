@@ -20,13 +20,13 @@ function AddPet() {
         </span>
         <form className="member-form">
           <div className="pet">
-            <select class="form-select">
+            <select className="form-select">
               <option selected>寵物種類</option>
               <option value="0">貓</option>
               <option value="1">狗</option>
               <option value="2">其他</option>
             </select>
-            <select class="form-select">
+            <select className="form-select">
               <option selected>寵物性別</option>
               <option value="0">男</option>
               <option value="1">女</option>
@@ -44,12 +44,15 @@ function AddPet() {
           </label>
           <button
             type="button"
-            class="btn btn-outline-primary btn-md"
+            className="btn btn-outline-primary btn-md"
             onclick="history.back();"
           >
             返回
           </button>
-          <button type="button" class="btn btn-primary btn-md min-width-auto">
+          <button
+            type="button"
+            className="btn btn-primary btn-md min-width-auto"
+          >
             確認
           </button>
         </form>
