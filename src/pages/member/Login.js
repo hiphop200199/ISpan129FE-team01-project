@@ -35,8 +35,10 @@ function Login() {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log('data:', data)
         if (data.success) {
           localStorage.setItem('email', data.email)
+          localStorage.setItem('id', data.id)
           setEmail(data.email)
           setIsAuthenticated(true)
           alert('登入成功')
@@ -64,6 +66,7 @@ function Login() {
   //登出
   function handleLogout() {
     localStorage.removeItem('email')
+    localStorage.removeItem('id')
     setEmail('')
     setIsAuthenticated(false)
     navigate('/')
@@ -74,11 +77,17 @@ function Login() {
       <div className="login-main">
         {isAuthenticated ? (
           <div className="afterLogin">
+            <h5>歡迎光臨~毬!</h5>
             <h5>{email}</h5>
             <div className="memberlist">
               <Link to="/edit" className="editMember">
                 <FontAwesomeIcon icon={faPencil} />
                 我的個人資料
+              </Link>
+              <br />
+              <Link to="/changePassword" className="changePassword">
+                <FontAwesomeIcon icon={faPencil} />
+                更改密碼
               </Link>
               <br />
               <Link to="/myList" className="myList">
@@ -91,10 +100,10 @@ function Login() {
                 查看訂單紀錄
               </Link>
               <br />
-              <Link to="/petList" className="petList">
+              {/* <Link to="/petList" className="petList">
                 <FontAwesomeIcon icon={faPaw} />
                 查看寵物資訊
-              </Link>
+              </Link> */}
             </div>
             <br />
             <button
@@ -106,32 +115,36 @@ function Login() {
           </div>
         ) : (
           <form className="login-form" onSubmit={handleSubmit}>
-            <h1>會員登入</h1>
+            <h2>會員登入</h2>
             <div className="typeArea">
-              <label className="login-label">
-                <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  placeholder="請輸入email"
-                  required
-                  onChange={handleEmail}
-                />
-              </label>
-
-              <label className="login-label">
-                <input
-                  id="password"
-                  type="password"
-                  name="password"
-                  placeholder="請輸入密碼"
-                  required
-                  onChange={handlePassword}
-                />
-              </label>
+              {/* <label className="login-label"> */}
+              <input
+                className="form-control"
+                id="email"
+                type="email"
+                name="email"
+                placeholder="請輸入email"
+                required
+                onChange={handleEmail}
+              />
+              {/* </label> */}
+              <br />
+              {/* <label className="login-label"> */}
+              <input
+                className="form-control"
+                id="password"
+                type="password"
+                name="password"
+                placeholder="請輸入密碼"
+                required
+                onChange={handlePassword}
+              />
+              {/* </label> */}
             </div>
             <div className="function">
-              <p>忘記密碼?</p>
+              <Link to="/ForgetPassword">
+                <p>忘記密碼?</p>
+              </Link>
               <p>登入時遇到問題?</p>
             </div>
 

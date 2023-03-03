@@ -19,6 +19,7 @@
 // }
 .btn-primary {
   background-color: var(--light-blue);
+
   border: 5px solid var(--light-blue);
 
   &:hover,
@@ -27,11 +28,13 @@
     background-color: var(--primary);
     border-color: var(--primary);
     color: var(--text-white);
+
   }
 }
 
 .btn-secondary {
   background-color: var(--light-yellow);
+
   border: 5px solid var(--light-yellow);
 
   &:hover,
@@ -40,6 +43,7 @@
     background-color: var(--secondary);
     border: 5px solid var(--secondary);
     color: var(--text-black);
+
   }
 }
 

@@ -12,7 +12,10 @@ import ProductDetail from './pages/product/ProductDetail'
 import Product from './pages/product/Product'
 import RegisterMember from './pages/member/RegisterMember'
 import EditMember from './pages/member/EditMember'
+import ChangePassword from './pages/member/ChangePassword'
 import Login from './pages/member/Login'
+import ForgetPassword from './pages/member/ForgetPassword'
+import ResetPassword from './pages/member/ResetPassword'
 import AddPet from './pages/member/AddPet'
 import Cart from './pages/cart/Cart'
 import Card from './template/Card'
@@ -20,6 +23,9 @@ import Header from './layouts/header'
 import index from './template'
 // import FormTemplate from './template/form'
 import CheckoutFlow from './pages/checkoutflow/CheckoutFlow'
+import OrderList from './pages/member/OrderList'
+import OrderDetail from './pages/member/OrderDetail'
+import ReserveConfirm from './pages/hotel/ReserveConfirm'
 //引入頁面元件
 
 function App() {
@@ -45,11 +51,21 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<RegisterMember />} />
           <Route path="edit" element={<EditMember />} />
+          <Route path="ForgetPassword" element={<ForgetPassword />} />
+          <Route path="ResetPassword" element={<ResetPassword />} />
+          <Route path="changePassword" element={<ChangePassword />} />
           <Route path="add" element={<AddPet />} />
+          <Route path="orderList" element={<OrderList />} />
+          <Route path="orderDetail/:order_id" element={<OrderDetail />} />
           <Route path="cart" element={<Cart />} />
           <Route path="CheckoutFlow" element={<CheckoutFlow />} />
           <Route path="Card" element={<Card />}></Route>
+
+          
+
+          <Route path="ReserveConfirm" element={<ReserveConfirm />}></Route>
           <Route path="index" element={<index />}></Route>
+
           {/* <Route path="form" element={<FormTemplate />}></Route> */}
         </Route>
       </Routes>

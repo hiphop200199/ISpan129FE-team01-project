@@ -9,7 +9,7 @@
     justify-content: center;
     margin: auto ;
     max-width:100%;
-    height: 100%;
+    height: calc(100vh - 10px);
     background-color: #47BBE8;
     padding: 10px 25px;
     // box-shadow: rgb(0 0 0 / 10%) 0px 0px 10px;
@@ -82,6 +82,9 @@
         //   display: flex;
         //   flex-direction: column;
         .editMember{
+          border-bottom: 3px solid #47BBE8 ;
+        }
+        .changePassword{
           border-bottom: 3px solid #47BBE8 ;
         }
         .myList{
