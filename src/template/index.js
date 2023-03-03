@@ -22,3 +22,12 @@ export { default as MoreSquare } from './MoreSquare'
 export { default as NextStepLg } from './NextStepLg'
 // import QuantitySelector from './QuantitySelector'
 export { default as QuantitySelector } from './QuantitySelector'
+
+export { default as Step } from './Step'
+export { default as PreviousStep } from './PreviousStep'
+export { default as SquareAccounts } from './SquareAccounts'
+// import SignUp from './SignUp'
+export { default as SignUp } from './SignUp'
+// import DetailSignUp from './DetailSignUp'
+export { default as DetailSignUp } from './DetailSignUp'
+

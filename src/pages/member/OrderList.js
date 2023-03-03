@@ -1,8 +1,8 @@
 import { check } from 'prettier'
-import { Link, useNavigate } from 'react-router-dom'
+import { json, Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye } from '@fortawesome/free-solid-svg-icons'
-import { useState, useEffect, navigate } from 'react'
+import { faEye, faAnglesLeft } from '@fortawesome/free-solid-svg-icons'
+import { useState, useEffect } from 'react'
 import 'datejs'
 
 function OrderList({ id }) {
@@ -20,7 +20,7 @@ function OrderList({ id }) {
       const order = await res.json()
       console.log(`http://localhost:3002/orderList/order/${id}`, order)
 
-      const [...orders] = order
+      // const [...orders] = order
       setOrders(order)
     }
     fetchData()
@@ -28,12 +28,17 @@ function OrderList({ id }) {
   // console.log(order)
 
   const handleChange = (typeId) => {
+    // console.log(typeId)
     setTagCheck(typeId)
   }
 
   return (
     <>
+      <div className="click">
+        <FontAwesomeIcon icon={faAnglesLeft} onClick={() => navigate(-1)} />
+      </div>
       <h1 className="orderTitle">查看訂單紀錄</h1>
+      {/* <div className="info">{JSON.stringify(order)}</div> */}
       <main className="checkoutFlow">
         <div className="tabs">
           <input
@@ -97,14 +102,14 @@ function OrderList({ id }) {
             type="radio"
             className="tabs__radio"
             name="tabs-example"
-            id="tab5"
+            id="tab6"
             type_id="3"
             onChange={() => {
               handleChange(3)
             }}
             checked={tagCheck === 3}
           />
-          <label htmlFor="tab5" className="tabs__label">
+          <label htmlFor="tab6" className="tabs__label">
             住宿
           </label>
           <div className="test">
@@ -121,8 +126,8 @@ function OrderList({ id }) {
               </thead>
               <tbody>
                 {tagCheck === 0
-                  ? order.map((order) => (
-                      <tr key={order.order_id}>
+                  ? order.map((order, k) => (
+                      <tr key={`${order.order_id}${k}`}>
                         <td>{order.order_id}</td>
                         <td>
                           {new Date(order.order_date).toString('yyyy-MM-dd')}
@@ -137,9 +142,14 @@ function OrderList({ id }) {
                             : '餐點'}
                         </td>
                         <td>{order.status === 0 ? '未付款' : '已付款'}</td>
-                        <td>{order.products_price}</td>
                         <td>
-                          <Link to={`/orderDetail/${order.order_detail_id}`}>
+                          {[order.products_price * order.products_quantity]}
+                        </td>
+                        <td>
+                          <Link
+                            to={`/orderDetail/${order.order_id}`}
+                            className="more-button"
+                          >
                             <FontAwesomeIcon icon={faEye} />
                           </Link>
                         </td>
@@ -147,10 +157,10 @@ function OrderList({ id }) {
                     ))
                   : order
                       .filter((el) => {
-                        return +el.type_id === tagCheck
+                        return el.type_id === tagCheck
                       })
-                      .map((order) => (
-                        <tr key={order.order_id}>
+                      .map((order, k) => (
+                        <tr key={`${order.order_id}${k}`}>
                           <td>{order.order_id}</td>
                           <td>
                             {new Date(order.order_date).toString('yyyy-MM-dd')}
@@ -167,7 +177,10 @@ function OrderList({ id }) {
                           <td>{order.status === 0 ? '未付款' : '已付款'}</td>
                           <td>{order.products_price}</td>
                           <td>
-                            <Link to={`/orderDetail/${order.order_detail_id}`}>
+                            <Link
+                              to={`/orderDetail/${order.order_id}`}
+                              className="more-button"
+                            >
                               <FontAwesomeIcon icon={faEye} />
                             </Link>
                           </td>
@@ -176,15 +189,6 @@ function OrderList({ id }) {
               </tbody>
             </table>
           </div>
-        </div>
-        <div className="click">
-          <button
-            type="button"
-            className="btn btn-primary btn-md"
-            onClick={() => navigate(-1)}
-          >
-            返回
-          </button>
         </div>
       </main>
     </>
