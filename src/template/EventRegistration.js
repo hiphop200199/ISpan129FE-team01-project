@@ -7,9 +7,9 @@ function EventRegistration() {
       {/* 藍色小按鈕 */}
       <button
         type="button"
-        className="btn btn-primary btn-sm min-width-auto radius-5px"
+        className="btn btn-outline-none btn-sm min-width-auto radius-5px"
       >
-        報名中
+        看更多>>
       </button>
     </>
   )
