@@ -9,7 +9,7 @@ registerLocale('zh-TW', zhTW)
 
 function Reserve() {
   const navigate = useNavigate()
-  const [roomDetail, setRoomDetail] = useState({}) //hotel.js的資料
+  const [roomDetail, setRoomDetail] = useState({})
   const [reserveData, setReserveData] = useState({
     roomCount: 1,
     petCount: 0,
@@ -29,10 +29,6 @@ function Reserve() {
       .then((res) => res.json())
       .then((room) => {
         setRoomDetail(room[0])
-        console.log('roomDetail', roomDetail)
-        console.log('room', room)
-        // const imageArray =  {room[0].product_image.split(',')}
-
         const changeReserveDataObj = {
           money: room[0].products_price,
           total:
@@ -46,10 +42,8 @@ function Reserve() {
         })
         // getRoomDetailImg(room[0])
       })
-
       .catch((err) => console.error(err))
   }, [product_id])
-  console.log('roomDetail', roomDetail)
 
   // const getRoomDetailImg = (roomData) => {
   //   if (roomData.product_image) {
