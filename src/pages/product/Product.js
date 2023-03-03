@@ -9,7 +9,7 @@ import { useLocation, useParams } from 'react-router-dom'
 function Product() {
   // const location = useLocation()
   const { typeID } = useParams()
-  const [data, setData] = useState([])
+  const [product, setProduct] = useState([])
 
   // console.log(location.search)
   // const usp = new URLSearchParams(location.search)
@@ -30,9 +30,9 @@ function Product() {
           throw new Error('Network res was not ok')
         }
 
-        const product = await res.json()
-        setData(product)
-        // console.log(data)
+        const data = await res.json()
+        setProduct(data)
+        console.log(product)
       } catch (err) {
         console.log(err)
       }
@@ -46,11 +46,11 @@ function Product() {
       <HeaderSearch />
       <h2>這裡之後放輪播器</h2>
       <div className="productContent">
-        {data.map((product) => (
+        {product.map((product) => (
           <Card
             className="col-6"
             key={product.id}
-            data={product}
+            product={product}
             typeID={typeID}
           />
         ))}
