@@ -11,6 +11,7 @@ import LatestNews from './pages/latestNews/LatestNews'
 import Meals from './pages/meals/Meals'
 import NotFound from './pages/NotFound'
 import ProductDetail from './pages/product/ProductDetail'
+import Product from './pages/product/Product'
 import RegisterMember from './pages/member/RegisterMember'
 import EditMember from './pages/member/EditMember'
 import ChangePassword from './pages/member/ChangePassword'
@@ -36,10 +37,15 @@ function App() {
         <Route path="/" element={<MainLayouts />}>
           <Route index element={<HomePage />}></Route>
           <Route path="Header" element={<Header />}></Route>
-          <Route path="product" element={<ProductDetail />}></Route>
+          {/* product帶入type_id的quretString */}
+          <Route path="/product/:typeID" element={<Product />}></Route>
+          <Route
+            path="/product/Detail/:product_id"
+            element={<ProductDetail />}
+          ></Route>
           <Route path="meals" element={<Meals />}></Route>
-          <Route path="hotel" element={<Hotel />}></Route>
-          <Route path="reserve" element={<Reserve />}></Route>
+          <Route path="hotel/:typeID" element={<Hotel />}></Route>
+          <Route path="/reserve/:product_id" element={<Reserve />}></Route>
           <Route path="latestNews" element={<LatestNews />}></Route>
           <Route path="course" element={<Course />}></Route>
           <Route path="activity" element={<Activity />}></Route>
@@ -64,7 +70,12 @@ function App() {
           <Route path="cart" element={<Cart />} />
           <Route path="CheckoutFlow" element={<CheckoutFlow />} />
           <Route path="Card" element={<Card />}></Route>
+
+          
+
           <Route path="ReserveConfirm" element={<ReserveConfirm />}></Route>
+          <Route path="index" element={<index />}></Route>
+
           {/* <Route path="form" element={<FormTemplate />}></Route> */}
         </Route>
       </Routes>
