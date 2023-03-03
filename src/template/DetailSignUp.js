@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
-function EventRegistration() {
+function DetailSignUp() {
   return (
     <>
       {/* 藍色小按鈕 */}
       <button
         type="button"
-        className="btn btn-outline-none btn-sm min-width-auto radius-5px"
+        className="btn btn-secondary max-width-auto radius-5px"
       >
-        看更多>>
+        報名
       </button>
     </>
   )
 }
-export default EventRegistration
+export default DetailSignUp
