@@ -1,25 +1,38 @@
-// import photo from '../img/productDetails/cheese.jpg'
-function Card({ photo }) {
-  // { photo }帶入參數
+import photo from '../img/productDetails/cheese.jpg'
+// { photo }帶入參數
+// function Card({photo}) {
+import { AddToCartLg, MoreSquare } from './index'
+
+function Card({ product, typeID }) {
+  const {
+    product_id,
+    product_name,
+    product_class,
+    products_price,
+    products_descripttion,
+    product_image,
+  } = product
+  console.log(product_image)
   return (
-    <>
-      <div className="productCard">
-        <section className="text-part">
-          <h2 className="title">潔牙零食</h2>
-          <p className="description">
-            問題的關鍵究竟為何？用最佳的策略去分析潔牙玩具。
-          </p>
-          <span className="price">NT. 300</span>
-        </section>
-        <section className="buttons">
-          <button className="button-collection">&#9825;</button>
-          <button className="button-moreInfo">看更多</button>
-        </section>
-        {/* 圖片動態引入 ，圖片須放在public資料夾*/}
-        <img src={'http://localhost:3000/' + photo} alt="" />
-        {/* <img src={photo} alt="" /> */}
-      </div>
-    </>
+    <div className="productCard">
+      <span hidden>{product_id}</span>
+      {/* <section className="text-part"> */}
+      <h2 className="title">{product_name}</h2>
+      <span hidden>{product_class}</span>
+      <p className="description">{products_descripttion}</p>
+      <span className="price">NT. {products_price}</span>
+      {/* </section> */}
+      <section className="buttons">
+        <button className="button-collection">&#9825;</button>
+        <MoreSquare product_id={product_id} typeID={typeID} />
+        <AddToCartLg product={product} />
+        {/* <MoreSquare typeID={typeID} product_id={product_id} /> */}
+      </section>
+      {/* 圖片動態引入 ，圖片須放在public資料夾*/}
+      <img src={`http://localhost:3002/${product_image}`} alt="" />
+      {/* <img src={'http://localhost:3000/' + photo} alt="" /> */}
+      {/* <img src={photo} alt="" /> */}
+    </div>
   )
 }
 export default Card

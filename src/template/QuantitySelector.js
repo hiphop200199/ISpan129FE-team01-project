@@ -18,7 +18,7 @@ function QuantitySelector() {
         ></button>
         <span>{count}</span>
         <button
-          className="add calculate-btn"
+          className="add calculate-btn "
           onClick={() => {
             setCount(count + 1)
           }}

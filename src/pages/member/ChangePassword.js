@@ -55,16 +55,16 @@ function ChangePassword() {
       <section className="login-container">
         <div className="login-main">
           <form className="login-form" onSubmit={handleSubmit}>
-            <h1>更新密碼</h1>
-            <div className="typeArea">
-              <input
-                className="form-control"
-                type="password"
-                value={password}
-                placeholder="新密碼:"
-                onChange={(event) => setPassword(event.target.value)}
-              />
-            </div>
+            <h3>更新密碼</h3>
+            <input
+              className="form-control"
+              type="password"
+              value={password}
+              placeholder="新密碼:"
+              onChange={(event) => setPassword(event.target.value)}
+              minLength={6}
+              maxLength={10}
+            />
             <br />
             <input
               className="form-control"
@@ -72,6 +72,8 @@ function ChangePassword() {
               value={password2}
               placeholder="確認密碼:"
               onChange={(event) => setPassword2(event.target.value)}
+              minLength={6}
+              maxLength={10}
             />
             <br />
             <button className="btn btn-primary-for-login" type="submit">

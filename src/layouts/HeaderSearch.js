@@ -13,27 +13,17 @@ function HeaderSearch(props) {
   }
   return (
     <>
-      <div class="main-button">
+      <div className="main-button">
         <div className="button__list">
           <Link to="/Food1/4">餐點</Link>
           <Link to="/Drinks">飲品</Link>
           <Link to="/Dog">狗狗</Link>
           <Link to="/Cat">貓咪</Link>
         </div>
-        <form
-          class="header-search"
-          onSubmit={(event) => {
-            event.preventDefault()
-            props.onSearch(searchValue)
-          }}
-        >
-          <input
-            type="search"
-            placeholder="搜尋"
-            name=""
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-          />
+
+        <form className="header-search">
+          <input type="search" placeholder="搜尋" name="" />
+
           <button type="submit">
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
