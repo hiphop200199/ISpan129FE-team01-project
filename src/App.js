@@ -44,6 +44,7 @@ function App() {
         <Route path="/" element={<MainLayouts />}>
           <Route index element={<HomePage />}></Route>
           <Route path="Header" element={<Header />}></Route>
+
          
           <Route path="meals/:typeID" element={<Meals />}></Route>
          // <Route path="Food" element={<Food />}></Route>
