@@ -228,6 +228,7 @@ function ReserveConfirm() {
                 className="btn btn-primary btn-lg min-width-auto ml-10px"
                 onClick={() => {
                   console.log('formData', formData)
+                  console.log('reserveConfirm', reserveConfirm)
                 }}
               >
                 結帳
