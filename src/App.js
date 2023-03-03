@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import MainLayouts from './layouts/Mainlayouts'
 import Activity from './pages/activity/Activity'
+import ActivityDetail from './pages/activity/ActivityDetail'
+import ActivitySignUp from './pages/activity/ActivitySignUp'
 import Course from './pages/course/Course'
 import HomePage from './pages/HomePage'
 import Hotel from './pages/hotel/Hotel'
@@ -47,6 +49,14 @@ function App() {
           <Route path="latestNews" element={<LatestNews />}></Route>
           <Route path="course" element={<Course />}></Route>
           <Route path="activity" element={<Activity />}></Route>
+          <Route
+            path="activitydetail/:activity_id"
+            element={<ActivityDetail />}
+          ></Route>
+          <Route
+            path="ActivitySignUp/:activity_id"
+            element={<ActivitySignUp />}
+          ></Route>
           <Route path="*" element={<NotFound />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<RegisterMember />} />
