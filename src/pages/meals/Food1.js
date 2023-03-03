@@ -42,7 +42,7 @@ function Food1() {
                 </div>
                 <div className="h-card-footer">
                   <span>&#9825;</span>
-                  <Link to={`/MealsDetail/4${item.product_id}`}>
+                  <Link to={`/MealsDetail/${item.product_id}`}>
                     <MoreSquare />
                   </Link>
                 </div>
