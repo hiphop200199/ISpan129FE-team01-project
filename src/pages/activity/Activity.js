@@ -4,7 +4,7 @@ import { EventRegistration } from '../../template'
 import { Link, useParams } from 'react-router-dom'
 import SignUp from '../../template/SignUp'
 
-import Activityphoto from '../../img/activityphoto.json'
+import Activityphoto from '../../data/activityphoto.json'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/navigation'
