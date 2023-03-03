@@ -25,7 +25,7 @@ function Food1() {
         alt="girl&dog"
         height="600"
       /> */}
-      <div className="h-text-title">住宿房型</div>
+      <div className="h-text-title">餐</div>
 
       <div className="card-wrap rwd-container">
         {food.map((item, i) => {
@@ -42,7 +42,7 @@ function Food1() {
                 </div>
                 <div className="h-card-footer">
                   <span>&#9825;</span>
-                  <Link to={`/reserve/${item.product_id}`}>
+                  <Link to={`/MealsDetail/4${item.product_id}`}>
                     <MoreSquare />
                   </Link>
                 </div>
