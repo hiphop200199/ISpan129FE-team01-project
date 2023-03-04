@@ -9,6 +9,10 @@ function OrderList({ id }) {
   const [tagCheck, setTagCheck] = useState(0)
   const [order, setOrders] = useState([])
 
+  //descending
+  const numDescending = [...order].sort((a, b) => b.order_id - a.order_id)
+  console.log(numDescending)
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -126,7 +130,7 @@ function OrderList({ id }) {
               </thead>
               <tbody>
                 {tagCheck === 0
-                  ? order.map((order, k) => (
+                  ? numDescending.map((order, k) => (
                       <tr key={`${order.order_id}${k}`}>
                         <td>{order.order_id}</td>
                         <td>
@@ -155,7 +159,7 @@ function OrderList({ id }) {
                         </td>
                       </tr>
                     ))
-                  : order
+                  : numDescending
                       .filter((el) => {
                         return el.type_id === tagCheck
                       })
