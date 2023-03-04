@@ -87,7 +87,7 @@ function OrderDetail() {
                   <tr key={orderItem.order_detail_id}>
                     <td>
                       <img
-                        src={`http://localhost:3002/uploads/${orderItem.product_img}`}
+                        src={`http://localhost:3002/uploads/${orderItem.product_image}`}
                         alt="product_img"
                       />
                     </td>
