@@ -6,6 +6,7 @@ import {
   faHeart,
   faRectangleList,
   faPaw,
+  faLock,
 } from '@fortawesome/free-solid-svg-icons'
 import RegisterMember from './RegisterMember'
 import { Link, useNavigate } from 'react-router-dom'
@@ -85,7 +86,7 @@ function Login() {
                 我的個人資料
               </Link>
               <Link to="/changePassword" className="changePassword mb-3">
-                <FontAwesomeIcon icon={faPencil} />
+                <FontAwesomeIcon icon={faLock} />
                 更改密碼
               </Link>
               <Link to="/myList" className="myList mb-3">
