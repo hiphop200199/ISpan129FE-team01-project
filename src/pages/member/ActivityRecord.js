@@ -5,13 +5,9 @@ import { faEye, faAnglesLeft } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react'
 import 'datejs'
 
-function OrderList({ id }) {
+function ActivityRecord({ id }) {
   const [tagCheck, setTagCheck] = useState(0)
   const [order, setOrders] = useState([])
-
-  //descending
-  const numDescending = [...order].sort((a, b) => b.order_id - a.order_id)
-  console.log(numDescending)
 
   const navigate = useNavigate()
 
@@ -130,7 +126,7 @@ function OrderList({ id }) {
               </thead>
               <tbody>
                 {tagCheck === 0
-                  ? numDescending.map((order, k) => (
+                  ? order.map((order, k) => (
                       <tr key={`${order.order_id}${k}`}>
                         <td>{order.order_id}</td>
                         <td>
@@ -159,7 +155,7 @@ function OrderList({ id }) {
                         </td>
                       </tr>
                     ))
-                  : numDescending
+                  : order
                       .filter((el) => {
                         return el.type_id === tagCheck
                       })
@@ -199,4 +195,4 @@ function OrderList({ id }) {
   )
 }
 
-export default OrderList
+export default ActivityRecord
