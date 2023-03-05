@@ -1,12 +1,17 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import photo from '../../img/productDetails/cheese.jpg'
 import { AddToCartLg, AddToFavoritesLg } from '../../template'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons'
+
 import Header from '../../layouts/header'
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 function ProductDetail() {
   const [product, setProduct] = useState({});
+
+  const navigate = useNavigate()
   // 取得query string的值
   const { product_id } = useParams();
   async function fetchProductDetails() {
@@ -17,7 +22,6 @@ function ProductDetail() {
       if (!res.ok) {
         throw new Error('network res was not ok');
       }
-      console.log(res.baseURL)
       const product = await res.json();
       if (product) {
         setProduct(...product);
@@ -49,6 +53,7 @@ function ProductDetail() {
   return (
     <>
       <Header />
+      <FontAwesomeIcon icon={faAnglesLeft} onClick={() => navigate(-1)} />
       <div className="product-container">
         <section className="product-introduction">
           <div className="product-photo-wrapper">
