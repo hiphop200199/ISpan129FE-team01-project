@@ -1,10 +1,10 @@
 import React from 'react'
 
-function PreviousStep() {
+function PreviousStep(props) {
   return (
     <button
       type="button"
-      className="btn btn-outline-primary btn-lg min-width-auto col-2"
+      className="btn btn-outline-primary btn-lg min-width-auto " onClick={props.onClick}
     >
       回上一步
     </button>
