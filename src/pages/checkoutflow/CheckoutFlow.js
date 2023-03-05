@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react'
 import { useState } from 'react'
-import { Step, NextStepLg, PreviousStep, SquareAccounts } from '../../template'
+import { Step, NextStepLg, PreviousStep, SquareAccounts, CheckButton } from '../../template'
 
 function CheckoutFlow() {
   // 取得購物車頁籤
@@ -12,7 +12,10 @@ function CheckoutFlow() {
   // 取得購物車資料
   const items = JSON.parse(localStorage.getItem('cart')) || []
   // console.log(items)
-
+  const detailData = {
+    ...items
+  }
+  console.log(detailData)
   // 計算購物車商品總額
   const totalPrice = () => {
     let cartTotal = 0
@@ -40,7 +43,7 @@ function CheckoutFlow() {
     const { name, value } = event.target
     setFormData({ ...formData, [name]: value })
   }
-  // 取得會員收件資料
+  // 取得會員地址
   const id = localStorage.getItem('id')
   const [member, setMember] = useState(null)
   const [isChecked, setIsChecked] = useState(false);
@@ -298,14 +301,12 @@ function CheckoutFlow() {
                 ) : (
                   ''
                 )}
-
-                <button type='submit' className='btn '>
-                  確認
-                </button>
+                <div className="d-flex justify-content-end">
+                  {/* TODO:確認時要同時帶入表單資料及商品資料到子元件做送出資料的處理 */}
+                  <CheckButton detailData={detailData} />
+                  <PreviousStep onClick={handleNext} />
+                </div>
               </form>
-              <div className="d-flex justify-content-end">
-                <PreviousStep onClick={handleNext} />
-              </div>
             </div>
           ) : (
             <>
