@@ -1,27 +1,44 @@
-import photo from '../../img/course/dog-and-boy.jpg'
 import { AddToCartLg, AddToFavoritesLg } from '../../template'
+import { useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 function CourseDetail() {
+  const { product_id } = useParams()
+  const [courseDetail, setCourseDetail] = useState([])
+  useEffect(() => {
+    fetch(`http://localhost:3002/product/list-detail/${product_id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCourseDetail(data)
+      })
+      .catch((error) => console.log(error))
+  }, [product_id])
   return (
     <>
-      <div className="course-detail-container">
-        <div className="course-detail-photo-wrapper">
-          <img src={photo} alt="product-photo" />
-        </div>
-        <div className="course-detail-information">
-          <h1 className="product-name">寵物概論</h1>
-          <span className="product-unit">時數:72hrs</span>
-          <p className="product-article">
-            您養過寵物嗎?這堂課由任升海老師教您養寵物前的基本認知、注意事項，減少不必要的煩惱!
-          </p>
-          <h2 className="product-price">NT.1280</h2>
-          <div className="product-button-wrapper">
-            {/* <button className="product-add-collection">加入收藏</button>
+      {courseDetail.map((item, i) => {
+        console.log(item)
+        return (
+          <div className="course-detail-container" key={i}>
+            <div className="course-detail-photo-wrapper">
+              <img
+                src={`http://localhost:3002/uploads/${item.product_image}`}
+                alt="product-photo"
+              />
+            </div>
+            <div className="course-detail-information">
+              <h1 className="product-name">{item.product_name}</h1>
+              <span className="product-unit">{item.products_unit}</span>
+              <p className="product-article">{item.products_descripttion}</p>
+              <h2 className="product-price">NT.{item.products_price}</h2>
+              <div className="product-button-wrapper">
+                {/* <button className="product-add-collection">加入收藏</button>
               <button className="product-add-cart">加入購物車</button> */}
-            <AddToFavoritesLg />
-            <AddToCartLg />
+                <AddToFavoritesLg />
+                <AddToCartLg />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        )
+      })}
     </>
   )
 }

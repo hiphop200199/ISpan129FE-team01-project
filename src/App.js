@@ -4,6 +4,8 @@ import Activity from './pages/activity/Activity'
 import ActivityDetail from './pages/activity/ActivityDetail'
 import ActivitySignUp from './pages/activity/ActivitySignUp'
 import Course from './pages/course/Course'
+import CourseSearch from './pages/course/CourseSearch'
+import CourseDetail from './pages/course/CourseDetail'
 import HomePage from './pages/HomePage'
 import Hotel from './pages/hotel/Hotel'
 import Reserve from './pages/hotel/Reserve'
@@ -50,7 +52,10 @@ function App() {
           <Route path="latestNews" element={<LatestNews />}></Route>
           <Route path="course" element={<Course />}></Route>
           <Route path="courseSearch/:typeID" element={<CourseSearch />}></Route>
-          <Route path="courseDetail" element={<CourseDetail />}></Route>
+          <Route
+            path="courseDetail/:product_id"
+            element={<CourseDetail />}
+          ></Route>
           <Route path="activity" element={<Activity />}></Route>
           <Route
             path="activitydetail/:activity_id"

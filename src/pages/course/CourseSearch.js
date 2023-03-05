@@ -1,11 +1,12 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import dog from '../../img/course/dog.jpg'
 import { useState, useEffect } from 'react'
 function CourseSearch() {
   const [courseName, setCourseName] = useState('')
   const [courses, setCourses] = useState([])
   const { typeID } = useParams()
-  console.log(typeID)
+  const navigate = useNavigate()
+
   useEffect(() => {
     fetch(`http://localhost:3002/product/list-product/${typeID}`)
       .then((res) => res.json())
@@ -67,12 +68,15 @@ function CourseSearch() {
                 </section>
                 <section className="buttons">
                   <button className="button-collection">&#9825;</button>
-                  <Link to="/courseDetail/">
+                  <Link to={`/CourseDetail/${item.product_id}`}>
                     <button className="button-moreInfo">看更多</button>
                   </Link>
                 </section>
                 {/* 圖片動態引入 ，圖片須放在public資料夾*/}
-                <img src={item.product_image} alt="" />
+                <img
+                  src={`http://localhost:3002/uploads/${item.product_image}`}
+                  alt=""
+                />
                 {/* <img src={photo} alt="" /> */}
               </div>
             )
