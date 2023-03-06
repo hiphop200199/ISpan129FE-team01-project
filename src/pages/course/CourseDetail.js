@@ -15,7 +15,6 @@ function CourseDetail() {
   return (
     <>
       {courseDetail.map((item, i) => {
-        console.log(item)
         return (
           <div className="course-detail-container" key={i}>
             <div className="course-detail-photo-wrapper">

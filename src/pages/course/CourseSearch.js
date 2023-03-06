@@ -5,21 +5,56 @@ function CourseSearch() {
   const [courses, setCourses] = useState([])
   const { typeID } = useParams()
 
+  useEffect(() => {
+    fetch(`http://localhost:3002/product/list-product/${typeID}`)
+      .then((res) => res.json())
+      .then((data) => setCourses(data))
+      .catch((error) => console.log(error))
+  }, [courseName, typeID])
+
   const trainingCourses = () => {
-    const data = courses.filter((item) => item.product_class === '寵物訓練')
-    setCourses(data)
+    fetch(`http://localhost:3002/product/list-product/${typeID}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCourses(data)
+        const train = data.filter((item) => item.product_class === '寵物訓練')
+        setCourses(train)
+      })
+      .catch((error) => console.log(error))
   }
   const interactiveCourses = () => {
-    const data = courses.filter((item) => item.product_class === '寵物互動')
-    setCourses(data)
+    fetch(`http://localhost:3002/product/list-product/${typeID}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCourses(data)
+        const interact = data.filter(
+          (item) => item.product_class === '寵物互動'
+        )
+        setCourses(interact)
+      })
+      .catch((error) => console.log(error))
   }
   const petKnowledges = () => {
-    const data = courses.filter((item) => item.product_class === '寵物知識')
-    setCourses(data)
+    fetch(`http://localhost:3002/product/list-product/${typeID}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCourses(data)
+        const knowledge = data.filter(
+          (item) => item.product_class === '寵物知識'
+        )
+        setCourses(knowledge)
+      })
+      .catch((error) => console.log(error))
   }
   const takeCarePets = () => {
-    const data = courses.filter((item) => item.product_class === '寵物照顧')
-    setCourses(data)
+    fetch(`http://localhost:3002/product/list-product/${typeID}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCourses(data)
+        const care = data.filter((item) => item.product_class === '寵物照顧')
+        setCourses(care)
+      })
+      .catch((error) => console.log(error))
   }
   const findOneCourse = () => {
     if (courseName !== '') {
@@ -29,13 +64,6 @@ function CourseSearch() {
       return
     }
   }
-
-  useEffect(() => {
-    fetch(`http://localhost:3002/product/list-product/${typeID}`)
-      .then((res) => res.json())
-      .then((data) => setCourses(data))
-      .catch((error) => console.log(error))
-  }, [courseName])
 
   return (
     <>

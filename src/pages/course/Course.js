@@ -11,7 +11,7 @@ function Course() {
         <section className="upper-part">
           <section className="tags">
             <Link to="/courseSearch/2">
-              <button className="course-search-tag">進入課程搜尋</button>
+              <button className="course-enter-search-tag">進入課程搜尋</button>
             </Link>
           </section>
         </section>
