@@ -1,15 +1,19 @@
 import React from 'react'
+import Stepper from './Stepper'
 import { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 
-function CheckoutFlow() {
-  const [tagCheck, setTagCheck] = useState('check')
+function ActivitySignUp() {
+  //頁數
+  const [step, setStep] = useState(1)
+  const handleStepChange = (newStep) => {
+    setStep(newStep)
+  }
+
+  //第一步列表
+  const [tagCheck, setTagCheck] = useState('tab1')
   const handleChange = (event) => {
-    if (!tagCheck) {
-      setTagCheck('check')
-    } else {
-      setTagCheck('')
-    }
+    setTagCheck(event.target.id)
   }
   const { activity_id } = useParams()
   const [activity, setActivity] = useState({})
@@ -29,7 +33,7 @@ function CheckoutFlow() {
         activities
       )
 
-      console.log(activities)
+      // console.log(activities)
 
       setFirstRender(false)
       setActivity(activities)
@@ -38,210 +42,245 @@ function CheckoutFlow() {
   }, [activity_id])
   // console.log(activity)
 
+  
+
+  //第二步表單
+  const id = localStorage.getItem('id')
+  const [pet, setPet] = useState({
+    name: '',
+    type: 'other',
+    gender: '',
+  })
+  //---用於記錄錯誤訊息之用
+  const [fieldErrors, setFieldErrors] = useState({
+    name: '',
+    type: '',
+    gender: '',
+  })
+  //---處理每個欄位的變動
+  const handleFieldChange = (e) => {
+    //---以下要依照通用的三步驟原則來更新狀態
+    setPet({ ...pet, [e.target.name]: e.target.value })
+  }
+  const navigate = useNavigate()
+
+  const handleSubmit = (e) => {
+    //---第一航要阻擋預設的form送出行為
+    e.preventDefault()
+    //---獲得目前的表單輸入值
+    //---1.從state獲得
+    console.log(pet)
+    //---2. 用FormData API獲得
+    const formData = new FormData(e.target)
+    console.log(formData.get('name'))
+    formData.set('activity_id', activity_id)
+
+    //---做送至伺服器(fetch, ajax...) ->submit
+    fetch(`http://localhost:3002/member/addPet/${id}`, {
+      method: 'POST',
+      // headers: { 'Content-Type': 'application/json' },
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success1 && data.success2) {
+          // alert('新增成功')
+          setTagCheck(3)
+          navigate(setStep(3))
+        } else {
+          alert('新增失敗')
+        }
+        console.log(data)
+      })
+  }
+  //表單有發生驗證錯誤時，會觸發事件
+  const handelInvalid = (e) => {
+    e.preventDefault()
+    console.log('檢查有錯誤:', e.target.name, e.target.validationMessage)
+
+    //紀錄錯誤訊息
+    setFieldErrors({
+      ...fieldErrors,
+      [e.target.name]: e.target.validationMessage,
+    })
+  }
+
+  // 當使用者回頭修正表單中任一欄位時，先清除此欄位的錯誤訊息
+  const handleFormChange = (e) => {
+    // 記錄錯誤訊息
+    setFieldErrors({
+      ...fieldErrors,
+      [e.target.name]: '',
+    })
+  }
+
   return (
     <>
-      <aside className="order-step-guide">
-        <div className="row">
-          <div className="col">
-            <div className="step1">1</div>
-            <div className="steptext">填寫表單</div>
+      {firstRender ? (
+        false
+      ) : (
+        <div className="SignUp-page">
+          <div className="SignUp-head">
+            <Stepper step={step} />
           </div>
-          <div className="stepline"></div>
-          <div className="col">
-            <div className="step2">2</div>
-            <div className="steptext">預約成功</div>
-          </div>
-        </div>
-      </aside>
-      <main className="checkoutFlow">
-        <div className="tabs">
-          <input
-            type="radio"
-            className="tabs__radio"
-            name="tabs-example"
-            id="tab1"
-            onChange={handleChange}
-            checked={tagCheck}
-          />
-          <label htmlFor="tab1" className="tabs__label">
-            活動
-          </label>
-          <div className="tabs__content">
-            <table>
-              <thead>
-                <tr>
-                  <th>商品圖</th>
-                  <th>名稱</th>
-                  <th>活動日期</th>
-                  <th>截止日期</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <img
-                      src={`http://localhost:3002/uploads/${activity.activity_image}/`}
-                      alt=""
+          <div>
+            {/* 步驟一 */}
+            {step === 1 && (
+              <div>
+                {/* 步驟一的內容。 */}
+                <main className="checkoutFlow">
+                  <div className="tabs">
+                    <input
+                      type="radio"
+                      className="tabs__radio"
+                      name="tabs-example"
+                      id="tab1"
+                      onChange={handleChange}
+                      checked={tagCheck === 'tab1'}
                     />
-                  </td>
-                  <td>{activity.activity_name}</td>
-                  <td>
-                    {new Date(activity.activity_datestart).toString(
-                      'yyyy-MM-dd'
-                    )}
-                  </td>
-                  <td>
-                    {new Date(activity.activity_dateend).toString('yyyy-MM-dd')}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div className="member-container">
-          <section className="member-main">
-            <h1>活動報名</h1>
-            <h4>報名人資料</h4>
-            <form
-              className="member-form"
-              // onSubmit={handleSubmit}
-              // onInvalid={handelInvalid}
-              // onChange={handleFormChange}
-            >
-              <label className="member-label">
-                <input
-                  id="name"
-                  type="text"
-                  name="name"
-                  placeholder="姓名"
-                  // value={user.name}
-                  // onChange={handleFieldChange}
-                  required
-                />
-                <br />
-                {/* <span className="error">{fieldErrors.name}</span> */}
-              </label>
-
-              <label className="member-label">
-                <input
-                  id="mobile"
-                  type="tel"
-                  name="mobile"
-                  placeholder="電話"
-                  required
-                  // value={user.mobile}
-                  // onChange={handleFieldChange}
-                />
-                <br />
-                {/* <span className="error">{fieldErrors.mobile}</span> */}
-              </label>
-
-              <label className="member-label">
-                <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  placeholder="信箱"
-                  required
-                  // value={user.email}
-                  // onChange={handleFieldChange}
-                />
-                <br />
-                {/* <span className="error">{fieldErrors.email}</span> */}
-              </label>
-              <h4>毛寶貝資料</h4>
-              <label className="member-label">
-                <input
-                  id="name"
-                  type="text"
-                  name="name"
-                  placeholder="寵物姓名"
-                  // value={user.name}
-                  // onChange={handleFieldChange}
-                  required
-                />
-                <br />
-                {/* <span className="error">{fieldErrors.name}</span> */}
-              </label>
-              <div>
-                <p>毛孩種類</p>
-                <div className="form-check form-check-inline">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio1"
-                    value="option1"
-                  />
-                  <label className="form-check-label" htmlFor="inlineRadio1">
-                    貓
-                  </label>
-                </div>
-                <div className="form-check form-check-inline">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio2"
-                    value="option2"
-                  />
-                  <label className="form-check-label" Html="inlineRadio2">
-                    狗
-                  </label>
-                </div>
-                <div className="form-check form-check-inline">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio2"
-                    value="option2"
-                  />
-                  <label className="form-check-label" Html="inlineRadio2">
-                    其他
-                  </label>
+                    <label htmlFor="tab1" className="tabs__label">
+                      活動
+                    </label>
+                    <div className="tabs__content">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>商品圖</th>
+                            <th>名稱</th>
+                            <th>活動日期</th>
+                            <th>截止日期</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <img
+                                src={`http://localhost:3002/uploads/${activity.activity_image}/`}
+                                alt=""
+                              />
+                            </td>
+                            <td>{activity.activity_name}</td>
+                            <td>
+                              {new Date(activity.activity_datestart).toString(
+                                'yyyy-MM-dd'
+                              )}
+                            </td>
+                            <td>
+                              {new Date(activity.activity_dateend).toString(
+                                'yyyy-MM-dd'
+                              )}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </main>
+                <div className="mt-5 d-flex justify-content-between">
+                  <button
+                    className="btn btn-primary btn-lg"
+                    onClick={() => handleStepChange(2)}
+                  >
+                    下一步
+                  </button>
                 </div>
               </div>
+            )}
+
+            {/* 步驟二 */}
+            {step === 2 && (
               <div>
-                <p>毛孩性別</p>
-                <div className="form-check form-check-inline">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio1"
-                    value="option1"
-                  />
-                  <label className="form-check-label" htmlFor="inlineRadio1">
-                    小男生
-                  </label>
-                </div>
-                <div className="form-check form-check-inline">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio2"
-                    value="option2"
-                  />
-                  <label className="form-check-label" Html="inlineRadio2">
-                    小女生
-                  </label>
+                <p>填寫報名</p>
+                {/* 步驟二的內容。 */}
+
+                <div>
+                  <section>
+                    <p>寵物資訊</p>
+                    <form
+                      className="member-form"
+                      onSubmit={handleSubmit}
+                      onInvalid={handelInvalid}
+                      onChange={handleFormChange}
+                    >
+                      <input type="hidden" name="id" value={id} />
+                      <label className="form-control">
+                        <input
+                          id="name"
+                          type="text"
+                          name="name"
+                          placeholder="名字"
+                          value={pet.name}
+                          onChange={handleFieldChange}
+                          required
+                        />
+                        <br />
+                        <span className="error">{fieldErrors.name}</span>
+                      </label>
+
+                      <label className="form-control">
+                        寵物種類:
+                        <select
+                          onChange={handleFieldChange}
+                          name="type"
+                          value={pet.type}
+                        >
+                          <option value="cat">貓</option>
+                          <option value="dog">狗</option>
+                          <option value="other">其他</option>
+                        </select>
+                      </label>
+                      <label className="form-control">
+                        寵物種類:
+                        <div>
+                          <input
+                            onChange={handleFieldChange}
+                            type="radio"
+                            value="boy"
+                            name="gender"
+                          />
+                          男生
+                          <input
+                            onChange={handleFieldChange}
+                            type="radio"
+                            value="girl"
+                            name="gender"
+                          />
+                          女生
+                        </div>
+                      </label>
+                      <div className="mt-5 d-flex justify-content-between">
+                        <button
+                          className="btn btn-primary btn-lg"
+                          onClick={() => handleStepChange(1)}
+                        >
+                          上一步
+                        </button>
+                        <button
+                          className="btn btn-primary btn-lg"
+                          type="submit"
+                        >
+                          送出
+                        </button>
+                      </div>
+                    </form>
+                  </section>
                 </div>
               </div>
-            </form>
-          </section>
-        </div>
+            )}
 
-        <div className="checkout-section">
-          <div className="checkout-btn">
-            <button className="next-step-btn">下一步</button>
+            {/* 步驟三 */}
+            {step === 3 && (
+              <div>
+                <h1>報名成功</h1>
+                <p>這是最後一個步驟的內容。</p>
+                <button className="mt-5 btn btn-primary btn-lg">完成</button>
+              </div>
+            )}
           </div>
         </div>
-      </main>
+      )}
     </>
   )
 }
 
-export default CheckoutFlow
+export default ActivitySignUp
