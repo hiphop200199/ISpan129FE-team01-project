@@ -13,10 +13,11 @@ function Menu() {
           <Link to="/latestNews">最新消息</Link>
         </li>
         <li>
-          <Link to="/hotel">住宿</Link>
+          <Link to="/hotel/3">住宿</Link>
         </li>
         <li>
-          <Link to="/product">商城</Link>
+          {/* product帶入type_id的quretString */}
+          <Link to="/product/1">商城</Link>
         </li>
         <li>
           <Link to="/meals">餐點</Link>

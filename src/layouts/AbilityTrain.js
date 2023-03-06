@@ -3,8 +3,6 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faComment } from '@fortawesome/free-solid-svg-icons'
-import { Outlet } from 'react-router-dom'
-import { icon } from '@fortawesome/fontawesome-svg-core'
 
 function AbilityTrain() {
   return (

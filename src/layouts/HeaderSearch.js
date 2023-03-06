@@ -6,16 +6,16 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 function HeaderSearch() {
   return (
     <>
-      <div class="main-button">
+      <div className="main-button">
         <div className="button__list">
           <Link to="/">罐頭飼料</Link>
           <Link to="/">外出用品</Link>
           <Link to="/">耐磨玩具</Link>
           <Link to="/">服飾項圈</Link>
         </div>
-        <form class="header-search">
+        <form className="header-search">
           <input type="search" placeholder="搜尋" name="" />
-          <button type="sumbit">
+          <button type="submit">
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
         </form>

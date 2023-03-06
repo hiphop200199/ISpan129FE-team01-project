@@ -1,38 +1,41 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import photo from '../../img/productDetails/cheese.jpg'
 import { AddToCartLg, AddToFavoritesLg } from '../../template'
 import Header from '../../layouts/header'
-import HeaderSearch from '../../layouts/HeaderSearch'
-import { useState, useParams, useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+
 function ProductDetail() {
-  const [product, setProduct] = useState({})
+  const [product, setProduct] = useState({});
   // 取得query string的值
-  const { product_id } = useParams()
+  const { product_id } = useParams();
   async function fetchProductDetails() {
     try {
       const res = await fetch(
         `http://localhost:3002/product/list-detail/${product_id}`
       )
       if (!res.ok) {
-        throw new Error('network res was not ok')
+        throw new Error('network res was not ok');
       }
       console.log(res.baseURL)
-      const product = await res.json()
+      const product = await res.json();
       if (product) {
-        setProduct(...product)
+        setProduct(...product);
         // console.log(product)
       } else {
         // 商品不存在，導向 404 頁面或顯示錯誤訊息
-        throw new Error('Product not found')
+        throw new Error('Product not found');
       }
     } catch (error) {
-      console.error('Error fetching product data:', error)
+      console.error('Error fetching product data:', error);
     }
   }
 
   useEffect(() => {
-    if (!product_id) return
-    fetchProductDetails()
-  }, [product_id])
+
+    if (!product_id) return;
+    fetchProductDetails();
+  }, [product_id]);
 
   const {
     product_id: productID,
@@ -52,15 +55,20 @@ function ProductDetail() {
       <div className="product-container">
         <section className="product-introduction">
           <div className="product-photo-wrapper">
-            <img className="product-photo" src={photo} alt="product-photo" />
+            <img
+              className="product-photo"
+              src={'http://localhost:3002/uploads/' + imageUrl}
+              alt="product-photo"
+            />
           </div>
           <div className="product-information">
-            <h1 className="product-name">潔牙零食</h1>
-            <span className="product-unit">200g/包</span>
+            <h1 className="product-name">{name}</h1>
+            <span className="product-unit">{unit}</span>
             <p className="product-article">
+              {descripttion}
               想必大家都能了解潔牙零食的重要性。話雖如此，浦利尼斯二世在不經意間這樣說過，痛苦有個限度，恐懼則綿綿無際。這句話看似簡單，但其中的陰鬱不禁讓人深思。泰戈爾相信，完全理智的心，恰如一柄全是鋒刃的刀，會叫使用它的人手上流血。帶著這句話，我們還要更加慎重的審視這個問題。
             </p>
-            <h2 className="product-price">NT.300</h2>
+            <h2 className="product-price">NT.{price}</h2>
             <div className="product-button-wrapper">
               {/* <button className="product-add-collection">加入收藏</button>
               <button className="product-add-cart">加入購物車</button> */}

@@ -5,7 +5,6 @@ import { AddToCartLg, MoreSquare, AddToFavoritesLg } from './index'
 
 function Card({ product, typeID }) {
   const id = localStorage.getItem('id')
-
   const {
     product_id,
     product_name,
@@ -25,6 +24,7 @@ function Card({ product, typeID }) {
       <span className="price">NT. {products_price}</span>
       {/* </section> */}
       <section className="buttons">
+
         <button className="button-collection">
           {' '}
           <AddToFavoritesLg product={product} typeID={typeID} id={id} />

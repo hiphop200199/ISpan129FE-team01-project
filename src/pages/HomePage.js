@@ -3,6 +3,7 @@ import brownDog from '../img/layout/ayla-verschueren-bpkBLrotO28-unsplash.jpg'
 import React, { useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination, Navigation } from 'swiper'
+import { Link } from 'react-router-dom'
 
 import 'swiper/swiper-bundle.css'
 function HomePage() {
@@ -35,40 +36,43 @@ function HomePage() {
           <img src={brownDog} alt="" />
         </SwiperSlide>
       </Swiper>
-      <div class="homehotel">
-        <div class="homehotel-box">
-          <div className="homehotel-zoomin">
-            <img src={require('../img/hotels/hotel-single.jpg')} alt="" />
+
+      <section>
+        <div class="homehotel-moreroom">
+          <Link to="/hotel">查看更多房型</Link>
+        </div>
+        <div class="homehotel">
+          <div class="homehotel-box">
+            <div className="homehotel-zoomin">
+              <img src={require('../img/hotels/hotel-single.jpg')} alt="" />
+            </div>
+          </div>
+          <div class="homehotel-box">
+            <div className="homehotel-zoomin">
+              <img src={require('../img/hotels/quadruple room.jpg')} alt="" />
+            </div>
+            <div></div>
+          </div>
+          <div class="homehotel-box">
+            <div className="homehotel-zoomin">
+              <img
+                src={require('../img/hotels/standard-double-room.jpg')}
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="homehotel-box">
+            <div className="homehotel-zoomin">
+              <img src={require('../img/hotels/tripple-room.jpg')} alt="" />
+            </div>
+          </div>
+          <div class="homehotel-box">
+            <div className="homehotel-zoomin">
+              <img src={require('../img/hotels/twin-double-room.jpg')} alt="" />
+            </div>
           </div>
         </div>
-        <div class="homehotel-box">
-          <div className="homehotel-zoomin">
-            <img src={require('../img/hotels/quadruple room.jpg')} alt="" />
-          </div>
-          <div></div>
-        </div>
-        <div class="homehotel-box">
-          <div className="homehotel-zoomin">
-            <img
-              src={require('../img/hotels/standard-double-room.jpg')}
-              alt=""
-            />
-          </div>
-        </div>
-        <div class="homehotel-box">
-          <div className="homehotel-zoomin">
-            <img src={require('../img/hotels/tripple-room.jpg')} alt="" />
-          </div>
-        </div>
-        <div class="homehotel-box">
-          <div className="homehotel-zoomin">
-            <img src={require('../img/hotels/twin-double-room.jpg')} alt="" />
-          </div>
-        </div>
-      </div>
-      <div class="homehotel-moreroom">
-        <a href="/">查看更多房型</a>
-      </div>
+      </section>
     </>
   )
 }
