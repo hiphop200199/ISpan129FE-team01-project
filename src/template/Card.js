@@ -1,9 +1,10 @@
 import photo from '../img/productDetails/cheese.jpg'
 // { photo }帶入參數
 // function Card({photo}) {
-import { AddToCartLg, MoreSquare } from './index'
+import { AddToCartLg, MoreSquare, AddToFavoritesLg } from './index'
 
 function Card({ product, typeID }) {
+  const id = localStorage.getItem('id')
   const {
     product_id,
     product_name,
@@ -23,7 +24,11 @@ function Card({ product, typeID }) {
       <span className="price">NT. {products_price}</span>
       {/* </section> */}
       <section className="buttons">
-        <button className="button-collection">&#9825;</button>
+
+        <button className="button-collection">
+          {' '}
+          <AddToFavoritesLg product={product} typeID={typeID} id={id} />
+        </button>
         <MoreSquare product_id={product_id} typeID={typeID} />
         <AddToCartLg product={product} />
         {/* <MoreSquare typeID={typeID} product_id={product_id} /> */}
