@@ -7,20 +7,32 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as faHeartOutline } from '@fortawesome/free-regular-svg-icons'
 
-function AddToFavoritesLg() {
+function AddToFavoritesLg({ product, typeID, id }) {
+  const {
+    product_id,
+    product_name,
+    product_class,
+    products_price,
+    products_descripttion,
+    product_image,
+  } = product
   const [isFavorite, setIsFavorite] = useState(false)
-  const [product_id, setProduct_id] = useState('')
-
-  useEffect(() => {
-    setProduct_id()
-  }, [])
+  // const [product_id, setProduct_id] = useState('')
 
   const toggleLike = async (product_id) => {
-    // const product_id = product_id
     try {
       const response = await fetch(
         `http://localhost:3002/member/toggle-like/${product_id}`,
-        { method: 'GET' }
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id,
+            typeID,
+          }),
+        }
       )
       const result = await response.json()
 
@@ -33,9 +45,10 @@ function AddToFavoritesLg() {
       console.error(error)
     }
   }
+
   function handleFavoriteClick() {
-    setIsFavorite(!isFavorite)
     toggleLike(product_id)
+    setIsFavorite(!isFavorite)
   }
 
   return (
