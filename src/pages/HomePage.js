@@ -39,7 +39,7 @@ function HomePage() {
 
       <section>
         <div class="homehotel-moreroom">
-          <Link to="/hotel">查看更多房型</Link>
+          <Link to="/hotel/3">查看更多房型</Link>
         </div>
         <div class="homehotel">
           <div class="homehotel-box">
