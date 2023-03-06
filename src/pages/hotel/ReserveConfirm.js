@@ -4,9 +4,6 @@ import { format } from 'date-fns'
 function ReserveConfirm() {
   const [formData, setFormData] = useState({
     payment: '',
-    cardNumber: '',
-    expiryDate: '', //到期日
-    securityCode: '',
     remark: '',
     name: '',
     email: '',
