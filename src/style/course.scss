@@ -165,10 +165,11 @@
         }
         & img {
             position: absolute;
-            width: 42%;
+            width: 48%;
             height: 80%;
-            right: -12%;
-            top: 12%;
+            right: -16%;
+            top: 10%;
+            border-radius: 1vmax;
           }
       }
 }

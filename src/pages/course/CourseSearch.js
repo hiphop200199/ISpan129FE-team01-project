@@ -1,24 +1,41 @@
-import { Link, useParams, useNavigate } from 'react-router-dom'
-import dog from '../../img/course/dog.jpg'
+import { Link, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 function CourseSearch() {
   const [courseName, setCourseName] = useState('')
   const [courses, setCourses] = useState([])
   const { typeID } = useParams()
-  const navigate = useNavigate()
+
+  const trainingCourses = () => {
+    const data = courses.filter((item) => item.product_class === '寵物訓練')
+    setCourses(data)
+  }
+  const interactiveCourses = () => {
+    const data = courses.filter((item) => item.product_class === '寵物互動')
+    setCourses(data)
+  }
+  const petKnowledges = () => {
+    const data = courses.filter((item) => item.product_class === '寵物知識')
+    setCourses(data)
+  }
+  const takeCarePets = () => {
+    const data = courses.filter((item) => item.product_class === '寵物照顧')
+    setCourses(data)
+  }
+  const findOneCourse = () => {
+    if (courseName !== '') {
+      const data = courses.filter((item) => item.product_name === courseName)
+      setCourses(data)
+    } else {
+      return
+    }
+  }
 
   useEffect(() => {
     fetch(`http://localhost:3002/product/list-product/${typeID}`)
       .then((res) => res.json())
       .then((data) => setCourses(data))
       .catch((error) => console.log(error))
-  }, [typeID])
-  //console.log(courses)
-  const trainingCourses = () => {}
-  const interactiveCourses = () => {}
-  const petKnowledges = () => {}
-  const takeCarePets = () => {}
-  const findOneCourse = () => {}
+  }, [courseName])
 
   return (
     <>
@@ -57,7 +74,6 @@ function CourseSearch() {
 
         <section className="course-search-results">
           {courses.map((item, i) => {
-            console.log(item)
             return (
               <div className="productCard" key={i}>
                 <section className="text-part">
