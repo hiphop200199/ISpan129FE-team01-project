@@ -2,7 +2,50 @@ import photo from '../../img/productDetails/cheese.jpg'
 import { AddToCartLg, AddToFavoritesLg } from '../../template'
 import Header from '../../layouts/header'
 import HeaderSearch from '../../layouts/HeaderSearch'
+import { useState, useParams, useEffect } from 'react'
 function ProductDetail() {
+  const [product, setProduct] = useState({})
+  // 取得query string的值
+  const { product_id } = useParams()
+  async function fetchProductDetails() {
+    try {
+      const res = await fetch(
+        `http://localhost:3002/product/list-detail/${product_id}`
+      )
+      if (!res.ok) {
+        throw new Error('network res was not ok')
+      }
+      console.log(res.baseURL)
+      const product = await res.json()
+      if (product) {
+        setProduct(...product)
+        // console.log(product)
+      } else {
+        // 商品不存在，導向 404 頁面或顯示錯誤訊息
+        throw new Error('Product not found')
+      }
+    } catch (error) {
+      console.error('Error fetching product data:', error)
+    }
+  }
+
+  useEffect(() => {
+    if (!product_id) return
+    fetchProductDetails()
+  }, [product_id])
+
+  const {
+    product_id: productID,
+    product_type: typeID,
+    product_name: name,
+    product_class: productClass,
+    products_descripttion: descripttion,
+    products_price: price,
+    product_unit: unit,
+    product_image: imageUrl,
+  } = product
+
+  const id = localStorage.getItem('id')
   return (
     <>
       <Header />
@@ -21,8 +64,8 @@ function ProductDetail() {
             <div className="product-button-wrapper">
               {/* <button className="product-add-collection">加入收藏</button>
               <button className="product-add-cart">加入購物車</button> */}
-              <AddToFavoritesLg />
-              <AddToCartLg />
+              <AddToFavoritesLg product={product} id={id} typeID={typeID} />
+              <AddToCartLg product={product} />
             </div>
           </div>
         </section>
