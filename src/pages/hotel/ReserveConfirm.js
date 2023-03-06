@@ -60,51 +60,10 @@ function ReserveConfirm() {
                   {/* 對應到payment: ''，如果為payment: 'onSite'則顯示現場付款*/}
                   請選擇付款方式
                 </option>
-                <option value="creditCard">信用卡</option>
+                <option value="linePay">Line Pay</option>
                 <option value="onSite">現場付款</option>
               </select>
             </div>
-            {/* 如果選擇信用卡付款，顯示卡號、到期日、安全碼欄位 */}
-            {formData.payment === 'creditCard' ? (
-              <>
-                <div className="mb-3">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="卡號"
-                    value={formData.cardNumber}
-                    onChange={handleChange}
-                    name="cardNumber"
-                  />
-                </div>
-
-                <div className="d-flex">
-                  <div className="mb-3 col-6 pr-1">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="到期日"
-                      value={formData.expiryDate}
-                      onChange={handleChange}
-                      name="expiryDate"
-                    />
-                  </div>
-
-                  <div className="mb-3 col-6 pl-1">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="安全碼"
-                      value={formData.securityCode}
-                      onChange={handleChange}
-                      name="securityCode"
-                    />
-                  </div>
-                </div>
-              </>
-            ) : (
-              ''
-            )}
 
             <div className="mb-3 ">
               <textarea
