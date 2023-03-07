@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
 
-
 const Cart = () => {
   const navigate = useNavigate()
   // 取得購物車的資料並轉成Json
@@ -43,7 +42,7 @@ const Cart = () => {
                     product_name,
                     products_price,
                     product_image,
-                    product_qry,
+                    products_quantity,
                   },
                   index
                 ) => (
@@ -56,7 +55,7 @@ const Cart = () => {
                     </td>
                     <td>{product_name}</td>
                     <td>{products_price}</td>
-                    <td>{product_qry}</td>
+                    <td>{products_quantity}</td>
                     <td>
                       <button onClick={() => removeItem(index)}>移除</button>
                     </td>
