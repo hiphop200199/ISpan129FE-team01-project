@@ -92,11 +92,11 @@ function OrderDetail() {
                       />
                     </td>
                     <td>{orderItem.product_name}</td>
-                    <td>{orderItem.products_unit}</td>
-                    <td>{orderItem.products_price}</td>
-                    <td>{orderItem.products_quantity}</td>
+                    <td>{orderItem.product_unit}</td>
+                    <td>{orderItem.product_price}</td>
+                    <td>{orderItem.product_quantity}</td>
                     <td>
-                      {orderItem.products_quantity * orderItem.products_price}
+                      {orderItem.product_quantity * orderItem.product_price}
                     </td>
                   </tr>
                 ))}
