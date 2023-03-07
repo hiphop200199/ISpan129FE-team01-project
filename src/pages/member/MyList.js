@@ -8,6 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react'
 import 'datejs'
+import AddToCartLg from '../../template/AddToCartLg'
 
 function MyList({ id, onDelete }) {
   const [tagCheck, setTagCheck] = useState(0)
@@ -15,6 +16,7 @@ function MyList({ id, onDelete }) {
   const [isDeleting, setIsDeleting] = useState(false)
 
   const navigate = useNavigate()
+  const product = [...like]
 
   useEffect(() => {
     const id = localStorage.getItem('id')
@@ -181,12 +183,13 @@ function MyList({ id, onDelete }) {
                           />
                         </td>
                         <td>
-                          <Link
-                            to={`/cart/${like.product_id}`}
-                            className="more-button"
-                          >
-                            <FontAwesomeIcon icon={faCartShopping} />
-                          </Link>
+                          <>
+                            <AddToCartLg
+                              product={like}
+                              className="more-button"
+                            />
+                            {/* <FontAwesomeIcon icon={faCartShopping} /> */}
+                          </>
                         </td>
                       </tr>
                     ))
@@ -221,12 +224,13 @@ function MyList({ id, onDelete }) {
                             />
                           </td>
                           <td>
-                            <Link
-                              to={`/cart/${like.product_id}`}
-                              className="more-button"
-                            >
-                              <FontAwesomeIcon icon={faCartShopping} />
-                            </Link>
+                            <>
+                              <AddToCartLg
+                                product={like}
+                                className="more-button"
+                              />
+                              {/* <FontAwesomeIcon icon={faCartShopping} /> */}
+                            </>
                           </td>
                         </tr>
                       ))}
