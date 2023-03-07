@@ -30,5 +30,3 @@ export { default as SquareAccounts } from './SquareAccounts'
 export { default as SignUp } from './SignUp'
 // import DetailSignUp from './DetailSignUp'
 export { default as DetailSignUp } from './DetailSignUp'
-export { default as CheckButton } from './CheckButton'
-
