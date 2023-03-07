@@ -106,9 +106,9 @@ function CourseSearch() {
               <div className="productCard" key={i}>
                 <section className="text-part">
                   <h2 className="title">{item.product_name}</h2>
-                  <span className="product-unit">{item.products_unit}</span>
-                  <p className="description">{item.products_descripttion}</p>
-                  <span className="price">$.{item.products_price}</span>
+                  <span className="product-unit">{item.product_unit}</span>
+                  <p className="description">{item.product_descripttion}</p>
+                  <span className="price">$.{item.product_price}</span>
                 </section>
                 <section className="buttons">
                   <button className="button-collection">&#9825;</button>

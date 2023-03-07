@@ -25,9 +25,9 @@ function CourseDetail() {
             </div>
             <div className="course-detail-information">
               <h1 className="product-name">{item.product_name}</h1>
-              <span className="product-unit">{item.products_unit}</span>
-              <p className="product-article">{item.products_descripttion}</p>
-              <h2 className="product-price">NT.{item.products_price}</h2>
+              <span className="product-unit">{item.product_unit}</span>
+              <p className="product-article">{item.product_descripttion}</p>
+              <h2 className="product-price">NT.{item.product_price}</h2>
               <div className="product-button-wrapper">
                 {/* <button className="product-add-collection">加入收藏</button>
               <button className="product-add-cart">加入購物車</button> */}
