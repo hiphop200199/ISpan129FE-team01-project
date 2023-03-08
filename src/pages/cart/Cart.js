@@ -35,7 +35,7 @@ const Cart = () => {
                   {
                     product_id,
                     product_name,
-                    products_price,
+                    product_price,
                     product_image,
                     product_qry,
                   },
@@ -49,7 +49,7 @@ const Cart = () => {
                       />
                     </td>
                     <td>{product_name}</td>
-                    <td>{products_price}</td>
+                    <td>{product_price}</td>
                     <td>{product_qry}</td>
                     <td>
                       <button onClick={() => removeItem(index)}>移除</button>
