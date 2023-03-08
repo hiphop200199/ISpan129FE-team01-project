@@ -36,9 +36,11 @@ function ProductDetail() {
   }
 
   useEffect(() => {
+
     if (!product_id) return
     fetchProductDetails()
   }, [product_id])
+
 
   const {
     product_id: productID,
@@ -50,6 +52,11 @@ function ProductDetail() {
     product_unit: unit,
     product_image: imageUrl,
   } = product
+
+
+
+  const id = localStorage.getItem('id')
+
   return (
     <>
       <Header />
@@ -74,7 +81,7 @@ function ProductDetail() {
             <div className="product-button-wrapper">
               {/* <button className="product-add-collection">加入收藏</button>
               <button className="product-add-cart">加入購物車</button> */}
-              <AddToFavoritesLg />
+              <AddToFavoritesLg product={product} id={id} typeID={typeID} />
               <AddToCartLg product={product} />
             </div>
           </div>

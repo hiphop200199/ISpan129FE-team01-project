@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function ChangePassword() {
   const navigate = useNavigate()
@@ -55,7 +57,7 @@ function ChangePassword() {
       <section className="login-container">
         <div className="login-main">
           <form className="login-form" onSubmit={handleSubmit}>
-            <h3>更新密碼</h3>
+            <h3 className="m-3">更新密碼</h3>
             <input
               className="form-control"
               type="password"
@@ -80,6 +82,12 @@ function ChangePassword() {
               送出
             </button>
           </form>
+          <button
+            className="btn btn-primary btn-lg px-5"
+            onClick={() => navigate(-1)}
+          >
+            返回
+          </button>
         </div>
       </section>
     </>

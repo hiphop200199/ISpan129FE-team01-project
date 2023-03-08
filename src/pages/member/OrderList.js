@@ -9,6 +9,10 @@ function OrderList({ id }) {
   const [tagCheck, setTagCheck] = useState(0)
   const [order, setOrders] = useState([])
 
+  //descending
+  const numDescending = [...order].sort((a, b) => b.order_id - a.order_id)
+  console.log(numDescending)
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -126,7 +130,7 @@ function OrderList({ id }) {
               </thead>
               <tbody>
                 {tagCheck === 0
-                  ? order.map((order, k) => (
+                  ? numDescending.map((order, k) => (
                       <tr key={`${order.order_id}${k}`}>
                         <td>{order.order_id}</td>
                         <td>
@@ -143,7 +147,7 @@ function OrderList({ id }) {
                         </td>
                         <td>{order.status === 0 ? '未付款' : '已付款'}</td>
                         <td>
-                          {[order.products_price * order.products_quantity]}
+                          {[order.product_price * order.product_quantity]}
                         </td>
                         <td>
                           <Link
@@ -155,7 +159,7 @@ function OrderList({ id }) {
                         </td>
                       </tr>
                     ))
-                  : order
+                  : numDescending
                       .filter((el) => {
                         return el.type_id === tagCheck
                       })
@@ -175,7 +179,7 @@ function OrderList({ id }) {
                               : '餐點'}
                           </td>
                           <td>{order.status === 0 ? '未付款' : '已付款'}</td>
-                          <td>{order.products_price}</td>
+                          <td>{order.product_price}</td>
                           <td>
                             <Link
                               to={`/orderDetail/${order.order_id}`}

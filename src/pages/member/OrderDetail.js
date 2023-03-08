@@ -87,16 +87,16 @@ function OrderDetail() {
                   <tr key={orderItem.order_detail_id}>
                     <td>
                       <img
-                        src={`http://localhost:3002/uploads/${orderItem.product_img}`}
+                        src={`http://localhost:3002/uploads/${orderItem.product_image}`}
                         alt="product_img"
                       />
                     </td>
                     <td>{orderItem.product_name}</td>
-                    <td>{orderItem.products_unit}</td>
-                    <td>{orderItem.products_price}</td>
-                    <td>{orderItem.products_quantity}</td>
+                    <td>{orderItem.product_unit}</td>
+                    <td>{orderItem.product_price}</td>
+                    <td>{orderItem.product_quantity}</td>
                     <td>
-                      {orderItem.products_quantity * orderItem.products_price}
+                      {orderItem.product_quantity * orderItem.product_price}
                     </td>
                   </tr>
                 ))}

@@ -1,15 +1,22 @@
 import { check } from 'prettier'
 import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping, faAnglesLeft } from '@fortawesome/free-solid-svg-icons'
+import {
+  faCartShopping,
+  faAnglesLeft,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react'
 import 'datejs'
+import AddToCartLg from '../../template/AddToCartLg'
 
-function MyList({ id }) {
+function MyList({ id, onDelete }) {
   const [tagCheck, setTagCheck] = useState(0)
   const [like, setLike] = useState([])
+  const [isDeleting, setIsDeleting] = useState(false)
 
   const navigate = useNavigate()
+  const product = [...like]
 
   useEffect(() => {
     const id = localStorage.getItem('id')
@@ -22,7 +29,7 @@ function MyList({ id }) {
       console.log(`http://localhost:3002/member/likes/${id}`, like)
 
       // const [...orders] = order
-      setLike(like)
+      setLike(like[0].likes)
     }
     fetchData()
   }, [id])
@@ -31,6 +38,28 @@ function MyList({ id }) {
   const handleChange = (typeId) => {
     // console.log(typeId)
     setTagCheck(typeId)
+  }
+
+  const handleDelete = (sid) => {
+    setIsDeleting(true)
+    const id = localStorage.getItem('id')
+    if (window.confirm(`確定要刪除這筆收藏?`))
+      fetch(`http://localhost:3002/member/deleteLikes/${sid}`, {
+        method: 'DELETE',
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log('Like deleted successfully')
+          // onDelete(sid)
+          // console.log(sid)
+          navigate('/login')
+        })
+        .catch((error) => {
+          console.error('Error deleting like', error)
+        })
+        .finally(() => {
+          setIsDeleting(false)
+        })
   }
 
   return (
@@ -118,7 +147,7 @@ function MyList({ id }) {
               <thead>
                 <tr>
                   {/* <th>編號</th> */}
-                  <th>收藏日期</th>
+                  <th>商品圖</th>
                   <th>分類</th>
                   <th>商品名稱</th>
                   <th>刪除</th>
@@ -127,12 +156,14 @@ function MyList({ id }) {
               </thead>
               <tbody>
                 {tagCheck === 0
-                  ? like &&
-                    like.map((like, k) => (
+                  ? like.map((like, k) => (
                       <tr key={`${like.sid}${k}`}>
                         {/* <td>{like.sid}</td> */}
                         <td>
-                          {new Date(like.created_at).toString('yyyy-MM-dd')}
+                          <img
+                            src={`http://localhost:3002/uploads/${like.product_image}`}
+                            alt="product_img"
+                          />
                         </td>
                         <td>
                           {like.type_id === 1
@@ -144,16 +175,25 @@ function MyList({ id }) {
                             : '餐點'}
                         </td>
                         <td>{like.product_name}</td>
-                        <td>刪除</td>
                         <td>
-                          <Link to={`/cart`} className="more-button">
-                            <FontAwesomeIcon icon={faCartShopping} />
-                          </Link>
+                          <FontAwesomeIcon
+                            icon={faTrash}
+                            className="more-button"
+                            onClick={() => handleDelete(like.sid)}
+                          />
+                        </td>
+                        <td>
+                          <>
+                            <AddToCartLg
+                              product={like}
+                              className="more-button"
+                            />
+                            {/* <FontAwesomeIcon icon={faCartShopping} /> */}
+                          </>
                         </td>
                       </tr>
                     ))
-                  : like &&
-                    like
+                  : like
                       .filter((el) => {
                         return el.type_id === tagCheck
                       })
@@ -161,7 +201,10 @@ function MyList({ id }) {
                         <tr key={`${like.sid}${k}`}>
                           {/* <td>{like.sid}</td> */}
                           <td>
-                            {new Date(like.created_at).toString('yyyy-MM-dd')}
+                            <img
+                              src={`http://localhost:3002/uploads/${like.product_image}`}
+                              alt="product_img"
+                            />
                           </td>
                           <td>
                             {like.type_id === 1
@@ -173,11 +216,21 @@ function MyList({ id }) {
                               : '餐點'}
                           </td>
                           <td>{like.product_name}</td>
-                          <td>刪除</td>
                           <td>
-                            <Link to={`/cart}`} className="more-button">
-                              <FontAwesomeIcon icon={faCartShopping} />
-                            </Link>
+                            <FontAwesomeIcon
+                              icon={faTrash}
+                              className="more-button cursor-pointer"
+                              onClick={() => handleDelete(like.sid)}
+                            />
+                          </td>
+                          <td>
+                            <>
+                              <AddToCartLg
+                                product={like}
+                                className="more-button"
+                              />
+                              {/* <FontAwesomeIcon icon={faCartShopping} /> */}
+                            </>
                           </td>
                         </tr>
                       ))}
