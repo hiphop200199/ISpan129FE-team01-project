@@ -45,7 +45,7 @@ function Product() {
       <Header />
       <HeaderSearch />
       <h2>這裡之後放輪播器</h2>
-      <div className="productContent">
+      <div className="productContent col-12">
         {product.map((product) => (
           <Card
             className="col-6"

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
+    "@fortawesome/free-regular-svg-icons": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@popperjs/core": "^2.11.6",
@@ -20,6 +21,10 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.1",
     "eslint-plugin-react-hooks": "^4.6.0",
+<<<<<<< HEAD
+=======
+    "i": "^0.3.7",
+>>>>>>> 2ac196aac3155a1a1fae81c9e51b77739a95fc09
     "jquery": "^3.6.3",
     "moment-timezone": "^0.5.41",
     "popper.js": "^1.16.1",

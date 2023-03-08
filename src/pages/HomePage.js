@@ -37,6 +37,7 @@ function HomePage() {
         </SwiperSlide>
       </Swiper>
 
+<<<<<<< HEAD
       <div className="about-container">
         <div className="about-row">
           <div className="col-mb-6 d-flex justify-content-center">
@@ -59,6 +60,12 @@ function HomePage() {
             <div className="homehotel-word">查看更多房型</div>
           </Link>
         </div>
+=======
+      <section>
+        <div className="homehotel-moreroom">
+          <Link to="/hotel">查看更多房型</Link>
+        </div>
+>>>>>>> 2ac196aac3155a1a1fae81c9e51b77739a95fc09
         <div className="homehotel">
           <div className="homehotel-box">
             <div className="homehotel-zoomin">

@@ -3,7 +3,7 @@
 @import '~bootstrap/scss/bootstrap';
 // 其他自訂樣式
 @import '_layout.scss';
-@import '_card.scss';
+// @import '_card.scss';
 @import 'reserve.scss';
 @import 'registerMember.scss';
 @import 'editMember.scss';
@@ -18,12 +18,15 @@
 @import '_cart.scss';
 @import 'header.scss';
 @import 'headerSearch.scss';
-
+@import 'productCard.scss';
 @import 'hotel.scss';
-@import '_tag.scss';
 
 @import 'product.scss';
 @import 'reserveConfirm.scss';
 @import 'activitysignup.scss';
 @import 'ActivityDetails.scss';
+<<<<<<< HEAD
 @import 'Stepper.scss';
+=======
+@import 'course.scss';
+>>>>>>> 2ac196aac3155a1a1fae81c9e51b77739a95fc09
