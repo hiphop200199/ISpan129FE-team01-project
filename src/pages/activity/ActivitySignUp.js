@@ -128,7 +128,7 @@ function ActivitySignUp() {
       console.log(i)
     }
 
-    const url = `http://localhost:3002/member/addForm`
+    const url = `http://localhost:3002/activity/addForm`
     fetch(url, {
       method: 'post',
       body: fd,
@@ -245,7 +245,7 @@ function ActivitySignUp() {
                               {el.pet_name}
                               <label
                                 className="form-check-label"
-                                for="exampleRadios1"
+                                htmlFor="exampleRadios1"
                               ></label>
                             </div>
                           )
@@ -284,9 +284,9 @@ function ActivitySignUp() {
                             name="type"
                             value={pet.type}
                           >
-                            <option value="cat">貓</option>
-                            <option value="dog">狗</option>
-                            <option value="other">其他</option>
+                            <option value="貓">貓</option>
+                            <option value="狗">狗</option>
+                            <option value="其他">其他</option>
                           </select>
                         </label>
                         <label className="form-control">
@@ -295,14 +295,14 @@ function ActivitySignUp() {
                             <input
                               onChange={handleFieldChange}
                               type="radio"
-                              value="boy"
+                              value="男生"
                               name="gender"
                             />
                             男生
                             <input
                               onChange={handleFieldChange}
                               type="radio"
-                              value="girl"
+                              value="女生"
                               name="gender"
                             />
                             女生
@@ -336,7 +336,7 @@ function ActivitySignUp() {
               <div>
                 <h1>報名成功</h1>
                 <p>這是最後一個步驟的內容。</p>
-                <a href="/" class="button">
+                <a href="/" className="button">
                   完成
                 </a>
               </div>
