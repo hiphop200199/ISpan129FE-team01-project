@@ -43,6 +43,7 @@ function App() {
           <Route index element={<HomePage />}></Route>
           <Route path="Header" element={<Header />}></Route>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <Route path="meals/:typeID" element={<Meals />}></Route>
           // <Route path="Food" element={<Food />}></Route>
           // <Route path="Food1/:typeID" element={<Food1 />}></Route>
@@ -55,6 +56,9 @@ function App() {
           ></Route>
 =======
 >>>>>>> 2ac196aac3155a1a1fae81c9e51b77739a95fc09
+=======
+
+>>>>>>> fe6f24c1c3fbbbed7e711aa2b10a1597ddf3b202
           {/* product帶入type_id的quretString */}
           <Route path="/product/:typeID" element={<Product />}></Route>
           <Route
@@ -64,10 +68,16 @@ function App() {
           <Route path="meals" element={<Meals />}></Route>
           <Route path="hotel/:typeID" element={<Hotel />}></Route>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <Route path="/reserve/:product_id" element={<Reserve />}></Route>
 =======
           <Route path="reserve/:product_id" element={<Reserve />}></Route>
 >>>>>>> 2ac196aac3155a1a1fae81c9e51b77739a95fc09
+=======
+
+          <Route path="reserve/:product_id" element={<Reserve />}></Route>
+
+>>>>>>> fe6f24c1c3fbbbed7e711aa2b10a1597ddf3b202
           <Route path="latestNews" element={<LatestNews />}></Route>
           <Route path="course" element={<Course />}></Route>
           <Route path="courseSearch/:typeID" element={<CourseSearch />}></Route>
@@ -105,14 +115,22 @@ function App() {
           <Route path="CheckoutFlow" element={<CheckoutFlow />} />
           <Route path="Card" element={<Card />}></Route>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <Route path="ReserveConfirm" element={<ReserveConfirm />}></Route>
           <Route path="index" element={<index />}></Route>
 =======
+=======
+
+>>>>>>> fe6f24c1c3fbbbed7e711aa2b10a1597ddf3b202
 
           <Route path="ReserveConfirm" element={<ReserveConfirm />}></Route>
           <Route path="index" element={<index />}></Route>
 
+<<<<<<< HEAD
 >>>>>>> 2ac196aac3155a1a1fae81c9e51b77739a95fc09
+=======
+
+>>>>>>> fe6f24c1c3fbbbed7e711aa2b10a1597ddf3b202
           {/* <Route path="form" element={<FormTemplate />}></Route> */}
         </Route>
       </Routes>

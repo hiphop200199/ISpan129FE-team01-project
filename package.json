@@ -22,9 +22,16 @@
     "eslint-plugin-react": "^7.32.1",
     "eslint-plugin-react-hooks": "^4.6.0",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     "i": "^0.3.7",
 >>>>>>> 2ac196aac3155a1a1fae81c9e51b77739a95fc09
+=======
+
+
+    "i": "^0.3.7",
+
+>>>>>>> fe6f24c1c3fbbbed7e711aa2b10a1597ddf3b202
     "jquery": "^3.6.3",
     "moment-timezone": "^0.5.41",
     "popper.js": "^1.16.1",

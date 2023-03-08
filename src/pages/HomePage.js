@@ -38,6 +38,9 @@ function HomePage() {
       </Swiper>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> fe6f24c1c3fbbbed7e711aa2b10a1597ddf3b202
       <div className="about-container">
         <div className="about-row">
           <div className="col-mb-6 d-flex justify-content-center">
@@ -59,13 +62,17 @@ function HomePage() {
           <Link to="/hotel/3">
             <div className="homehotel-word">查看更多房型</div>
           </Link>
+
         </div>
+<<<<<<< HEAD
 =======
       <section>
         <div className="homehotel-moreroom">
           <Link to="/hotel">查看更多房型</Link>
         </div>
 >>>>>>> 2ac196aac3155a1a1fae81c9e51b77739a95fc09
+=======
+>>>>>>> fe6f24c1c3fbbbed7e711aa2b10a1597ddf3b202
         <div className="homehotel">
           <div className="homehotel-box">
             <div className="homehotel-zoomin">
