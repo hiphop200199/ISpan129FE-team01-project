@@ -12,8 +12,8 @@ function AddToFavoritesLg({ product, typeID, id }) {
     product_id,
     product_name,
     product_class,
-    products_price,
-    products_descripttion,
+    product_price,
+    product_descripttion,
     product_image,
   } = product
   const [isFavorite, setIsFavorite] = useState(false)
