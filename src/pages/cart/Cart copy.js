@@ -1,11 +1,7 @@
 import React, { useState } from 'react'
 import { SquareAccounts } from '../../template'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons'
-import { useNavigate } from 'react-router-dom'
 
 const Cart = () => {
-  const navigate = useNavigate()
   // 取得購物車的資料並轉成Json
   const [items, setItems] = useState(
     JSON.parse(localStorage.getItem('cart')) || []
@@ -22,7 +18,6 @@ const Cart = () => {
   return (
     <div className="cart__sidebar">
       <main className="shopping__cart">
-        <FontAwesomeIcon icon={faAnglesLeft} onClick={() => navigate(-1)} />
         <div className="cart__body">
           <h2>購物車</h2>
           <table>
@@ -42,7 +37,7 @@ const Cart = () => {
                     product_name,
                     product_price,
                     product_image,
-                    product_quantity,
+                    product_qry,
                   },
                   index
                 ) => (
@@ -55,7 +50,7 @@ const Cart = () => {
                     </td>
                     <td>{product_name}</td>
                     <td>{product_price}</td>
-                    <td>{product_quantity}</td>
+                    <td>{product_qry}</td>
                     <td>
                       <button onClick={() => removeItem(index)}>移除</button>
                     </td>
