@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { format } from 'date-fns'
+import { useNavigate } from 'react-router'
 
 function ReserveConfirm() {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     payment: '',
     remark: '',
@@ -31,6 +33,24 @@ function ReserveConfirm() {
   })
 
   useEffect(() => {
+    const memberId = localStorage.getItem('id')
+    console.log('memberId2-', memberId)
+    if (memberId) {
+      fetch(`http://localhost:3002/member/edit/${memberId}`, {
+        method: 'GET',
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('data', data)
+          setFormData({
+            //物件合併
+            ...formData,
+            ...{ name: data.name, email: data.email, phone: data.mobile },
+          })
+        })
+
+        .catch((error) => console.error(error))
+    }
     setReserveConfirm(JSON.parse(sessionStorage.getItem('reserveData')))
   }, [])
   function formatDate(date) {
@@ -39,6 +59,7 @@ function ReserveConfirm() {
   const img = require(`../../img/hotels/${
     reserveConfirm.selectPet === 'forest' ? 'cat-room1.png' : 'cat-room2.jpg'
   }`)
+
   return (
     <>
       <div className="rc-container rwd-container">
@@ -183,6 +204,16 @@ function ReserveConfirm() {
                 type="button"
                 className="btn btn-primary btn-lg min-width-auto ml-10px"
                 onClick={() => {
+                  const isLogin = localStorage.getItem('id')
+                  if (isLogin) {
+                    if (formData.payment === 'onSite') {
+                      console.log('加入訂單api')
+                    } else if (formData.payment === 'linePay') {
+                      console.log('導向linePay付款')
+                    }
+                  } else {
+                    navigate('/login')
+                  }
                   console.log('formData', formData)
                   console.log('reserveConfirm', reserveConfirm)
                 }}
