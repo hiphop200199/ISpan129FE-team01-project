@@ -16,36 +16,43 @@ function ActivitySignUp() {
     setTagCheck(event.target.id)
   }
   const { activity_id } = useParams()
+  const id = localStorage.getItem('id')
   const [activity, setActivity] = useState({})
+  const [member, setMember] = useState({})
+  const [pets, setPets] = useState([])
   const [firstRender, setFirstRender] = useState(true)
 
   useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch(
-        `http://localhost:3002/activity/activitydetail/${activity_id}`,
-        {
-          method: 'GET',
-        }
-      )
-      const activities = await res.json()
-      console.log(
-        `http://localhost:3002/activity/activitydetail/${activity_id}`,
-        activities
-      )
-
-      // console.log(activities)
-
-      setFirstRender(false)
-      setActivity(activities)
-    }
     fetchData()
-  }, [activity_id])
+  }, [activity_id, id])
   // console.log(activity)
 
-  
+  const fetchData = async () => {
+    const res = await fetch(
+      `http://localhost:3002/activity/activitydetail/${activity_id}`,
+      {
+        method: 'GET',
+      }
+    )
+    const activities = await res.json()
+    setActivity(activities)
+
+    const res2 = await fetch(`http://localhost:3002/member/pet/${id}`, {
+      method: 'GET',
+    })
+    const pets = await res2.json()
+    setPets(pets)
+
+    const res3 = await fetch(`http://localhost:3002/member/edit/${id}`, {
+      method: 'GET',
+    })
+    const member = await res3.json()
+    setMember(member)
+
+    setFirstRender(false)
+  }
 
   //第二步表單
-  const id = localStorage.getItem('id')
   const [pet, setPet] = useState({
     name: '',
     type: 'other',
@@ -83,10 +90,8 @@ function ActivitySignUp() {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.success1 && data.success2) {
-          // alert('新增成功')
-          setTagCheck(3)
-          navigate(setStep(3))
+        if (data.success1) {
+          fetchData()
         } else {
           alert('新增失敗')
         }
@@ -112,6 +117,32 @@ function ActivitySignUp() {
       ...fieldErrors,
       [e.target.name]: '',
     })
+  }
+
+  const submitActivity = (e) => {
+    const formA = document.querySelector('#formActivity')
+    const fd = new FormData(formA)
+    fd.set('mid', id)
+    fd.set('activity_id', activity_id)
+    for (let i in fd.entries()) {
+      console.log(i)
+    }
+
+    const url = `http://localhost:3002/member/addForm`
+    fetch(url, {
+      method: 'post',
+      body: fd,
+    })
+      .then((r) => r.json())
+      .then((rData) => {
+        if (rData.success) {
+          navigate(setStep(3))
+          fetchData()
+        } else {
+          alert('新增失敗')
+        }
+        console.log(url, rData)
+      })
   }
 
   return (
@@ -190,80 +221,112 @@ function ActivitySignUp() {
             {/* 步驟二 */}
             {step === 2 && (
               <div>
-                <p>填寫報名</p>
-                {/* 步驟二的內容。 */}
-
-                <div>
-                  <section>
-                    <p>寵物資訊</p>
-                    <form
-                      className="member-form"
-                      onSubmit={handleSubmit}
-                      onInvalid={handelInvalid}
-                      onChange={handleFormChange}
-                    >
-                      <input type="hidden" name="id" value={id} />
-                      <label className="form-control">
-                        <input
-                          id="name"
-                          type="text"
-                          name="name"
-                          placeholder="名字"
-                          value={pet.name}
-                          onChange={handleFieldChange}
-                          required
-                        />
-                        <br />
-                        <span className="error">{fieldErrors.name}</span>
-                      </label>
-
-                      <label className="form-control">
-                        寵物種類:
-                        <select
-                          onChange={handleFieldChange}
-                          name="type"
-                          value={pet.type}
-                        >
-                          <option value="cat">貓</option>
-                          <option value="dog">狗</option>
-                          <option value="other">其他</option>
-                        </select>
-                      </label>
-                      <label className="form-control">
-                        寵物種類:
-                        <div>
-                          <input
-                            onChange={handleFieldChange}
-                            type="radio"
-                            value="boy"
-                            name="gender"
-                          />
-                          男生
-                          <input
-                            onChange={handleFieldChange}
-                            type="radio"
-                            value="girl"
-                            name="gender"
-                          />
-                          女生
-                        </div>
-                      </label>
-                      <div className="mt-5 d-flex justify-content-between">
-                        <button
-                          className="btn btn-primary btn-lg"
-                          onClick={() => handleStepChange(1)}
-                        >
-                          上一步
-                        </button>
-                        <button
-                          className="btn btn-primary btn-lg"
-                          type="submit"
-                        >
-                          送出
-                        </button>
+                <div className="step2-container">
+                  {/* 步驟二的內容。 */}
+                  <div>
+                    <h5>報名人資料</h5>
+                    <p>姓名:{member.name}</p>
+                    <p>電話:{member.mobile}</p>
+                    <p>信箱:{member.email}</p>
+                    {/* <p>{member.pet_name}</p> */}
+                    <form name="formActivity" id="formActivity">
+                      <div>
+                        {pets.map((el, idx) => {
+                          return (
+                            <div key={idx}>
+                              <input
+                                className="form-check-input"
+                                type="radio"
+                                name="pets"
+                                id="pets"
+                                value={el.pet_id}
+                                checked
+                              />
+                              {el.pet_name}
+                              <label
+                                className="form-check-label"
+                                for="exampleRadios1"
+                              ></label>
+                            </div>
+                          )
+                        })}
                       </div>
                     </form>
-                  </section>
+                  </div>
+                  <div>
+                    <section>
+                      <h5>新增寵物</h5>
+                      <form
+                        className="member-form"
+                        onSubmit={handleSubmit}
+                        onInvalid={handelInvalid}
+                        onChange={handleFormChange}
+                      >
+                        <input type="hidden" name="id" value={id} />
+                        <label className="form-control">
+                          <input
+                            id="name"
+                            type="text"
+                            name="name"
+                            placeholder="名字"
+                            value={pet.name}
+                            onChange={handleFieldChange}
+                            required
+                          />
+                          <br />
+                          <span className="error">{fieldErrors.name}</span>
+                        </label>
+
+                        <label className="form-control">
+                          寵物種類:
+                          <select
+                            onChange={handleFieldChange}
+                            name="type"
+                            value={pet.type}
+                          >
+                            <option value="cat">貓</option>
+                            <option value="dog">狗</option>
+                            <option value="other">其他</option>
+                          </select>
+                        </label>
+                        <label className="form-control">
+                          寵物種類:
+                          <div>
+                            <input
+                              onChange={handleFieldChange}
+                              type="radio"
+                              value="boy"
+                              name="gender"
+                            />
+                            男生
+                            <input
+                              onChange={handleFieldChange}
+                              type="radio"
+                              value="girl"
+                              name="gender"
+                            />
+                            女生
+                          </div>
+                        </label>
+                        <button>送出</button>
+                      </form>
+                    </section>
+                  </div>
+                </div>
+                <div className="mt-5 d-flex justify-content-between">
+                  <button
+                    className="btn btn-primary btn-lg"
+                    onClick={() => handleStepChange(1)}
+                  >
+                    上一步
+                  </button>
+                  <button
+                    className="btn btn-primary btn-lg"
+                    type="submit"
+                    onClick={submitActivity}
+                  >
+                    送出
+                  </button>
                 </div>
               </div>
             )}
@@ -273,7 +336,9 @@ function ActivitySignUp() {
               <div>
                 <h1>報名成功</h1>
                 <p>這是最後一個步驟的內容。</p>
-                <button className="mt-5 btn btn-primary btn-lg">完成</button>
+                <a href="/" class="button">
+                  完成
+                </a>
               </div>
             )}
           </div>
