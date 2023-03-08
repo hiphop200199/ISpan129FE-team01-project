@@ -42,11 +42,14 @@ function Food1() {
                   {/* <Link to={`/MealsDetail/${item.product_id}`}>
                     <MoreSquare />
                   </Link> */}
-                  <Link
+                  {/* <Link
                     to={`/MealsDetail/${item.product_id}`}
                     product_id={item.product_id}
                   >
                     <MoreSquare />
+                  </Link> */}
+                  <Link to={`/MealsDetail/${item.product_id}`}>
+                    <button className="button-moreInfo">看更多</button>
                   </Link>
                 </div>
               </div>
