@@ -8,13 +8,13 @@ import Header from '../../layouts/header'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
-function ProductDetail() {
+function MealsDetail() {
   const [product, setProduct] = useState({})
 
   const navigate = useNavigate()
   // 取得query string的值
   const { product_id } = useParams()
-  async function fetchProductDetails() {
+  async function fetchMealsDetail() {
     try {
       const res = await fetch(
         `http://localhost:3002/product/list-detail/${product_id}`
@@ -37,7 +37,7 @@ function ProductDetail() {
 
   useEffect(() => {
     if (!product_id) return
-    fetchProductDetails()
+    fetchMealsDetail()
   }, [product_id])
 
   const {
@@ -128,4 +128,4 @@ function ProductDetail() {
     </>
   )
 }
-export default ProductDetail
+export default MealsDetail
