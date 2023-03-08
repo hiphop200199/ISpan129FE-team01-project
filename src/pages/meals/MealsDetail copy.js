@@ -1,19 +1,16 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import photo from '../../img/productDetails/cheese.jpg'
 import { AddToCartLg, AddToFavoritesLg } from '../../template'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons'
-
 import Header from '../../layouts/header'
 import { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function ProductDetail() {
   const [product, setProduct] = useState({})
-
-  const navigate = useNavigate()
   // 取得query string的值
   const { product_id } = useParams()
+  const navigate = useNavigate()
   async function fetchProductDetails() {
     try {
       const res = await fetch(
@@ -22,6 +19,7 @@ function ProductDetail() {
       if (!res.ok) {
         throw new Error('network res was not ok')
       }
+      console.log(res.baseURL)
       const product = await res.json()
       if (product) {
         setProduct(...product)
@@ -50,13 +48,9 @@ function ProductDetail() {
     product_unit: unit,
     product_image: imageUrl,
   } = product
-
-  const id = localStorage.getItem('id')
-
   return (
     <>
       <Header />
-      <FontAwesomeIcon icon={faAnglesLeft} onClick={() => navigate(-1)} />
       <div className="product-container">
         <section className="product-introduction">
           <div className="product-photo-wrapper">
@@ -68,7 +62,8 @@ function ProductDetail() {
           </div>
           <div className="product-information">
             <h1 className="product-name">{name}</h1>
-            <span className="product-unit">{unit}</span>
+            {/* <span className="product-unit">{unit}</span> */}
+            {unit && <span className="product-unit">{unit}</span>}
             <p className="product-article">
               {descripttion}
               想必大家都能了解潔牙零食的重要性。話雖如此，浦利尼斯二世在不經意間這樣說過，痛苦有個限度，恐懼則綿綿無際。這句話看似簡單，但其中的陰鬱不禁讓人深思。泰戈爾相信，完全理智的心，恰如一柄全是鋒刃的刀，會叫使用它的人手上流血。帶著這句話，我們還要更加慎重的審視這個問題。
@@ -77,8 +72,15 @@ function ProductDetail() {
             <div className="product-button-wrapper">
               {/* <button className="product-add-collection">加入收藏</button>
               <button className="product-add-cart">加入購物車</button> */}
-              <AddToFavoritesLg product={product} id={id} typeID={typeID} />
+              {/* <AddToFavoritesLg /> */}
               <AddToCartLg product={product} />
+              <button
+                onClick={() => navigate('/ReserveConfirm')}
+                type="button"
+                className="btn btn-primary btn-lg min-width-auto ml-10px"
+              >
+                直接購買
+              </button>
             </div>
           </div>
         </section>
