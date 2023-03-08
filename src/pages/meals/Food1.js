@@ -29,16 +29,13 @@ function Food1() {
 
       <div className="card-wrap rwd-container">
         {food.map((item, i) => {
-          {
-            /* const img = require(`../../img/meals/food/${item.img}`) */
-          }
           return (
             <div className="h-card col-6 rwd-col-12" key={i}>
               <div className="h-card-left col-6">
                 <div className="h-card-header">
                   <h3 className="h-card-title">{item.product_name}</h3>
-                  <p className="h-card-subtitle">NT.{item.products_price}</p>
-                  <p className="h-card-text">{item.products_descripttion}</p>
+                  <p className="h-card-subtitle">NT.{item.product_price}</p>
+                  <p className="h-card-text">{item.product_descripttion}</p>
                 </div>
                 <div className="h-card-footer">
                   <span>&#9825;</span>

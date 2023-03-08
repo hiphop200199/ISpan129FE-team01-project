@@ -4,11 +4,13 @@ import { AddToCartLg, AddToFavoritesLg } from '../../template'
 import Header from '../../layouts/header'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function ProductDetail() {
   const [product, setProduct] = useState({})
   // 取得query string的值
   const { product_id } = useParams()
+  const navigate = useNavigate()
   async function fetchProductDetails() {
     try {
       const res = await fetch(
@@ -41,8 +43,8 @@ function ProductDetail() {
     product_type: typeID,
     product_name: name,
     product_class: productClass,
-    products_descripttion: descripttion,
-    products_price: price,
+    product_descripttion: descripttion,
+    product_price: price,
     product_unit: unit,
     product_image: imageUrl,
   } = product
@@ -70,8 +72,15 @@ function ProductDetail() {
             <div className="product-button-wrapper">
               {/* <button className="product-add-collection">加入收藏</button>
               <button className="product-add-cart">加入購物車</button> */}
-              <AddToFavoritesLg />
+              {/* <AddToFavoritesLg /> */}
               <AddToCartLg product={product} />
+              <button
+                onClick={() => navigate('/ReserveConfirm')}
+                type="button"
+                className="btn btn-primary btn-lg min-width-auto ml-10px"
+              >
+                直接購買
+              </button>
             </div>
           </div>
         </section>

@@ -8,8 +8,8 @@ function Card({ product, typeID }) {
     product_id,
     product_name,
     product_class,
-    products_price,
-    products_descripttion,
+    product_price,
+    product_descripttion,
     product_image,
   } = product
   console.log(product_image)
@@ -19,8 +19,8 @@ function Card({ product, typeID }) {
       {/* <section className="text-part"> */}
       <h2 className="title">{product_name}</h2>
       <span hidden>{product_class}</span>
-      <p className="description">{products_descripttion}</p>
-      <span className="price">NT. {products_price}</span>
+      <p className="description">{product_descripttion}</p>
+      <span className="price">NT. {product_price}</span>
       {/* </section> */}
       <section className="buttons">
         <button className="button-collection">&#9825;</button>
