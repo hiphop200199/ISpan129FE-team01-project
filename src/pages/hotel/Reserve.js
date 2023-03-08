@@ -34,9 +34,9 @@ function Reserve() {
         // const imageArray =  {room[0].product_image.split(',')}
 
         const changeReserveDataObj = {
-          money: room[0].products_price,
+          money: room[0].product_price,
           total:
-            room[0].products_price *
+            room[0].product_price *
             reserveData.differenceInDay *
             reserveData.roomCount,
         }
@@ -73,10 +73,10 @@ function Reserve() {
     const changeObj = {
       differenceInDay: differenceInDays,
       [keyName]: keyName === 'startDate' ? checkinDate : checkoutDate,
-      money: Number(roomDetail.products_price) * Number(differenceInDays),
+      money: Number(roomDetail.product_price) * Number(differenceInDays),
       // dateKeyName 是指入住日 或 退房日的key name，所以是當選入住日時keyName為startDate；選退房日時keyName為endDate
       total:
-        Number(roomDetail.products_price) *
+        Number(roomDetail.product_price) *
         differenceInDays *
         reserveData.roomCount,
     }
@@ -117,11 +117,11 @@ function Reserve() {
           <div className="rd-content-left rwd-col-12">
             <div className="title">
               <h1>{roomDetail.product_name}</h1>
-              <h2>NT.{roomDetail.products_price}</h2>
+              <h2>NT.{roomDetail.product_price}</h2>
             </div>
             <p>
               <span>床型尺寸：</span>
-              {roomDetail.products_descripttion}
+              {roomDetail.product_descripttion}
             </p>
             <p>
               <span>客房設施：</span>空調, 地毯, 隔音, 清潔用品, 吊衣架, 淋浴,
@@ -214,7 +214,7 @@ function Reserve() {
                             ...{
                               roomCount: reserveData.roomCount - 1,
                               total:
-                                roomDetail.products_price *
+                                roomDetail.product_price *
                                 reserveData.differenceInDay *
                                 (reserveData.roomCount - 1),
                             },
@@ -231,7 +231,7 @@ function Reserve() {
                           ...{
                             roomCount: reserveData.roomCount + 1,
                             total:
-                              roomDetail.products_price *
+                              roomDetail.product_price *
                               reserveData.differenceInDay *
                               (reserveData.roomCount + 1),
                           },
@@ -378,7 +378,7 @@ function Reserve() {
               <div className="r-price">
                 <div className="price-day">
                   <p>
-                    ${roomDetail.products_price} TWD *
+                    ${roomDetail.product_price} TWD *
                     {reserveData.differenceInDay}晚
                   </p>
 

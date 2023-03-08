@@ -1,31 +1,35 @@
 import { check } from 'prettier'
-import { json, Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye, faAnglesLeft } from '@fortawesome/free-solid-svg-icons'
+import {
+  faCartShopping,
+  faAnglesLeft,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react'
 import 'datejs'
+import AddToCartLg from '../../template/AddToCartLg'
 
-function OrderList({ id }) {
+function MyList({ id, onDelete }) {
   const [tagCheck, setTagCheck] = useState(0)
-  const [order, setOrders] = useState([])
-
-  //descending
-  const numDescending = [...order].sort((a, b) => b.order_id - a.order_id)
-  console.log(numDescending)
+  const [like, setLike] = useState([])
+  const [isDeleting, setIsDeleting] = useState(false)
 
   const navigate = useNavigate()
+  const product = [...like]
 
   useEffect(() => {
     const id = localStorage.getItem('id')
     const fetchData = async () => {
-      const res = await fetch(`http://localhost:3002/orderList/order/${id}`, {
+      const res = await fetch(`http://localhost:3002/member/likes/${id}`, {
         method: 'GET',
       })
-      const order = await res.json()
-      console.log(`http://localhost:3002/orderList/order/${id}`, order)
+      const data = await res.json()
+      const like = Array.isArray(data) ? data : [data]
+      console.log(`http://localhost:3002/member/likes/${id}`, like)
 
       // const [...orders] = order
-      setOrders(order)
+      setLike(like[0].likes)
     }
     fetchData()
   }, [id])
@@ -36,12 +40,34 @@ function OrderList({ id }) {
     setTagCheck(typeId)
   }
 
+  const handleDelete = (sid) => {
+    setIsDeleting(true)
+    const id = localStorage.getItem('id')
+    if (window.confirm(`確定要刪除這筆收藏?`))
+      fetch(`http://localhost:3002/member/deleteLikes/${sid}`, {
+        method: 'DELETE',
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log('Like deleted successfully')
+          // onDelete(sid)
+          // console.log(sid)
+          navigate('/login')
+        })
+        .catch((error) => {
+          console.error('Error deleting like', error)
+        })
+        .finally(() => {
+          setIsDeleting(false)
+        })
+  }
+
   return (
     <>
       <div className="click">
         <FontAwesomeIcon icon={faAnglesLeft} onClick={() => navigate(-1)} />
       </div>
-      <h1 className="orderTitle">查看訂單紀錄</h1>
+      <h1 className="orderTitle">我的收藏列表</h1>
       {/* <div className="info">{JSON.stringify(order)}</div> */}
       <main className="checkoutFlow">
         <div className="tabs">
@@ -120,73 +146,91 @@ function OrderList({ id }) {
             <table>
               <thead>
                 <tr>
-                  <th>訂單編號</th>
-                  <th>訂單日期</th>
+                  {/* <th>編號</th> */}
+                  <th>商品圖</th>
                   <th>分類</th>
-                  <th>訂單狀態</th>
-                  <th>訂單金額</th>
-                  <th>查看明細</th>
+                  <th>商品名稱</th>
+                  <th>刪除</th>
+                  <th>加入購物車</th>
                 </tr>
               </thead>
               <tbody>
                 {tagCheck === 0
-                  ? numDescending.map((order, k) => (
-                      <tr key={`${order.order_id}${k}`}>
-                        <td>{order.order_id}</td>
+                  ? like.map((like, k) => (
+                      <tr key={`${like.sid}${k}`}>
+                        {/* <td>{like.sid}</td> */}
                         <td>
-                          {new Date(order.order_date).toString('yyyy-MM-dd')}
+                          <img
+                            src={`http://localhost:3002/uploads/${like.product_image}`}
+                            alt="product_img"
+                          />
                         </td>
                         <td>
-                          {order.type_id === 1
+                          {like.type_id === 1
                             ? '商品'
-                            : order.type_id === 2
+                            : like.type_id === 2
                             ? '課程'
-                            : order.type_id === 3
+                            : like.type_id === 3
                             ? '住宿'
                             : '餐點'}
                         </td>
-                        <td>{order.status === 0 ? '未付款' : '已付款'}</td>
+                        <td>{like.product_name}</td>
                         <td>
-                          {[order.product_price * order.product_quantity]}
+                          <FontAwesomeIcon
+                            icon={faTrash}
+                            className="more-button"
+                            onClick={() => handleDelete(like.sid)}
+                          />
                         </td>
                         <td>
-                          <Link
-                            to={`/orderDetail/${order.order_id}`}
-                            className="more-button"
-                          >
-                            <FontAwesomeIcon icon={faEye} />
-                          </Link>
+                          <>
+                            <AddToCartLg
+                              product={like}
+                              className="more-button"
+                            />
+                            {/* <FontAwesomeIcon icon={faCartShopping} /> */}
+                          </>
                         </td>
                       </tr>
                     ))
-                  : numDescending
+                  : like
                       .filter((el) => {
                         return el.type_id === tagCheck
                       })
-                      .map((order, k) => (
-                        <tr key={`${order.order_id}${k}`}>
-                          <td>{order.order_id}</td>
+                      .map((like, k) => (
+                        <tr key={`${like.sid}${k}`}>
+                          {/* <td>{like.sid}</td> */}
                           <td>
-                            {new Date(order.order_date).toString('yyyy-MM-dd')}
+                            <img
+                              src={`http://localhost:3002/uploads/${like.product_image}`}
+                              alt="product_img"
+                            />
                           </td>
                           <td>
-                            {order.type_id === 1
+                            {like.type_id === 1
                               ? '商品'
-                              : order.type_id === 2
+                              : like.type_id === 2
                               ? '課程'
-                              : order.type_id === 3
+                              : like.type_id === 3
                               ? '住宿'
                               : '餐點'}
                           </td>
-                          <td>{order.status === 0 ? '未付款' : '已付款'}</td>
-                          <td>{order.product_price}</td>
+                          <td>{like.product_name}</td>
                           <td>
-                            <Link
-                              to={`/orderDetail/${order.order_id}`}
-                              className="more-button"
-                            >
-                              <FontAwesomeIcon icon={faEye} />
-                            </Link>
+                            <FontAwesomeIcon
+                              icon={faTrash}
+                              className="more-button cursor-pointer"
+                              onClick={() => handleDelete(like.sid)}
+                            />
+                          </td>
+                          <td>
+                            <>
+                              <AddToCartLg
+                                product={like}
+                                className="more-button"
+                              />
+                              {/* <FontAwesomeIcon icon={faCartShopping} /> */}
+                            </>
                           </td>
                         </tr>
                       ))}
@@ -199,4 +243,4 @@ function OrderList({ id }) {
   )
 }
 
-export default OrderList
+export default MyList
