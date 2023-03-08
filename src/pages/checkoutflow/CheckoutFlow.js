@@ -19,7 +19,7 @@ function CheckoutFlow() {
   const totalPrice = () => {
     let cartTotal = 0
     items.forEach((items) => {
-      const itemTotal = items.products_quantity * items.products_price
+      const itemTotal = items.product_quantity * items.product_price
       cartTotal += itemTotal
     })
     return cartTotal
@@ -154,9 +154,9 @@ function CheckoutFlow() {
                     {
                       product_id,
                       product_name,
-                      products_price,
+                      product_price,
                       product_image,
-                      products_quantity,
+                      product_quantity,
                     },
                     index
                   ) => (
@@ -168,9 +168,9 @@ function CheckoutFlow() {
                         />
                       </td>
                       <td>{product_name}</td>
-                      <td>{products_price}</td>
-                      <td>{products_quantity}</td>
-                      <td>{products_quantity * products_price}</td>
+                      <td>{product_price}</td>
+                      <td>{product_quantity}</td>
+                      <td>{product_quantity * product_price}</td>
                       {/* <td>從購物車刪除</td> */}
                     </tr>
                   )
