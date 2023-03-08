@@ -38,22 +38,22 @@ function HomePage() {
       </Swiper>
 
       <section>
-        <div class="homehotel-moreroom">
+        <div className="homehotel-moreroom">
           <Link to="/hotel">查看更多房型</Link>
         </div>
-        <div class="homehotel">
-          <div class="homehotel-box">
+        <div className="homehotel">
+          <div className="homehotel-box">
             <div className="homehotel-zoomin">
               <img src={require('../img/hotels/hotel-single.jpg')} alt="" />
             </div>
           </div>
-          <div class="homehotel-box">
+          <div className="homehotel-box">
             <div className="homehotel-zoomin">
               <img src={require('../img/hotels/quadruple room.jpg')} alt="" />
             </div>
             <div></div>
           </div>
-          <div class="homehotel-box">
+          <div className="homehotel-box">
             <div className="homehotel-zoomin">
               <img
                 src={require('../img/hotels/standard-double-room.jpg')}
@@ -61,12 +61,12 @@ function HomePage() {
               />
             </div>
           </div>
-          <div class="homehotel-box">
+          <div className="homehotel-box">
             <div className="homehotel-zoomin">
               <img src={require('../img/hotels/tripple-room.jpg')} alt="" />
             </div>
           </div>
-          <div class="homehotel-box">
+          <div className="homehotel-box">
             <div className="homehotel-zoomin">
               <img src={require('../img/hotels/twin-double-room.jpg')} alt="" />
             </div>

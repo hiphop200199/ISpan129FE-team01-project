@@ -3,7 +3,7 @@
 @import '~bootstrap/scss/bootstrap';
 // 其他自訂樣式
 @import '_layout.scss';
-@import '_card.scss';
+// @import '_card.scss';
 @import 'reserve.scss';
 @import 'registerMember.scss';
 @import 'editMember.scss';
@@ -18,7 +18,7 @@
 @import '_cart.scss';
 @import 'header.scss';
 @import 'headerSearch.scss';
-
+@import 'productCard.scss';
 @import 'hotel.scss';
 
 @import 'product.scss';
