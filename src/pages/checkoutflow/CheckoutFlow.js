@@ -121,21 +121,21 @@ function CheckoutFlow() {
     const formString = Object.fromEntries(formData.entries())
     const AddDetailData = { detailData, ...formString }
     try {
+      // 第一次
       const res = await sendFormData(AddDetailData)
       if (res.ok) {
         const data = await res.json()
-        const { oid } = data
+        const { order_id } = data
         localStorage.setItem('cart', JSON.stringify([]))
         setAddOrder(true)
-        setOrderID(oid)
-        const orderData = await getOrderData(oid)
+        setOrderID(order_id)
+        const orderData = await getOrderData(order_id)
         setOrderData(orderData)
       } else {
         throw new Error('Failed to submit form')
       }
     } catch (error) {
       console.error(error)
-      // 如果出現異常，可以在這裡進行處理
     }
   }
 
@@ -239,8 +239,8 @@ function CheckoutFlow() {
               id="tab1"
               onChange={handleChange}
               checked={tagCheck === 'tab1'}
-              // onChange={handleChange}
-              // checked={tagCheck}
+            // onChange={handleChange}
+            // checked={tagCheck}
             />
             <label htmlFor="tab1" className="tabs__label">
               我的購物車
@@ -423,7 +423,7 @@ function CheckoutFlow() {
       ) : (
         <main className="checkoutFlow d-flex justify-content-center align-items-center">
           <div className="tabs col-10 ">
-            <p> 訂單編號:{''}</p>
+            <p> 訂單編號:{orderID}</p>
             <p> 訂單日期:{''}</p>
             <p> 訂單狀態:{''}</p>
             <input
@@ -433,8 +433,8 @@ function CheckoutFlow() {
               id="tab1"
               onChange={handleChange}
               checked={tagCheck === 'tab1'}
-              // onChange={handleChange}
-              // checked={tagCheck}
+            // onChange={handleChange}
+            // checked={tagCheck}
             />
             <label htmlFor="tab1" className="tabs__label">
               訂單內容
