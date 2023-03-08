@@ -16,7 +16,7 @@ function CheckoutFlow() {
   const totalPrice = () => {
     let cartTotal = 0
     items.forEach((items) => {
-      const itemTotal = items.product_qry * items.products_price
+      const itemTotal = items.product_qry * items.product_price
       cartTotal += itemTotal
     })
     return cartTotal
@@ -68,7 +68,7 @@ function CheckoutFlow() {
                     {
                       product_id,
                       product_name,
-                      products_price,
+                      product_price,
                       product_image,
                       product_qry,
                     },
@@ -82,9 +82,9 @@ function CheckoutFlow() {
                         />
                       </td>
                       <td>{product_name}</td>
-                      <td>{products_price}</td>
+                      <td>{product_price}</td>
                       <td>{product_qry}</td>
-                      <td>{product_qry * products_price}</td>
+                      <td>{product_qry * product_price}</td>
                       {/* <td>從購物車刪除</td> */}
                     </tr>
                   )
@@ -106,7 +106,7 @@ function CheckoutFlow() {
             <NextStepLg />
           </div>
         </div>
-        {/* <section className="recommended-products">
+        {/* <section className="recommended-product">
           <h1 className="product-title col-10">猜你喜歡</h1>
           <article className="product">
             <div className="card">

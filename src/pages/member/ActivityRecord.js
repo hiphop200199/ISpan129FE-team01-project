@@ -143,7 +143,7 @@ function ActivityRecord({ id }) {
                         </td>
                         <td>{order.status === 0 ? '未付款' : '已付款'}</td>
                         <td>
-                          {[order.products_price * order.products_quantity]}
+                          {[order.product_price * order.product_quantity]}
                         </td>
                         <td>
                           <Link
@@ -175,7 +175,7 @@ function ActivityRecord({ id }) {
                               : '餐點'}
                           </td>
                           <td>{order.status === 0 ? '未付款' : '已付款'}</td>
-                          <td>{order.products_price}</td>
+                          <td>{order.product_price}</td>
                           <td>
                             <Link
                               to={`/orderDetail/${order.order_id}`}

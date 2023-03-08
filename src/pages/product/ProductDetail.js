@@ -42,8 +42,8 @@ function ProductDetail() {
     product_type: typeID,
     product_name: name,
     product_class: productClass,
-    products_descripttion: descripttion,
-    products_price: price,
+    product_descripttion: descripttion,
+    product_price: price,
     product_unit: unit,
     product_image: imageUrl,
   } = product

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 function CourseDetail() {
   const { product_id } = useParams()
+
   const [courseDetail, setCourseDetail] = useState([])
   useEffect(() => {
     fetch(`http://localhost:3002/product/list-detail/${product_id}`)
@@ -20,7 +21,7 @@ function CourseDetail() {
             <div className="course-detail-photo-wrapper">
               <img
                 src={`http://localhost:3002/uploads/${item.product_image}`}
-                alt="product-photo"
+                alt=""
               />
             </div>
             <div className="course-detail-information">
