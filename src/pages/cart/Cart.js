@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SquareAccounts } from '../../template'
+import { QuantitySelector, SquareAccounts } from '../../template'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
@@ -10,12 +10,19 @@ const Cart = () => {
   const [items, setItems] = useState(
     JSON.parse(localStorage.getItem('cart')) || []
   )
+  // const [quantity, setQuantity] = useState(JSON.parse(localStorage.getItem('cart')).product_quantity)
   // 在點擊“移除”按鈕時，從購物車中刪除該商品
   const removeItem = (index) => {
     // 切割購物車的Json資料
     const newItems = [...items.slice(0, index), ...items.slice(index + 1)]
     localStorage.setItem('cart', JSON.stringify(newItems))
     // 更新狀態以重新渲染畫面
+    setItems(newItems)
+  }
+  const updateQuantity = (index, newQuantity) => {
+    const newItems = [...items]
+    newItems[index].product_quantity = newQuantity
+    localStorage.setItem('cart', JSON.stringify(newItems))
     setItems(newItems)
   }
 
@@ -55,7 +62,11 @@ const Cart = () => {
                     </td>
                     <td>{product_name}</td>
                     <td>{product_price}</td>
-                    <td>{product_quantity}</td>
+                    <td><QuantitySelector
+                      productQuantity={product_quantity}
+                      index={index}
+                      updateQuantity={updateQuantity}
+                    /></td>
                     <td>
                       <button onClick={() => removeItem(index)}>移除</button>
                     </td>
