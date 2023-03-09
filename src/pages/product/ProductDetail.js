@@ -1,57 +1,66 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import photo from '../../img/productDetails/cheese.jpg'
 import { AddToCartLg, AddToFavoritesLg } from '../../template'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons'
+
 import Header from '../../layouts/header'
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 function ProductDetail() {
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState({})
+
+  const navigate = useNavigate()
   // 取得query string的值
-  const { product_id } = useParams();
+  const { product_id } = useParams()
   async function fetchProductDetails() {
     try {
       const res = await fetch(
         `http://localhost:3002/product/list-detail/${product_id}`
       )
       if (!res.ok) {
-        throw new Error('network res was not ok');
+        throw new Error('network res was not ok')
       }
-      console.log(res.baseURL)
-      const product = await res.json();
+      const product = await res.json()
       if (product) {
-        setProduct(...product);
+        setProduct(...product)
         // console.log(product)
       } else {
         // 商品不存在，導向 404 頁面或顯示錯誤訊息
-        throw new Error('Product not found');
+        throw new Error('Product not found')
       }
     } catch (error) {
-      console.error('Error fetching product data:', error);
+      console.error('Error fetching product data:', error)
     }
   }
 
   useEffect(() => {
 
-    if (!product_id) return;
-    fetchProductDetails();
-  }, [product_id]);
+    if (!product_id) return
+    fetchProductDetails()
+  }, [product_id])
+
 
   const {
     product_id: productID,
     product_type: typeID,
     product_name: name,
     product_class: productClass,
-    products_descripttion: descripttion,
-    products_price: price,
+    product_descripttion: descripttion,
+    product_price: price,
     product_unit: unit,
     product_image: imageUrl,
   } = product
 
+
+
   const id = localStorage.getItem('id')
+
   return (
     <>
       <Header />
+      <FontAwesomeIcon icon={faAnglesLeft} onClick={() => navigate(-1)} />
       <div className="product-container">
         <section className="product-introduction">
           <div className="product-photo-wrapper">
