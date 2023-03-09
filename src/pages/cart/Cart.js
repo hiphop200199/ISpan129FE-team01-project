@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { QuantitySelector, SquareAccounts } from '../../template'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons'
+import { faAnglesLeft, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
 
 const Cart = () => {
@@ -68,7 +68,7 @@ const Cart = () => {
                       updateQuantity={updateQuantity}
                     /></td>
                     <td>
-                      <button onClick={() => removeItem(index)}>移除</button>
+                      <button className='btn' onClick={() => removeItem(index)}><FontAwesomeIcon icon={faXmark} /></button>
                     </td>
                   </tr>
                 )
