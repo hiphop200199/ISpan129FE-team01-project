@@ -122,8 +122,8 @@
         flex-direction: column;
         justify-content: space-evenly;
         background-color: var(--light-yellow);
-        width: 35%;
-        margin: 2vmax;
+        width: 36%;
+        margin: 3.5vmax;
         height: 40%;
         border-radius: 30px;
         padding: 1vmax;
@@ -178,10 +178,10 @@
         & img {
             position: absolute;
             width: 48%;
-            height: 80%;
-            right: -16%;
-            top: 10%;
+            height: 70%;
+            top: 12%;
             border-radius: 1vmax;
+            object-fit: cover;
           }
       }
 }
@@ -268,7 +268,7 @@
         justify-content: center;
         height: 75%;
         & .productCard{
-            width: 70%;
+            width: 65%;
             & .text-part{
                 & .description{
                     height: 32%;
@@ -276,7 +276,7 @@
             }
             & img{
                 width: 52%;
-                right: -12%;
+                left: 54%;
             }
         }
     }
@@ -288,13 +288,57 @@
             height: 30vh;
             & img{
                 height: 100%;
-                object-fit: cover;
+              
             }
         }
         & .course-detail-information{
             justify-content: space-evenly;
             width: 100%;
             height:calc(100vh - 20px - 30vh) ;
+        }
+    }
+ }
+ @media screen and (width <600px){
+    .tags{
+        & .search-bar{
+            width: 70%;
+            & #search{
+              width: 82%;
+         }    
+        }
+    
+    }
+    .course-search-results{
+       
+        & .productCard{
+            width: 70%;         
+            min-width: 76%; 
+            & .text-part{
+                & .title {
+                    font-size: 20px;
+                  }
+                & .product-unit{
+                    font-size: 16px;
+                }  
+                & .description{
+                    font-size: 16px;
+                }  
+                & .price{
+                    font-size: 16px;
+                }  
+            }
+            & .buttons {
+                align-items: flex-end;
+                & .button-collection {
+                
+                  font-size: 20px;
+                }
+                & .button-moreInfo {
+                
+                  font-size: 16px;
+                
+                }
+              }
         }
     }
  }
