@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { Navigate, BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import MainLayouts from './layouts/Mainlayouts'
 import Activity from './pages/activity/Activity'
 import ActivityDetail from './pages/activity/ActivityDetail'
@@ -89,7 +89,12 @@ function App() {
           <Route path="orderDetail/:order_id" element={<OrderDetail />} />
           <Route path="myList" element={<MyList />} />
           <Route path="cart" element={<Cart />} />
-          <Route path="CheckoutFlow" element={<CheckoutFlow />} />
+          <Route
+            path="CheckoutFlow"
+            element={
+              localStorage.getItem("cart") && JSON.parse(localStorage.getItem("cart")).length > 0 ? <CheckoutFlow /> : <Navigate to="/" />
+            }
+          />
           <Route path="OrderConfirmed" element={<OrderConfirmed />} />
           <Route path="Card" element={<Card />}></Route>
 
