@@ -20,7 +20,7 @@ function QuantitySelector({ productQuantity, index, updateQuantity }) {
       <div className="calculate-btn-box">
         <button
           className="dash calculate-btn"
-          disabled={count <= 0}
+          disabled={count <= 1}
           onClick={() => handleQuantityChange(count - 1)}
         ></button>
         <span>{count}</span>
