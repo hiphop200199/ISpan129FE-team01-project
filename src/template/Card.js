@@ -4,7 +4,6 @@ import photo from '../img/productDetails/cheese.jpg'
 import { AddToCartLg, MoreSquare, AddToFavoritesLg } from './index'
 
 function Card({ product, typeID }) {
-  const id = localStorage.getItem('id')
   const {
     product_id,
     product_name,
@@ -24,10 +23,8 @@ function Card({ product, typeID }) {
       <span className="price">NT. {product_price}</span>
       {/* </section> */}
       <section className="buttons">
-
         <button className="button-collection">
-          {' '}
-          <AddToFavoritesLg product={product} typeID={typeID} id={id} />
+          <AddToFavoritesLg product={product} typeID={typeID} />
         </button>
         <MoreSquare product_id={product_id} typeID={typeID} />
         {/* <MoreSquare typeID={typeID} product_id={product_id} /> */}
