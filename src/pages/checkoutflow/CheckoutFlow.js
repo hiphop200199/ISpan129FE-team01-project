@@ -109,8 +109,8 @@ function CheckoutFlow() {
   const [orderData, setOrderData] = useState([])
 
   // 取得最新結帳的訂單資料API
-  const getOrderData = (orderId) => {
-    return fetch(`http://localhost:3002/orderList/orderDetail/${orderId}`).then(
+  const getOrderData = (orderID) => {
+    return fetch(`http://localhost:3002/orderList/orderDetail/${orderID}`).then(
       (res) => res.json()
     )
   }
@@ -130,7 +130,9 @@ function CheckoutFlow() {
         setAddOrder(true)
         setOrderID(order_id)
         const orderData = await getOrderData(order_id)
+        // const orderDataArray = Object.values(orderData)
         setOrderData(orderData)
+        console.log(orderData)
       } else {
         throw new Error('Failed to submit form')
       }
@@ -138,7 +140,22 @@ function CheckoutFlow() {
       console.error(error)
     }
   }
+  // 計算訂單總金額
+  const [totalOrder, setTotalOrder] = useState(0)
+  useEffect(() => {
+    const totalOrderPrice = () => {
+      let orderTotal = 0
+      orderData.forEach((item) => {
+        const itemTotal = item.product_quantity * item.product_price
+        orderTotal += itemTotal
+      })
+      return orderTotal
+    }
 
+    setTotalOrder(totalOrderPrice())
+  }, [orderData])
+
+  // const totalOrder = totalOrderPrice()
   // 發送表單的API
   // const sendFormData = (data) => {
   //   return fetch(`http://localhost:3002/order/${id}`, {
@@ -239,8 +256,8 @@ function CheckoutFlow() {
               id="tab1"
               onChange={handleChange}
               checked={tagCheck === 'tab1'}
-            // onChange={handleChange}
-            // checked={tagCheck}
+              // onChange={handleChange}
+              // checked={tagCheck}
             />
             <label htmlFor="tab1" className="tabs__label">
               我的購物車
@@ -422,10 +439,27 @@ function CheckoutFlow() {
         </main>
       ) : (
         <main className="checkoutFlow d-flex justify-content-center align-items-center">
+          <p> 訂單編號:{orderID}</p>
+          <p>
+            訂單日期:
+            {orderData[0] &&
+              new Date(orderData[0].order_date).toString('yyyy-MM-dd')}
+          </p>
+          <p>
+            {' '}
+            訂單狀態:
+            {orderData[0] && orderData[0].status === 0 ? '未付款' : '已付款'}
+          </p>
+
+          <p>
+            付款方式:
+            {orderData[0] && orderData[0].payment_method === 1
+              ? '信用卡付款'
+              : orderData[0] && orderData[0].payment_method === 2
+              ? '貨到付款'
+              : '現場付款'}
+          </p>
           <div className="tabs col-10 ">
-            <p> 訂單編號:{orderID}</p>
-            <p> 訂單日期:{''}</p>
-            <p> 訂單狀態:{''}</p>
             <input
               type="radio"
               className="tabs__radio"
@@ -433,8 +467,8 @@ function CheckoutFlow() {
               id="tab1"
               onChange={handleChange}
               checked={tagCheck === 'tab1'}
-            // onChange={handleChange}
-            // checked={tagCheck}
+              // onChange={handleChange}
+              // checked={tagCheck}
             />
             <label htmlFor="tab1" className="tabs__label">
               訂單內容
@@ -443,8 +477,7 @@ function CheckoutFlow() {
               <table>
                 <thead>
                   <tr>
-                    <th>訂單編號</th>
-                    <th>訂單</th>
+                    <th>訂單項目</th>
                     <th>商品圖</th>
                     <th>名稱</th>
                     {/* <th>規格</th> */}
@@ -454,34 +487,27 @@ function CheckoutFlow() {
                   </tr>
                 </thead>
                 <tbody>
-                  {items.map(
-                    (
-                      {
-                        product_id,
-                        product_name,
-                        product_price,
-                        product_image,
-                        product_quantity,
-                      },
-                      index
-                    ) => (
-                      <tr key={product_id}>
-                        <td>
-                          <img
-                            src={`http://localhost:3002/uploads/${product_image}`}
-                            alt={product_name}
-                          />
-                        </td>
-                        <td>{product_name}</td>
-                        <td>{product_price}</td>
-                        <td>{product_quantity}</td>
-                        <td>{product_quantity * product_price}</td>
-                        {/* <td>從購物車刪除</td> */}
-                      </tr>
-                    )
-                  )}
+                  {orderData.map((item, index) => (
+                    <tr key={item.product_id}>
+                      <td>{index + 1}</td>
+                      <td>
+                        <img
+                          src={`http://localhost:3002/uploads/${item.product_image}`}
+                          alt={item.product_name}
+                        />
+                      </td>
+                      <td>{item.product_name}</td>
+                      <td>{item.product_price}</td>
+                      <td>{item.product_quantity}</td>
+                      {/* <td>從購物車刪除</td> */}
+                    </tr>
+                  ))}
                 </tbody>
               </table>
+              <div className="d-flex justify-content-between mb-2 pb-2">
+                <p className="m-0 p-0">合計:</p>
+                <p className="m-0 pe-3">{totalOrder}</p>
+              </div>
             </div>
           </div>
         </main>
