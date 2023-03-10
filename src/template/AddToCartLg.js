@@ -8,7 +8,6 @@ function AddToCartLg({ product }) {
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem('cart')) || []
   )
-
   // 點擊按鈕時觸發的事件
   const handleAddCart = () => {
     let found = false

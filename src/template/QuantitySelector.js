@@ -33,5 +33,4 @@ function QuantitySelector({ productQuantity, index, updateQuantity }) {
   )
 }
 
-
 export default QuantitySelector

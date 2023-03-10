@@ -1,19 +1,27 @@
-import { Link } from 'react-router-dom'
-import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+
+import { QuantitySelector, SquareAccounts } from '../template'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
-import { faComment } from '@fortawesome/free-solid-svg-icons'
+import {
+  faUser,
+  faAnglesLeft,
+  faXmark,
+  faComment,
+  faCartShopping,
+} from '@fortawesome/free-solid-svg-icons'
 
 function AbilityTrain() {
   return (
-    <div className="ability-train">
-      <Link to="/login">
-        <FontAwesomeIcon icon={faUser} />
-      </Link>
-      <a href="http://">
-        <FontAwesomeIcon icon={faComment} />
-      </a>
-    </div>
+    <>
+      <div className="ability-train">
+        <Link to="/login">
+          <FontAwesomeIcon icon={faUser} />
+        </Link>
+        <a href="http://">
+          <FontAwesomeIcon icon={faComment} />
+        </a>
+      </div>
+    </>
   )
 }
 
