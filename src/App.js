@@ -30,6 +30,7 @@ import Header from './layouts/header'
 import index from './template'
 // import FormTemplate from './template/form'
 import CheckoutFlow from './pages/checkoutflow/CheckoutFlow'
+import OrderConfirmed from './pages/checkoutflow/OrderConfirmed'
 import OrderList from './pages/member/OrderList'
 import OrderDetail from './pages/member/OrderDetail'
 import ReserveConfirm from './pages/hotel/ReserveConfirm'
@@ -93,6 +94,7 @@ function App() {
           <Route path="myList" element={<MyList />} />
           <Route path="cart" element={<Cart />} />
           <Route path="CheckoutFlow" element={<CheckoutFlow />} />
+          <Route path="OrderConfirmed" element={<OrderConfirmed />} />
           <Route path="Card" element={<Card />}></Route>
 
 

@@ -3,7 +3,6 @@ import { json, Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faAnglesLeft } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react'
-import 'datejs'
 
 function OrderList({ id }) {
   const [tagCheck, setTagCheck] = useState(0)
@@ -54,7 +53,7 @@ function OrderList({ id }) {
               handleChange(0)
             }}
             checked={tagCheck === 0}
-            // checked={tagCheck === '所有'}
+          // checked={tagCheck === '所有'}
           />
           <label htmlFor="tab1" className="tabs__label">
             所有
@@ -69,7 +68,7 @@ function OrderList({ id }) {
               handleChange(1)
             }}
             checked={tagCheck === 1}
-            // checked={tagCheck}
+          // checked={tagCheck}
           />
           <label htmlFor="tab2" className="tabs__label">
             商城
@@ -131,6 +130,39 @@ function OrderList({ id }) {
               <tbody>
                 {tagCheck === 0
                   ? numDescending.map((order, k) => (
+                    <tr key={`${order.order_id}${k}`}>
+                      <td>{order.order_id}</td>
+                      <td>
+                        {new Date(order.order_date).toString('yyyy-MM-dd')}
+                      </td>
+                      <td>
+                        {order.type_id === 1
+                          ? '商品'
+                          : order.type_id === 2
+                            ? '課程'
+                            : order.type_id === 3
+                              ? '住宿'
+                              : '餐點'}
+                      </td>
+                      <td>{order.status === 0 ? '未付款' : '已付款'}</td>
+                      <td>
+                        {[order.product_price * order.product_quantity]}
+                      </td>
+                      <td>
+                        <Link
+                          to={`/orderDetail/${order.order_id}`}
+                          className="more-button"
+                        >
+                          <FontAwesomeIcon icon={faEye} />
+                        </Link>
+                      </td>
+                    </tr>
+                  ))
+                  : numDescending
+                    .filter((el) => {
+                      return el.type_id === tagCheck
+                    })
+                    .map((order, k) => (
                       <tr key={`${order.order_id}${k}`}>
                         <td>{order.order_id}</td>
                         <td>
@@ -140,15 +172,13 @@ function OrderList({ id }) {
                           {order.type_id === 1
                             ? '商品'
                             : order.type_id === 2
-                            ? '課程'
-                            : order.type_id === 3
-                            ? '住宿'
-                            : '餐點'}
+                              ? '課程'
+                              : order.type_id === 3
+                                ? '住宿'
+                                : '餐點'}
                         </td>
                         <td>{order.status === 0 ? '未付款' : '已付款'}</td>
-                        <td>
-                          {[order.product_price * order.product_quantity]}
-                        </td>
+                        <td>{order.product_price}</td>
                         <td>
                           <Link
                             to={`/orderDetail/${order.order_id}`}
@@ -158,38 +188,7 @@ function OrderList({ id }) {
                           </Link>
                         </td>
                       </tr>
-                    ))
-                  : numDescending
-                      .filter((el) => {
-                        return el.type_id === tagCheck
-                      })
-                      .map((order, k) => (
-                        <tr key={`${order.order_id}${k}`}>
-                          <td>{order.order_id}</td>
-                          <td>
-                            {new Date(order.order_date).toString('yyyy-MM-dd')}
-                          </td>
-                          <td>
-                            {order.type_id === 1
-                              ? '商品'
-                              : order.type_id === 2
-                              ? '課程'
-                              : order.type_id === 3
-                              ? '住宿'
-                              : '餐點'}
-                          </td>
-                          <td>{order.status === 0 ? '未付款' : '已付款'}</td>
-                          <td>{order.product_price}</td>
-                          <td>
-                            <Link
-                              to={`/orderDetail/${order.order_id}`}
-                              className="more-button"
-                            >
-                              <FontAwesomeIcon icon={faEye} />
-                            </Link>
-                          </td>
-                        </tr>
-                      ))}
+                    ))}
               </tbody>
             </table>
           </div>
