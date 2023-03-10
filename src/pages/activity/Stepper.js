@@ -11,19 +11,31 @@ function Stepper(props) {
       >
         <Step transition="scale">
           {({ accomplished, page }) => (
-            <div className={`step ${accomplished ? 'completed' : ''}`}>1</div>
+            <div className={`step ${accomplished ? 'completed' : ''}`}>
+              <div className="stepper-number">1</div>
+              <div className="stepper-text">確認活動</div>
+            </div>
           )}
         </Step>
+        {/* <div>確認活動</div> */}
         <Step transition="scale">
           {({ accomplished, page }) => (
-            <div className={`step ${accomplished ? 'completed' : ''}`}>2</div>
+            <div className={`step ${accomplished ? 'completed' : ''}`}>
+              <div className="stepper-number">2</div>
+              <div className="stepper-text">填寫資料</div>
+            </div>
           )}
         </Step>
+        {/* <div>填寫資料</div> */}
         <Step transition="scale">
           {({ accomplished, page }) => (
-            <div className={`step ${accomplished ? 'completed' : ''}`}>3</div>
+            <div className={`step ${accomplished ? 'completed' : ''}`}>
+              <div className="stepper-number">3</div>
+              <div className="stepper-text">報名成功</div>
+            </div>
           )}
         </Step>
+        {/* <div>報名成功</div> */}
       </ProgressBar>
     </>
   )

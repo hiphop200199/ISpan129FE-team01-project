@@ -9,6 +9,9 @@ function ActivitySignUp() {
   const handleStepChange = (newStep) => {
     setStep(newStep)
   }
+  const navigate = useNavigate()
+  //有無驗證成功->預設驗證成功
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   //第一步列表
   const [tagCheck, setTagCheck] = useState('tab1')
@@ -23,7 +26,18 @@ function ActivitySignUp() {
   const [firstRender, setFirstRender] = useState(true)
 
   useEffect(() => {
-    fetchData()
+    if (firstRender) {
+      setFirstRender(false)
+    }
+
+    const storedId = localStorage.getItem('id')
+    if (storedId) {
+      setIsAuthenticated(true)
+      fetchData()
+    } else {
+      alert('填寫報名')
+      navigate('/login')
+    }
   }, [activity_id, id])
   // console.log(activity)
 
@@ -49,14 +63,14 @@ function ActivitySignUp() {
     const member = await res3.json()
     setMember(member)
 
-    setFirstRender(false)
+    // setFirstRender(false)
   }
 
   //第二步表單
   const [pet, setPet] = useState({
     name: '',
-    type: 'other',
-    gender: '',
+    type: '狗',
+    gender: '男生',
   })
   //---用於記錄錯誤訊息之用
   const [fieldErrors, setFieldErrors] = useState({
@@ -69,7 +83,6 @@ function ActivitySignUp() {
     //---以下要依照通用的三步驟原則來更新狀態
     setPet({ ...pet, [e.target.name]: e.target.value })
   }
-  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     //---第一航要阻擋預設的form送出行為
@@ -147,14 +160,14 @@ function ActivitySignUp() {
 
   return (
     <>
-      {firstRender ? (
+      {!isAuthenticated || firstRender ? (
         false
       ) : (
         <div className="SignUp-page">
           <div className="SignUp-head">
             <Stepper step={step} />
           </div>
-          <div>
+          <div className="SignUp-body">
             {/* 步驟一 */}
             {step === 1 && (
               <div>
@@ -223,19 +236,39 @@ function ActivitySignUp() {
               <div>
                 <div className="step2-container">
                   {/* 步驟二的內容。 */}
-                  <div>
-                    <h5>報名人資料</h5>
-                    <p>姓名:{member.name}</p>
-                    <p>電話:{member.mobile}</p>
-                    <p>信箱:{member.email}</p>
-                    {/* <p>{member.pet_name}</p> */}
+                  <div className="step2-form1">
+                    <div className="step2-form1-title">
+                      <h5 className="step-form1-word">報名人資料</h5>
+                    </div>
+
+                    <div className="step-table-wrap">
+                      <div className="step-table-title">姓名</div>
+                      <div className="step-table-description">
+                        {member.name}
+                      </div>
+                    </div>
+                    <div className="step-table-wrap">
+                      <div className="step-table-title">電話</div>
+                      <div className="step-table-description">
+                        {member.mobile}
+                      </div>
+                    </div>
+                    <div className="step-table-wrap">
+                      <div className="step-table-title">信箱</div>
+                      <div className="step-table-description">
+                        {member.email}
+                      </div>
+                    </div>
+
                     <form name="formActivity" id="formActivity">
-                      <div>
+                      <div div className="step-table-wrap">
+                        <div className="step-table-title">選擇攜帶寵物</div>
+
                         {pets.map((el, idx) => {
                           return (
-                            <div key={idx}>
+                            <div key={idx} className="step-table-description">
                               <input
-                                className="form-check-input"
+                                className=""
                                 type="radio"
                                 name="pets"
                                 id="pets"
@@ -244,7 +277,7 @@ function ActivitySignUp() {
                               />
                               {el.pet_name}
                               <label
-                                className="form-check-label"
+                                className=""
                                 htmlFor="exampleRadios1"
                               ></label>
                             </div>
@@ -253,17 +286,20 @@ function ActivitySignUp() {
                       </div>
                     </form>
                   </div>
-                  <div>
-                    <section>
-                      <h5>新增寵物</h5>
+
+                  <div className="step-form2">
+                    <div className="step2-form1-title">
+                      <h5 className="step-form1-word">新增寵物</h5>
+                    </div>
+                    <section className="addpet-box">
                       <form
-                        className="member-form"
+                        className="addpet-form"
                         onSubmit={handleSubmit}
                         onInvalid={handelInvalid}
                         onChange={handleFormChange}
                       >
                         <input type="hidden" name="id" value={id} />
-                        <label className="form-control">
+                        <label className="addpet-control">
                           <input
                             id="name"
                             type="text"
@@ -273,30 +309,45 @@ function ActivitySignUp() {
                             onChange={handleFieldChange}
                             required
                           />
-                          <br />
+
                           <span className="error">{fieldErrors.name}</span>
                         </label>
 
-                        <label className="form-control">
-                          寵物種類:
-                          <select
-                            onChange={handleFieldChange}
-                            name="type"
-                            value={pet.type}
-                          >
-                            <option value="貓">貓</option>
-                            <option value="狗">狗</option>
-                            <option value="其他">其他</option>
-                          </select>
-                        </label>
-                        <label className="form-control">
-                          寵物種類:
-                          <div>
+                        <div className="addpet-select">
+                          <span className="addpet-control">寵物種類:</span>
+                          <label className="addpet-type">
+                            <input
+                              onChange={handleFieldChange}
+                              type="radio"
+                              value="貓"
+                              name="type"
+                              checked
+                            />
+                            貓
+                            <input
+                              onChange={handleFieldChange}
+                              type="radio"
+                              value="狗"
+                              name="type"
+                            />
+                            狗
+                            <input
+                              onChange={handleFieldChange}
+                              type="radio"
+                              value="其他"
+                              name="type"
+                            />
+                            其他
+                          </label>
+                          <br />
+                          <span className="addpet-control">寵物性別:</span>
+                          <label className="addpet-type">
                             <input
                               onChange={handleFieldChange}
                               type="radio"
                               value="男生"
                               name="gender"
+                              checked
                             />
                             男生
                             <input
@@ -306,9 +357,12 @@ function ActivitySignUp() {
                               name="gender"
                             />
                             女生
-                          </div>
-                        </label>
-                        <button>送出</button>
+                          </label>
+                        </div>
+
+                        <button className=" btn btn-lg btn-primary-for-login">
+                          送出
+                        </button>
                       </form>
                     </section>
                   </div>

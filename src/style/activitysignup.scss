@@ -4,15 +4,76 @@
     box-sizing: border-box;
 }
 .SignUp-page{
-    display: flex;
-    flex-direction: column;
+    
+    display: grid;
+    align-items: center;
+    
+
     .SignUp-head{
+        padding:70px 300px ;
         margin-bottom: 100px;
     }
-}
+    .SignUp-body{
+        padding: 0 100px;
+    }
 
-.step2-container{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
+    .step2-container{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 0 100px;
+
+       .step2-form1{
+        width: 60%;
+        background: var( --light-blue);
+        border-radius: 30px;
+        
+            .step2-form1-title{
+                background-color: var(--primary);
+                border-radius: 20px 20px 0 0 ;
+                .step-form1-word{
+                    color: var(--text-white);
+                    font-weight: bolder;
+                    padding: 20px;
+                    text-align: center;
+                }
+            }
+            
+                
+            .step-table-wrap{
+                display: flex;
+
+                .step-table-title{
+                    width: 8em;
+                    padding-left: 20px;
+                    border-right: 2px solid white;
+                    font-weight: bold;
+                    color: var(--text-black);
+                }
+                .step-table-description{
+                    padding-left: 46px;
+                    color: var(--text-black);
+                }
+            }
+            
+       }
+
+       .step-form2{
+            @extend .step2-form1;
+            width: 30%;
+
+            .addpet-box{    
+                padding: 20px;
+                display: flex;
+                justify-content: center;
+
+              .addpet-control{
+                    background: white;
+                    width:auto;
+                    margin-bottom: 20px ;
+                }
+            }              
+        }
+       
+    }
+}     
