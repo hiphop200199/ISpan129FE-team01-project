@@ -90,7 +90,11 @@ function HomePage() {
           </div>
           <div className="homehotel-box">
             <div className="homehotel-zoomin">
-              <img src={require('../img/hotels/tripple-room.jpg')} alt="" />
+              <img
+                src={require('../img/hotels/tripple-room.jpg')}
+                alt=""
+                className="homehotel-img"
+              />
             </div>
           </div>
           <div className="homehotel-box">
