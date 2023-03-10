@@ -7,7 +7,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as faHeartOutline } from '@fortawesome/free-regular-svg-icons'
 
-function AddToFavoritesLg({ product, typeID, id }) {
+function AddToFavoritesLg({ product, typeID }) {
+  const id = localStorage.getItem('id')
+
   const {
     product_id,
     product_name,

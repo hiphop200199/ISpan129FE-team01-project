@@ -40,10 +40,11 @@ function Login() {
         if (data.success) {
           localStorage.setItem('email', data.email)
           localStorage.setItem('id', data.id)
+          localStorage.setItem('name', data.name)
           setEmail(data.email)
           setIsAuthenticated(true)
           alert('登入成功')
-          navigate('/')
+          // navigate('/')
         } else {
           // alert('登入失敗');
           setError('信箱錯誤或密碼錯誤')
@@ -68,6 +69,7 @@ function Login() {
   function handleLogout() {
     localStorage.removeItem('email')
     localStorage.removeItem('id')
+    localStorage.removeItem('name')
     setEmail('')
     setIsAuthenticated(false)
     navigate('/')

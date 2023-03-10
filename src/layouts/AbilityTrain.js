@@ -10,7 +10,7 @@ function AbilityTrain() {
       <Link to="/login">
         <FontAwesomeIcon icon={faUser} />
       </Link>
-      <a href="http://">
+      <a href="/startToChat">
         <FontAwesomeIcon icon={faComment} />
       </a>
     </div>
