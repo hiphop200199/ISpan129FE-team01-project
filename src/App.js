@@ -22,7 +22,7 @@ import ChangePassword from './pages/member/ChangePassword'
 import Login from './pages/member/Login'
 import ForgetPassword from './pages/member/ForgetPassword'
 import ResetPassword from './pages/member/ResetPassword'
-import Cart from './pages/cart/Cart'
+// import Cart from './pages/cart/Cart'
 import Card from './template/Card'
 import Header from './layouts/header'
 import index from './template'
@@ -43,7 +43,6 @@ function App() {
         <Route path="/" element={<MainLayouts />}>
           <Route index element={<HomePage />}></Route>
           <Route path="Header" element={<Header />}></Route>
-
           {/* product帶入type_id的quretString */}
           <Route path="/product/:typeID" element={<Product />}></Route>
           <Route
@@ -52,9 +51,7 @@ function App() {
           ></Route>
           <Route path="meals" element={<Meals />}></Route>
           <Route path="hotel/:typeID" element={<Hotel />}></Route>
-
           <Route path="reserve/:product_id" element={<Reserve />}></Route>
-
           <Route path="latestNews" element={<LatestNews />}></Route>
           <Route path="course" element={<Course />}></Route>
           <Route path="courseSearch/:typeID" element={<CourseSearch />}></Route>
@@ -88,21 +85,22 @@ function App() {
           <Route path="orderList" element={<OrderList />} />
           <Route path="orderDetail/:order_id" element={<OrderDetail />} />
           <Route path="myList" element={<MyList />} />
-          <Route path="cart" element={<Cart />} />
+          {/* <Route path="cart" element={<Cart />} /> */}
           <Route
             path="CheckoutFlow"
             element={
-              localStorage.getItem("cart") && JSON.parse(localStorage.getItem("cart")).length > 0 ? <CheckoutFlow /> : <Navigate to="/" />
+              localStorage.getItem('cart') &&
+              JSON.parse(localStorage.getItem('cart')).length > 0 ? (
+                <CheckoutFlow />
+              ) : (
+                <Navigate to="/" />
+              )
             }
           />
           <Route path="OrderConfirmed" element={<OrderConfirmed />} />
           <Route path="Card" element={<Card />}></Route>
-
-
           <Route path="ReserveConfirm" element={<ReserveConfirm />}></Route>
           <Route path="index" element={<index />}></Route>
-
-
           {/* <Route path="form" element={<FormTemplate />}></Route> */}
         </Route>
       </Routes>

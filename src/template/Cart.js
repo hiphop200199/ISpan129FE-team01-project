@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { QuantitySelector, SquareAccounts } from '../../template'
+import { QuantitySelector, SquareAccounts } from '.'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnglesLeft, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
@@ -28,10 +28,10 @@ const Cart = () => {
 
   return (
     <div className="cart__sidebar">
-      <main className="shopping__cart">
-        <FontAwesomeIcon icon={faAnglesLeft} onClick={() => navigate(-1)} />
+      <main>
+        {/* <FontAwesomeIcon icon={faAnglesLeft} onClick={() => navigate(-1)} /> */}
         <div className="cart__body">
-          <h2>購物車</h2>
+          {/* <h2>購物車</h2> */}
           <table>
             <thead>
               {/* <tr>
