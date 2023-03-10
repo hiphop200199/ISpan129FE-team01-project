@@ -105,7 +105,7 @@ function HomePage() {
         </div>
       </section>
 
-      <div className="word">最新消息</div>
+      <div className="new-word-box">最新消息</div>
       <div className="new-container">
         <div className="new-box">
           <div className="new-slide-container">
@@ -196,32 +196,6 @@ function HomePage() {
           </div>
         </div>
       </div>
-      {/* 
-      <div className="new-container">
-        <div className="new-box">
-          <div className="slider-box">
-            <section className="recommend">
-              <div className="recommend-wrapper">
-                <div className="recommend-card">
-                  <div className="recommend-card-image">
-                    <img src={blackDog} alt="" />
-                  </div>
-                  <div className="recommend-card-content">
-                    <span className="recommend-card-title">
-                      毛手毛腳野餐盒DIY
-                    </span>
-                    <span className="recommend-card_name">2022-01-14</span>
-                    <p className="recommend-card_text">
-                      為心愛的毛小孩親手捏製充滿愛與營養的飯糰，你一口、我一口。
-                    </p>
-                    <button className="recommend-card_btn">看更多</button>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
-        </div>
-      </div> */}
     </>
   )
 }
