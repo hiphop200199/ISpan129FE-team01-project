@@ -30,10 +30,10 @@ function HomePage() {
         loop={true}
       >
         <SwiperSlide>
-          <img src={blackDog} alt="" />
+          <img src={blackDog} alt="" className="swiper-img" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={brownDog} alt="" />
+          <img src={brownDog} alt="" className="swiper-img" />
         </SwiperSlide>
       </Swiper>
 
@@ -58,17 +58,24 @@ function HomePage() {
           <Link to="/hotel/3">
             <div className="homehotel-word">查看更多房型</div>
           </Link>
-
         </div>
         <div className="homehotel">
           <div className="homehotel-box">
             <div className="homehotel-zoomin">
-              <img src={require('../img/hotels/hotel-single.jpg')} alt="" />
+              <img
+                src={require('../img/hotels/hotel-single.jpg')}
+                alt=""
+                className="homehotel-img"
+              />
             </div>
           </div>
           <div className="homehotel-box">
             <div className="homehotel-zoomin">
-              <img src={require('../img/hotels/quadruple room.jpg')} alt="" />
+              <img
+                src={require('../img/hotels/quadruple room.jpg')}
+                alt=""
+                className="homehotel-img"
+              />
             </div>
             <div></div>
           </div>
@@ -77,6 +84,7 @@ function HomePage() {
               <img
                 src={require('../img/hotels/standard-double-room.jpg')}
                 alt=""
+                className="homehotel-img"
               />
             </div>
           </div>
@@ -87,7 +95,11 @@ function HomePage() {
           </div>
           <div className="homehotel-box">
             <div className="homehotel-zoomin">
-              <img src={require('../img/hotels/twin-double-room.jpg')} alt="" />
+              <img
+                src={require('../img/hotels/twin-double-room.jpg')}
+                alt=""
+                className="homehotel-img"
+              />
             </div>
           </div>
         </div>
@@ -116,7 +128,7 @@ function HomePage() {
                 <SwiperSlide className="new">
                   <div className="new">
                     <div className="new-image-box">
-                      <img src={blackDog} alt="" />
+                      <img src={blackDog} alt="" className="new-img" />
                     </div>
                     <div className="new-detail">
                       <div className="newcard-title">毛手毛腳野餐盒DIY</div>
@@ -127,7 +139,7 @@ function HomePage() {
                 <SwiperSlide>
                   <div className="new">
                     <div className="new-image-box">
-                      <img src={brownDog} alt="" />
+                      <img src={brownDog} alt="" className="new-img" />
                     </div>
                     <div className="new-detail">
                       <div className="newcard-title">毛手毛腳野餐盒DIY</div>
@@ -138,7 +150,7 @@ function HomePage() {
                 <SwiperSlide>
                   <div className="new">
                     <div className="new-image-box">
-                      <img src={blackDog} alt="" />
+                      <img src={blackDog} alt="" className="new-img" />
                     </div>
                     <div className="new-detail">
                       <div className="newcard-title">毛手毛腳野餐盒DIY</div>
@@ -149,7 +161,7 @@ function HomePage() {
                 <SwiperSlide>
                   <div className="new">
                     <div className="new-image-box">
-                      <img src={brownDog} alt="" />
+                      <img src={brownDog} alt="" className="new-img" />
                     </div>
                     <div className="new-detail">
                       <div className="newcard-title">毛手毛腳野餐盒DIY</div>
@@ -160,7 +172,7 @@ function HomePage() {
                 <SwiperSlide>
                   <div className="new">
                     <div className="new-image-box">
-                      <img src={blackDog} alt="" />
+                      <img src={blackDog} alt="" className="new-img" />
                     </div>
                     <div className="new-detail">
                       <div className="newcard-title">毛手毛腳野餐盒DIY</div>
@@ -171,7 +183,7 @@ function HomePage() {
                 <SwiperSlide>
                   <div className="new">
                     <div className="new-image-box">
-                      <img src={brownDog} alt="" />
+                      <img src={brownDog} alt="" className="new-img" />
                     </div>
                     <div className="new-detail">
                       <div className="newcard-title">毛手毛腳野餐盒DIY</div>
