@@ -9,7 +9,12 @@ registerLocale('zh-TW', zhTW)
 
 function Reserve() {
   const navigate = useNavigate()
-  const [roomDetail, setRoomDetail] = useState({}) //hotel.js的資料
+  const [roomDetail, setRoomDetail] = useState({
+    product_image_big: '',
+    product_name: '',
+    product_price: 0,
+    product_descripttion: '',
+  }) //hotel.js的資料
   const [reserveData, setReserveData] = useState({
     roomCount: 1,
     petCount: 0,
@@ -424,10 +429,22 @@ function Reserve() {
                 <button
                   onClick={() => {
                     console.log('reserveData-', reserveData)
+                    console.log('roomDetail', roomDetail)
                     navigate('/ReserveConfirm')
                     sessionStorage.setItem(
                       'reserveData',
                       JSON.stringify(reserveData)
+                    )
+                    const sessionRoomDetail = {
+                      product_image_big: roomDetail.product_image_big,
+                      product_type: roomDetail.product_type,
+                      product_id: roomDetail.product_id,
+                      product_quantity: reserveData.roomCount,
+                      product_price: roomDetail.product_price,
+                    }
+                    sessionStorage.setItem(
+                      'roomDetail',
+                      JSON.stringify(sessionRoomDetail)
                     )
                   }}
                   type="button"
