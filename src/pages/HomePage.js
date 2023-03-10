@@ -58,7 +58,6 @@ function HomePage() {
           <Link to="/hotel/3">
             <div className="homehotel-word">查看更多房型</div>
           </Link>
-
         </div>
         <div className="homehotel">
           <div className="homehotel-box">

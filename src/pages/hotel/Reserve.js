@@ -9,7 +9,12 @@ registerLocale('zh-TW', zhTW)
 
 function Reserve() {
   const navigate = useNavigate()
-  const [roomDetail, setRoomDetail] = useState({}) //hotel.js的資料
+  const [roomDetail, setRoomDetail] = useState({
+    product_image_big: '',
+    product_name: '',
+    product_price: 0,
+    product_descripttion: '',
+  }) //hotel.js的資料
   const [reserveData, setReserveData] = useState({
     roomCount: 1,
     petCount: 0,
@@ -28,10 +33,17 @@ function Reserve() {
     fetch(`http://localhost:3002/product/list-detail/${product_id}`)
       .then((res) => res.json())
       .then((room) => {
-        setRoomDetail(room[0])
-        console.log('roomDetail', roomDetail)
+        // setRoomDetail(room[0])
         console.log('room', room)
-        // const imageArray =  {room[0].product_image.split(',')}
+        const imageArray = room[0].product_image.split(',')
+        const bigImage = imageArray[0]
+        const smallImage = imageArray.slice(1)
+        console.log('imageArray', imageArray)
+        const imageObj = {
+          product_image_big: bigImage,
+          product_image_small: smallImage,
+        }
+        setRoomDetail({ ...room[0], ...imageObj })
 
         const changeReserveDataObj = {
           money: room[0].product_price,
@@ -101,16 +113,29 @@ function Reserve() {
         <div className="banner rwd-container">
           <div
             style={{
-              backgroundImage: `url(http://localhost:3002/uploads/${roomDetail.product_image})`,
+              backgroundImage: `url(http://localhost:3002/uploads/${roomDetail.product_image_big})`,
             }}
             className="rd-img-left rwd-col-12"
           ></div>
+          {/* 加三元運算是因為第一次渲染為空物件，map不出東西 */}
           <div className="rd-img-right rwd-col-12">
-            <div className="img img1"></div>
-            <div className="img img2"></div>
+            {roomDetail.product_image_small
+              ? roomDetail.product_image_small.map((item, i) => {
+                  return (
+                    <div
+                      className={`img img${i + 1}`}
+                      style={{
+                        backgroundImage: `url(http://localhost:3002/uploads/${item})`,
+                      }}
+                      key={i}
+                    ></div>
+                  )
+                })
+              : ''}
+            {/* <div className="img img2"></div>
 
             <div className="img img3"></div>
-            <div className="img img4"></div>
+            <div className="img img4"></div> */}
           </div>
         </div>
         <div className="rd-container rwd-container">
@@ -404,10 +429,22 @@ function Reserve() {
                 <button
                   onClick={() => {
                     console.log('reserveData-', reserveData)
+                    console.log('roomDetail', roomDetail)
                     navigate('/ReserveConfirm')
                     sessionStorage.setItem(
                       'reserveData',
                       JSON.stringify(reserveData)
+                    )
+                    const sessionRoomDetail = {
+                      product_image_big: roomDetail.product_image_big,
+                      product_type: roomDetail.product_type,
+                      product_id: roomDetail.product_id,
+                      product_quantity: reserveData.roomCount,
+                      product_price: roomDetail.product_price,
+                    }
+                    sessionStorage.setItem(
+                      'roomDetail',
+                      JSON.stringify(sessionRoomDetail)
                     )
                   }}
                   type="button"
