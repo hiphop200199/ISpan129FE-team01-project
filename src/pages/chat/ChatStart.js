@@ -1,5 +1,5 @@
 import io from 'socket.io-client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Chat from './Chat'
 
@@ -25,6 +25,10 @@ function ChatStart() {
       navigate('/login')
     }
   }
+
+  useEffect(() => {
+    setIsAuthenticated(!!username)
+  }, [])
 
   return (
     <div className="top">
