@@ -20,12 +20,15 @@ import ChangePassword from './pages/member/ChangePassword'
 import Login from './pages/member/Login'
 import ForgetPassword from './pages/member/ForgetPassword'
 import ResetPassword from './pages/member/ResetPassword'
+import Chat from './pages/chat/Chat'
+import ChatStart from './pages/chat/ChatStart'
 import Cart from './pages/cart/Cart'
 import Card from './template/Card'
 import Header from './layouts/header'
 import index from './template'
 // import FormTemplate from './template/form'
 import CheckoutFlow from './pages/checkoutflow/CheckoutFlow'
+import OrderConfirmed from './pages/checkoutflow/OrderConfirmed'
 import OrderList from './pages/member/OrderList'
 import OrderDetail from './pages/member/OrderDetail'
 import ReserveConfirm from './pages/hotel/ReserveConfirm'
@@ -74,6 +77,8 @@ function App() {
           <Route path="ForgetPassword" element={<ForgetPassword />} />
           <Route path="ResetPassword" element={<ResetPassword />} />
           <Route path="changePassword" element={<ChangePassword />} />
+          <Route path="chat" element={<Chat />}></Route>
+          <Route path="startToChat" element={<ChatStart />}></Route>
           <Route path="activityRecord" element={<ActivityRecord />} />
           <Route
             path="DetailActivityRecord/:activityform_id"
@@ -84,6 +89,7 @@ function App() {
           <Route path="myList" element={<MyList />} />
           <Route path="cart" element={<Cart />} />
           <Route path="CheckoutFlow" element={<CheckoutFlow />} />
+          <Route path="OrderConfirmed" element={<OrderConfirmed />} />
           <Route path="Card" element={<Card />}></Route>
           <Route path="ReserveConfirm" element={<ReserveConfirm />}></Route>
           <Route path="index" element={<index />}></Route>
