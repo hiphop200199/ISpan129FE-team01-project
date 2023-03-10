@@ -1,0 +1,20 @@
+div.RSPBprogressBar{
+    width: auto;
+    background: var(--light-yellow);
+}
+.step{
+    color: #bbb;
+    width: 80px;
+    height: 80px;
+    font-size: 30px;
+    background: var(--light-yellow);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.step.completed{
+    background-color: var(--secondary) ;
+    color: var(--text-black);
+}

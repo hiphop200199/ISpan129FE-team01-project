@@ -65,9 +65,13 @@ const Cart = () => {
             </tbody>
           </table>
         </div>
-        <div className="aside d-flex justify-content-center">
-          <SquareAccounts className="more_color" />
-        </div>
+        {items.length > 0 ? (
+          <div className="aside d-flex justify-content-center">
+            <SquareAccounts className="more_color" />
+          </div>
+        ) : (
+          '沒有選擇商品'
+        )}
       </main>
     </div>
   )

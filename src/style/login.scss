@@ -14,7 +14,18 @@
     padding: 10px 25px;
     // box-shadow: rgb(0 0 0 / 10%) 0px 0px 10px;
     text-align: center;
-    .login-main,.register{
+    .register{
+      background-color: #DAF1FA;
+      width: 100%;
+      margin: auto;
+      height: 100%;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .login-main{
       background-color: #DAF1FA;
       width: 60%;
       margin: auto;
@@ -23,6 +34,19 @@
       display: flex;
       flex-direction: column;
       justify-content: space-around;
+      align-items: center;
+      .afterLogin{
+        width: 100%;
+        a{
+          width: 60%;
+          margin: auto;
+          font-size: 1rem;
+          // color: var(--primary);
+          &:hover{
+            color: var(--text-black);
+          }
+        }
+      }
           .login-form{
             width: 100%;
             display: flex;
@@ -93,7 +117,7 @@
         .orderList{
           border-bottom: 3px solid #47BBE8 ;
         }
-        .petList{
+        .activityRecord{
           border-bottom: 3px solid #47BBE8 ;
         }
       // }
