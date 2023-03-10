@@ -27,12 +27,12 @@ function Hotel() {
       .catch((err) => console.error(err))
   }, [typeID])
 
-  const test = () => {
-    const str = []
-    room.map((item) => str.push(item.products_descripttion))
-    return console.log(str)
-  }
-  test()
+  // const test = () => {
+  //   const str = []
+  //   room.map((item) => str.push(item.products_descripttion))
+  //   return console.log(str)
+  // }
+  // test()
   return (
     <>
       <img
@@ -53,9 +53,9 @@ function Hotel() {
               <div className="h-card-left col-6">
                 <div className="h-card-header">
                   <h3 className="h-card-title">{item.product_name}</h3>
-                  <p className="h-card-subtitle">NT.{item.products_price}</p>
+                  <p className="h-card-subtitle">NT.{item.product_price}</p>
                   <p className="h-card-text">
-                    {item.products_descripttion.split('').map((str, index) => {
+                    {item.product_descripttion.split('').map((str, index) => {
                       return str === ',' ? <br key={index} /> : str
                     })}
                   </p>
