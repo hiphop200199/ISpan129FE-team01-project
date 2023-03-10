@@ -17,7 +17,7 @@ function AddToCartLg({ product }) {
         found = true
         return {
           ...item,
-          product_quantity: item.product_quantity + 1,
+          product_qry: item.product_qry + 1,
         }
       }
       return item
@@ -30,7 +30,7 @@ function AddToCartLg({ product }) {
         product_name: product.product_name,
         product_price: product.product_price,
         product_image: product.product_image,
-        product_quantity: 1,
+        product_qry: 1,
       }
       newCart.push(newItem)
     }

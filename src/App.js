@@ -13,6 +13,12 @@ import Hotel from './pages/hotel/Hotel'
 import Reserve from './pages/hotel/Reserve'
 import LatestNews from './pages/latestNews/LatestNews'
 import Meals from './pages/meals/Meals'
+// import Food from './pages/meals/Food'
+import Food1 from './pages/meals/Food1'
+import Drinks from './pages/meals/Drinks'
+import Dog from './pages/meals/Dog'
+import Cat from './pages/meals/Cat'
+import MealsDetail from './pages/meals/MealsDetail'
 import NotFound from './pages/NotFound'
 import ProductDetail from './pages/product/ProductDetail'
 import Product from './pages/product/Product'
@@ -45,7 +51,16 @@ function App() {
         <Route path="/" element={<MainLayouts />}>
           <Route index element={<HomePage />}></Route>
           <Route path="Header" element={<Header />}></Route>
-
+          <Route path="meals/:typeID" element={<Meals />}></Route>
+          {/* // <Route path="Food" element={<Food />}></Route> */}
+          // <Route path="Food1/:typeID" element={<Food1 />}></Route>
+          // <Route path="Drinks" element={<Drinks />}></Route>
+          // <Route path="Dog" element={<Dog />}></Route>
+          // <Route path="Cat" element={<Cat />}></Route>
+          <Route
+            path="MealsDetail/:product_id"
+            element={<MealsDetail />}
+          ></Route>
           {/* product帶入type_id的quretString */}
           <Route path="/product/:typeID" element={<Product />}></Route>
           <Route
@@ -54,9 +69,7 @@ function App() {
           ></Route>
           <Route path="meals" element={<Meals />}></Route>
           <Route path="hotel/:typeID" element={<Hotel />}></Route>
-
-          <Route path="reserve/:product_id" element={<Reserve />}></Route>
-
+          <Route path="/reserve/:product_id" element={<Reserve />}></Route>
           <Route path="latestNews" element={<LatestNews />}></Route>
           <Route path="course" element={<Course />}></Route>
           <Route path="courseSearch/:typeID" element={<CourseSearch />}></Route>
@@ -96,12 +109,8 @@ function App() {
           <Route path="CheckoutFlow" element={<CheckoutFlow />} />
           <Route path="OrderConfirmed" element={<OrderConfirmed />} />
           <Route path="Card" element={<Card />}></Route>
-
-
           <Route path="ReserveConfirm" element={<ReserveConfirm />}></Route>
           <Route path="index" element={<index />}></Route>
-
-
           {/* <Route path="form" element={<FormTemplate />}></Route> */}
         </Route>
       </Routes>
