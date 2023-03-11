@@ -12,16 +12,15 @@ import {
 
 function AbilityTrain() {
   return (
-    <>
-      <div className="ability-train">
-        <Link to="/login">
-          <FontAwesomeIcon icon={faUser} />
-        </Link>
-        <a href="http://">
-          <FontAwesomeIcon icon={faComment} />
-        </a>
-      </div>
-    </>
+
+    <div className="ability-train">
+      <Link to="/login">
+        <FontAwesomeIcon icon={faUser} />
+      </Link>
+      <a href="/startToChat">
+        <FontAwesomeIcon icon={faComment} />
+      </a>
+    </div>
   )
 }
 
