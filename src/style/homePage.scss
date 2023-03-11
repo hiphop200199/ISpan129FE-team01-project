@@ -39,35 +39,29 @@
   padding-top: 100px;
   font-size: var(--font-size-header);
   color: var(--primary);
-  font-weight:bolder;
+  font-weight:700;
+  text-shadow: 3px 3px var(--light-blue-2);
 }
 // 最新消息樣式
 .new-container{
   display: flex;
   align-items: center;
   justify-content: center;
-
   .new-box{
-    max-width: 1440px;
-    // background-color: gray;
-    padding: 40px 0;
-  }
-  .new-slide-container{
-    width: 100%;
-    padding: 30px;
-    // overflow: hidden;
+    width: 80%;
     .new{
-      background: var(--primary);
-      border-radius:15px ;
       width: 100%;
+      padding-bottom:50px;
     
       .new-img{
           width: 100%;
           height: 100%;
-          border-radius: 15px 15px 0 0;
+          border-radius: 20px 20px 0 0;
       }
       .new-detail{
-        padding: 10px 30px;
+        padding: 10px 50px;
+        background: var(--primary);
+        border-radius: 0 0 20px 20px;
         .newcard-title{
           font-size: 20px;
           font-weight: bold;
