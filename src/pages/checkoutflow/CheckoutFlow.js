@@ -1,4 +1,4 @@
-import { set } from 'date-fns'
+
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -73,6 +73,7 @@ function CheckoutFlow() {
   }
   // 畫面顯示的表單狀態
   const [showNextStep, setShowNextStep] = useState(true)
+  const [step, setStep] = useState(1)
   const [showFrom, setShowForm] = useState(false)
   const [addOrder, setAddOrder] = useState(false)
 
@@ -80,11 +81,13 @@ function CheckoutFlow() {
   const handleNext = () => {
     if (showNextStep) {
       setShowForm(true)
+      setStep(step + 1)
       setShowNextStep(false)
     } else {
       // 回上一步以外，一併清除可能已被點擊的表單欄位
       setShowForm(false)
       setShowNextStep(true)
+      setStep(1)
       setIsChecked(false)
       setMember({
         recipient_name: '',
@@ -129,6 +132,7 @@ function CheckoutFlow() {
         localStorage.setItem('cart', JSON.stringify([]))
         setAddOrder(true)
         setOrderID(order_id)
+        setStep(step + 1)
         const orderData = await getOrderData(order_id)
         // const orderDataArray = Object.values(orderData)
         setOrderData(orderData)
@@ -158,7 +162,7 @@ function CheckoutFlow() {
 
   return (
     <>
-      <Step />
+      <Step step={step} />
       {!addOrder ? (
         <main className="checkoutFlow d-flex justify-content-center align-items-center">
           <div className="tabs col-10 ">
