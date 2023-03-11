@@ -352,26 +352,26 @@ function CheckoutFlow() {
         </main>
       ) : (
         <main className="checkoutFlow d-flex justify-content-center align-items-center">
-          <p> 訂單編號:{orderID}</p>
-          <p>
-            訂單日期:
-            {orderData[0] &&
-              new Date(orderData[0].order_date).toString('yyyy-MM-dd')}
-          </p>
-          <p>
-            {' '}
-            訂單狀態:
-            {orderData[0] && orderData[0].status === 0 ? '未付款' : '已付款'}
-          </p>
-
-          <p>
-            付款方式:
-            {orderData[0] && orderData[0].payment_method === 1
-              ? '信用卡付款'
-              : orderData[0] && orderData[0].payment_method === 2
-                ? '貨到付款'
-                : '現場付款'}
-          </p>
+          <div className='cardwrap'>
+            <p> 訂單編號:{orderID}</p>
+            <p>
+              訂單日期:
+              {orderData[0] &&
+                new Date(orderData[0].order_date).toString('yyyy-MM-dd')}
+            </p>
+            <p>
+              訂單狀態:
+              {orderData[0] && orderData[0].status === 0 ? '未付款' : '已付款'}
+            </p>
+            <p>
+              付款方式:
+              {orderData[0] && orderData[0].payment_method === 1
+                ? '信用卡付款'
+                : orderData[0] && orderData[0].payment_method === 2
+                  ? '貨到付款'
+                  : '現場付款'}
+            </p>
+          </div>
           <div className="tabs col-10 ">
             <input
               type="radio"
@@ -390,7 +390,7 @@ function CheckoutFlow() {
               <table>
                 <thead>
                   <tr>
-                    <th>訂單項目</th>
+                    {/* <th>訂單項目</th> */}
                     <th>商品圖</th>
                     <th>名稱</th>
                     {/* <th>規格</th> */}
@@ -402,7 +402,7 @@ function CheckoutFlow() {
                 <tbody>
                   {orderData.map((item, index) => (
                     <tr key={item.product_id}>
-                      <td>{index + 1}</td>
+                      {/* <td>{index + 1}</td> */}
                       <td>
                         <img
                           src={`http://localhost:3002/uploads/${item.product_image}`}
