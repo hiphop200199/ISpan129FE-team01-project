@@ -37,6 +37,88 @@ function HomePage() {
         </SwiperSlide>
       </Swiper>
 
+      <div className="new-word-box">最新消息</div>
+      <div className="new-container">
+        <div className="new-box">
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={10}
+            loop={true}
+            pagination={{
+              clickable: true,
+            }}
+            breakpoints={{
+              '@0.00': {
+                slidesPerView: 1,
+                spaceBetween: 0,
+                slidesPerGroup: 1,
+              },
+              // '@0.75': {
+              //   slidesPerView: 2,
+              //   spaceBetween: 20,
+              // },
+              '@1.00': {
+                slidesPerView: 2,
+                spaceBetween: 40,
+                slidesPerGroup: 2,
+              },
+              // '@1.50': {
+              //   slidesPerView: 4,
+              //   spaceBetween: 50,
+              // },
+            }}
+            modules={[Pagination]}
+            className="mySwiper"
+          >
+            <SwiperSlide>
+              <div className="new">
+                <div className="new-image-box">
+                  <img src={blackDog} alt="" className="new-img" />
+                </div>
+                <div className="new-detail">
+                  <div className="newcard-title">毛手毛腳野餐盒DIY</div>
+                  <div className="newcard-text">2022-01-14</div>
+                </div>
+              </div>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <div className="new">
+                <div className="new-image-box">
+                  <img src={blackDog} alt="" className="new-img" />
+                </div>
+                <div className="new-detail">
+                  <div className="newcard-title">毛手毛腳野餐盒DIY</div>
+                  <div className="newcard-text">2022-01-14</div>
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="new">
+                <div className="new-image-box">
+                  <img src={brownDog} alt="" className="new-img" />
+                </div>
+                <div className="new-detail">
+                  <div className="newcard-title">毛手毛腳野餐盒DIY</div>
+                  <div className="newcard-text">2022-01-14</div>
+                </div>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="new">
+                <div className="new-image-box">
+                  <img src={brownDog} alt="" className="new-img" />
+                </div>
+                <div className="new-detail">
+                  <div className="newcard-title">毛手毛腳野餐盒DIY</div>
+                  <div className="newcard-text">2022-01-14</div>
+                </div>
+              </div>
+            </SwiperSlide>
+          </Swiper>
+        </div>
+      </div>
+
       <div className="about-container">
         <div className="about-row">
           <div className="col-mb-6 d-flex justify-content-center">
@@ -108,98 +190,6 @@ function HomePage() {
           </div>
         </div>
       </section>
-
-      <div className="new-word-box">最新消息</div>
-      <div className="new-container">
-        <div className="new-box">
-          <div className="new-slide-container">
-            <div className="new-wrapper">
-              <Swiper
-                style={{
-                  '--swiper-navigation-color': 'black',
-                  '--swiper-navigation-size': '10px',
-                }}
-                slidesPerView={2}
-                spaceBetween={30}
-                // freeMode={true}
-                navigation={true}
-                // pagination={{
-                //   clickable: true,
-                // }}
-                modules={[FreeMode, Navigation, Pagination]}
-                className="new-slide-container"
-              >
-                <SwiperSlide className="new">
-                  <div className="new">
-                    <div className="new-image-box">
-                      <img src={blackDog} alt="" className="new-img" />
-                    </div>
-                    <div className="new-detail">
-                      <div className="newcard-title">毛手毛腳野餐盒DIY</div>
-                      <div className="newcard-text">2022-01-14</div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="new">
-                    <div className="new-image-box">
-                      <img src={brownDog} alt="" className="new-img" />
-                    </div>
-                    <div className="new-detail">
-                      <div className="newcard-title">毛手毛腳野餐盒DIY</div>
-                      <div className="newcard-text">2022-01-14</div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="new">
-                    <div className="new-image-box">
-                      <img src={blackDog} alt="" className="new-img" />
-                    </div>
-                    <div className="new-detail">
-                      <div className="newcard-title">毛手毛腳野餐盒DIY</div>
-                      <div className="newcard-text">2022-01-14</div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="new">
-                    <div className="new-image-box">
-                      <img src={brownDog} alt="" className="new-img" />
-                    </div>
-                    <div className="new-detail">
-                      <div className="newcard-title">毛手毛腳野餐盒DIY</div>
-                      <div className="newcard-text">2022-01-14</div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="new">
-                    <div className="new-image-box">
-                      <img src={blackDog} alt="" className="new-img" />
-                    </div>
-                    <div className="new-detail">
-                      <div className="newcard-title">毛手毛腳野餐盒DIY</div>
-                      <div className="newcard-text">2022-01-14</div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div className="new">
-                    <div className="new-image-box">
-                      <img src={brownDog} alt="" className="new-img" />
-                    </div>
-                    <div className="new-detail">
-                      <div className="newcard-title">毛手毛腳野餐盒DIY</div>
-                      <div className="newcard-text">2022-01-14</div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              </Swiper>
-            </div>
-          </div>
-        </div>
-      </div>
     </>
   )
 }
