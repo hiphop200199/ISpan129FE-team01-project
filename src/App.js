@@ -22,7 +22,6 @@ import ForgetPassword from './pages/member/ForgetPassword'
 import ResetPassword from './pages/member/ResetPassword'
 import Chat from './pages/chat/Chat'
 import ChatStart from './pages/chat/ChatStart'
-import Cart from './pages/cart/Cart'
 import Card from './template/Card'
 import Header from './layouts/header'
 import index from './template'
@@ -91,12 +90,7 @@ function App() {
           <Route
             path="CheckoutFlow"
             element={
-              localStorage.getItem('cart') &&
-              JSON.parse(localStorage.getItem('cart')).length > 0 ? (
-                <CheckoutFlow />
-              ) : (
-                <Navigate to="/" />
-              )
+              <CheckoutFlow />
             }
           />
           <Route path="OrderConfirmed" element={<OrderConfirmed />} />
