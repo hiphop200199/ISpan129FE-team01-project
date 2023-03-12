@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import React from 'react'
+import AbilityTrain from './AbilityTrain'
 //圖片
 // import Ball from '../img/layout/毬.svg'
 
@@ -29,6 +30,7 @@ function Menu() {
           <Link to="/activity">活動</Link>
         </li>
       </ul>
+      <AbilityTrain />
     </menu>
   )
 }
