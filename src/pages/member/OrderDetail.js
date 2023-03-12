@@ -6,11 +6,13 @@ function OrderDetail() {
   // console.log(data)
   const { order_id } = useParams()
   const [order, setOrders] = useState([])
+  const [totalOrder, setTotalOrder] = useState(0)
   // const [orderId, setOrderId] = useState('')
   const navigate = useNavigate()
 
   useEffect(() => {
     // const id = localStorage.getItem('id')
+
     const fetchData = async () => {
       const res = await fetch(
         `http://localhost:3002/orderList/orderDetail/${order_id}`,
@@ -19,20 +21,28 @@ function OrderDetail() {
         }
       )
       const orderData = await res.json()
-      // if (orderData.length > 0) {
-      //   setOrders(order[0])
-      //   setOrderId(orderData[0].order_id)
-      // }
+      setOrders(orderData)
+      setTotalOrder(totalOrderPrice(orderData))
       console.log(
         `http://localhost:3002/orderList/orderDetail/${order_id}`,
         order_id
       )
 
-      // const [...orders] = order
-      setOrders(orderData)
+      // // const [...orders] = order
+      // setOrders(orderData)
     }
     fetchData()
   }, [order_id])
+
+  // 計算訂單總金額
+  const totalOrderPrice = (orderData) => {
+    let orderTotal = 0
+    orderData.forEach((item) => {
+      const itemTotal = item.product_quantity * item.product_price
+      orderTotal += itemTotal
+    })
+    return orderTotal
+  }
 
   // const order = order.find(o=>o.order_id === order_id);
   return (
@@ -105,7 +115,7 @@ function OrderDetail() {
         </div>
         <div className="money d-flex justify-content-between">
           <p>運費:全館免運</p>
-          <p>訂單總金額:111111</p>
+          <p>訂單總金額:{totalOrder}</p>
         </div>
       </section>
       <div className="return d-flex justify-content-center">
