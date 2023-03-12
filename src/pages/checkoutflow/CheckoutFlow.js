@@ -1,16 +1,23 @@
 
-import React, { useEffect } from 'react'
-import { useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Step, NextStepLg, PreviousStep, SquareAccounts } from '../../template'
-
+import ModalContextProvider, { ModalContext } from '../../layouts/ModalContext'
 function CheckoutFlow() {
+  const { isModalOpen, toggleModal, closeModal } = useContext(ModalContext);
+  useEffect(() => {
+    if (!isModalOpen) {
+      // 在狀態值被更新後關閉Modal
+      closeModal()
+    }
+  }, [isModalOpen, closeModal])
   const navigate = useNavigate()
   // 取得購物車頁籤
   const [tagCheck, setTagCheck] = useState('tab1')
   const handleChange = (event) => {
     setTagCheck(event.target.id)
   }
+
   // 取得購物車資料
   const items = JSON.parse(localStorage.getItem('cart')) || []
   const detailData = [...items]
