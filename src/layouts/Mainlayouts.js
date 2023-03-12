@@ -16,13 +16,14 @@ import CartContextProvider, { CartContext } from './CartContext'
 import ModalContextProvider, { ModalContext } from './ModalContext'
 
 function MainLayouts() {
+  // TODO:修正Modal未能正確關閉的BUG
   const { isModalOpen, toggleModal, closeModal } = useContext(ModalContext);
-  useEffect(() => {
-    if (!isModalOpen) {
-      // 在狀態值被更新後關閉Modal
-      closeModal()
-    }
-  }, [isModalOpen, closeModal])
+  // useEffect(() => {
+  //   if (!isModalOpen) {
+  //     // 在狀態值被更新後關閉Modal
+  //     closeModal()
+  //   }
+  // }, [isModalOpen, closeModal])
   return (
     <CartContextProvider>
       <ModalContextProvider>
