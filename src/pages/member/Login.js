@@ -11,7 +11,13 @@ import {
 import RegisterMember from './RegisterMember'
 import { Link, useNavigate } from 'react-router-dom'
 function Login() {
+  function handleLinkClick(event) {
+    event.preventDefault()
+    window.alert('請透過信箱聯絡我們~')
+  }
+
   const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   //有無驗證成功->預設沒有驗證成功
@@ -42,6 +48,7 @@ function Login() {
           localStorage.setItem('id', data.id)
           localStorage.setItem('name', data.name)
           setEmail(data.email)
+          setName(data.name)
           setIsAuthenticated(true)
           alert('登入成功')
           // navigate('/')
@@ -54,8 +61,10 @@ function Login() {
   }
   React.useEffect(() => {
     const storedEmail = localStorage.getItem('email')
-    if (storedEmail) {
+    const storedName = localStorage.getItem('name')
+    if ((storedEmail, storedName)) {
       setEmail(storedEmail)
+      setName(storedName)
       setIsAuthenticated(true)
     }
   }, [])
@@ -81,7 +90,7 @@ function Login() {
         {isAuthenticated ? (
           <div className="afterLogin m-3">
             <h5 className="mb-3">歡迎光臨~毬!</h5>
-            <h5 className="mb-3">{email}</h5>
+            <h5 className="mb-3">{name}</h5>
             <div className="memberlist d-flex border-bottom mb-3 flex-column justify-content-center">
               <Link to="/edit" className="editMember mb-3">
                 <FontAwesomeIcon icon={faPencil} />
@@ -143,7 +152,9 @@ function Login() {
               <Link to="/ForgetPassword">
                 <p>忘記密碼?</p>
               </Link>
-              <p>登入時遇到問題?</p>
+              <Link to="/" onClick={handleLinkClick}>
+                <p>登入時遇到問題?</p>
+              </Link>
             </div>
 
             <button type="submit" className=" btn btn-lg btn-primary-for-login">

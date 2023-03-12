@@ -176,3 +176,16 @@
   background-color: var(--light-blue);
   border-color: var(--light-blue);
 }
+
+.cancel-btn{
+  background:#FF5959;
+  color: var(--text-white);
+  font-weight: bolder;
+  padding: 20px 30px;
+  border:none;
+  border-radius: 20px;
+  &:hover{
+    background-color:#E00000 ;
+    color: var(--text-white) ;
+  }
+}

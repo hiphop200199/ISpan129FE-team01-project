@@ -3,8 +3,6 @@ import MainLayouts from './layouts/Mainlayouts'
 import Activity from './pages/activity/Activity'
 import ActivityDetail from './pages/activity/ActivityDetail'
 import ActivitySignUp from './pages/activity/ActivitySignUp'
-import SignUpSheet from './pages/activity/SignUpSheet'
-import SignUpSheetDetail from './pages/activity/SignUpSheetDetail'
 import Course from './pages/course/Course'
 import CourseSearch from './pages/course/CourseSearch'
 import CourseDetail from './pages/course/CourseDetail'
@@ -41,6 +39,7 @@ import OrderList from './pages/member/OrderList'
 import OrderDetail from './pages/member/OrderDetail'
 import ReserveConfirm from './pages/hotel/ReserveConfirm'
 import ActivityRecord from './pages/member/ActivityRecord'
+import DetailActivityRecord from './pages/member/DetailActivityRecord'
 import MyList from './pages/member/MyList'
 //引入頁面元件
 
@@ -87,11 +86,6 @@ function App() {
             path="ActivitySignUp/:activity_id"
             element={<ActivitySignUp />}
           ></Route>
-          <Route path="SignUpSheet" element={<SignUpSheet />}></Route>
-          <Route
-            path="SignUpSheetDetail/:activityform_id"
-            element={<SignUpSheetDetail />}
-          ></Route>
           <Route path="*" element={<NotFound />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<RegisterMember />} />
@@ -102,6 +96,10 @@ function App() {
           <Route path="chat" element={<Chat />}></Route>
           <Route path="startToChat" element={<ChatStart />}></Route>
           <Route path="activityRecord" element={<ActivityRecord />} />
+          <Route
+            path="DetailActivityRecord/:activityform_id"
+            element={<DetailActivityRecord />}
+          />
           <Route path="orderList" element={<OrderList />} />
           <Route path="orderDetail/:order_id" element={<OrderDetail />} />
           <Route path="myList" element={<MyList />} />
