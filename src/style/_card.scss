@@ -8,69 +8,55 @@
 
 .h-card {
   margin: 20px;
-  background-color: #fefceb;
+  background-color: #FEFCEB;
   padding: 10px;
   position: relative;
   width: calc(50% - 100px);
-
   //奇數欄卡片
-  &:nth-child(odd) {
+  &:nth-child(odd){
     margin: 20px 80px 20px 20px;
   }
 }
 
 .h-card-left {
-  color: #515151;
-  padding: 10px;
-  padding-top: 20px;
-  .h-card-footer {
-    padding-top: 40px;
-  }
-  button {
-    background-color: #fcf09a;
-    border: none;
-    border-radius: 5px;
-    width: 75%;
+    color: #515151;
     padding: 10px;
-
     padding-top: 20px;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    .h-card-footer{
+    .h-card-footer {
         padding-top: 40px;
-        span{
+        span {
           margin-right: 10px;
         }
-
     }
-    // button{
-    //     background-color:  #FCF09A;
-    //     border: none;
-    //     border-radius: 5px;
-    //     width: 50%;
-    //     padding: 10px;
-
-    // }
-  }
-  .h-card-right {
+    button {
+        background-color:  #FCF09A;
+        border: none;
+        border-radius: 5px;
+        width: 50%;
+        padding: 10px;
+        
+    }
+}
+.h-card-right {
     position: absolute;
     right: -50px;
     top: -10px;
     img {
-      width: 100%;
-      border-radius: 18px;
-      height: 31vh;
-      object-fit: cover;
+        width: 100%;
+        border-radius: 18px;
+        height: 31vh;
+        object-fit: cover;
     }
-  }
-  .h-card {
+}
+.h-card {
     display: flex;
-    background-color: #fefceb;
+    background-color: #FEFCEB;
     padding: 10px;
     position: relative;
-  }
+}
 
   /*商品頁卡片元件*/
   .productCard {
@@ -160,4 +146,4 @@
       top: 12%;
     }
   }
-}
+
