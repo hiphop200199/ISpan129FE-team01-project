@@ -9,24 +9,23 @@ import {
 import Ball from '../img/layout/毬.svg' //圖片
 import Menu from './Menu'
 import AbilityTrain from './AbilityTrain'
-import { Cart } from '../template'
+import { Cart, SquareAccounts } from '../template'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import CartContextProvider, { CartContext } from './CartContext'
 import ModalContextProvider, { ModalContext } from './ModalContext'
 
 function MainLayouts() {
-  // TODO:修正Modal未能正確關閉的BUG
-  const { isModalOpen, toggleModal, closeModal } = useContext(ModalContext);
-  // useEffect(() => {
-  //   if (!isModalOpen) {
-  //     // 在狀態值被更新後關閉Modal
-  //     closeModal()
-  //   }
-  // }, [isModalOpen, closeModal])
+  const navigate = useNavigate()
+  const { isModalOpen, setIsModalOpen, handleClose, handleShow } =
+    useContext(ModalContext)
+  const handleCheckoutClick = () => {
+    setIsModalOpen(false)
+    navigate('/CheckoutFlow')
+  }
   return (
-    <CartContextProvider>
-      <ModalContextProvider>
+    <ModalContextProvider>
+      <CartContextProvider>
         <div className="wrap">
           <nav className="nav">
             <Link to="/">
@@ -34,7 +33,7 @@ function MainLayouts() {
             </Link>
             <Menu />
             <AbilityTrain />
-            <Button variant="primary" onClick={toggleModal}>
+            <Button variant="primary" onClick={handleShow}>
               <FontAwesomeIcon icon={faCartShopping} />
             </Button>
           </nav>
@@ -42,26 +41,31 @@ function MainLayouts() {
           <main className="content-border">
             <div className="content">
               <Outlet />
-
               <Modal
                 show={isModalOpen}
-                onHide={toggleModal}
+                onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
               >
                 <Modal.Header>
                   <Modal.Title>購物車</Modal.Title>
-                  <Button variant="secondary" onClick={toggleModal}>
+                  <Button variant="secondary" onClick={handleClose}>
                     <FontAwesomeIcon icon={faXmark} />
                   </Button>
                 </Modal.Header>
-                <Cart show={isModalOpen} />
+                <Cart />
+                <div className="aside d-flex justify-content-center">
+                  <SquareAccounts
+                    onClick={handleCheckoutClick}
+                    className="more_color"
+                  />
+                </div>
               </Modal>
             </div>
           </main>
         </div>
-      </ModalContextProvider>
-    </CartContextProvider>
+      </CartContextProvider>
+    </ModalContextProvider>
   )
 }
 

@@ -1,16 +1,14 @@
-
 import React, { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Step, NextStepLg, PreviousStep, SquareAccounts } from '../../template'
 import ModalContextProvider, { ModalContext } from '../../layouts/ModalContext'
 function CheckoutFlow() {
-  const { isModalOpen, toggleModal, closeModal } = useContext(ModalContext);
+  const { isModalOpen, toggleModal } = useContext(ModalContext)
   useEffect(() => {
     if (!isModalOpen) {
       // 在狀態值被更新後關閉Modal
-      closeModal()
     }
-  }, [isModalOpen, closeModal])
+  }, [isModalOpen])
   const navigate = useNavigate()
   // 取得購物車頁籤
   const [tagCheck, setTagCheck] = useState('tab1')
@@ -166,7 +164,6 @@ function CheckoutFlow() {
     setTotalOrder(totalOrderPrice())
   }, [orderData])
 
-
   return (
     <>
       <Step step={step} />
@@ -180,8 +177,8 @@ function CheckoutFlow() {
               id="tab1"
               onChange={handleChange}
               checked={tagCheck === 'tab1'}
-            // onChange={handleChange}
-            // checked={tagCheck}
+              // onChange={handleChange}
+              // checked={tagCheck}
             />
             <label htmlFor="tab1" className="tabs__label">
               我的購物車
@@ -363,7 +360,7 @@ function CheckoutFlow() {
         </main>
       ) : (
         <main className="checkoutFlow d-flex justify-content-center align-items-center">
-          <div className='cardwrap'>
+          <div className="cardwrap">
             <p> 訂單編號:{orderID}</p>
             <p>
               訂單日期:
@@ -379,8 +376,8 @@ function CheckoutFlow() {
               {orderData[0] && orderData[0].payment_method === 1
                 ? '信用卡付款'
                 : orderData[0] && orderData[0].payment_method === 2
-                  ? '貨到付款'
-                  : '現場付款'}
+                ? '貨到付款'
+                : '現場付款'}
             </p>
           </div>
           <div className="tabs col-10 ">
@@ -391,8 +388,8 @@ function CheckoutFlow() {
               id="tab1"
               onChange={handleChange}
               checked={tagCheck === 'tab1'}
-            // onChange={handleChange}
-            // checked={tagCheck}
+              // onChange={handleChange}
+              // checked={tagCheck}
             />
             <label htmlFor="tab1" className="tabs__label">
               訂單內容

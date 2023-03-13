@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from 'react'
-import { QuantitySelector, SquareAccounts } from '.'
+import { QuantitySelector } from '.'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnglesLeft, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
@@ -34,7 +34,7 @@ const Cart = () => {
     if (items.length === 0) {
       clearCart()
     }
-  }, [items]);
+  }, [items])
   return (
     <div className="cart__sidebar">
       <main>
@@ -73,7 +73,6 @@ const Cart = () => {
                     <td>{product_price}</td>
                     <td>{product_quantity}</td>
                     <td>
-
                       <QuantitySelector
                         product_quantity={product_quantity}
                         onCountChange={(newCount) =>
@@ -92,13 +91,7 @@ const Cart = () => {
             </tbody>
           </table>
         </div>
-        {items.length > 0 ? (
-          <div className="aside d-flex justify-content-center">
-            <SquareAccounts className="more_color" />
-          </div>
-        ) : (
-          '沒有選擇商品'
-        )}
+        {items.length == 0 ? '沒有選擇商品' : ''}
       </main>
     </div>
   )
