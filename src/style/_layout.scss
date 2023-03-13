@@ -137,8 +137,8 @@
     height: 100%;
     // overflow: hidden;
     padding-top: 10px;
-    width: 85%;
-    margin-left: 15%;
+    // width: 85%;
+    padding-left: 15%;
 }
 
 .content::before {
@@ -291,3 +291,52 @@ a:link {
 
 
 // }
+.nav-mobile {
+  display: none;
+}
+@media screen  and (max-width:376px) {
+  .nav {
+    display: none;
+  }
+  .nav-mobile {
+    display: block;
+    background-color: var(--primary);
+    .menu {
+      display: none;
+    }
+    &.active-menu {
+      .menu {
+        display: flex;
+      }
+    }
+  }
+  .logo-member {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    img {
+      width: 80px;
+      height: 50px;
+    }
+  }
+  .content-border {
+    padding-top: 0px; 
+    padding-left: 0px;
+    &::before {
+      display: none;
+    }
+  }
+  .content {
+    &::before, &::after {
+      display: none;
+    }
+  }
+  .wrap {
+    &::after, &::before {
+      display: none;
+    }
+  }
+  .navbar-toggler:focus {
+    box-shadow: none;
+}
+}

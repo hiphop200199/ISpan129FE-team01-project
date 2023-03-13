@@ -3,8 +3,6 @@ import MainLayouts from './layouts/Mainlayouts'
 import Activity from './pages/activity/Activity'
 import ActivityDetail from './pages/activity/ActivityDetail'
 import ActivitySignUp from './pages/activity/ActivitySignUp'
-import SignUpSheet from './pages/activity/SignUpSheet'
-import SignUpSheetDetail from './pages/activity/SignUpSheetDetail'
 import Course from './pages/course/Course'
 import CourseSearch from './pages/course/CourseSearch'
 import CourseDetail from './pages/course/CourseDetail'
@@ -35,6 +33,7 @@ import OrderList from './pages/member/OrderList'
 import OrderDetail from './pages/member/OrderDetail'
 import ReserveConfirm from './pages/hotel/ReserveConfirm'
 import ActivityRecord from './pages/member/ActivityRecord'
+import DetailActivityRecord from './pages/member/DetailActivityRecord'
 import MyList from './pages/member/MyList'
 //引入頁面元件
 
@@ -45,7 +44,6 @@ function App() {
         <Route path="/" element={<MainLayouts />}>
           <Route index element={<HomePage />}></Route>
           <Route path="Header" element={<Header />}></Route>
-
           {/* product帶入type_id的quretString */}
           <Route path="/product/:typeID" element={<Product />}></Route>
           <Route
@@ -54,9 +52,7 @@ function App() {
           ></Route>
           <Route path="meals" element={<Meals />}></Route>
           <Route path="hotel/:typeID" element={<Hotel />}></Route>
-
           <Route path="reserve/:product_id" element={<Reserve />}></Route>
-
           <Route path="latestNews" element={<LatestNews />}></Route>
           <Route path="course" element={<Course />}></Route>
           <Route path="courseSearch/:typeID" element={<CourseSearch />}></Route>
@@ -74,11 +70,6 @@ function App() {
             path="ActivitySignUp/:activity_id"
             element={<ActivitySignUp />}
           ></Route>
-          <Route path="SignUpSheet" element={<SignUpSheet />}></Route>
-          <Route
-            path="SignUpSheetDetail/:activityform_id"
-            element={<SignUpSheetDetail />}
-          ></Route>
           <Route path="*" element={<NotFound />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<RegisterMember />} />
@@ -89,6 +80,10 @@ function App() {
           <Route path="chat" element={<Chat />}></Route>
           <Route path="startToChat" element={<ChatStart />}></Route>
           <Route path="activityRecord" element={<ActivityRecord />} />
+          <Route
+            path="DetailActivityRecord/:activityform_id"
+            element={<DetailActivityRecord />}
+          />
           <Route path="orderList" element={<OrderList />} />
           <Route path="orderDetail/:order_id" element={<OrderDetail />} />
           <Route path="myList" element={<MyList />} />
@@ -96,12 +91,8 @@ function App() {
           <Route path="CheckoutFlow" element={<CheckoutFlow />} />
           <Route path="OrderConfirmed" element={<OrderConfirmed />} />
           <Route path="Card" element={<Card />}></Route>
-
-
           <Route path="ReserveConfirm" element={<ReserveConfirm />}></Route>
           <Route path="index" element={<index />}></Route>
-
-
           {/* <Route path="form" element={<FormTemplate />}></Route> */}
         </Route>
       </Routes>

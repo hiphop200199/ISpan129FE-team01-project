@@ -12,9 +12,14 @@ function Hotel() {
     fetch(`http://localhost:3002/product/list-product/${typeID}`)
       .then((res) => res.json())
       .then((room) => {
-        //讓每一個物件裡都有love值
+        //讓每一個物件裡都有product_likes值
         room.forEach((item) => {
-          item.love = false
+          item.product_likes = false
+          console.log('item.product_image', item.product_image)
+          const img = item.product_image.split(',')
+          const bigImage = img[0]
+          item.hotel_img = bigImage
+          console.log('item', item)
         })
 
         setRoom(room)
@@ -22,12 +27,12 @@ function Hotel() {
       .catch((err) => console.error(err))
   }, [typeID])
 
-  const test = () => {
-    const str = []
-    room.map((item) => str.push(item.product_descripttion))
-    return console.log(str)
-  }
-  test()
+  // const test = () => {
+  //   const str = []
+  //   room.map((item) => str.push(item.products_descripttion))
+  //   return console.log(str)
+  // }
+  // test()
   return (
     <>
       <img
@@ -50,8 +55,8 @@ function Hotel() {
                   <h3 className="h-card-title">{item.product_name}</h3>
                   <p className="h-card-subtitle">NT.{item.product_price}</p>
                   <p className="h-card-text">
-                    {item.product_descripttion.split('').map((str) => {
-                      return str === ',' ? <br /> : str
+                    {item.product_descripttion.split('').map((str, index) => {
+                      return str === ',' ? <br key={index} /> : str
                     })}
                   </p>
                 </div>
@@ -62,21 +67,26 @@ function Hotel() {
                       const newItems = [...room]
                       newItems[i] = {
                         ...newItems[i],
-                        love: !newItems[i].love,
+                        product_likes: !newItems[i].product_likes,
                       }
                       setRoom(newItems)
                     }}
                   >
-                    {item.love ? <span>&#9829;</span> : <span>&#9825;</span>}
+                    {item.product_likes ? (
+                      <span>&#9829;</span>
+                    ) : (
+                      <span>&#9825;</span>
+                    )}
                   </span>
-                  <Link to={`/reserve/${item.product_id}`}>
-                    <MoreSquare />
-                  </Link>
+                  {/* <Link to={`/reserve/${item.product_id}`}> */}
+                  {/* 父傳子 */}
+                  <MoreSquare product_id={item.product_id} typeID={typeID} />
+                  {/* </Link> */}
                 </div>
               </div>
               <div className="h-card-right col-7">
                 <img
-                  src={`http://localhost:3002/uploads/${item.product_image}`}
+                  src={`http://localhost:3002/uploads/${item.hotel_img}`}
                   alt=""
                 />
               </div>

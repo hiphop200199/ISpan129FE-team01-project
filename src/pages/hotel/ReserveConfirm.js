@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { format } from 'date-fns'
+import { useNavigate } from 'react-router'
 
 function ReserveConfirm() {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
-    payment: '',
-    cardNumber: '',
-    expiryDate: '', //到期日
-    securityCode: '',
+    payment_method: '',
     remark: '',
-    name: '',
-    email: '',
-    phone: '',
+    recipient_name: '',
+    recipient_address: '',
+    recipient_phone: '',
   })
 
   // 假如當下輸入email的值，執行 onChange 中的 handleChange 時，重新賦予formData.email的值
@@ -33,8 +32,39 @@ function ReserveConfirm() {
     total: 0,
   })
 
+  const [roomDetail, setRoomDetail] = useState({
+    product_image_big: '',
+    product_type: 0,
+    product_id: 0,
+    product_quantity: 0,
+    product_price: 0,
+  })
+
   useEffect(() => {
+    const memberId = localStorage.getItem('id')
+    console.log('memberId2-', memberId)
+    if (memberId) {
+      fetch(`http://localhost:3002/member/edit/${memberId}`, {
+        method: 'GET',
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('data', data)
+          setFormData({
+            //物件合併
+            ...formData,
+            ...{
+              recipient_name: data.name,
+              recipient_address: data.email,
+              recipient_phone: data.mobile,
+            },
+          })
+        })
+
+        .catch((error) => console.error(error))
+    }
     setReserveConfirm(JSON.parse(sessionStorage.getItem('reserveData')))
+    setRoomDetail(JSON.parse(sessionStorage.getItem('roomDetail')))
   }, [])
   function formatDate(date) {
     return date ? format(date, 'yyyy/MM/dd') : ''
@@ -42,6 +72,7 @@ function ReserveConfirm() {
   const img = require(`../../img/hotels/${
     reserveConfirm.selectPet === 'forest' ? 'cat-room1.png' : 'cat-room2.jpg'
   }`)
+
   return (
     <>
       <div className="rc-container rwd-container">
@@ -52,59 +83,18 @@ function ReserveConfirm() {
             <div className="mb-3">
               <select
                 className="form-select mb-3"
-                value={formData.payment}
-                name="payment"
+                value={formData.payment_method}
+                name="payment_method"
                 onChange={handleChange}
               >
                 <option value="" disabled>
-                  {/* 對應到payment: ''，如果為payment: 'onSite'則顯示現場付款*/}
+                  {/* 對應到payment_method: ''，如果為payment_method: 'onSite'則顯示現場付款*/}
                   請選擇付款方式
                 </option>
-                <option value="creditCard">信用卡</option>
-                <option value="onSite">現場付款</option>
+                <option value="1">Line Pay</option>
+                <option value="3">現場付款</option>
               </select>
             </div>
-            {/* 如果選擇信用卡付款，顯示卡號、到期日、安全碼欄位 */}
-            {formData.payment === 'creditCard' ? (
-              <>
-                <div className="mb-3">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="卡號"
-                    value={formData.cardNumber}
-                    onChange={handleChange}
-                    name="cardNumber"
-                  />
-                </div>
-
-                <div className="d-flex">
-                  <div className="mb-3 col-6 pr-1">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="到期日"
-                      value={formData.expiryDate}
-                      onChange={handleChange}
-                      name="expiryDate"
-                    />
-                  </div>
-
-                  <div className="mb-3 col-6 pl-1">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="安全碼"
-                      value={formData.securityCode}
-                      onChange={handleChange}
-                      name="securityCode"
-                    />
-                  </div>
-                </div>
-              </>
-            ) : (
-              ''
-            )}
 
             <div className="mb-3 ">
               <textarea
@@ -124,10 +114,10 @@ function ReserveConfirm() {
                 id="name"
                 type="text"
                 className="form-control"
-                name="name"
+                name="recipient_name"
                 placeholder="姓名"
                 required
-                value={formData.name}
+                value={formData.recipient_name}
                 onChange={handleChange}
               />
             </div>
@@ -136,10 +126,10 @@ function ReserveConfirm() {
                 id="email"
                 type="email"
                 className="form-control"
-                name="email"
+                name="recipient_address"
                 placeholder="信箱"
                 required
-                value={formData.email}
+                value={formData.recipient_address}
                 onChange={handleChange}
               />
             </div>
@@ -148,10 +138,10 @@ function ReserveConfirm() {
                 id="phone"
                 type="tel"
                 className="form-control"
-                name="phone"
+                name="recipient_phone"
                 placeholder="電話"
                 required
-                value={formData.phone}
+                value={formData.recipient_phone}
                 onChange={handleChange}
               />
             </div>
@@ -227,6 +217,50 @@ function ReserveConfirm() {
                 type="button"
                 className="btn btn-primary btn-lg min-width-auto ml-10px"
                 onClick={() => {
+                  const memberId = localStorage.getItem('id')
+                  const reqData = {
+                    ...formData,
+                    ...{ payment_method: parseInt(formData.payment_method) },
+                    detailData: [{ ...roomDetail }],
+                    ...{
+                      start_time: format(
+                        new Date(reserveConfirm.startDate),
+                        'yyyy-MM-dd HH:mm:ss'
+                      ),
+                      end_time: format(
+                        new Date(reserveConfirm.endDate),
+                        'yyyy-MM-dd HH:mm:ss'
+                      ),
+                      additional: JSON.stringify({
+                        adultCount: reserveConfirm.adultCount,
+                        childCount: reserveConfirm.childCount,
+                        petCount: reserveConfirm.petCount,
+                        selectPet: reserveConfirm.selectPet,
+                        differenceInDay: reserveConfirm.differenceInDay,
+                      }),
+                    },
+                  }
+                  if (memberId) {
+                    if (formData.payment_method === '3') {
+                      console.log('加入訂單api', reqData)
+                      fetch(`http://localhost:3002/order/${memberId}`, {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(reqData),
+                      })
+                        .then((response) => response.json())
+                        .then((data) => {
+                          console.log('data', data)
+                        })
+                        .catch((error) => console.error(error))
+                    } else if (formData.payment_method === '1') {
+                      console.log('導向linePay付款')
+                    }
+                  } else {
+                    navigate('/login')
+                  }
                   console.log('formData', formData)
                   console.log('reserveConfirm', reserveConfirm)
                 }}
