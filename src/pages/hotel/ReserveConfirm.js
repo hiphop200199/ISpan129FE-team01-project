@@ -40,6 +40,13 @@ function ReserveConfirm() {
     product_price: 0,
   })
 
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [message, setMessage] = useState('')
+  const [isLogin, setIsLogin] = useState(false)
+
+  const openModal = () => setIsModalOpen(true)
+  const closeModal = () => setIsModalOpen(false)
+
   useEffect(() => {
     const memberId = localStorage.getItem('id')
     console.log('memberId2-', memberId)
@@ -218,6 +225,7 @@ function ReserveConfirm() {
                 className="btn btn-primary btn-lg min-width-auto ml-10px"
                 onClick={() => {
                   const memberId = localStorage.getItem('id')
+                  setIsLogin(memberId ? true : false)
                   const reqData = {
                     ...formData,
                     ...{ payment_method: parseInt(formData.payment_method) },
@@ -259,7 +267,9 @@ function ReserveConfirm() {
                       console.log('導向linePay付款')
                     }
                   } else {
-                    navigate('/login')
+                    setMessage('您尚未登入，無法結帳，請先登入會員')
+                    openModal()
+                    // navigate('/login')
                   }
                   console.log('formData', formData)
                   console.log('reserveConfirm', reserveConfirm)
@@ -270,6 +280,62 @@ function ReserveConfirm() {
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        <div
+          className={`modal ${isModalOpen ? 'show' : ''}`}
+          tabIndex="-1"
+          role="dialog"
+          style={{ display: isModalOpen ? 'block' : 'none' }}
+        >
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">訊息</h5>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                  onClick={closeModal}
+                ></button>
+              </div>
+              <div className="modal-body">
+                <p>{message}</p>
+              </div>
+              <div className="modal-footer">
+                {isLogin ? (
+                  ''
+                ) : (
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-dismiss="modal"
+                    onClick={() => {
+                      closeModal()
+                      navigate('/login')
+                    }}
+                  >
+                    前往登入
+                  </button>
+                )}
+
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={closeModal}
+                >
+                  關閉
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          className={`modal-backdrop ${isModalOpen ? 'show' : ''}`}
+          style={{ display: isModalOpen ? 'block' : 'none' }}
+        ></div>
       </div>
     </>
   )
