@@ -9,7 +9,7 @@ import CourseDetail from './pages/course/CourseDetail'
 import HomePage from './pages/HomePage'
 import Hotel from './pages/hotel/Hotel'
 import Reserve from './pages/hotel/Reserve'
-import LatestNews from './pages/latestNews/LatestNews'
+// import LatestNews from './pages/latestNews/LatestNews'
 import Meals from './pages/meals/Meals'
 import NotFound from './pages/NotFound'
 import ProductDetail from './pages/product/ProductDetail'
@@ -53,7 +53,7 @@ function App() {
           <Route path="meals" element={<Meals />}></Route>
           <Route path="hotel/:typeID" element={<Hotel />}></Route>
           <Route path="reserve/:product_id" element={<Reserve />}></Route>
-          <Route path="latestNews" element={<LatestNews />}></Route>
+          {/* <Route path="latestNews" element={<LatestNews />}></Route> */}
           <Route path="course" element={<Course />}></Route>
           <Route path="courseSearch/:typeID" element={<CourseSearch />}></Route>
           <Route
