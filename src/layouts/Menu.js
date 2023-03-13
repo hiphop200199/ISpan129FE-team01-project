@@ -21,7 +21,7 @@ function Menu() {
           <Link to="/product/1">商城</Link>
         </li>
         <li>
-          <Link to="/meals">餐點</Link>
+          <Link to="/meals/4">餐點</Link>
         </li>
         <li>
           <Link to="/course">課程</Link>
