@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Swal from 'sweetalert2'
 
 function ChangePassword() {
   const navigate = useNavigate()
@@ -43,10 +44,10 @@ function ChangePassword() {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          alert('修改密碼成功')
+          Swal.fire('密碼更改成功!', '', 'success')
           navigate('/login')
         } else {
-          alert('密碼沒有修改成功')
+          Swal.fire('密碼沒有修改成功!', '', 'error')
         }
       })
       .catch((error) => console.error(error))

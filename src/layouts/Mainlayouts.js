@@ -1,53 +1,71 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext, createContext } from 'react'
+import { Link, useNavigate, Outlet } from 'react-router-dom'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
-import { Outlet } from 'react-router-dom'
+import {
+  faXmark,
+  faCartShopping,
+  faAnglesLeft,
+} from '@fortawesome/free-solid-svg-icons'
 import Ball from '../img/layout/毬.svg' //圖片
 import Menu from './Menu'
 import AbilityTrain from './AbilityTrain'
-import { Link } from 'react-router-dom'
-import Cart from '../pages/cart/Cart'
-// import Cart from '../pages/cart/Cart'
-function MainLayouts() {
-  const [isShowMenu, setIsShowMenu] = useState(false)
-  return (
-    <div className="wrap">
-      <nav className={`nav-mobile navbar ${isShowMenu ? 'active-menu' : ''}`}>
-        <div className="logo-member">
-          <Link to="/">
-            <img src={Ball} alt="logo" />
-          </Link>
+import { Cart, SquareAccounts } from '../template'
+import Modal from 'react-bootstrap/Modal'
+import Button from 'react-bootstrap/Button'
+import CartContextProvider, { CartContext } from './CartContext'
+import ModalContextProvider, { ModalContext } from './ModalContext'
 
-          <button
-            class="navbar-toggler"
-            type="button"
-            onClick={() => {
-              setIsShowMenu(!isShowMenu)
-            }}
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
+function MainLayouts() {
+  const navigate = useNavigate()
+  const { isModalOpen, setIsModalOpen, handleClose, handleShow } =
+    useContext(ModalContext)
+  const handleCheckoutClick = () => {
+    setIsModalOpen(false)
+    navigate('/CheckoutFlow')
+  }
+  return (
+    <ModalContextProvider>
+      <CartContextProvider>
+        <div className="wrap">
+          <nav className="nav">
+            <Link to="/">
+              <img src={Ball} alt="" />
+            </Link>
+            <Menu />
+            <Button variant="primary" onClick={handleShow}>
+              <FontAwesomeIcon icon={faCartShopping} />
+            </Button>
+          </nav>
+
+          <main className="content-border">
+            <div className="content">
+              <Outlet />
+              <Modal
+                show={isModalOpen}
+                onHide={handleClose}
+                backdrop="static"
+                keyboard={false}
+              >
+                <Modal.Header>
+                  <Modal.Title>購物車</Modal.Title>
+                  <Button variant="secondary" onClick={handleClose}>
+                    <FontAwesomeIcon icon={faXmark} />
+                  </Button>
+                </Modal.Header>
+                <Cart />
+                <div className="aside d-flex justify-content-center">
+                  <SquareAccounts
+                    onClick={handleCheckoutClick}
+                    className="more_color"
+                  />
+                </div>
+              </Modal>
+            </div>
+          </main>
         </div>
-        <Menu />
-      </nav>
-      <nav className="nav">
-        <Link to="/">
-          <img src={Ball} alt="logo" />
-        </Link>
-        <Menu />
-      </nav>
-      <main className="content-border">
-        <div className="content">
-          <Outlet />
-        </div>
-        <button className="cart">
-          <Link to="/cart">
-            <FontAwesomeIcon icon={faCartShopping} />
-            {/* <FontAwesomeIcon icon={fa.faCartShopping} /> */}
-          </Link>
-        </button>
-      </main>
-    </div>
+      </CartContextProvider>
+    </ModalContextProvider>
   )
 }
 

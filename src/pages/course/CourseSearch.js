@@ -68,8 +68,8 @@ function CourseSearch() {
   return (
     <>
       <div className="course-container">
-        <section className="tags">
-          <section className="search-bar">
+        <div className="upper-part">
+          <div className="searchbar">
             <input
               type="search"
               id="search"
@@ -81,32 +81,32 @@ function CourseSearch() {
             <button id="search-button" onClick={findOneCourse}>
               &#128269;
             </button>
-          </section>
+          </div>
+          <span className="course-search-tags">
+            <button className="course-search-tag" onClick={trainingCourses}>
+              寵物訓練
+            </button>
 
-          <button className="course-search-tag" onClick={trainingCourses}>
-            寵物訓練
-          </button>
+            <button className="course-search-tag" onClick={interactiveCourses}>
+              寵物互動
+            </button>
 
-          <button className="course-search-tag" onClick={interactiveCourses}>
-            寵物互動
-          </button>
+            <button className="course-search-tag" onClick={petKnowledges}>
+              寵物知識
+            </button>
 
-          <button className="course-search-tag" onClick={petKnowledges}>
-            寵物知識
-          </button>
-
-          <button className="course-search-tag" onClick={takeCarePets}>
-            寵物照顧
-          </button>
-        </section>
-
+            <button className="course-search-tag" onClick={takeCarePets}>
+              寵物照顧
+            </button>
+          </span>
+        </div>
         <section className="course-search-results">
           {courses.map((item, i) => {
             return (
               <div className="productCard" key={i}>
                 <section className="text-part">
                   <h2 className="title">{item.product_name}</h2>
-                  <span className="product-unit">{item.product_unit}</span>
+                  <span className="text-unit">{item.product_unit}</span>
                   <p className="description">{item.product_descripttion}</p>
                   <span className="price">$.{item.product_price}</span>
                 </section>
