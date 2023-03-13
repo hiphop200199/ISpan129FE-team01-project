@@ -141,6 +141,7 @@ function RegisterMember() {
                 required
                 value={user.mobile}
                 onChange={handleFieldChange}
+                pattern="09\d{2}?\d{3}?\d{3}"
               />
               <br />
               <span className="error">{fieldErrors.mobile}</span>
