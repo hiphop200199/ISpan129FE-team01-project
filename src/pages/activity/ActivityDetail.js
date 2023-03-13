@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import DetailSignUp from '../../template/DetailSignUp'
 import Header from '../../layouts/header'
+import { AiFillFacebook } from 'react-icons/ai'
+import { IoCalendarSharp } from 'react-icons/io5'
 import { MdOutlinePets } from 'react-icons/md'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons'
@@ -12,6 +14,8 @@ function ActivityDetail() {
   const [firstRender, setFirstRender] = useState(true)
   const navigate = useNavigate()
 
+  console.log('activity', activity)
+
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch(
@@ -20,20 +24,25 @@ function ActivityDetail() {
           method: 'GET',
         }
       )
-      const activities = await res.json()
-      console.log(
-        `http://localhost:3002/activity/activitydetail/${activity_id}`,
-        activities
-      )
+      let activities = await res.json()
+      activities = {
+        ...activities,
+        activity_image: activities.activity_image.split(','),
+      }
 
-      // console.log(activities)
+      console.log(activities)
 
       setFirstRender(false)
-      setActivity(activities)
+      setActivity({ ...activities })
     }
     fetchData()
   }, [activity_id])
-  // console.log(activity)
+
+  const now = new Date().getTime()
+  const endDate = new Date(activity.activity_dateend).getTime()
+  const expired = endDate < now
+
+  console.log(activity)
 
   return (
     <>
@@ -44,13 +53,14 @@ function ActivityDetail() {
       ) : (
         <div className="activity-container">
           <div className="container-box">
-            <div className="activity-photo-wrapper">
-              <img
-                className="activity-photo"
-                src={`http://localhost:3002/uploads/${activity.activity_image}/`}
-                alt=""
-              />
-            </div>
+            <div className="activity-photo-wrapper"></div>
+
+            <img
+              className="activity-photo"
+              src={`http://localhost:3002/uploads/${activity.activity_image[0]}/`}
+              alt=""
+            />
+
             <div className="activity-titlebox">
               <span className="activity-title">
                 <MdOutlinePets />
@@ -81,6 +91,13 @@ function ActivityDetail() {
             <div className="activity-content">
               <p className="content-h5">活動資訊</p>
               <p className="content-p">{activity.activity_decription}</p>
+              <div className="activity-photo-wrapper">
+                <img
+                  className="activity-photo2"
+                  src={`http://localhost:3002/uploads/${activity.activity_image[1]}/`}
+                  alt=""
+                />
+              </div>
               <p className="content-h5">注意事項</p>
               <p className="content-p2">{activity.activity_notice}</p>
               <p className="content-p2">{activity.activity_notice2}</p>
@@ -88,9 +105,30 @@ function ActivityDetail() {
           </div>
           <div className="activity-text">
             <div className="activity-textbox">
-              <Link to={`/ActivitySignUp/${activity_id}`}>
-                <DetailSignUp className="btn-signup" />
-              </Link>
+              <p className="activity-textbox-text">{activity.activity_name}</p>
+              <p className="activity-textbox-text">
+                活動日期 :
+                {new Date(activity.activity_datestart).toString('yyyy-MM-dd')}
+              </p>
+              <p className="activity-textbox-text">
+                截止日期 :
+                {new Date(activity.activity_dateend).toString('yyyy-MM-dd')}
+              </p>
+              {!expired && (
+                <Link to={`/ActivitySignUp/${activity_id}`}>
+                  <DetailSignUp className="btn-signup" />
+                </Link>
+              )}
+              <div className="linkbox">
+                <IoCalendarSharp
+                  onClick={() => navigate(-1)}
+                  className="calendaricon"
+                />
+                <AiFillFacebook
+                  onClick={() => navigate(-1)}
+                  className="facebookicon"
+                />
+              </div>
             </div>
           </div>
         </div>
