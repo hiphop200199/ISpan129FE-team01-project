@@ -12,6 +12,12 @@ import Hotel from './pages/hotel/Hotel'
 import Reserve from './pages/hotel/Reserve'
 import LatestNews from './pages/latestNews/LatestNews'
 import Meals from './pages/meals/Meals'
+// import Food from './pages/meals/Food'
+import Food1 from './pages/meals/Food1'
+import Drinks from './pages/meals/Drinks'
+import Dog from './pages/meals/Dog'
+import Cat from './pages/meals/Cat'
+import MealsDetail from './pages/meals/MealsDetail'
 import NotFound from './pages/NotFound'
 import ProductDetail from './pages/product/ProductDetail'
 import Product from './pages/product/Product'
@@ -40,7 +46,6 @@ import MyList from './pages/member/MyList'
 //引入頁面元件
 
 function App() {
-
   return (
     <BrowserRouter>
       <ModalContextProvider>
@@ -60,7 +65,10 @@ function App() {
               <Route path="reserve/:product_id" element={<Reserve />}></Route>
               <Route path="latestNews" element={<LatestNews />}></Route>
               <Route path="course" element={<Course />}></Route>
-              <Route path="courseSearch/:typeID" element={<CourseSearch />}></Route>
+              <Route
+                path="courseSearch/:typeID"
+                element={<CourseSearch />}
+              ></Route>
               <Route
                 path="courseDetail/:product_id"
                 element={<CourseDetail />}
