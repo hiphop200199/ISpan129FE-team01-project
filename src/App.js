@@ -60,7 +60,15 @@ function App() {
                 path="/product/Detail/:product_id"
                 element={<ProductDetail />}
               ></Route>
-              <Route path="meals" element={<Meals />}></Route>
+              <Route path="meals/:typeID" element={<Meals />}></Route>
+              <Route path="Food1/:typeID" element={<Food1 />}></Route>
+              <Route path="Drinks" element={<Drinks />}></Route>
+              <Route path="Dog" element={<Dog />}></Route>
+              <Route path="Cat" element={<Cat />}></Route>
+              <Route
+                path="MealsDetail/:product_id"
+                element={<MealsDetail />}
+              ></Route>
               <Route path="hotel/:typeID" element={<Hotel />}></Route>
               <Route path="reserve/:product_id" element={<Reserve />}></Route>
               <Route path="latestNews" element={<LatestNews />}></Route>
