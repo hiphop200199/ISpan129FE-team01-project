@@ -1,7 +1,7 @@
 // import React from 'react'
 
-import Cart from './Cart'
-
+// import Cart from './Cart'
+export { default as Cart } from './Cart'
 // // import Card from './Card'
 export { default as Card } from './Card'
 
@@ -33,6 +33,4 @@ export { default as SquareAccounts } from './SquareAccounts'
 export { default as SignUp } from './SignUp'
 // import DetailSignUp from './DetailSignUp'
 export { default as DetailSignUp } from './DetailSignUp'
-
-export { default as Cart } from './Cart'
-// export { default as SquareAccounts } from './SquareAccounts'
+export { default as HomehotelGallery } from './HomehotelGallery'
