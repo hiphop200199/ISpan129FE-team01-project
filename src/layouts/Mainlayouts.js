@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useContext, createContext } from 'react'
 import { Link, useNavigate, Outlet } from 'react-router-dom'
 
@@ -18,7 +17,6 @@ import CartContextProvider, { CartContext } from './CartContext'
 import ModalContextProvider, { ModalContext } from './ModalContext'
 
 function MainLayouts() {
-
   const navigate = useNavigate()
   const { isModalOpen, setIsModalOpen, handleClose, handleShow } =
     useContext(ModalContext)
@@ -35,7 +33,7 @@ function MainLayouts() {
               <img src={Ball} alt="" />
             </Link>
             <Menu />
-            <AbilityTrain />
+            {/* <AbilityTrain /> */}
             <Button variant="primary" onClick={handleShow}>
               <FontAwesomeIcon icon={faCartShopping} />
             </Button>
@@ -66,7 +64,6 @@ function MainLayouts() {
               </Modal>
             </div>
           </main>
-
         </div>
       </CartContextProvider>
     </ModalContextProvider>
