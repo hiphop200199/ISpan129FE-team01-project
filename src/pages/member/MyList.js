@@ -9,6 +9,7 @@ import {
 import { useState, useEffect } from 'react'
 import 'datejs'
 import AddToCartLg from '../../template/AddToCartLg'
+import Swal from 'sweetalert2'
 
 function MyList({ id, onDelete }) {
   const [tagCheck, setTagCheck] = useState(0)
@@ -43,7 +44,21 @@ function MyList({ id, onDelete }) {
   const handleDelete = (sid) => {
     setIsDeleting(true)
     const id = localStorage.getItem('id')
-    if (window.confirm(`確定要刪除這筆收藏?`))
+    if (
+      Swal.fire({
+        title: '確定要刪除這筆收藏?',
+        text: '',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '確定刪除!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire('刪除成功!', '這筆收藏已被刪除', 'success')
+        }
+      })
+    )
       fetch(`http://localhost:3002/member/deleteLikes/${sid}`, {
         method: 'DELETE',
       })
@@ -60,6 +75,7 @@ function MyList({ id, onDelete }) {
         .finally(() => {
           setIsDeleting(false)
         })
+    // navigate('/login')
   }
 
   return (
