@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { Navigate, BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { createContext, useState, useContext } from 'react'
 import MainLayouts from './layouts/Mainlayouts'
 import Activity from './pages/activity/Activity'
 import ActivityDetail from './pages/activity/ActivityDetail'
@@ -22,10 +23,11 @@ import ForgetPassword from './pages/member/ForgetPassword'
 import ResetPassword from './pages/member/ResetPassword'
 import Chat from './pages/chat/Chat'
 import ChatStart from './pages/chat/ChatStart'
-import Cart from './pages/cart/Cart'
 import Card from './template/Card'
 import Header from './layouts/header'
 import index from './template'
+import CartContextProvider from './layouts/CartContext'
+import ModalContextProvider, { ModalContext } from './layouts/ModalContext'
 // import FormTemplate from './template/form'
 import CheckoutFlow from './pages/checkoutflow/CheckoutFlow'
 import OrderConfirmed from './pages/checkoutflow/OrderConfirmed'
@@ -40,62 +42,69 @@ import MyList from './pages/member/MyList'
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<MainLayouts />}>
-          <Route index element={<HomePage />}></Route>
-          <Route path="Header" element={<Header />}></Route>
-          {/* product帶入type_id的quretString */}
-          <Route path="/product/:typeID" element={<Product />}></Route>
-          <Route
-            path="/product/Detail/:product_id"
-            element={<ProductDetail />}
-          ></Route>
-          <Route path="meals" element={<Meals />}></Route>
-          <Route path="hotel/:typeID" element={<Hotel />}></Route>
-          <Route path="reserve/:product_id" element={<Reserve />}></Route>
-          {/* <Route path="latestNews" element={<LatestNews />}></Route> */}
-          <Route path="course" element={<Course />}></Route>
-          <Route path="courseSearch/:typeID" element={<CourseSearch />}></Route>
-          <Route
-            path="courseDetail/:product_id"
-            element={<CourseDetail />}
-          ></Route>
-          <Route path="activity" element={<Activity />}></Route>
-          <Route
-            path="activitydetail/:activity_id"
-            element={<ActivityDetail />}
-          ></Route>
-          ActivityForm
-          <Route
-            path="ActivitySignUp/:activity_id"
-            element={<ActivitySignUp />}
-          ></Route>
-          <Route path="*" element={<NotFound />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<RegisterMember />} />
-          <Route path="edit" element={<EditMember />} />
-          <Route path="ForgetPassword" element={<ForgetPassword />} />
-          <Route path="ResetPassword" element={<ResetPassword />} />
-          <Route path="changePassword" element={<ChangePassword />} />
-          <Route path="chat" element={<Chat />}></Route>
-          <Route path="startToChat" element={<ChatStart />}></Route>
-          <Route path="activityRecord" element={<ActivityRecord />} />
-          <Route
-            path="DetailActivityRecord/:activityform_id"
-            element={<DetailActivityRecord />}
-          />
-          <Route path="orderList" element={<OrderList />} />
-          <Route path="orderDetail/:order_id" element={<OrderDetail />} />
-          <Route path="myList" element={<MyList />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path="CheckoutFlow" element={<CheckoutFlow />} />
-          <Route path="OrderConfirmed" element={<OrderConfirmed />} />
-          <Route path="Card" element={<Card />}></Route>
-          <Route path="ReserveConfirm" element={<ReserveConfirm />}></Route>
-          <Route path="index" element={<index />}></Route>
-          {/* <Route path="form" element={<FormTemplate />}></Route> */}
-        </Route>
-      </Routes>
+      <ModalContextProvider>
+        <CartContextProvider>
+          <Routes>
+            <Route path="/" element={<MainLayouts />}>
+              <Route index element={<HomePage />}></Route>
+              <Route path="Header" element={<Header />}></Route>
+              {/* product帶入type_id的quretString */}
+              <Route path="/product/:typeID" element={<Product />}></Route>
+              <Route
+                path="/product/Detail/:product_id"
+                element={<ProductDetail />}
+              ></Route>
+              <Route path="meals" element={<Meals />}></Route>
+              <Route path="hotel/:typeID" element={<Hotel />}></Route>
+              <Route path="reserve/:product_id" element={<Reserve />}></Route>
+              {/* <Route path="latestNews" element={<LatestNews />}></Route> */}
+              <Route path="course" element={<Course />}></Route>
+              <Route
+                path="courseSearch/:typeID"
+                element={<CourseSearch />}
+              ></Route>
+              <Route
+                path="courseDetail/:product_id"
+                element={<CourseDetail />}
+              ></Route>
+              <Route path="activity" element={<Activity />}></Route>
+              <Route
+                path="activitydetail/:activity_id"
+                element={<ActivityDetail />}
+              ></Route>
+              ActivityForm
+              <Route
+                path="ActivitySignUp/:activity_id"
+                element={<ActivitySignUp />}
+              ></Route>
+              <Route path="*" element={<NotFound />} />
+              <Route path="login" element={<Login />} />
+              <Route path="register" element={<RegisterMember />} />
+              <Route path="edit" element={<EditMember />} />
+              <Route path="ForgetPassword" element={<ForgetPassword />} />
+              <Route path="ResetPassword" element={<ResetPassword />} />
+              <Route path="changePassword" element={<ChangePassword />} />
+              <Route path="chat" element={<Chat />}></Route>
+              <Route path="startToChat" element={<ChatStart />}></Route>
+              <Route path="activityRecord" element={<ActivityRecord />} />
+              <Route
+                path="DetailActivityRecord/:activityform_id"
+                element={<DetailActivityRecord />}
+              />
+              <Route path="orderList" element={<OrderList />} />
+              <Route path="orderDetail/:order_id" element={<OrderDetail />} />
+              <Route path="myList" element={<MyList />} />
+              {/* <Route path="cart" element={<Cart />} /> */}
+              <Route path="CheckoutFlow" element={<CheckoutFlow />} />
+              <Route path="OrderConfirmed" element={<OrderConfirmed />} />
+              <Route path="Card" element={<Card />}></Route>
+              <Route path="ReserveConfirm" element={<ReserveConfirm />}></Route>
+              <Route path="index" element={<index />}></Route>
+              {/* <Route path="form" element={<FormTemplate />}></Route> */}
+            </Route>
+          </Routes>
+        </CartContextProvider>
+      </ModalContextProvider>
     </BrowserRouter>
   )
 }
