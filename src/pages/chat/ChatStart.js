@@ -2,6 +2,7 @@ import io from 'socket.io-client'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Chat from './Chat'
+import Swal from 'sweetalert2'
 
 const socket = io.connect('http://localhost:3005')
 
@@ -21,7 +22,8 @@ function ChatStart() {
         setShowChat(true)
       }
     } else {
-      alert('請先登入會員，即可開始聊天')
+      Swal.fire('請先登入會員，即可開始聊天!', '', 'warning')
+      // alert('請先登入會員，即可開始聊天')
       navigate('/login')
     }
   }

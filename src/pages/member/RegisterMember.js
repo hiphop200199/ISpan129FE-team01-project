@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 function RegisterMember() {
   const [user, setUser] = useState({
@@ -74,11 +75,11 @@ function RegisterMember() {
       .then((data) => {
         console.log(data)
         if (data.success) {
-          alert('註冊成功')
+          Swal.fire('註冊成功', '', 'success')
           navigate('/login') //註冊成功即跳轉至登入畫面
           // location.href = 'localhost:3000/member'
         } else {
-          alert('註冊失敗')
+          Swal.fire('註冊失敗', '', 'error')
         }
       })
   }
