@@ -10,9 +10,9 @@ function Menu() {
       {/* <img src={require('../img/layout/毬.svg')} alt="" /> */}
 
       <ul>
-        <li>
+        {/* <li>
           <Link to="/latestNews">最新消息</Link>
-        </li>
+        </li> */}
         <li>
           <Link to="/hotel/3">住宿</Link>
         </li>
