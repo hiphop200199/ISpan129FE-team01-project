@@ -7,14 +7,8 @@ import { useLocation, useParams } from 'react-router-dom'
 // import { faCny } from '@fortawesome/free-solid-svg-icons'
 
 function Product() {
-  // const location = useLocation()
   const { typeID } = useParams()
   const [product, setProduct] = useState([])
-
-  // console.log(location.search)
-  // const usp = new URLSearchParams(location.search)
-  // console.log(usp.get('a'))
-
   // 取得DB資料
   useEffect(() => {
     const fetchData = async () => {
@@ -23,16 +17,12 @@ function Product() {
         const res = await fetch(
           `http://localhost:3002/product/list-product/${typeID}`
         )
-
-        // const rData = await res.json()
-        // console.log('rData', rData)
         if (!res.ok) {
           throw new Error('Network res was not ok')
         }
 
         const data = await res.json()
         setProduct(data)
-        console.log(product)
       } catch (err) {
         console.log(err)
       }
