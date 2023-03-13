@@ -35,3 +35,4 @@ export { default as SignUp } from './SignUp'
 export { default as DetailSignUp } from './DetailSignUp'
 
 export { default as Cart } from './Cart'
+// export { default as SquareAccounts } from './SquareAccounts'
