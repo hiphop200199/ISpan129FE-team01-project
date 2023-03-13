@@ -3,12 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
 import { Link, useNavigate } from 'react-router-dom'
 function MoreSquare({ product_id, typeID }) {
-  // const [id, setID] = useState('')
-  // type_id !== 1
-  //   ? `/product/Detail/${product_id}`
-  //   : `/hotel/Detail/${product_id}`
-  // console.log(typeID)
-  // console.log(product_id)
+
   const navigate = useNavigate()
   const [URL, setURL] = useState('')
   // 利用type_id辨識共用元件應該導向哪個網址
@@ -36,7 +31,7 @@ function MoreSquare({ product_id, typeID }) {
         type="button"
         className="btn btn-secondary btn-sm min-width-auto "
         onClick={handleClick}
-        // onClick={setID}
+      // onClick={setID}
       >
         {/* <Link to={'/product/Detail/' + product_id}>看更多</Link> */}
         <Link to={URL} product_id={product_id}>
