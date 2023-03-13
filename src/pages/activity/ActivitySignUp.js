@@ -35,7 +35,7 @@ function ActivitySignUp() {
       setIsAuthenticated(true)
       fetchData()
     } else {
-      alert('填寫報名')
+      alert('請先登入')
       navigate('/login')
     }
   }, [activity_id, id])
