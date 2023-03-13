@@ -43,6 +43,7 @@ function ReserveConfirm() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [message, setMessage] = useState('')
   const [isLogin, setIsLogin] = useState(false)
+  const [isOrderSuccess, setIsOrderSuccess] = useState(false)
 
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
@@ -261,8 +262,20 @@ function ReserveConfirm() {
                         .then((response) => response.json())
                         .then((data) => {
                           console.log('data', data)
+                          setIsOrderSuccess(data.success)
+                          if (data.success === true) {
+                            setMessage('結帳成功，可至訂單紀錄查看')
+                            openModal()
+                          } else {
+                            setMessage('結帳失敗')
+                            openModal()
+                          }
                         })
-                        .catch((error) => console.error(error))
+                        .catch((error) => {
+                          console.error(error)
+                          setMessage('系統錯誤')
+                          openModal()
+                        })
                     } else if (formData.payment_method === '1') {
                       console.log('導向linePay付款')
                     }
@@ -288,23 +301,28 @@ function ReserveConfirm() {
           role="dialog"
           style={{ display: isModalOpen ? 'block' : 'none' }}
         >
-          <div className="modal-dialog" role="document">
+          {/* modal-dialog-centered 垂直置中 */}
+          <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">訊息</h5>
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                  onClick={closeModal}
-                ></button>
+                {isOrderSuccess ? (
+                  ''
+                ) : (
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    onClick={closeModal}
+                  ></button>
+                )}
               </div>
-              <div className="modal-body">
+              <div className="modal-body text-center">
                 <p>{message}</p>
               </div>
-              <div className="modal-footer">
-                {isLogin ? (
+              <div className="modal-footer justify-content-center">
+                {isLogin && !isOrderSuccess ? (
                   ''
                 ) : (
                   <button
@@ -313,20 +331,27 @@ function ReserveConfirm() {
                     data-dismiss="modal"
                     onClick={() => {
                       closeModal()
-                      navigate('/login')
+                      if (isOrderSuccess) {
+                        navigate('/orderList')
+                      } else {
+                        navigate('/login')
+                      }
                     }}
                   >
-                    前往登入
+                    {isOrderSuccess ? '查看訂單紀錄' : '前往登入'}
                   </button>
                 )}
-
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={closeModal}
-                >
-                  關閉
-                </button>
+                {isOrderSuccess ? (
+                  ''
+                ) : (
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={closeModal}
+                  >
+                    關閉
+                  </button>
+                )}
               </div>
             </div>
           </div>
