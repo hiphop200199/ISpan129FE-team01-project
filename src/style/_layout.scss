@@ -327,4 +327,57 @@ a:link {
 //         z-index: 10;
 //     }
 
+
+
+
 // }
+.nav-mobile {
+  display: none;
+}
+@media screen  and (max-width:376px) {
+  .nav {
+    display: none;
+  }
+  .nav-mobile {
+    display: block;
+    background-color: var(--primary);
+    .menu {
+      display: none;
+    }
+    &.active-menu {
+      .menu {
+        display: flex;
+      }
+    }
+  }
+  .logo-member {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    img {
+      width: 80px;
+      height: 50px;
+    }
+  }
+  .content-border {
+    padding-top: 0px; 
+    padding-left: 0px;
+    &::before {
+      display: none;
+    }
+  }
+  .content {
+    &::before, &::after {
+      display: none;
+    }
+  }
+  .wrap {
+    &::after, &::before {
+      display: none;
+    }
+  }
+  .navbar-toggler:focus {
+    box-shadow: none;
+}
+}
+

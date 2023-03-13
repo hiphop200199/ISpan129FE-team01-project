@@ -50,3 +50,30 @@
     }
   }
 }
+@media screen and (max-width: 376px) {
+  .rc-container {
+    margin: 20px;
+    .rc-content-left {
+      padding: 0px;
+    }
+  }
+  .rd-wrap {
+    padding: 10px 20px;
+  }
+  .rd-container  {
+    .rd-content-right {
+      margin-left: 0px;
+    }
+  }
+  .r-form {
+    .r-form-day {
+      flex-wrap: wrap;
+      .check-in , .check-out {
+        width: 100%;
+      }
+      .check-in {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
