@@ -54,7 +54,7 @@ function MainLayouts() {
                   </Button>
                 </Modal.Header>
                 <Cart />
-                <div className="aside d-flex justify-content-center">
+                <div className="aside d-flex justify-content-center p-2">
                   <SquareAccounts
                     onClick={handleCheckoutClick}
                     className="more_color"
