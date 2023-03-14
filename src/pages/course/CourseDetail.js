@@ -33,7 +33,7 @@ function CourseDetail() {
               <div className="product-button-wrapper">
                 {/* <button className="product-add-collection">加入收藏</button>
               <button className="product-add-cart">加入購物車</button> */}
-                <AddToFavoritesLg product={item} typeID={2} id={id} />
+                <AddToFavoritesLg product={item} typeID={2} />
                 <AddToCartLg product={item} />
               </div>
             </div>
