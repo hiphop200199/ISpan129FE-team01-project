@@ -63,7 +63,7 @@ function Paginationn({
               <button
                 key={index}
                 onClick={() => setCurrentPage(page)}
-                className={page === currentPage ? 'active' : 'other'}
+                className={page === currentPage ? 'active' : 'nothing'}
               >
                 {page}
               </button>

@@ -5,7 +5,7 @@
     margin: 1rem;
 }
 
-.other{
+.nothing{
     width: 40px;
     height: 40px;
     font-weight: 600;
@@ -20,14 +20,14 @@
 }
 
 .active {
-    @extend .other;
+    @extend .nothing;
     font-weight: 900;
     background: var(--secondary);
     
 }
 
 .page-btn-next{
-    @extend .other;
+    @extend .nothing;
     &:hover{
         background: var(--secondary);
     }
