@@ -59,7 +59,8 @@
     & .course-search-results{
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-evenly;
+      justify-content: space-between;
+      padding: 1vmax;
       width: 100%;
       height: 80%;
      & .course-product-card {
@@ -271,11 +272,12 @@
            }
         }
        & .course-search-results{
+        padding: 1.5vmax;
           & .course-product-card {
             
-              width: max(220px,40%);
+              width: max(225px,35%);
               height: max(230px,30%);
-              margin: 2vmax;      
+              margin: 1vmax;      
               & .text-part {
                  
                   & .title {
@@ -312,7 +314,7 @@
                  
                   width: 52%;
                   height: 65%;
-                  left: 56%;
+                  left: 53%;
                   top: 20%;
                  
                 }
@@ -396,6 +398,7 @@
          }
         }
        & .course-search-results{
+          justify-content: center;
           height: 70%;
          & .course-product-card {          
               width: max(300px,75%);
