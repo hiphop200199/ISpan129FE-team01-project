@@ -40,6 +40,14 @@ function ReserveConfirm() {
     product_price: 0,
   })
 
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [message, setMessage] = useState('')
+  const [isLogin, setIsLogin] = useState(false)
+  const [isOrderSuccess, setIsOrderSuccess] = useState(false)
+
+  const openModal = () => setIsModalOpen(true)
+  const closeModal = () => setIsModalOpen(false)
+
   useEffect(() => {
     const memberId = localStorage.getItem('id')
     console.log('memberId2-', memberId)
@@ -218,6 +226,7 @@ function ReserveConfirm() {
                 className="btn btn-primary btn-lg min-width-auto ml-10px"
                 onClick={() => {
                   const memberId = localStorage.getItem('id')
+                  setIsLogin(memberId ? true : false)
                   const reqData = {
                     ...formData,
                     ...{ payment_method: parseInt(formData.payment_method) },
@@ -253,13 +262,27 @@ function ReserveConfirm() {
                         .then((response) => response.json())
                         .then((data) => {
                           console.log('data', data)
+                          setIsOrderSuccess(data.success)
+                          if (data.success === true) {
+                            setMessage('結帳成功，可至訂單紀錄查看')
+                            openModal()
+                          } else {
+                            setMessage('結帳失敗')
+                            openModal()
+                          }
                         })
-                        .catch((error) => console.error(error))
+                        .catch((error) => {
+                          console.error(error)
+                          setMessage('系統錯誤')
+                          openModal()
+                        })
                     } else if (formData.payment_method === '1') {
                       console.log('導向linePay付款')
                     }
                   } else {
-                    navigate('/login')
+                    setMessage('您尚未登入，無法結帳，請先登入會員')
+                    openModal()
+                    // navigate('/login')
                   }
                   console.log('formData', formData)
                   console.log('reserveConfirm', reserveConfirm)
@@ -270,6 +293,74 @@ function ReserveConfirm() {
             </div>
           </div>
         </div>
+      </div>
+      <div>
+        <div
+          className={`modal ${isModalOpen ? 'show' : ''}`}
+          tabIndex="-1"
+          role="dialog"
+          style={{ display: isModalOpen ? 'block' : 'none' }}
+        >
+          {/* modal-dialog-centered 垂直置中 */}
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">訊息</h5>
+                {isOrderSuccess ? (
+                  ''
+                ) : (
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    onClick={closeModal}
+                  ></button>
+                )}
+              </div>
+              <div className="modal-body text-center">
+                <p>{message}</p>
+              </div>
+              <div className="modal-footer justify-content-center">
+                {isLogin && !isOrderSuccess ? (
+                  ''
+                ) : (
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-dismiss="modal"
+                    onClick={() => {
+                      closeModal()
+                      if (isOrderSuccess) {
+                        navigate('/orderList')
+                      } else {
+                        navigate('/login')
+                      }
+                    }}
+                  >
+                    {isOrderSuccess ? '查看訂單紀錄' : '前往登入'}
+                  </button>
+                )}
+                {isOrderSuccess ? (
+                  ''
+                ) : (
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={closeModal}
+                  >
+                    關閉
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          className={`modal-backdrop ${isModalOpen ? 'show' : ''}`}
+          style={{ display: isModalOpen ? 'block' : 'none' }}
+        ></div>
       </div>
     </>
   )
