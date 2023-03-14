@@ -128,3 +128,31 @@
   //     flex-direction: column;
   // }
   
+  @media screen  and (max-width:768px) {
+    .login-container{
+      .login-main{
+        background-color: #DAF1FA;
+        width: 80%;
+        height: 100%;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+      }
+    }
+  }
+  @media screen  and (max-width:376px) {
+    .login-container{
+      .login-main{
+        background-color: #DAF1FA;
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+      }
+    }
+  }
