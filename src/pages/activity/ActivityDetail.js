@@ -8,11 +8,13 @@ import { MdOutlinePets } from 'react-icons/md'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons'
 
-function ActivityDetail() {
-  const { activity_id } = useParams()
-  const [activity, setActivity] = useState({})
-  const [firstRender, setFirstRender] = useState(true)
-  const navigate = useNavigate()
+
+// function ActivityDetail() {
+//   const { activity_id } = useParams()
+//   const [activity, setActivity] = useState({})
+//   const [firstRender, setFirstRender] = useState(true)
+//   const navigate = useNavigate()
+
 
   console.log('activity', activity)
 
@@ -137,4 +139,5 @@ function ActivityDetail() {
   )
 }
 
-export default ActivityDetail
+
+// export default ActivityDetail

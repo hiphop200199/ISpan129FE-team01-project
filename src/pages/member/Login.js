@@ -10,10 +10,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import RegisterMember from './RegisterMember'
 import { Link, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 function Login() {
   function handleLinkClick(event) {
     event.preventDefault()
-    window.alert('請透過信箱聯絡我們~')
+    Swal.fire('請透過信箱聯絡我們~', '', 'info')
   }
 
   const [email, setEmail] = useState('')
@@ -50,7 +51,7 @@ function Login() {
           setEmail(data.email)
           setName(data.name)
           setIsAuthenticated(true)
-          alert('登入成功')
+          Swal.fire('登入成功!', '', 'success')
           // navigate('/')
         } else {
           // alert('登入失敗');
