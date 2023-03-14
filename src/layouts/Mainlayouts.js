@@ -57,6 +57,9 @@ function MainLayouts() {
               <img src={Ball} alt="logo" />
             </Link>
             <Menu />
+            <Button className="btn-outline-cart" onClick={handleShow}>
+              <FontAwesomeIcon icon={faCartShopping} />
+            </Button>
           </nav>
           <main className="content-border">
             <div className="content">
