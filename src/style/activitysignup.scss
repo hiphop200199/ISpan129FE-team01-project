@@ -17,6 +17,7 @@
         padding: 0 100px;
     }
 
+
     .step2-container{
         display: flex;
         flex-direction: row;
@@ -24,6 +25,9 @@
         padding: 0 100px;
 
        .step2-form1{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
         width: 60%;
         background: var( --light-blue);
         border-radius: 30px;
@@ -39,9 +43,12 @@
                 }
             }
             
-                
             .step-table-wrap{
                 display: flex;
+                flex-direction: row;
+                height: auto;
+                padding: 20px;
+                margin-bottom: 5px;
 
                 .step-table-title{
                     width: 8em;
@@ -53,27 +60,83 @@
                 .step-table-description{
                     padding-left: 46px;
                     color: var(--text-black);
+                    font-weight: bold;
                 }
-            }
-            
-       }
+            }     
+         }
 
        .step-form2{
             @extend .step2-form1;
-            width: 30%;
+            width: 35%;
 
-            .addpet-box{    
-                padding: 20px;
+            .step2-form-text{
+                font-weight: bold;
+                color: var(--text-black);
+            }
+
+            .addpet-form{    
                 display: flex;
-                justify-content: center;
+                flex-direction: column;
+                height: auto;
+                padding: 40px;
+                margin-bottom: 5px;
 
               .addpet-control{
                     background: white;
-                    width:auto;
-                    margin-bottom: 20px ;
+                    width:100%;
+                }
+
+                .addpet-select{
+                    @extend .step2-form-text;
+                    display:flex;
+                    flex-direction: column;
+                    margin: 20px 0;
+                    
+                }
+
+                .signupbtn-box{
+                    display:flex;
+                    justify-content: space-around;
                 }
             }              
         }
+
+
        
     }
+    .step3{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .checkmark-container{
+            background-color: var(--text-black);
+            width: 150px;
+            height: 150px;
+            border-radius: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 50px;
+            
+            .checkmark-svg{
+                stroke: white;
+                width: 100px;
+            }
+        }
+        .checkmark-foot{
+            @extend .step3;
+            border-top: 3px solid var(--light-blue);
+            width: 80%;
+            padding: 50px;
+            text-align: center;
+
+            .btn-to-Record{
+                text-decoration:none;
+                color:var(--text-black);
+                font-weight: bolder;
+                padding: 25px;
+            }
+        }
+    }
+    
 }     

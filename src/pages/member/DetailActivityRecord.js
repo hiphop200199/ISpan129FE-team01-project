@@ -5,15 +5,10 @@ import 'datejs'
 function SignUpSheetDetail() {
   const { activityform_id } = useParams()
   const [list, setList] = useState({})
-  const [data, setData] = useState(1)
   const [firstRender, setFirstRender] = useState(true)
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (firstRender) {
-      setFirstRender(false)
-    }
-
     const fetchData = async () => {
       const res = await fetch(
         `http://localhost:3002/activity/DetailActivityRecord/${activityform_id}`,
@@ -21,10 +16,15 @@ function SignUpSheetDetail() {
           method: 'GET',
         }
       )
-      const list = await res.json()
+      let list = await res.json()
+      list = {
+        ...list,
+        activity_image: list.activity_image.split(','),
+      }
       console.log('list', list)
 
-      setList(list)
+      setFirstRender(false)
+      setList({ ...list })
     }
     fetchData()
   }, [activityform_id])
@@ -82,7 +82,7 @@ function SignUpSheetDetail() {
               <p className="mb-3">
                 報名日期:
                 {new Date(list.activityform_time).toString(
-                  'yyyy-MM-dd -- HH:mm:ss'
+                  'yyyy.MM.dd - HH:mm:ss'
                 )}
               </p>
             </div>
@@ -115,7 +115,7 @@ function SignUpSheetDetail() {
                   <tr>
                     <td>
                       <img
-                        src={`http://localhost:3002/uploads/${list.activity_image}`}
+                        src={`http://localhost:3002/uploads/${list.activity_image[0]}/`}
                         alt="activity_img"
                       />
                     </td>
