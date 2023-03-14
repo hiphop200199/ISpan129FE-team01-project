@@ -79,9 +79,9 @@
   border:5px solid var(--light-yellow);
   color: var(--text-black) ;
   &:hover,&:active,&:focus-visible{
-    background-color: var(--primary);
-    border-color: var(--primary);
-    color: var(--text-white);
+    background-color: var(--text-white);
+    border-color: var(--text-white);
+    color: var(--text-black);
   }
   
 }
