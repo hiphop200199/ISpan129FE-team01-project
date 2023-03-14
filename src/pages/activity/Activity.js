@@ -7,9 +7,16 @@ import { Autoplay, Pagination, Navigation, FreeMode, EffectFade } from 'swiper'
 import cat from '../../img/activity/activityhome1.png'
 import dog from '../../img/activity/activityhome2.png'
 import twodog from '../../img/activity/activityhome3.png'
+import Paginationn from '../../template/Paginationn'
 
 function Activity() {
   const [activity, setActivity] = useState([])
+  const [currentPage, setCurrentPage] = useState(1)
+  const [postsPerPage, setPostsPerPage] = useState(6)
+
+  const [pageNumberLimit, setPageNumberLimit] = useState(5)
+  const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5)
+  const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
 
   useEffect(() => {
     fetch(`http://localhost:3002/activity/activity-list/api`, {
@@ -42,6 +49,9 @@ function Activity() {
   }, [])
 
   const now = new Date().getTime()
+  const lastPostIndex = currentPage * postsPerPage
+  const firstPostIndex = lastPostIndex - postsPerPage
+  const currentPost = activity.slice(firstPostIndex, lastPostIndex)
 
   return (
     <>
@@ -81,7 +91,7 @@ function Activity() {
 
       <div className="activity-card-page">
         <div className="activity-cards">
-          {activity.map((el, idx) => {
+          {currentPost.map((el, idx) => {
             const endDate = new Date(el.activity_dateend).getTime()
             const expired = endDate < now
             return (
@@ -117,6 +127,19 @@ function Activity() {
           })}
         </div>
       </div>
+
+      <Paginationn
+        totalPosts={activity.length}
+        postsPerPage={postsPerPage}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+        maxPageNumberLimit={maxPageNumberLimit}
+        minPageNumberLimit={minPageNumberLimit}
+        setMaxPageNumberLimit={setMaxPageNumberLimit}
+        setMinPageNumberLimit={setMinPageNumberLimit}
+        pageNumberLimit={pageNumberLimit}
+        className="pagination-bar"
+      />
     </>
   )
 }
