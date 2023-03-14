@@ -4,6 +4,14 @@ import photo from '../img/productDetails/cheese.jpg'
 import { AddToCartLg, MoreSquare, AddToFavoritesLg } from './index'
 
 function Card({ product, typeID }) {
+  // eslint-disable-next-line prettier/prettier
+  [product].forEach((product) => {
+    console.log('product.product_image', product.product_image)
+    const img = product.product_image.split(',')
+    const bigImage = img[0]
+    product.product_img = bigImage
+    console.log('data', product)
+  })
   const {
     product_id,
     product_name,
@@ -12,7 +20,7 @@ function Card({ product, typeID }) {
     product_descripttion,
     product_image,
   } = product
-  // console.log(product_image)
+
   return (
     <div className="productCard col-4 m-auto">
       <span hidden>{product_id}</span>
