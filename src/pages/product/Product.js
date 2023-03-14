@@ -3,9 +3,11 @@ import Header from '../../layouts/header'
 import HeaderSearch from '../../layouts/HeaderSearch'
 import { useState, useEffect } from 'react'
 import { Card } from '../../template'
-import { useLocation, useParams } from 'react-router-dom'
-// import { faCny } from '@fortawesome/free-solid-svg-icons'
-
+import { Link, useLocation, useParams } from 'react-router-dom'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import { Autoplay, Pagination } from 'swiper'
 function Product() {
   const { typeID } = useParams()
   const [product, setProduct] = useState([])
@@ -30,11 +32,40 @@ function Product() {
     fetchData()
     // console.log(typeID)
   }, [typeID])
+  console.log(product.id)
   return (
     <div className="productPage">
       <Header />
       <HeaderSearch />
-      <h2>這裡之後放輪播器</h2>
+      <div>
+        <Swiper
+          className="swiper-width"
+          style={{
+            '--swiper-navigation-color': 'white',
+            '--swiper-navigation-size': '20px',
+          }}
+          centeredSlides={true}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
+          slidesPerView={1}
+          modules={[Autoplay, Pagination]}
+          loop={true}
+        >
+          {product.map((product, idx) => (
+            <SwiperSlide key={product.id}>
+              <Link to={`/product/Detail/${product.product_id}`}>
+                <img
+                  src={`http://localhost:3002/uploads/${product.product_image}/`}
+                  alt=""
+                  className="swiper-img"
+                />
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
       <div className="productContent col-12">
         {product.map((product) => (
           <Card
