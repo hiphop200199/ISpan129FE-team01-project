@@ -12,7 +12,7 @@ function Card({ product, typeID }) {
     product_descripttion,
     product_image,
   } = product
-  console.log(product_image)
+  // console.log(product_image)
   return (
     <div className="productCard col-4 m-auto">
       <span hidden>{product_id}</span>

@@ -1,30 +1,40 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
-function QuantitySelector() {
-  const [count, setCount] = useState(0)
+
+function QuantitySelector({ product_quantity, onCountChange }) {
+  const [currentCount, setCurrentCount] = useState(product_quantity)
+  console.log(currentCount)
+
+  useEffect(() => {
+    // 檢查 count 是否存在
+    if (product_quantity !== undefined) {
+      setCurrentCount(product_quantity)
+    }
+  }, [product_quantity])
+
+  const handleQuantityChange = (newCount) => {
+    setCurrentCount(newCount)
+    onCountChange(newCount)
+  }
+
   return (
     <>
       {/* 加減數量按鈕 */}
       <div className="calculate-btn-box">
         <button
           className="dash calculate-btn"
-          disabled={count <= 0 ? true : false}
-          onClick={() => {
-            if (count > 0) {
-              setCount(count - 1)
-            }
-          }}
+          disabled={currentCount <= 1}
+          onClick={() => handleQuantityChange(currentCount - 1)}
         ></button>
-        <span>{count}</span>
+        <span>{currentCount}</span>
         <button
           className="add calculate-btn "
-          onClick={() => {
-            setCount(count + 1)
-          }}
+          onClick={() => handleQuantityChange(currentCount + 1)}
         ></button>
       </div>
     </>
   )
 }
+
 export default QuantitySelector

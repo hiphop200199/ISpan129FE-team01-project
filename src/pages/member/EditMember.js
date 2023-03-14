@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
 import moment from 'moment-timezone'
+import Swal from 'sweetalert2'
 // import { CloudinaryContext, Image, Transformation } from 'cloudinary-react'
 // import axios from 'axios'
 // import { set } from 'date-fns'
@@ -81,10 +82,10 @@ function EditMember() {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          alert('修改成功')
+          Swal.fire('修改成功!', '', 'success')
           navigate('/')
         } else {
-          alert('資料沒有修改')
+          Swal.fire('修改失敗!', '', 'error')
         }
       })
       .catch((error) => console.error(error))
