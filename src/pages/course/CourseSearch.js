@@ -58,7 +58,9 @@ function CourseSearch() {
   }
   const findOneCourse = () => {
     if (courseName !== '') {
-      const data = courses.filter((item) => item.product_name === courseName)
+      let text = courseName
+      let regex = new RegExp(`.*${text}.*`, 'gi')
+      const data = courses.filter((item) => item.product_name.match(regex))
       setCourses(data)
     } else {
       return
