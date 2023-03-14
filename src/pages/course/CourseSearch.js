@@ -59,7 +59,7 @@ function CourseSearch() {
   const findOneCourse = () => {
     if (courseName !== '') {
       let text = courseName
-      let regex = new RegExp(`.*${text}.*`, 'gi')
+      let regex = new RegExp(`.*${text}.*`, 'i')
       const data = courses.filter((item) => item.product_name.match(regex))
       setCourses(data)
     } else {
