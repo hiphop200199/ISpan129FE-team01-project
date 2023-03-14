@@ -25,6 +25,7 @@ export { default as MoreSquare } from './MoreSquare'
 export { default as NextStepLg } from './NextStepLg'
 // import QuantitySelector from './QuantitySelector'
 export { default as QuantitySelector } from './QuantitySelector'
+export { default as BackToPrevious } from './BackToPrevious'
 
 export { default as Step } from './Step'
 export { default as PreviousStep } from './PreviousStep'
