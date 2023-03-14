@@ -3,12 +3,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faCartShopping,
-  faAnglesLeft,
+  faCircleLeft,
   faTrash,
 } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react'
 import 'datejs'
-import AddToCartLg from '../../template/AddToCartLg'
+import { AddToCartLg, BackToPrevious } from '../../template'
 import Swal from 'sweetalert2'
 
 function MyList({ id, onDelete }) {
@@ -80,9 +80,11 @@ function MyList({ id, onDelete }) {
 
   return (
     <>
-      <div className="click">
-        <FontAwesomeIcon icon={faAnglesLeft} onClick={() => navigate(-1)} />
-      </div>
+      {/* <button className="click" onClick={() => navigate(-1)}>
+        <FontAwesomeIcon className="d-flex pt-1" icon={faCircleLeft} />
+        返回上一頁
+      </button> */}
+      <BackToPrevious></BackToPrevious>
       <h1 className="orderTitle">我的收藏列表</h1>
       {/* <div className="info">{JSON.stringify(order)}</div> */}
       <main className="checkoutFlow">
