@@ -58,7 +58,9 @@ function CourseSearch() {
   }
   const findOneCourse = () => {
     if (courseName !== '') {
-      const data = courses.filter((item) => item.product_name === courseName)
+      let text = courseName
+      let regex = new RegExp(`.*${text}.*`, 'i')
+      const data = courses.filter((item) => item.product_name.match(regex))
       setCourses(data)
     } else {
       return
@@ -103,7 +105,7 @@ function CourseSearch() {
         <section className="course-search-results">
           {courses.map((item, i) => {
             return (
-              <div className="productCard" key={i}>
+              <div className="course-product-card" key={i}>
                 <section className="text-part">
                   <h2 className="title">{item.product_name}</h2>
                   <span className="text-unit">{item.product_unit}</span>
