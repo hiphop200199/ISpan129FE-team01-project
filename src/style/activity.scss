@@ -3,6 +3,72 @@
     box-sizing: border-box;
 
 }
+
+
 .activity-home-swiper{
-    margin-bottom: 50px;
+    margin-bottom: 100px;
 }
+
+.activity-banner{
+    display: flex;
+    justify-content: center;
+
+    .activity-banner-word{
+        color: var(--primary);
+        font-size: var(--font-size-header);
+        font-weight: bolder;
+        letter-spacing: 1.5px;
+
+    }
+}
+
+
+
+
+
+.activity-card-page{
+    width: 100%;
+
+    .activity-cards{
+        width: 80%;
+        margin: 50px auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(400px,1fr));
+        grid-gap:40px;
+        .acard{
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1) ;
+            border-radius: 20px;
+            overflow: hidden;
+            &:hover{
+                transform: translateY(-0.5rem);
+                box-shadow: 0.5rem 0.75rem 1.5rem #bbbb;
+            }
+
+            .activity-card-img{
+                width: 100%;
+                
+            }
+
+            .activity-card-content{
+                padding: 10px 20px 20px 20px;
+
+                .activity-card-title{
+                    font-size: var(--font-size-h2);
+                    font-weight: bolder;
+                    letter-spacing: 1.5px;
+                    color: var(--text-black);
+                    margin:5px 0 ;
+                }
+
+                .activity-card-p{
+                    font-size: var(--font-size-p);
+                    color: #aaa;
+                    letter-spacing: 1.5px;
+                    
+                }
+            }
+        }
+    }
+}
+
+

@@ -75,12 +75,10 @@
 
 
 .btn-outline-none{
-  background-color: var(--light-yellow);
-  border:5px solid var(--light-yellow);
+  background-color: var(--light-white);
   color: var(--text-black) ;
   &:hover,&:active,&:focus-visible{
     background-color: var(--text-white);
-    border-color: var(--text-white);
     color: var(--text-black);
   }
   

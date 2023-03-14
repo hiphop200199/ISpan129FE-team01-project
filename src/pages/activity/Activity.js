@@ -45,69 +45,77 @@ function Activity() {
 
   return (
     <>
-      <Swiper
-        style={{
-          '--swiper-navigation-color': 'white',
-          '--swiper-navigation-size': '30px',
-        }}
-        centeredSlides={true}
-        effect={'fade'}
-        speed={2000}
-        autoplay={{
-          delay: 5000,
-          disableOnInteraction: false,
-        }}
-        slidesPerView={1}
-        modules={[EffectFade, Autoplay, Pagination]}
-        loop={true}
-        className="activity-home-swiper"
-      >
-        <SwiperSlide>
-          <img src={cat} alt="" className="swiper-img" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={dog} alt="" className="swiper-img" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={twodog} alt="" className="swiper-img" />
-        </SwiperSlide>
-      </Swiper>
-      {/* <div>
-        search: <input type="search" />
-      </div> */}
-      <div className="productContent col-12">
-        {activity.map((el, idx) => {
-          const endDate = new Date(el.activity_dateend).getTime()
-          const expired = endDate < now
-          return (
-            <div className="productCard col-4 m-auto" key={idx}>
-              <h5 className="title">{el.activity_name}</h5>
-              <p className="description">
-                活動日期 :
-                {new Date(el.activity_datestart).toString('yyyy-MM-dd')}
-              </p>
-              <p className="title">
-                截止日期:{new Date(el.activity_dateend).toString('yyyy-MM-dd')}
-              </p>
-              <section className="buttons">
-                {!expired && (
-                  <button className="button-collection">
-                    <Link to={`/ActivitySignUp/${el.activity_id}`}>
-                      <SignUp />
-                    </Link>
-                  </button>
-                )}
-                <Link to={`/activitydetail/${el.activity_id}`}>
-                  <EventRegistration />
-                </Link>
-              </section>
-              <img
-                src={`http://localhost:3002/uploads/${el.activity_img}`}
-                alt=""
-              />
-            </div>
-          )
-        })}
+      <div className="banner-swiper">
+        <Swiper
+          style={{
+            '--swiper-navigation-color': 'white',
+            '--swiper-navigation-size': '30px',
+          }}
+          centeredSlides={true}
+          effect={'fade'}
+          speed={2000}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          slidesPerView={1}
+          modules={[EffectFade, Autoplay, Pagination]}
+          loop={true}
+          className="activity-home-swiper"
+        >
+          <SwiperSlide>
+            <img src={cat} alt="banner-img" className="swiper-img" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={dog} alt="" className="swiper-img" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={twodog} alt="" className="swiper-img" />
+          </SwiperSlide>
+        </Swiper>
+
+        <div className="activity-banner">
+          <h1 className="activity-banner-word">館內活動</h1>
+        </div>
+      </div>
+
+      <div className="activity-card-page">
+        <div className="activity-cards">
+          {activity.map((el, idx) => {
+            const endDate = new Date(el.activity_dateend).getTime()
+            const expired = endDate < now
+            return (
+              <Link to={`/activitydetail/${el.activity_id}`}>
+                <div className="acard" key={idx}>
+                  <img
+                    src={`http://localhost:3002/uploads/${el.activity_img}`}
+                    alt=""
+                    className="activity-card-img"
+                  />
+                  <div className="activity-card-content">
+                    <div className="activity-card-p">
+                      {new Date(el.activity_datestart).toString('yyyy.MM.dd')}-
+                      {new Date(el.activity_dateend).toString('yyyy.MM.dd')}
+                    </div>
+                    <div className="activity-card-title">
+                      {el.activity_name}
+                    </div>
+                    <div className="d-flex justify-content-between">
+                      <Link to={`/activitydetail/${el.activity_id}`}>
+                        <EventRegistration />
+                      </Link>
+                      {!expired && (
+                        <Link to={`/ActivitySignUp/${el.activity_id}`}>
+                          <SignUp />
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            )
+          })}
+        </div>
       </div>
     </>
   )
