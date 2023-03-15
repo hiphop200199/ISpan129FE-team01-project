@@ -60,14 +60,14 @@ function OrderDetail() {
             訂單日期:
             {order[0] && new Date(order[0].order_date).toString('yyyy-MM-dd')}
           </p>
-          {/* <p>
+          <p>
             付款方式:
             {order[0] && order[0].payment_method === 1
-              ? '信用卡付款'
-              : order[0].payment_method === 2
+              ? 'Line Pay'
+              : order[0] && order[0].payment_method === 2
               ? '貨到付款'
               : '現場付款'}
-          </p> */}
+          </p>
           {order[0] && order[0].type_id === 3 && (
             <>
               <p>
