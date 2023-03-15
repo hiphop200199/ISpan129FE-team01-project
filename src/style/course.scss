@@ -70,7 +70,7 @@
           justify-content: space-evenly;
           background-color: var(--light-yellow);
           width: max(380px,35%);
-          margin: 2.5vmax;
+          margin: 3vmax 3.5vmax;
           height: max(290px,48%);
           border-radius: 15px;
           padding: 1vmax;
@@ -275,9 +275,9 @@
         padding: 1.5vmax;
           & .course-product-card {
             
-              width: max(225px,35%);
-              height: max(230px,30%);
-              margin: 1vmax;      
+              width: max(270px,35%);
+              height: max(250px,35%);
+              margin:3vmax 1vmax;      
               & .text-part {
                  
                   & .title {
@@ -352,6 +352,61 @@
     }  
    
  }
+ @media screen and (width <=768px){
+  .course-container{
+    
+    & .course-search-results{
+     padding: 1.5vmax;
+       & .course-product-card {
+         
+           width: max(260px,40%);
+           height: max(250px,35%);
+           margin:3vmax 1vmax;      
+           & .text-part {
+              
+               & .title {
+               width: 80%;
+                 font-size: 21px;
+            
+               }
+               & .text-unit{
+                   font-size: 18px;
+               }
+               & .description {
+                 font-size: 18px;
+               
+                 width: 45%;
+               }
+               & .price {
+                 font-size: 18px;
+               
+               }
+             }
+             & .buttons {
+             
+               & .button-collection {
+              
+                 font-size: 22px;
+               }
+               & .button-moreInfo {
+                
+                 font-size: 16px;
+               
+               }
+             }
+             & img {
+              
+               width: 52%;
+               height: 65%;
+               left: 53%;
+               top: 20%;
+              
+             }
+         }
+      
+   }
+ }
+ }
  @media screen and (width<640px) {
     .course-container{
         align-items: center;
@@ -402,8 +457,8 @@
           height: 70%;
          & .course-product-card {          
               width: max(300px,75%);
-              height: max(240px,35%);
-              margin: 3vmax;
+              height: max(280px,35%);
+              margin: 3vmax 1vmax;
               & .text-part {
                  
                   & .title {
