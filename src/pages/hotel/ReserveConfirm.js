@@ -85,7 +85,7 @@ function ReserveConfirm() {
     <>
       <div className="rc-container rwd-container">
         <div className="rc-content-left rwd-col-12">
-          <div className="rc-text-header">確認並付款</div>
+          <div className="rc-text-header">確認訂單</div>
           <div className="rc-title">付款方式</div>
           <form>
             <div className="mb-3">
@@ -264,10 +264,10 @@ function ReserveConfirm() {
                           console.log('data', data)
                           setIsOrderSuccess(data.success)
                           if (data.success === true) {
-                            setMessage('結帳成功，可至訂單紀錄查看')
+                            setMessage('預訂成功，可至訂單紀錄查看')
                             openModal()
                           } else {
-                            setMessage('結帳失敗')
+                            setMessage('預訂失敗')
                             openModal()
                           }
                         })
@@ -277,10 +277,34 @@ function ReserveConfirm() {
                           openModal()
                         })
                     } else if (formData.payment_method === '1') {
-                      console.log('導向linePay付款')
+                      console.log('導向linePay付款', reqData)
+                      fetch(`http://localhost:3002/order/${memberId}`, {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(reqData),
+                      })
+                        .then((response) => response.json())
+                        .then((data) => {
+                          console.log('data', data)
+                          setIsOrderSuccess(data.success)
+                          if (data.success === true) {
+                            setMessage('預訂成功，可至訂單紀錄查看')
+                            openModal()
+                          } else {
+                            setMessage('預訂失敗')
+                            openModal()
+                          }
+                        })
+                        .catch((error) => {
+                          console.error(error)
+                          setMessage('系統錯誤')
+                          openModal()
+                        })
                     }
                   } else {
-                    setMessage('您尚未登入，無法結帳，請先登入會員')
+                    setMessage('您尚未登入，無法預訂，請先登入會員')
                     openModal()
                     // navigate('/login')
                   }
@@ -288,7 +312,7 @@ function ReserveConfirm() {
                   console.log('reserveConfirm', reserveConfirm)
                 }}
               >
-                結帳
+                確認
               </button>
             </div>
           </div>

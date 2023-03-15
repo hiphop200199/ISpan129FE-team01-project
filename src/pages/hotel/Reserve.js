@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import ReactDatePicker, { registerLocale } from 'react-datepicker'
 import zhTW from 'date-fns/locale/zh-TW'
 import 'react-datepicker/dist/react-datepicker.css'
+import { AddToFavoritesLg } from '../../template'
 
 registerLocale('zh-TW', zhTW)
 
@@ -63,19 +64,6 @@ function Reserve() {
   }, [product_id])
   console.log('roomDetail', roomDetail)
 
-  // const getRoomDetailImg = (roomData) => {
-  //   if (roomData.product_image) {
-  //     fetch(`http://localhost:3002/uploads/${roomData.product_image}/`)
-  //       .then((res) => {
-  //         roomData.product_image = res.url
-  //       })
-  //       .catch((err) => console.error(err))
-  //   } else {
-  //     roomData.product_image = ''
-  //   }
-  // }
-
-  //
   function calculateNumberOfNights(checkinDate, checkoutDate, keyName) {
     const oneDay = 24 * 60 * 60 * 1000 // 一天的毫秒數
     const checkinTime = new Date(checkinDate).getTime() // 入住日期的時間戳
@@ -419,12 +407,10 @@ function Reserve() {
                 </div>
               </div>
               <div className="r-btn-box">
-                <button
-                  type="button"
-                  className="btn btn-outline-primary btn-lg min-width-auto mr-10px"
-                >
-                  加入收藏
-                </button>
+                <AddToFavoritesLg
+                  product={roomDetail}
+                  typeID={roomDetail.product_type}
+                />
                 {/* <Link to="/ReserveConfirm"> */}
                 <button
                   onClick={() => {
