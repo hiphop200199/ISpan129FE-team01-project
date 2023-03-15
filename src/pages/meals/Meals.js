@@ -26,8 +26,11 @@ function Meals() {
   return (
     <>
       <div className="MealsPage">
-        <Header />
+        {/* <Header /> */}
+        <br></br> 
         <MealsHeaderSearch />
+        <br></br>
+       
         {/* <Link to="/food">
                       <MoreSquare />
                     </Link> */}

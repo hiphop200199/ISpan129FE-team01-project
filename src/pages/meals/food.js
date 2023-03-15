@@ -1,7 +1,7 @@
 import { AddToCartLg, AddToFavoritesLg } from '../../template'
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import MealsHeaderSearch from '../meals/MealsHeaderSearch'
+import MealsHeaderSearch from './MealsHeaderSearch'
 
 
 function Food() {
@@ -19,6 +19,7 @@ function Food() {
 
   return (
     <>
+    
     <MealsHeaderSearch />
       {Food.map((item, i) => {
         return (
