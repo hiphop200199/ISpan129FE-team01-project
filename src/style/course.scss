@@ -26,10 +26,12 @@
       }
       & .price-filter{
         position: relative;
-        border-radius: 15px;
+        border-radius: 25px;
         background-color: #FEFCEB;
         width: fit-content;
         height: fit-content;
+        font-size: 20px;
+        font-weight: 400;
         padding: 10px 15px;
         transition: 0.5s;
         border: none;
@@ -44,7 +46,7 @@
           opacity: 0;
           transform: scaleY(0);
           background-color: #FEFCEB;
-          border-radius: 15px;
+          border-radius: 25px;
           width: 100%;
           transition: 0.5s;
          
@@ -53,16 +55,16 @@
             border: none;
             transition: 0.5s;
              padding: 5px 15px;
-            
+             font-size: 20px;
             &:hover{
               background-color: #fffacd;
             }
           }
           & #price-ascend-order{
-            border-radius: 15px 15px 0 0;
+            border-radius: 25px 25px 0 0;
           }
           & #price-descend-order{
-            border-radius: 0 0 15px 15px;
+            border-radius: 0 0 25px 25px;
           }
         }
         &:hover{
