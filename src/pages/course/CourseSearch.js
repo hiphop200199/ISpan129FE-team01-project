@@ -5,7 +5,6 @@ function CourseSearch() {
   const [isFilterActive, setIsFilterActive] = useState('')
   const [courses, setCourses] = useState([])
   const { typeID } = useParams()
-
   useEffect(() => {
     fetch(`http://localhost:3002/product/list-product/${typeID}`)
       .then((res) => res.json())
@@ -85,6 +84,7 @@ function CourseSearch() {
     )
     setCourses(desc)
   }
+
   return (
     <>
       <div className="course-container">
