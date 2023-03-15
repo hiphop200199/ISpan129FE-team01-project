@@ -7,6 +7,7 @@ import { IoCalendarSharp } from 'react-icons/io5'
 import { MdOutlinePets } from 'react-icons/md'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons'
+import BackToPrevious from '../../template/BackToPrevious'
 
 function ActivityDetail() {
   const { activity_id } = useParams()
@@ -46,8 +47,7 @@ function ActivityDetail() {
 
   return (
     <>
-      <Header />
-      <FontAwesomeIcon icon={faAnglesLeft} onClick={() => navigate(-1)} />
+      <BackToPrevious />
       {firstRender ? (
         false
       ) : (

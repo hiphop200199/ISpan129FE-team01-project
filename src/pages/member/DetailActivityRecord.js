@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import 'datejs'
 import Swal from 'sweetalert2'
+import BackToPrevious from '../../template/BackToPrevious'
 
 function SignUpSheetDetail() {
   const { activityform_id } = useParams()
@@ -57,6 +58,7 @@ function SignUpSheetDetail() {
         false
       ) : (
         <div>
+          <BackToPrevious />
           <section className="col-10 m-auto pt-3">
             <h4 className="border-bottom pb-2">活動報名資訊</h4>
             <div className="order d-flex flex-column border-bottom mb-3">
