@@ -92,7 +92,7 @@ function Login() {
           <div className="afterLogin m-3">
             <h5 className="mb-3">歡迎光臨~毬!</h5>
             <h5 className="mb-3">{name}</h5>
-            <div className="memberlist d-flex border-bottom mb-3 flex-column justify-content-center">
+            <div className="memberlist d-flex  mb-3 flex-column justify-content-center">
               <Link to="/edit" className="editMember mb-3">
                 <FontAwesomeIcon icon={faPencil} />
                 我的個人資料
