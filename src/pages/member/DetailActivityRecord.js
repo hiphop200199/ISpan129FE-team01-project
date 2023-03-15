@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import 'datejs'
+import Swal from 'sweetalert2'
 
 function SignUpSheetDetail() {
   const { activityform_id } = useParams()
@@ -36,7 +37,13 @@ function SignUpSheetDetail() {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          alert('取消成功')
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '取消成功',
+            showConfirmButton: false,
+            timer: 1500,
+          })
           setList({ ...list, activityform_state: 0 })
         } else {
           alert('取消失敗')
