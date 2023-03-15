@@ -71,7 +71,7 @@
           background-color: var(--light-yellow);
           width: max(380px,35%);
           margin: 3vmax 3.5vmax;
-          height: max(290px,48%);
+          height: max(290px,46%);
           border-radius: 15px;
           padding: 1vmax;
           & .text-part {
@@ -122,6 +122,11 @@
               border-radius: var(--button-radius-2);
               padding: 0px 20px;
               margin-inline: 5px;
+              transition: 0.5s;
+              &:hover{
+                filter: brightness(105%);
+                color: #222222;
+             }
             }
           }
           & img {
