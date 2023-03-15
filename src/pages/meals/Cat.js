@@ -1,96 +1,168 @@
-import React from 'react'
-import Header from '../../layouts/header'
-import HeaderSearch from '../../layouts/HeaderSearch'
+import { Link, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { Card } from '../../template'
-import { useLocation, useParams } from 'react-router-dom'
-import { faCny } from '@fortawesome/free-solid-svg-icons'
-import MoreSquare from '../../template/MoreSquare'
-import { Link } from 'react-router-dom'
+function Cat() {
+  const [courseName, setCourseName] = useState('')
+  const [isFilterActive, setIsFilterActive] = useState('')
+  const [courses, setCourses] = useState([])
+  const { typeID } = useParams()
 
-function Food() {
-    const [food, setFood] = useState([])
-    // didMount
-    useEffect(() => {
-      setFood([
-        {
-          title: '提拉米蘇米蘭',
-          subtitle: '120',
-          text: '蛋糕般柔軟的皇家米蘭麵包',
-          img: 'food.jpg',
-        },
-        {
-            title: '提拉米蘇米蘭',
-            subtitle: '120',
-            text: '蛋糕般柔軟的皇家米蘭麵包',
-            img: 'food.jpg',
-          },
-          {
-            title: '提拉米蘇米蘭',
-            subtitle: '120',
-            text: '蛋糕般柔軟的皇家米蘭麵包',
-            img: 'food.jpg',
-          },
-          {
-            title: '提拉米蘇米蘭',
-            subtitle: '130',
-            text: '蛋糕般柔軟的皇家米蘭麵包',
-            img: 'food.jpg',
-          },
-          {
-            title: '提拉米蘇米蘭',
-            subtitle: '120',
-            text: '蛋糕般柔軟的皇家米蘭麵包',
-            img: 'food.jpg',
-          },
-          {
-            title: '提拉米蘇米蘭',
-            subtitle: '120',
-            text: '蛋糕般柔軟的皇家米蘭麵包',
-            img: 'food.jpg',
-          },
-        
-      ])
-      console.log('food', food)
-    }, [])
-  
-    return (
-      <>
-        <Header />
-      <HeaderSearch />
-        
-        <div className="h-text-title">貓咪</div>
-         
-        <div className="card-wrap">
-          {food.map((item, i) => {
-            const img = require(`../../img/meals/food/${item.img}`)
+  useEffect(() => {
+    fetch(`http://localhost:3002/product/list-product/${typeID}`)
+      .then((res) => res.json())
+      .then((data) => setCourses(data))
+      .catch((error) => console.log(error))
+  }, [courseName, typeID])
+
+  const trainingCourses = () => {
+    fetch(`http://localhost:3002/product/list-product/${typeID}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCourses(data)
+        const train = data.filter((item) => item.product_class === '風味餐點')
+        setCourses(train)
+      })
+      .catch((error) => console.log(error))
+  }
+  const interactiveCourses = () => {
+    fetch(`http://localhost:3002/product/list-product/${typeID}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCourses(data)
+        const interact = data.filter(
+          (item) => item.product_class === '香醇飲品'
+        )
+        setCourses(interact)
+      })
+      .catch((error) => console.log(error))
+  }
+  const petKnowledges = () => {
+    fetch(`http://localhost:3002/product/list-product/${typeID}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCourses(data)
+        const knowledge = data.filter(
+          (item) => item.product_class === '精緻甜點'
+        )
+        setCourses(knowledge)
+      })
+      .catch((error) => console.log(error))
+  }
+  const takeCarePets = () => {
+    fetch(`http://localhost:3002/product/list-product/${typeID}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setCourses(data)
+        const care = data.filter((item) => item.product_class === '寵物專區')
+        setCourses(care)
+      })
+      .catch((error) => console.log(error))
+  }
+  const findOneCourse = () => {
+    if (courseName !== '') {
+      let text = courseName
+      let regex = new RegExp(`.*${text}.*`, 'i')
+      const data = courses.filter((item) => item.product_name.match(regex))
+      setCourses(data)
+    } else {
+      return
+    }
+  }
+  const showPriceFilterButton = () => {
+    if (isFilterActive === '') setIsFilterActive(' active')
+    else setIsFilterActive('')
+  }
+  const ascendPriceOrder = () => {
+    //如果前面的價格比較大，那就會移到後面
+    const asc = courses.sort(
+      (a, b) => parseInt(a.product_price) - parseInt(b.product_price)
+    )
+    setCourses(asc)
+  }
+  const descendPriceOrder = () => {
+    //如果後面的價格比較大，那就會移到前面
+    const desc = courses.sort(
+      (a, b) => parseInt(b.product_price) - parseInt(a.product_price)
+    )
+    setCourses(desc)
+  }
+  return (
+    <>
+      <div className="course-container">
+        <div className="upper-part">
+          <div className="searchbar">
+            <input
+              type="search"
+              id="search"
+              onChange={(e) => {
+                setCourseName(e.target.value)
+              }}
+              placeholder="搜尋"
+            />
+            <button id="search-button" onClick={findOneCourse}>
+              &#128269;
+            </button>
+          </div>
+          <button
+            className={`price-filter${isFilterActive}`}
+            onClick={showPriceFilterButton}
+          >
+            以價格排序:
+            <div className="price-button-wrapper">
+              <button id="price-ascend-order" onClick={ascendPriceOrder}>
+                由低至高
+              </button>
+              <button id="price-descend-order" onClick={descendPriceOrder}>
+                由高至低
+              </button>
+            </div>
+          </button>
+          <span className="course-search-tags">
+            <button className="course-search-tag" onClick={trainingCourses}>
+              風味餐點
+            </button>
+
+            <button className="course-search-tag" onClick={interactiveCourses}>
+            香醇飲品
+            </button>
+
+            <button className="course-search-tag" onClick={petKnowledges}>
+            精緻甜點
+            </button>
+
+            <button className="course-search-tag" onClick={takeCarePets}>
+              寵物專區
+            </button>
+          </span>
+        </div>
+        <section className="course-search-results">
+          {courses.map((item, i) => {
             return (
-              <div className="h-card col-6" key={i}>
-                <div className="h-card-left col-6">
-                  <div className="h-card-header">
-                    <h3 className="h-card-title">{item.title}</h3>
-                    <p className="h-card-subtitle">NT.{item.subtitle}</p>
-                    <p className="h-card-text">{item.text}</p>
-                  </div>
-                  <div className="h-card-footer">
-                    <span>&#9825;</span>
-                    <Link to="/MealsDetail">
-                      <MoreSquare />
-                    </Link>
-                    
-                  </div>
-                </div>
-                <div className="h-card-right col-7">
-                  <img src={img} alt="" />
-                  
-                </div>
+              <div className="course-product-card" key={i}>
+                <section className="text-part">
+                  <h2 className="title">{item.product_name}</h2>
+                  <span className="text-unit">{item.product_unit}</span>
+                  <p className="description">{item.product_descripttion}</p>
+                  <span className="price">$.{item.product_price}</span>
+                </section>
+                <section className="buttons">
+                  <button className="button-collection">&#9825;</button>
+                  <Link to={`/Food/${item.product_id}`}>
+                    <button className="button-moreInfo">看更多</button>
+                  </Link>
+                </section>
+                {/* 圖片動態引入 ，圖片須放在public資料夾*/}
+                <img
+                  src={`http://localhost:3002/uploads/${item.product_image}`}
+                  alt=""
+                />
+                {/* <img src={photo} alt="" /> */}
               </div>
             )
           })}
-          
-        </div>
-      </>
-    )
-  }
-  export default Food
-  
+        </section>
+      </div>
+    </>
+  )
+}
+
+export default Cat
