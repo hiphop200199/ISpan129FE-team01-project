@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 function CourseSearch() {
   const [courseName, setCourseName] = useState('')
+  const [isFilterActive, setIsFilterActive] = useState('')
   const [courses, setCourses] = useState([])
   const { typeID } = useParams()
 
@@ -58,13 +59,32 @@ function CourseSearch() {
   }
   const findOneCourse = () => {
     if (courseName !== '') {
-      const data = courses.filter((item) => item.product_name === courseName)
+      let text = courseName
+      let regex = new RegExp(`.*${text}.*`, 'i')
+      const data = courses.filter((item) => item.product_name.match(regex))
       setCourses(data)
     } else {
       return
     }
   }
-
+  const showPriceFilterButton = () => {
+    if (isFilterActive === '') setIsFilterActive(' active')
+    else setIsFilterActive('')
+  }
+  const ascendPriceOrder = () => {
+    //如果前面的價格比較大，那就會移到後面
+    const asc = courses.sort(
+      (a, b) => parseInt(a.product_price) - parseInt(b.product_price)
+    )
+    setCourses(asc)
+  }
+  const descendPriceOrder = () => {
+    //如果後面的價格比較大，那就會移到前面
+    const desc = courses.sort(
+      (a, b) => parseInt(b.product_price) - parseInt(a.product_price)
+    )
+    setCourses(desc)
+  }
   return (
     <>
       <div className="course-container">
@@ -82,6 +102,20 @@ function CourseSearch() {
               &#128269;
             </button>
           </div>
+          <button
+            className={`price-filter${isFilterActive}`}
+            onClick={showPriceFilterButton}
+          >
+            以價格排序:
+            <div className="price-button-wrapper">
+              <button id="price-ascend-order" onClick={ascendPriceOrder}>
+                由低至高
+              </button>
+              <button id="price-descend-order" onClick={descendPriceOrder}>
+                由高至低
+              </button>
+            </div>
+          </button>
           <span className="course-search-tags">
             <button className="course-search-tag" onClick={trainingCourses}>
               寵物訓練
@@ -103,7 +137,7 @@ function CourseSearch() {
         <section className="course-search-results">
           {courses.map((item, i) => {
             return (
-              <div className="productCard" key={i}>
+              <div className="course-product-card" key={i}>
                 <section className="text-part">
                   <h2 className="title">{item.product_name}</h2>
                   <span className="text-unit">{item.product_unit}</span>

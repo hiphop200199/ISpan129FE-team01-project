@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faAnglesLeft } from '@fortawesome/free-solid-svg-icons'
+import { BackToPrevious } from '../../template'
 
 function SignUpSheet() {
   const id = localStorage.getItem('id')
@@ -29,9 +30,7 @@ function SignUpSheet() {
 
   return (
     <>
-      <div className="click">
-        <FontAwesomeIcon icon={faAnglesLeft} onClick={() => navigate(-1)} />
-      </div>
+      <BackToPrevious></BackToPrevious>
       <h1 className="orderTitle">查看活動報名紀錄</h1>
       <main className="checkoutFlow">
         <div className="tabs">

@@ -17,6 +17,7 @@ import CartContextProvider, { CartContext } from './CartContext'
 import ModalContextProvider, { ModalContext } from './ModalContext'
 
 function MainLayouts() {
+  const [isShowMenu, setIsShowMenu] = useState(false)
   const navigate = useNavigate()
   const { isModalOpen, setIsModalOpen, handleClose, handleShow } =
     useContext(ModalContext)
@@ -28,16 +29,38 @@ function MainLayouts() {
     <ModalContextProvider>
       <CartContextProvider>
         <div className="wrap">
+          <nav
+            className={`nav-mobile navbar ${isShowMenu ? 'active-menu' : ''}`}
+          >
+            <div className="logo-member">
+              <button
+                class="navbar-toggler"
+                type="button"
+                onClick={() => {
+                  setIsShowMenu(!isShowMenu)
+                }}
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <Link to="/">
+                <img src={Ball} alt="logo" />
+              </Link>
+              <Button className="btn-outline-cart" onClick={handleShow}>
+                <FontAwesomeIcon icon={faCartShopping} />
+              </Button>
+            </div>
+            <Menu />
+          </nav>
+          {/* PC的nav */}
           <nav className="nav">
             <Link to="/">
-              <img src={Ball} alt="" />
+              <img src={Ball} alt="logo" />
             </Link>
             <Menu />
-            <Button variant="primary" onClick={handleShow}>
+            <Button className="btn-outline-cart" onClick={handleShow}>
               <FontAwesomeIcon icon={faCartShopping} />
             </Button>
           </nav>
-
           <main className="content-border">
             <div className="content">
               <Outlet />
