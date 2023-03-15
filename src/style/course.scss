@@ -21,8 +21,43 @@
               padding: 10px;    
        }
        #search{
-          width: 20vw;
+          width: 15vw;
        }
+      }
+      & .time-filter{
+        @extend .price-filter;
+        & .time-button-wrapper{
+         @extend .price-button-wrapper;
+         
+          & button{
+            background: none;
+            border: none;
+            transition: 0.5s;
+             padding: 5px 15px;
+             font-size: 1.5vw;
+            &:hover{
+              background-color: #fffacd;
+            }
+          }
+          & #time-ascend-order{
+            border-radius: 25px 25px 0 0;
+          }
+          & #time-descend-order{
+            border-radius: 0 0 25px 25px;
+          }
+        }
+        &:hover{
+          background-color: #fffacd;
+        }
+        &.active{
+          
+          background-color: #fffacd;
+        }
+        &.active .time-button-wrapper{
+          
+          opacity: 1;
+          transform: scaleY(1);
+        }
       }
       & .price-filter{
         position: relative;
@@ -302,6 +337,7 @@
               width: 25vw;
            }
           }
+          
           & .price-filter{
             margin-block-end: 15vh;
             font-size: 2.2vw;
