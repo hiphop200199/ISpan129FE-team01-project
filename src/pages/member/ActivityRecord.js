@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faAnglesLeft } from '@fortawesome/free-solid-svg-icons'
-import { BackToPrevious } from '../../template'
+import BackToPrevious from '../../template/BackToPrevious'
 
 function SignUpSheet() {
   const id = localStorage.getItem('id')
