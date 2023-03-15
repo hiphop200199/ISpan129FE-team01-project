@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 function CourseSearch() {
   const [courseName, setCourseName] = useState('')
   const [isFilterActive, setIsFilterActive] = useState('')
+  const [isTimeFilterActive, setIsTimeFilterActive] = useState('')
   const [courses, setCourses] = useState([])
   const { typeID } = useParams()
   useEffect(() => {
@@ -66,9 +67,52 @@ function CourseSearch() {
       return
     }
   }
+  const ascTimeSort = () => {
+    let regex = /\d/gi
+    //從單位字串中先篩選數字出來，去掉第一個不用的數字，接著把字元串在一起，轉成數值資料後再比較大小作排序
+    const data = courses.sort(
+      (a, b) =>
+        parseInt(
+          a.product_unit
+            .match(regex)
+            .slice(1)
+            .reduce((a, b) => a + b)
+        ) -
+        parseInt(
+          b.product_unit
+            .match(regex)
+            .slice(1)
+            .reduce((a, b) => a + b)
+        )
+    )
+    setCourses(data)
+  }
+  const dscTimeSort = () => {
+    let regex = /\d/gi
+    const data = courses.sort(
+      (a, b) =>
+        parseInt(
+          b.product_unit
+            .match(regex)
+            .slice(1)
+            .reduce((a, b) => a + b)
+        ) -
+        parseInt(
+          a.product_unit
+            .match(regex)
+            .slice(1)
+            .reduce((a, b) => a + b)
+        )
+    )
+    setCourses(data)
+  }
   const showPriceFilterButton = () => {
     if (isFilterActive === '') setIsFilterActive(' active')
     else setIsFilterActive('')
+  }
+  const showTimeFilterButton = () => {
+    if (isTimeFilterActive === '') setIsTimeFilterActive(' active')
+    else setIsTimeFilterActive('')
   }
   const ascendPriceOrder = () => {
     //如果前面的價格比較大，那就會移到後面
@@ -102,20 +146,36 @@ function CourseSearch() {
               &#128269;
             </button>
           </div>
-          <button
-            className={`price-filter${isFilterActive}`}
-            onClick={showPriceFilterButton}
-          >
-            以價格排序:
-            <div className="price-button-wrapper">
-              <button id="price-ascend-order" onClick={ascendPriceOrder}>
-                由低至高
-              </button>
-              <button id="price-descend-order" onClick={descendPriceOrder}>
-                由高至低
-              </button>
-            </div>
-          </button>
+          <div className="filter-buttons">
+            <button
+              className={`time-filter${isTimeFilterActive}`}
+              onClick={showTimeFilterButton}
+            >
+              以時數排序:
+              <div className="time-button-wrapper">
+                <button id="time-ascend-order" onClick={ascTimeSort}>
+                  由低至高
+                </button>
+                <button id="time-descend-order" onClick={dscTimeSort}>
+                  由高至低
+                </button>
+              </div>
+            </button>
+            <button
+              className={`price-filter${isFilterActive}`}
+              onClick={showPriceFilterButton}
+            >
+              以價格排序:
+              <div className="price-button-wrapper">
+                <button id="price-ascend-order" onClick={ascendPriceOrder}>
+                  由低至高
+                </button>
+                <button id="price-descend-order" onClick={descendPriceOrder}>
+                  由高至低
+                </button>
+              </div>
+            </button>
+          </div>
           <span className="course-search-tags">
             <button className="course-search-tag" onClick={trainingCourses}>
               寵物訓練
