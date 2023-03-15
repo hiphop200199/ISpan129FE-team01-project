@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import Card from '../../template/Card'
+import { useParams } from 'react-router-dom'
 import MoreSquare from '../../template/MoreSquare'
+// import { AddToFavoritesLg } from '../../template'
 
 function Hotel() {
   const [room, setRoom] = useState([]) //房型資料
@@ -14,7 +14,7 @@ function Hotel() {
       .then((room) => {
         //讓每一個物件裡都有product_likes值
         room.forEach((item) => {
-          item.product_likes = false
+          // item.product_likes = false
           console.log('item.product_image', item.product_image)
           const img = item.product_image.split(',')
           const bigImage = img[0]
@@ -78,10 +78,9 @@ function Hotel() {
                       <span>&#9825;</span>
                     )}
                   </span>
-                  {/* <Link to={`/reserve/${item.product_id}`}> */}
+                  {/* <AddToFavoritesLg product={item} typeID={typeID} /> */}
                   {/* 父傳子 */}
                   <MoreSquare product_id={item.product_id} typeID={typeID} />
-                  {/* </Link> */}
                 </div>
               </div>
               <div className="h-card-right col-7">
