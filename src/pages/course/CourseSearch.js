@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 function CourseSearch() {
   const [courseName, setCourseName] = useState('')
+  const [isFilterActive, setIsFilterActive] = useState('')
   const [courses, setCourses] = useState([])
   const { typeID } = useParams()
 
@@ -66,7 +67,24 @@ function CourseSearch() {
       return
     }
   }
-
+  const showPriceFilterButton = () => {
+    if (isFilterActive === '') setIsFilterActive(' active')
+    else setIsFilterActive('')
+  }
+  const ascendPriceOrder = () => {
+    //如果前面的價格比較大，那就會移到後面
+    const asc = courses.sort(
+      (a, b) => parseInt(a.product_price) - parseInt(b.product_price)
+    )
+    setCourses(asc)
+  }
+  const descendPriceOrder = () => {
+    //如果後面的價格比較大，那就會移到前面
+    const desc = courses.sort(
+      (a, b) => parseInt(b.product_price) - parseInt(a.product_price)
+    )
+    setCourses(desc)
+  }
   return (
     <>
       <div className="course-container">
@@ -84,6 +102,20 @@ function CourseSearch() {
               &#128269;
             </button>
           </div>
+          <button
+            className={`price-filter${isFilterActive}`}
+            onClick={showPriceFilterButton}
+          >
+            以價格排序:
+            <div className="price-button-wrapper">
+              <button id="price-ascend-order" onClick={ascendPriceOrder}>
+                由低至高
+              </button>
+              <button id="price-descend-order" onClick={descendPriceOrder}>
+                由高至低
+              </button>
+            </div>
+          </button>
           <span className="course-search-tags">
             <button className="course-search-tag" onClick={trainingCourses}>
               寵物訓練
