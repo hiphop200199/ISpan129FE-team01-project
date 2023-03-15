@@ -75,6 +75,8 @@ Button.btn-outline-primary {
 Button.btn-outline-cart {
   // border: 5px solid var(--light-blue);
   color: var(--text-white);
+  background-color: transparent;
+  border: 0px solid transparent;
 
   &:hover,
   &:active,
