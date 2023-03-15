@@ -43,7 +43,12 @@ function OrderDetail() {
   const totalOrderPrice = (orderData) => {
     let orderTotal = 0
     orderData.forEach((item) => {
-      const itemTotal = item.product_quantity * item.product_price
+      console.log('=====item=====', JSON.parse(item.additional))
+      const additionalObj = JSON.parse(item.additional)
+      const itemTotal =
+        item.product_quantity *
+        item.product_price *
+        (item.additional ? additionalObj.differenceInDay : 1)
       orderTotal += itemTotal
     })
     return orderTotal
@@ -135,7 +140,9 @@ function OrderDetail() {
                     <td>{orderItem.product_price}</td>
                     <td>{orderItem.product_quantity}</td>
                     <td>
-                      {orderItem.product_quantity * orderItem.product_price}
+                      {orderItem.product_quantity *
+                        orderItem.product_price *
+                        (orderItem.additional ? additional.differenceInDay : 1)}
                     </td>
                   </tr>
                 ))}
