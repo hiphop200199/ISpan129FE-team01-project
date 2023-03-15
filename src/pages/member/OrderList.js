@@ -121,7 +121,7 @@ function OrderList({ id }) {
                   <th>訂單日期</th>
                   <th>分類</th>
                   <th>訂單狀態</th>
-                  <th>訂單金額</th>
+                  {/* <th>訂單金額</th> */}
                   <th>查看明細</th>
                 </tr>
               </thead>
@@ -143,9 +143,9 @@ function OrderList({ id }) {
                             : '餐點'}
                         </td>
                         <td>{order.status === 0 ? '未付款' : '已付款'}</td>
-                        <td>
+                        {/* <td>
                           {[order.product_price * order.product_quantity]}
-                        </td>
+                        </td> */}
                         <td>
                           <Link
                             to={`/orderDetail/${order.order_id}`}
@@ -176,7 +176,7 @@ function OrderList({ id }) {
                               : '餐點'}
                           </td>
                           <td>{order.status === 0 ? '未付款' : '已付款'}</td>
-                          <td>{order.product_price}</td>
+                          {/* <td>{order.product_price}</td> */}
                           <td>
                             <Link
                               to={`/orderDetail/${order.order_id}`}
