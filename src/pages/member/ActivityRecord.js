@@ -30,7 +30,7 @@ function SignUpSheet() {
 
   return (
     <>
-      <BackToPrevious></BackToPrevious>
+      <BackToPrevious />
       <h1 className="orderTitle">查看活動報名紀錄</h1>
       <main className="checkoutFlow">
         <div className="tabs">

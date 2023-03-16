@@ -2,6 +2,7 @@ import React from 'react'
 import Stepper from './Stepper'
 import { useState, useEffect } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 function ActivitySignUp() {
   //頁數
@@ -35,7 +36,7 @@ function ActivitySignUp() {
       setIsAuthenticated(true)
       fetchData()
     } else {
-      alert('請先登入')
+      Swal.fire('請先登入')
       navigate('/login')
     }
   }, [activity_id, id])

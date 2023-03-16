@@ -27,9 +27,18 @@ function OrderDetail() {
         }
       )
       const orderData = await res.json()
+      const imageArray = orderData[0].product_image.split(',')
+      console.log('imageArray', imageArray)
+      const bigImage = imageArray[0]
+      const imageObj = {
+        product_image_big: bigImage,
+      }
+      console.log('imageObj', imageObj)
+      orderData[0].product_image_big = bigImage
       console.log(orderData[0].additional)
       setAdditional(JSON.parse(orderData[0].additional))
       setOrders(orderData)
+      console.log('====orderData[0]====', orderData)
       setTotalOrder(totalOrderPrice(orderData))
       console.log(
         `http://localhost:3002/orderList/orderDetail/${order_id}`,
@@ -43,7 +52,12 @@ function OrderDetail() {
   const totalOrderPrice = (orderData) => {
     let orderTotal = 0
     orderData.forEach((item) => {
-      const itemTotal = item.product_quantity * item.product_price
+      console.log('=====item=====', JSON.parse(item.additional))
+      const additionalObj = JSON.parse(item.additional)
+      const itemTotal =
+        item.product_quantity *
+        item.product_price *
+        (item.additional ? additionalObj.differenceInDay : 1)
       orderTotal += itemTotal
     })
     return orderTotal
@@ -126,7 +140,11 @@ function OrderDetail() {
                   <tr key={orderItem.order_detail_id}>
                     <td>
                       <img
-                        src={`http://localhost:3002/uploads/${orderItem.product_image}`}
+                        src={`http://localhost:3002/uploads/${
+                          orderItem.type_id === 3
+                            ? orderItem.product_image_big
+                            : orderItem.product_image
+                        }`}
                         alt="product_img"
                       />
                     </td>
@@ -135,7 +153,9 @@ function OrderDetail() {
                     <td>{orderItem.product_price}</td>
                     <td>{orderItem.product_quantity}</td>
                     <td>
-                      {orderItem.product_quantity * orderItem.product_price}
+                      {orderItem.product_quantity *
+                        orderItem.product_price *
+                        (orderItem.additional ? additional.differenceInDay : 1)}
                     </td>
                   </tr>
                 ))}
