@@ -19,6 +19,19 @@
 }
 
 .h-card-left {
+    .h-card-header {
+      h3 {
+        font-size: 28px;
+        font-weight: bold;
+      }
+      .h-card-subtitle {
+        font-size: var(--font-size-h2);
+        font-weight: bold;
+      }
+      p {
+        font-size: var(--font-size-h3);
+      }
+    }
     color: #515151;
     padding: 10px;
     padding-top: 20px;
@@ -26,19 +39,18 @@
     flex-direction: column;
     justify-content: space-between;
     .h-card-footer{
-        padding-top: 40px;
+        padding-top: 20px;
         span{
           margin-right: 10px;
         }
+        button{
+          background-color:  #FCF09A;
+          border: none;
+          border-radius: 5px;;
+          padding: 10px;
+      }
     }
-    button{
-        background-color:  #FCF09A;
-        border: none;
-        border-radius: 5px;
-        width: 50%;
-        padding: 10px;
-        
-    }
+    
 }
 .h-card-right {
     position: absolute;
