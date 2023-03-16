@@ -219,6 +219,9 @@
     }
     .rwd-col-12 {
       width: 100%;
+      &.h-card {
+        width: calc(100% - 50px);
+      }
     }
   }
 }
