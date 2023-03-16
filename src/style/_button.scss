@@ -84,6 +84,11 @@ Button.btn-outline-cart {
     // background-color: var(--text-white);
     // border-color: var(--primary);
     color: var(--text-black);
+    transition: .3s;
+    svg {
+      width: 30px;
+      height: 30px;
+    }
   }
 }
 
