@@ -11,9 +11,11 @@ import Paginationn from '../../template/Paginationn'
 
 function Activity() {
   const [activity, setActivity] = useState([])
-  const [currentPage, setCurrentPage] = useState(1)
-  const [postsPerPage, setPostsPerPage] = useState(6)
+  const [activityName, setActivityName] = useState('')
+  const [isFilterActive, setIsFilterActive] = useState('')
 
+  const [currentPage, setCurrentPage] = useState(1)
+  const [postsPerPage, setPostsPerPage] = useState(9)
   const [pageNumberLimit, setPageNumberLimit] = useState(5)
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5)
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0)
@@ -22,7 +24,7 @@ function Activity() {
     fetch(`http://localhost:3002/activity/activity-list/api`, {
       method: 'GET',
     })
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((activity) => {
         console.log(typeof activity)
 
@@ -46,12 +48,98 @@ function Activity() {
         setActivity(activities)
       })
       .catch((error) => console.error(error))
-  }, [])
+  }, [activityName])
 
   const now = new Date().getTime()
   const lastPostIndex = currentPage * postsPerPage
   const firstPostIndex = lastPostIndex - postsPerPage
   const currentPost = activity.slice(firstPostIndex, lastPostIndex)
+
+  const TypeCat = () => {
+    fetch(`http://localhost:3002/activity/activity-list/api`)
+      .then((res) => res.json())
+      .then((activty) => {
+        const activities = [...activity]
+        activities.forEach((el) => {
+          console.log(el)
+          const activities = [...activity]
+          const img = el.activity_image.split(',')
+          const bigImage = img[0]
+          el.activity_img = bigImage
+          console.log('activities', activities)
+        })
+
+        setActivity(activity)
+        const cat = activity.filter((el) => el.activity_pettype === 3)
+        setActivity(cat)
+      })
+      .catch((error) => console.log(error))
+  }
+  const TypeDog = () => {
+    fetch(`http://localhost:3002/activity/activity-list/api`)
+      .then((res) => res.json())
+      .then((activity) => {
+        const activities = [...activity]
+        activities.forEach((el) => {
+          console.log(el)
+          const activities = [...activity]
+          const img = el.activity_image.split(',')
+          const bigImage = img[0]
+          el.activity_img = bigImage
+          console.log('activities', activities)
+        })
+        setActivity(activity)
+        const dog = activity.filter((el) => el.activity_pettype === 2)
+        setActivity(dog)
+      })
+      .catch((error) => console.log(error))
+  }
+  const TypeAll = () => {
+    fetch(`http://localhost:3002/activity/activity-list/api`)
+      .then((res) => res.json())
+      .then((activity) => {
+        const activities = [...activity]
+        activities.forEach((el) => {
+          console.log(el)
+          const activities = [...activity]
+          const img = el.activity_image.split(',')
+          const bigImage = img[0]
+          el.activity_img = bigImage
+          console.log('activities', activities)
+        })
+        setActivity(activity)
+        const all = activity.filter((el) => el.activity_pettype === 1)
+        setActivity(all)
+      })
+      .catch((error) => console.log(error))
+  }
+  const findOneActivity = () => {
+    if (activityName !== '') {
+      let text = activityName
+      let regex = new RegExp(`.*${text}.*`, 'i')
+      const data = activity.filter((el) => el.activity_name.match(regex))
+      setActivity(data)
+    } else {
+      return
+    }
+  }
+
+  // const ascendTimeActivity = () => {
+  //   const asc = activity.sort((a, b) => {
+  //     const aDate = new Date(a.activity_datestart).getTime()
+  //     const bDate = new Date(b.activity_datestart).getTime()
+  //     return aDate - bDate
+  //   })
+  //   setActivity(asc)
+  // }
+  // const descendTimeActivity = () => {
+  //   const desc = activity.sort((a, b) => {
+  //     const aDate = new Date(a.activity_datestart).getTime()
+  //     const bDate = new Date(b.activity_datestart).getTime()
+  //     return bDate - aDate
+  //   })
+  //   setActivity(desc)
+  // }
 
   return (
     <>
@@ -83,9 +171,46 @@ function Activity() {
             <img src={twodog} alt="" className="swiper-img" />
           </SwiperSlide>
         </Swiper>
+      </div>
 
-        <div className="activity-banner">
-          <h1 className="activity-banner-word">館內活動</h1>
+      <div className="activity-banner">
+        <h1 className="activity-banner-word">館內活動</h1>
+        <div className="upper-part">
+          <div className="searchbar">
+            <input
+              type="search"
+              id="search"
+              onChange={(e) => {
+                setActivityName(e.target.value)
+              }}
+              placeholder="搜尋"
+            />
+            <button id="search-button" onClick={findOneActivity}>
+              &#128269;
+            </button>
+          </div>
+
+          {/* <div className="price-button-wrapper">
+          <button className="time-ascend-order" onClick={ascendTimeActivity}>
+            由遠至進
+          </button>
+          <button className="price-descend-order" onClick={descendTimeActivity}>
+            由進至遠
+          </button>
+        </div> */}
+          <span className="course-search-tags">
+            <button className="course-search-tag" onClick={TypeCat}>
+              貓
+            </button>
+
+            <button className="course-search-tag" onClick={TypeDog}>
+              狗
+            </button>
+
+            <button className="course-search-tag" onClick={TypeAll}>
+              所有
+            </button>
+          </span>
         </div>
       </div>
 
