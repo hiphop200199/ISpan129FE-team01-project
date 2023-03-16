@@ -29,7 +29,7 @@ function MoreSquare({ product_id, typeID }) {
       {/* 黃色小按鈕(圓弧形): 看更多，已結束，立即訂房 */}
       <button
         type="button"
-        className="btn btn-secondary btn-sm min-width-auto "
+        className="btn btn-secondary btn-sm min-width-auto radius-5px"
         onClick={handleClick}
       // onClick={setID}
       >

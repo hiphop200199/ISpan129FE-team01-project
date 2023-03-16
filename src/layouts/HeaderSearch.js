@@ -1,24 +1,50 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { faMagnifyingGlass, faXmark } from '@fortawesome/free-solid-svg-icons'
 
-function HeaderSearch() {
+function HeaderSearch(props) {
+  const [search, setSearch] = useState('')
+  const [filteredProduct, setFilteredProduct] = useState(props.product)
+  const navigate = useNavigate()
+  const handleFilter = (product_class) => {
+    const filteredProducts = props.product.filter(
+      (p) => p.product_class === product_class
+    )
+
+    setFilteredProduct(filteredProducts)
+    props.onFilter(filteredProducts)
+  }
+
+  const productButtons = [
+    ...props.product.reduce(
+      (types, p) =>
+        types.includes(p.product_class) ? types : [...types, p.product_class],
+      []
+    ),
+  ].slice(0, 4)
+
   return (
     <>
       <div className="main-button">
         <div className="button__list">
-          <Link to="/">罐頭飼料</Link>
-          <Link to="/">外出用品</Link>
-          <Link to="/">耐磨玩具</Link>
-          <Link to="/">服飾項圈</Link>
-        </div>
-        <form className="header-search">
-          <input type="search" placeholder="搜尋" name="" />
-          <button type="submit">
-            <FontAwesomeIcon icon={faMagnifyingGlass} />
+          {productButtons.map((product_class, index) => (
+            <button
+              key={index}
+              className={productButtons.includes(product_class) ? 'active' : ''}
+              onClick={() => handleFilter(product_class)}
+            >
+              {product_class}
+            </button>
+          ))}
+          <button
+            onClick={() => {
+              props.handleClear()
+            }}
+          >
+            <FontAwesomeIcon icon={faXmark} />
           </button>
-        </form>
+        </div>
       </div>
     </>
   )
