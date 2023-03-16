@@ -1,5 +1,3 @@
-import React from 'react'
-import Header from '../../layouts/header'
 import HeaderSearch from '../../layouts/HeaderSearch'
 import { useState, useEffect } from 'react'
 import { Card } from '../../template'
@@ -11,6 +9,7 @@ import { Autoplay, Pagination } from 'swiper'
 function Product() {
   const { typeID } = useParams()
   const [product, setProduct] = useState([])
+  const [filteredProduct, setFilteredProduct] = useState([])
   // 取得DB資料
   useEffect(() => {
     const fetchData = async () => {
@@ -24,19 +23,39 @@ function Product() {
         }
 
         const data = await res.json()
-        setProduct(data)
+        const imageArray = data[0].product_image.split(',')
+        const bigImage = imageArray[0]
+        const smallImage = imageArray.slice(1)
+        const imgObj = {
+          bigImage,
+          smallImage,
+        }
+        setProduct(data, { ...imgObj })
       } catch (err) {
         console.log(err)
       }
     }
     fetchData()
-    // console.log(typeID)
   }, [typeID])
+  console.log(product)
+  const handleFilter = (filteredProducts) => {
+    setFilteredProduct(filteredProducts)
+  }
+  const handleClear = () => {
+    setFilteredProduct(product)
+  }
+
+  const mapProduct = filteredProduct.length === 0 ? product : filteredProduct
+
   return (
     <div className="productPage">
-      <Header />
-      <HeaderSearch />
-      <div className='swiper-Content pt-3'>
+      <HeaderSearch
+        product={product}
+        filteredProduct={filteredProduct}
+        onFilter={handleFilter}
+        handleClear={handleClear}
+      />
+      <div className="swiper-Content pt-3">
         <Swiper
           className="swiper-width"
           style={{
@@ -66,7 +85,7 @@ function Product() {
         </Swiper>
       </div>
       <div className="productContent col-12">
-        {product.map((product) => (
+        {mapProduct.map((product) => (
           <Card
             key={product.id}
             className="col-6"
@@ -75,7 +94,7 @@ function Product() {
           />
         ))}
       </div>
-    </div >
+    </div>
   )
 }
 
