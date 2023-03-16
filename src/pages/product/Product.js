@@ -32,12 +32,11 @@ function Product() {
     fetchData()
     // console.log(typeID)
   }, [typeID])
-  console.log(product.id)
   return (
     <div className="productPage">
       <Header />
       <HeaderSearch />
-      <div>
+      <div className='swiper-Content pt-3'>
         <Swiper
           className="swiper-width"
           style={{
@@ -54,7 +53,7 @@ function Product() {
           loop={true}
         >
           {product.map((product, idx) => (
-            <SwiperSlide key={product.id}>
+            <SwiperSlide key={idx}>
               <Link to={`/product/Detail/${product.product_id}`}>
                 <img
                   src={`http://localhost:3002/uploads/${product.product_image}/`}
@@ -69,14 +68,14 @@ function Product() {
       <div className="productContent col-12">
         {product.map((product) => (
           <Card
-            className="col-6"
             key={product.id}
+            className="col-6"
             product={product}
             typeID={typeID}
           />
         ))}
       </div>
-    </div>
+    </div >
   )
 }
 
