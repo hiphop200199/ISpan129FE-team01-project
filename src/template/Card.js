@@ -16,9 +16,9 @@ function Card({ product, typeID }) {
     product_class,
     product_price,
     product_descripttion,
-    product_image,
+    product_img,
   } = product
-
+  // console.log(product)
   return (
     <div className="productCard col-4 m-auto">
       <section className="text-part">
@@ -31,14 +31,12 @@ function Card({ product, typeID }) {
         <div className="button-collection">
           <Heart product={product} typeID={typeID} />
           <AddToCartSm product={product} />
+          <MoreSquare product_id={product_id} typeID={typeID} />
         </div>
         {/* <MoreSquare typeID={typeID} product_id={product_id} /> */}
       </section>
-      <div className="detail-button">
-        <MoreSquare product_id={product_id} typeID={typeID} />
-      </div>
       {/* 圖片動態引入 ，圖片須放在public資料夾*/}
-      <img src={`http://localhost:3002/${product_image}`} alt="" />
+      <img src={`http://localhost:3002/${product_img}`} alt="" />
       {/* <img src={'http://localhost:3000/' + photo} alt="" /> */}
       {/* <img src={photo} alt="" /> */}
     </div>
