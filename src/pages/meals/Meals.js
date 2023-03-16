@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 // import React from 'react'
 import Header from '../../layouts/header'
-import HeaderSearch from '../../layouts/HeaderSearch'
+import MealsHeaderSearch from '../meals/MealsHeaderSearch'
 // import { useState, useEffect } from 'react'
 import { Card } from '../../template'
 import { useLocation, useParams } from 'react-router-dom'
@@ -26,8 +26,11 @@ function Meals() {
   return (
     <>
       <div className="MealsPage">
-        <Header />
-        <HeaderSearch />
+        {/* <Header /> */}
+        <br></br> 
+        <MealsHeaderSearch />
+        <br></br>
+       
         {/* <Link to="/food">
                       <MoreSquare />
                     </Link> */}
