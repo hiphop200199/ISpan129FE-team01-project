@@ -10,10 +10,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import RegisterMember from './RegisterMember'
 import { Link, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 function Login() {
   function handleLinkClick(event) {
     event.preventDefault()
-    window.alert('請透過信箱聯絡我們~')
+    Swal.fire('請透過信箱聯絡我們~', '', 'info')
   }
 
   const [email, setEmail] = useState('')
@@ -50,7 +51,7 @@ function Login() {
           setEmail(data.email)
           setName(data.name)
           setIsAuthenticated(true)
-          alert('登入成功')
+          Swal.fire('登入成功!', '', 'success')
           // navigate('/')
         } else {
           // alert('登入失敗');
@@ -91,7 +92,7 @@ function Login() {
           <div className="afterLogin m-3">
             <h5 className="mb-3">歡迎光臨~毬!</h5>
             <h5 className="mb-3">{name}</h5>
-            <div className="memberlist d-flex border-bottom mb-3 flex-column justify-content-center">
+            <div className="memberlist d-flex  mb-3 flex-column justify-content-center">
               <Link to="/edit" className="editMember mb-3">
                 <FontAwesomeIcon icon={faPencil} />
                 我的個人資料

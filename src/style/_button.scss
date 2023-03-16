@@ -57,7 +57,7 @@
   }
 }
 
-.btn-outline-primary {
+Button.btn-outline-primary {
   border: 5px solid var(--light-blue);
   background-color: var(--text-white);
 
@@ -69,17 +69,37 @@
     color: var(--text-black);
   }
 }
+Button.btn-outline-cart {
+  // border: 5px solid var(--light-blue);
+  color: var(--text-white);
+  background-color: transparent;
+  border: 0px solid transparent;
 
-.btn-outline-none {
-  background-color: var(--light-yellow);
-  border: 5px solid var(--light-yellow);
-  color: var(--text-black);
   &:hover,
   &:active,
   &:focus-visible {
-    background-color: var(--primary);
-    border-color: var(--primary);
-    color: var(--text-white);
+    // background-color: var(--text-white);
+    // border-color: var(--primary);
+    color: var(--text-black);
+    transition: .3s;
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+
+
+.btn-outline-none{
+  background-color: var(--light-white);
+  color: var(--text-black) ;
+  &:hover,
+  &:active,
+  &:focus-visible{
+    background-color: var(--text-white);
+    color: var(--text-black);
+
   }
 }
 .max-width-auto {

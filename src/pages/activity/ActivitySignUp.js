@@ -2,6 +2,7 @@ import React from 'react'
 import Stepper from './Stepper'
 import { useState, useEffect } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 function ActivitySignUp() {
   //頁數
@@ -26,16 +27,16 @@ function ActivitySignUp() {
   const [firstRender, setFirstRender] = useState(true)
 
   useEffect(() => {
-    if (firstRender) {
-      setFirstRender(false)
-    }
+    // if (firstRender) {
+    //   setFirstRender(false)
+    // }
 
     const storedId = localStorage.getItem('id')
     if (storedId) {
       setIsAuthenticated(true)
       fetchData()
     } else {
-      alert('填寫報名')
+      Swal.fire('請先登入')
       navigate('/login')
     }
   }, [activity_id, id])
@@ -48,8 +49,14 @@ function ActivitySignUp() {
         method: 'GET',
       }
     )
-    const activities = await res.json()
-    setActivity(activities)
+    let activities = await res.json()
+    activities = {
+      ...activities,
+      activity_image: activities.activity_image.split(','),
+    }
+
+    setFirstRender(false)
+    setActivity({ ...activities })
 
     const res2 = await fetch(`http://localhost:3002/member/pet/${id}`, {
       method: 'GET',
@@ -199,7 +206,7 @@ function ActivitySignUp() {
                           <tr>
                             <td>
                               <img
-                                src={`http://localhost:3002/uploads/${activity.activity_image}/`}
+                                src={`http://localhost:3002/uploads/${activity.activity_image[0]}/`}
                                 alt=""
                               />
                             </td>
@@ -268,7 +275,6 @@ function ActivitySignUp() {
                           return (
                             <div key={idx} className="step-table-description">
                               <input
-                                className=""
                                 type="radio"
                                 name="pets"
                                 id="pets"
@@ -276,10 +282,7 @@ function ActivitySignUp() {
                                 checked
                               />
                               {el.pet_name}
-                              <label
-                                className=""
-                                htmlFor="exampleRadios1"
-                              ></label>
+                              <label htmlFor="exampleRadios1"></label>
                             </div>
                           )
                         })}
@@ -291,80 +294,82 @@ function ActivitySignUp() {
                     <div className="step2-form1-title">
                       <h5 className="step-form1-word">新增寵物</h5>
                     </div>
-                    <section className="addpet-box">
-                      <form
-                        className="addpet-form"
-                        onSubmit={handleSubmit}
-                        onInvalid={handelInvalid}
-                        onChange={handleFormChange}
-                      >
-                        <input type="hidden" name="id" value={id} />
-                        <label className="addpet-control">
+
+                    <form
+                      className="addpet-form"
+                      onSubmit={handleSubmit}
+                      onInvalid={handelInvalid}
+                      onChange={handleFormChange}
+                    >
+                      <input type="hidden" name="id" value={id} />
+                      <div className="step2-form-text">名字</div>
+                      <label className="addpet-control">
+                        <input
+                          id="name"
+                          type="text"
+                          name="name"
+                          className="addpet-control"
+                          value={pet.name}
+                          onChange={handleFieldChange}
+                          required
+                        />
+
+                        <span className="error">{fieldErrors.name}</span>
+                      </label>
+
+                      <div className="addpet-select">
+                        <span>寵物種類</span>
+                        <label className="addpet-type">
                           <input
-                            id="name"
-                            type="text"
-                            name="name"
-                            placeholder="名字"
-                            value={pet.name}
                             onChange={handleFieldChange}
-                            required
+                            type="radio"
+                            value="貓"
+                            name="type"
+                            checked
                           />
-
-                          <span className="error">{fieldErrors.name}</span>
+                          貓
+                          <input
+                            onChange={handleFieldChange}
+                            type="radio"
+                            value="狗"
+                            name="type"
+                          />
+                          狗
+                          <input
+                            onChange={handleFieldChange}
+                            type="radio"
+                            value="其他"
+                            name="type"
+                          />
+                          其他
                         </label>
+                        <br />
+                        <span>寵物性別</span>
+                        <label className="addpet-type">
+                          <input
+                            onChange={handleFieldChange}
+                            type="radio"
+                            value="男生"
+                            name="gender"
+                            checked
+                          />
+                          男生
+                          <input
+                            onChange={handleFieldChange}
+                            type="radio"
+                            value="女生"
+                            name="gender"
+                          />
+                          女生
+                        </label>
+                      </div>
 
-                        <div className="addpet-select">
-                          <span className="addpet-control">寵物種類:</span>
-                          <label className="addpet-type">
-                            <input
-                              onChange={handleFieldChange}
-                              type="radio"
-                              value="貓"
-                              name="type"
-                              checked
-                            />
-                            貓
-                            <input
-                              onChange={handleFieldChange}
-                              type="radio"
-                              value="狗"
-                              name="type"
-                            />
-                            狗
-                            <input
-                              onChange={handleFieldChange}
-                              type="radio"
-                              value="其他"
-                              name="type"
-                            />
-                            其他
-                          </label>
-                          <br />
-                          <span className="addpet-control">寵物性別:</span>
-                          <label className="addpet-type">
-                            <input
-                              onChange={handleFieldChange}
-                              type="radio"
-                              value="男生"
-                              name="gender"
-                              checked
-                            />
-                            男生
-                            <input
-                              onChange={handleFieldChange}
-                              type="radio"
-                              value="女生"
-                              name="gender"
-                            />
-                            女生
-                          </label>
-                        </div>
-
+                      <div className="signupbtn-box">
                         <button className=" btn btn-lg btn-primary-for-login">
                           送出
                         </button>
-                      </form>
-                    </section>
+                      </div>
+                    </form>
                   </div>
                 </div>
                 <div className="mt-5 d-flex justify-content-between">
@@ -387,12 +392,29 @@ function ActivitySignUp() {
 
             {/* 步驟三 */}
             {step === 3 && (
-              <div>
-                <h1>報名成功</h1>
-                <p>這是最後一個步驟的內容。</p>
-                <a href="/" className="button">
-                  完成
-                </a>
+              <div className="step3">
+                <h4>報名成功</h4>
+                <div className="checkmark-container">
+                  <svg
+                    x="0px"
+                    y="0px"
+                    width="50px"
+                    stroke="red"
+                    fill="none"
+                    className="checkmark-svg"
+                    viewBox="0 0 25 30"
+                  >
+                    <path d="M2,19.2C5.9,23.6,9.4,28,9.4,28L23,2" />
+                  </svg>
+                </div>
+                <div className="checkmark-foot">
+                  <a href="/activityRecord" className="btn-to-Record">
+                    查看報名紀錄
+                  </a>
+                  <a href="/" className="btn btn-primary btn-lg">
+                    回首頁
+                  </a>
+                </div>
               </div>
             )}
           </div>

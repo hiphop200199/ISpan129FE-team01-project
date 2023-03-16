@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 function RegisterMember() {
   const [user, setUser] = useState({
@@ -23,7 +24,7 @@ function RegisterMember() {
   })
   //處理每個欄位的變動
   const handleFieldChange = (e) => {
-    //可利用下面三哦觸發事件的東西來做進一步處理
+    //可利用下面三個觸發事件的東西來做進一步處理
     // console.log(e.target.type, e.target.name, e.target.value);
 
     //只針對checkbox(showPassword)使用
@@ -74,11 +75,11 @@ function RegisterMember() {
       .then((data) => {
         console.log(data)
         if (data.success) {
-          alert('註冊成功')
+          Swal.fire('註冊成功', '', 'success')
           navigate('/login') //註冊成功即跳轉至登入畫面
           // location.href = 'localhost:3000/member'
         } else {
-          alert('註冊失敗')
+          Swal.fire('註冊失敗', '', 'error')
         }
       })
   }
@@ -140,6 +141,7 @@ function RegisterMember() {
                 required
                 value={user.mobile}
                 onChange={handleFieldChange}
+                pattern="09\d{2}?\d{3}?\d{3}"
               />
               <br />
               <span className="error">{fieldErrors.mobile}</span>
@@ -192,16 +194,8 @@ function RegisterMember() {
                 minLength={6} //最少輸入6字元
                 maxLength={10} //最多輸入10字元
               />
-              <br />
+
               <span className="error">{fieldErrors.password}</span>
-              {/* <input
-                className="check-input"
-                type="checkbox"
-                name="showPassword"
-                checked={user.showPassword}
-                onChange={handleFieldChange}
-              />
-              顯示輸入的密碼 */}
             </label>
 
             <label className="member-label">
@@ -239,8 +233,9 @@ function RegisterMember() {
                 type="button"
                 onClick={() => {
                   setUser({
-                    name: '王美美',
-                    email: 'asd@gmail.com',
+                    name: '王美莉',
+                    mobile: '0938482938',
+                    email: 'prettygirl@gmail.com',
                     password: '123456',
                     password2: '123456',
                     showPassword: true,
@@ -255,10 +250,11 @@ function RegisterMember() {
                 className="false-btn"
                 onClick={() => {
                   setUser({
-                    name: 'aaaaa',
-                    email: 'asd',
-                    password: '179055',
-                    password2: '179056',
+                    name: '陳聰明',
+                    mobile: '093287457',
+                    email: 'smart',
+                    password: '123456',
+                    password2: '123455',
                     showPassword: true,
                     showPassword2: true,
                   })

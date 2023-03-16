@@ -2,9 +2,10 @@ import { Link, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 function CourseSearch() {
   const [courseName, setCourseName] = useState('')
+  const [isFilterActive, setIsFilterActive] = useState('')
+  const [isTimeFilterActive, setIsTimeFilterActive] = useState('')
   const [courses, setCourses] = useState([])
   const { typeID } = useParams()
-
   useEffect(() => {
     fetch(`http://localhost:3002/product/list-product/${typeID}`)
       .then((res) => res.json())
@@ -58,11 +59,74 @@ function CourseSearch() {
   }
   const findOneCourse = () => {
     if (courseName !== '') {
-      const data = courses.filter((item) => item.product_name === courseName)
+      let text = courseName
+      let regex = new RegExp(`.*${text}.*`, 'i')
+      const data = courses.filter((item) => item.product_name.match(regex))
       setCourses(data)
     } else {
       return
     }
+  }
+  const ascTimeSort = () => {
+    let regex = /\d/gi
+    //從單位字串中先篩選數字出來，去掉第一個不用的數字，接著把字元串在一起，轉成數值資料後再比較大小作排序
+    const data = courses.sort(
+      (a, b) =>
+        parseInt(
+          a.product_unit
+            .match(regex)
+            .slice(1)
+            .reduce((a, b) => a + b)
+        ) -
+        parseInt(
+          b.product_unit
+            .match(regex)
+            .slice(1)
+            .reduce((a, b) => a + b)
+        )
+    )
+    setCourses(data)
+  }
+  const dscTimeSort = () => {
+    let regex = /\d/gi
+    const data = courses.sort(
+      (a, b) =>
+        parseInt(
+          b.product_unit
+            .match(regex)
+            .slice(1)
+            .reduce((a, b) => a + b)
+        ) -
+        parseInt(
+          a.product_unit
+            .match(regex)
+            .slice(1)
+            .reduce((a, b) => a + b)
+        )
+    )
+    setCourses(data)
+  }
+  const showPriceFilterButton = () => {
+    if (isFilterActive === '') setIsFilterActive(' active')
+    else setIsFilterActive('')
+  }
+  const showTimeFilterButton = () => {
+    if (isTimeFilterActive === '') setIsTimeFilterActive(' active')
+    else setIsTimeFilterActive('')
+  }
+  const ascendPriceOrder = () => {
+    //如果前面的價格比較大，那就會移到後面
+    const asc = courses.sort(
+      (a, b) => parseInt(a.product_price) - parseInt(b.product_price)
+    )
+    setCourses(asc)
+  }
+  const descendPriceOrder = () => {
+    //如果後面的價格比較大，那就會移到前面
+    const desc = courses.sort(
+      (a, b) => parseInt(b.product_price) - parseInt(a.product_price)
+    )
+    setCourses(desc)
   }
 
   return (
@@ -80,6 +144,36 @@ function CourseSearch() {
             />
             <button id="search-button" onClick={findOneCourse}>
               &#128269;
+            </button>
+          </div>
+          <div className="filter-buttons">
+            <button
+              className={`time-filter${isTimeFilterActive}`}
+              onClick={showTimeFilterButton}
+            >
+              以時數排序:
+              <div className="time-button-wrapper">
+                <button id="time-ascend-order" onClick={ascTimeSort}>
+                  由低至高
+                </button>
+                <button id="time-descend-order" onClick={dscTimeSort}>
+                  由高至低
+                </button>
+              </div>
+            </button>
+            <button
+              className={`price-filter${isFilterActive}`}
+              onClick={showPriceFilterButton}
+            >
+              以價格排序:
+              <div className="price-button-wrapper">
+                <button id="price-ascend-order" onClick={ascendPriceOrder}>
+                  由低至高
+                </button>
+                <button id="price-descend-order" onClick={descendPriceOrder}>
+                  由高至低
+                </button>
+              </div>
             </button>
           </div>
           <span className="course-search-tags">
@@ -103,7 +197,7 @@ function CourseSearch() {
         <section className="course-search-results">
           {courses.map((item, i) => {
             return (
-              <div className="productCard" key={i}>
+              <div className="course-product-card" key={i}>
                 <section className="text-part">
                   <h2 className="title">{item.product_name}</h2>
                   <span className="text-unit">{item.product_unit}</span>

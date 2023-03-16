@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 function ResetPassword() {
   const [password, setPassword] = useState('')
   const [password2, setPassword2] = useState('')
@@ -32,7 +33,7 @@ function ResetPassword() {
       )
       const data = await response.json()
       setMessage(data.message)
-      alert('修改密碼成功')
+      Swal.fire('重設密碼成功', '', 'success')
       navigate('/')
     } catch (error) {
       console.error(error)

@@ -2,12 +2,15 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faCartShopping,
-  faAnglesLeft,
+  faCircleLeft,
   faTrash,
 } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react'
 import 'datejs'
-import { AddToCartLg } from '../../template'
+
+import { AddToCartLg, BackToPrevious } from '../../template'
+import Swal from 'sweetalert2'
+
 function MyList({ id, onDelete }) {
   const [tagCheck, setTagCheck] = useState(0)
   const [like, setLike] = useState([])
@@ -41,7 +44,21 @@ function MyList({ id, onDelete }) {
   const handleDelete = (sid) => {
     setIsDeleting(true)
     const id = localStorage.getItem('id')
-    if (window.confirm(`確定要刪除這筆收藏?`))
+    if (
+      Swal.fire({
+        title: '確定要刪除這筆收藏?',
+        text: '',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '確定刪除!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire('刪除成功!', '這筆收藏已被刪除', 'success')
+        }
+      })
+    )
       fetch(`http://localhost:3002/member/deleteLikes/${sid}`, {
         method: 'DELETE',
       })
@@ -58,13 +75,16 @@ function MyList({ id, onDelete }) {
         .finally(() => {
           setIsDeleting(false)
         })
+    // navigate('/login')
   }
 
   return (
     <>
-      <div className="click">
-        <FontAwesomeIcon icon={faAnglesLeft} onClick={() => navigate(-1)} />
-      </div>
+      {/* <button className="click" onClick={() => navigate(-1)}>
+        <FontAwesomeIcon className="d-flex pt-1" icon={faCircleLeft} />
+        返回上一頁
+      </button> */}
+      <BackToPrevious></BackToPrevious>
       <h1 className="orderTitle">我的收藏列表</h1>
       {/* <div className="info">{JSON.stringify(order)}</div> */}
       <main className="checkoutFlow">

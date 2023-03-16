@@ -3,9 +3,15 @@ import { useParams, Link, useNavigate } from 'react-router-dom'
 import 'datejs'
 
 function OrderDetail() {
-  // console.log(data)
   const { order_id } = useParams()
   const [order, setOrders] = useState([])
+  const [additional, setAdditional] = useState({
+    adultCount: '',
+    childCount: '',
+    petCount: '',
+    selectPet: '',
+    differenceInDay: '',
+  })
   const [totalOrder, setTotalOrder] = useState(0)
   // const [orderId, setOrderId] = useState('')
   const navigate = useNavigate()
@@ -21,15 +27,23 @@ function OrderDetail() {
         }
       )
       const orderData = await res.json()
+      const imageArray = orderData[0].product_image.split(',')
+      console.log('imageArray', imageArray)
+      const bigImage = imageArray[0]
+      const imageObj = {
+        product_image_big: bigImage,
+      }
+      console.log('imageObj', imageObj)
+      orderData[0].product_image_big = bigImage
+      console.log(orderData[0].additional)
+      setAdditional(JSON.parse(orderData[0].additional))
       setOrders(orderData)
+      console.log('====orderData[0]====', orderData)
       setTotalOrder(totalOrderPrice(orderData))
       console.log(
         `http://localhost:3002/orderList/orderDetail/${order_id}`,
         order_id
       )
-
-      // // const [...orders] = order
-      // setOrders(orderData)
     }
     fetchData()
   }, [order_id])
@@ -38,13 +52,17 @@ function OrderDetail() {
   const totalOrderPrice = (orderData) => {
     let orderTotal = 0
     orderData.forEach((item) => {
-      const itemTotal = item.product_quantity * item.product_price
+      console.log('=====item=====', JSON.parse(item.additional))
+      const additionalObj = JSON.parse(item.additional)
+      const itemTotal =
+        item.product_quantity *
+        item.product_price *
+        (item.additional ? additionalObj.differenceInDay : 1)
       orderTotal += itemTotal
     })
     return orderTotal
   }
 
-  // const order = order.find(o=>o.order_id === order_id);
   return (
     <>
       <section className="col-10 m-auto pt-3">
@@ -56,24 +74,49 @@ function OrderDetail() {
             訂單日期:
             {order[0] && new Date(order[0].order_date).toString('yyyy-MM-dd')}
           </p>
-          {/* <p>
+          <p>
             付款方式:
             {order[0] && order[0].payment_method === 1
-              ? '信用卡付款'
-              : order[0].payment_method === 2
+              ? 'Line Pay'
+              : order[0] && order[0].payment_method === 2
               ? '貨到付款'
               : '現場付款'}
-          </p> */}
+          </p>
+          {order[0] && order[0].type_id === 3 && (
+            <>
+              <p>
+                住宿日期:
+                {new Date(order[0].start_time)
+                  .toLocaleDateString()
+                  .slice(0, 10)}{' '}
+                ~{new Date(order[0].end_time).toLocaleDateString().slice(0, 10)}
+              </p>
+              <p>成人:{additional.adultCount}人</p>
+              <p>兒童:{additional.childCount}人</p>
+              <p>寵物數量:{additional.petCount}隻</p>
+              {/* <p>
+                寵物窩:
+                {additional.selectPet === 'house'
+                  ? '../img/hotels/cat-room1.png'
+                  : '../img/hotels/cat-room2.png'}
+              </p> */}
+              <p>入住天數:{additional.differenceInDay}天</p>
+            </>
+          )}
         </div>
         {order[0] && (
           <div className="person d-flex flex-column border-bottom mb-3">
-            <h5 className="mb-3">訂購人資訊</h5>
+            {order[0].type_id === 3 ? (
+              <h5 className="mb-3">聯絡人資訊</h5>
+            ) : (
+              <h5 className="mb-3">訂購人資訊</h5>
+            )}
             <p>姓名:{order[0].recipient_name}</p>
             <p>連絡電話:{order[0].recipient_phone}</p>
-            {order[0].type_id === 1 ? (
-              <p>地址:{order[0].recipient_address}</p>
-            ) : (
+            {order[0].type_id === 3 ? (
               ''
+            ) : (
+              <p>地址:{order[0].recipient_address}</p>
             )}
             {/* <p>{{orderDetail.type_id=1}:`地址:${orderDetail.recipient_address}`:''}</p> */}
           </div>
@@ -97,7 +140,11 @@ function OrderDetail() {
                   <tr key={orderItem.order_detail_id}>
                     <td>
                       <img
-                        src={`http://localhost:3002/uploads/${orderItem.product_image}`}
+                        src={`http://localhost:3002/uploads/${
+                          orderItem.type_id === 3
+                            ? orderItem.product_image_big
+                            : orderItem.product_image
+                        }`}
                         alt="product_img"
                       />
                     </td>
@@ -106,7 +153,9 @@ function OrderDetail() {
                     <td>{orderItem.product_price}</td>
                     <td>{orderItem.product_quantity}</td>
                     <td>
-                      {orderItem.product_quantity * orderItem.product_price}
+                      {orderItem.product_quantity *
+                        orderItem.product_price *
+                        (orderItem.additional ? additional.differenceInDay : 1)}
                     </td>
                   </tr>
                 ))}
@@ -114,7 +163,7 @@ function OrderDetail() {
           </table>
         </div>
         <div className="money d-flex justify-content-between">
-          <p>運費:全館免運</p>
+          <p>{order[0] && order[0].type_id === 3 ? '' : '免運'}</p>
           <p>訂單總金額:{totalOrder}</p>
         </div>
       </section>

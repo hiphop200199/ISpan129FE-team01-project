@@ -10,9 +10,9 @@ function Menu() {
       {/* <img src={require('../img/layout/毬.svg')} alt="" /> */}
 
       <ul>
-        <li>
+        {/* <li>
           <Link to="/latestNews">最新消息</Link>
-        </li>
+        </li> */}
         <li>
           <Link to="/hotel/3">住宿</Link>
         </li>
@@ -21,7 +21,7 @@ function Menu() {
           <Link to="/product/1">商城</Link>
         </li>
         <li>
-          <Link to="/meals">餐點</Link>
+          <Link to="/meals/4">餐點</Link>
         </li>
         <li>
           <Link to="/course">課程</Link>

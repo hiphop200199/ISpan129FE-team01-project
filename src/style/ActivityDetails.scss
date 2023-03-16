@@ -8,17 +8,17 @@
     padding:20px 60px;  
     display:flex;
 
-    & .container-box{
+    .container-box{
     font-size: 16px;
     flex: 1;
     border-radius: 16px;
     word-break: break-word;
-    max-width: calc(100% - 300px);
+    // max-width: calc(100% - 300px);
     padding-right: 20px;
     display:grid;
     grid-gap:20px ;
 
-    & .activity-photo{
+    .activity-photo{
     width: 100%;
     height: 100%;
     border-radius: 30px;
@@ -27,13 +27,13 @@
     }
    
 
-    & .activity-title{
+    .activity-title{
     font-size: var(--font-size-header);
     background-color: var(--secondary);
     }
     
 
-    & .activity-informationbox{
+    .activity-informationbox{
         box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
         padding-left: 20px;
         border-radius: 16px;
@@ -46,7 +46,7 @@
     }
 
 
-    & .content-h5{
+    .content-h5{
         font-size: var(--font-size-h1);
         border-left:  10px solid var(--primary);
         padding: 5px;
@@ -54,19 +54,26 @@
         color: var(--text-black);
     }
 
-    & .content-p{
-        font-size: var(--font-size-h2);
+    .content-p{
+        font-size: var(--font-size-h1);
         padding: 10px;
         color: var(--text-black);
         letter-spacing: 2px;
         line-height: 3;
     }
 
-    & .content-p2{
-        font-size: var(--font-size-h2);
+    .content-p2{
+        font-size: var(--font-size-h1);
         padding: 10px;
         color: var(--text-black);
         letter-spacing: 2px;
+    }
+
+    .activity-photo2{
+        width: 70%;
+        margin-bottom: 50px;
+        border-radius: 5px;
+        
     }
     
 }
@@ -77,10 +84,93 @@
     .activity-textbox{
         top: 50px;
         position: sticky;
-        background-color: var(--primary);
         box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
         border-radius: 30px;
         padding: 24px 24px;
+
+        .activity-textbox-text{
+            font-size: var(--font-size-h5);
+            color: gray;
+
+        }
+
+        .linkbox{
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 20px;
+
+            .calendaricon{
+                color: #aaa;
+                &:hover{
+                    color:black ;
+                }
+            }
+            .facebookicon{
+                @extend  .calendaricon;
+                &:hover{
+                    color: var(--primary);
+                }
+            }
+        }
     }
         
 }
+@media screen and (max-width:768px) {
+    .activity-container {
+        margin: auto;
+        padding: 20px 60px;
+        display:flow-root;
+        .container-box {
+            font-size: 16px;
+            flex: 1 1;
+            border-radius: 16px;
+            word-break: break-word;
+            /* max-width: calc(100% - 300px); */
+            padding-right: 20px;
+            display: grid;
+            grid-gap: 20px;
+
+            .activity-photo2{
+                width: 100%;
+                margin-bottom: 50px;
+                border-radius: 30px;
+                
+            }
+        }
+
+        .activity-text {
+            position: sticky;
+            bottom: 0;
+            background: white;
+            width: 100%;
+            padding: 0;
+
+            .activity-textbox {
+                bottom: 0px;
+                box-shadow: none;
+                border-radius: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                p{
+                    display: none;
+                }
+                .linkbox {
+                    display: flex;
+                    // justify-content: space-evenly;
+                    margin-top: 20px;
+                    width: 20%;
+
+                   
+            }
+            a{
+                width: 80%;
+            }
+
+          
+           
+        }
+    }
+}}

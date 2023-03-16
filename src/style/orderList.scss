@@ -4,9 +4,14 @@
 }
 .click{
   display: flex;
-  // justify-content: center;
-  align-items:flex-start;
+  text-align: center;
+  // align-items:flex-start;
+  border: none;
+  background: none;
   cursor: pointer;
+  p{
+    margin: 0;
+  }
 }
 .checkoutFlow{
   .more-button{

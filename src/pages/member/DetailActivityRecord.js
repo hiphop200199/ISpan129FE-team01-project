@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import 'datejs'
+import Swal from 'sweetalert2'
+import BackToPrevious from '../../template/BackToPrevious'
 
 function SignUpSheetDetail() {
   const { activityform_id } = useParams()
   const [list, setList] = useState({})
-  const [data, setData] = useState(1)
   const [firstRender, setFirstRender] = useState(true)
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (firstRender) {
-      setFirstRender(false)
-    }
-
     const fetchData = async () => {
       const res = await fetch(
         `http://localhost:3002/activity/DetailActivityRecord/${activityform_id}`,
@@ -21,10 +18,15 @@ function SignUpSheetDetail() {
           method: 'GET',
         }
       )
-      const list = await res.json()
+      let list = await res.json()
+      list = {
+        ...list,
+        activity_image: list.activity_image.split(','),
+      }
       console.log('list', list)
 
-      setList(list)
+      setFirstRender(false)
+      setList({ ...list })
     }
     fetchData()
   }, [activityform_id])
@@ -36,7 +38,13 @@ function SignUpSheetDetail() {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          alert('取消成功')
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: '取消成功',
+            showConfirmButton: false,
+            timer: 1500,
+          })
           setList({ ...list, activityform_state: 0 })
         } else {
           alert('取消失敗')
@@ -50,6 +58,7 @@ function SignUpSheetDetail() {
         false
       ) : (
         <div>
+          <BackToPrevious />
           <section className="col-10 m-auto pt-3">
             <h4 className="border-bottom pb-2">活動報名資訊</h4>
             <div className="order d-flex flex-column border-bottom mb-3">
@@ -82,7 +91,7 @@ function SignUpSheetDetail() {
               <p className="mb-3">
                 報名日期:
                 {new Date(list.activityform_time).toString(
-                  'yyyy-MM-dd -- HH:mm:ss'
+                  'yyyy.MM.dd - HH:mm:ss'
                 )}
               </p>
             </div>
@@ -115,7 +124,7 @@ function SignUpSheetDetail() {
                   <tr>
                     <td>
                       <img
-                        src={`http://localhost:3002/uploads/${list.activity_image}`}
+                        src={`http://localhost:3002/uploads/${list.activity_image[0]}/`}
                         alt="activity_img"
                       />
                     </td>
