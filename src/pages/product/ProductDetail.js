@@ -1,9 +1,4 @@
-import photo from '../../img/productDetails/cheese.jpg'
 import { AddToCartLg, AddToFavoritesLg, BackToPrevious } from '../../template'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons'
-
-import Header from '../../layouts/header'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 
@@ -13,6 +8,7 @@ function ProductDetail() {
   const navigate = useNavigate()
   // 取得query string的值
   const { product_id } = useParams()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   async function fetchProductDetails() {
     try {
       const res = await fetch(
@@ -34,11 +30,7 @@ function ProductDetail() {
     }
   }
 
-  useEffect(() => {
 
-    if (!product_id) return
-    fetchProductDetails()
-  }, [product_id])
 
 
   const {
@@ -52,28 +44,32 @@ function ProductDetail() {
     product_image: imageUrl,
   } = product
 
-
-
+  const imageUrls = imageUrl ? imageUrl.split(',') : [];
   const id = localStorage.getItem('id')
 
+  useEffect(() => {
+
+    if (!product_id) return
+    fetchProductDetails()
+  }, [product_id])
   return (
     <>
       <BackToPrevious />
       <div className="product-container">
         <section className="product-introduction">
           <div className="product-photo-wrapper">
-            <img
-              className="product-photo"
-              src={'http://localhost:3002/uploads/' + imageUrl}
-              alt="product-photo"
-            />
+            {imageUrls[0] && (
+              <img
+                className="product-photo"
+                src={`http://localhost:3002/uploads/${imageUrls[0]}`}
+                alt="product-photo"
+              />
+            )}
           </div>
           <div className="product-information">
             <h1 className="product-name">{name}</h1>
             <span className="product-unit">{unit}</span>
-            <p className="product-article">
-              {descripttion}
-            </p>
+            <p className="product-article">{descripttion}</p>
             <h2 className="product-price">NT.{price}</h2>
             <div className="product-button-wrapper">
               {/* <button className="product-add-collection">加入收藏</button>
@@ -83,47 +79,19 @@ function ProductDetail() {
             </div>
           </div>
         </section>
-        <section className="product-switcher">
-          <ul className="product-switches">
-            <li className="product-switch">
-              <a href="#" className="product-switch-link">
-                商品規格
-              </a>
-            </li>
-            <li className="product-switch">
-              <a href="#act2" className="product-switch-link">
-                商品規格
-              </a>
-            </li>
-            <li className="product-switch">
-              <a href="#act3" className="product-switch-link">
-                商品規格
-              </a>
-            </li>
-          </ul>
-        </section>
-        <section className="product-spec">
-          <ul className="product-list">
-            <li className="product-litem">
-              <p>分類:首頁&gt;商品&gt;精緻零食</p>
-            </li>
-            <li className="product-litem">
-              <p className="product-brand">
-                品牌:<span className="product-brand-name">Merrick</span>
-              </p>
-            </li>
-            <li className="product-litem">
-              <p>產地:美國</p>
-            </li>
-            <li className="product-litem">
-              <p>【適用寵物種類】全犬種</p>
-            </li>
-            <li className="product-litem">
-              <p>
-                【注意事項】鑑賞期並非適用期,若您需退換貨商品,必須是全新完整包裝狀態.
-              </p>
-            </li>
-          </ul>
+        <section className="image-list">
+          {imageUrls.slice(1).map((imageUrl, index) => (
+            // eslint-disable-next-line jsx-a11y/img-redundant-alt
+            <img
+              key={index}
+              className="product-photo m-auto"
+              src={`http://localhost:3002/uploads/${imageUrl}`}
+              alt="product-photo"
+            />
+          ))}
+          <p>
+            收到商品之後，若因商品瑕疵、錯誤寄送，非人為因素之商品損毀、刮傷、或運輸過程造成包裝破損不完整的情形，可以申請退換貨
+          </p>
         </section>
       </div>
     </>
