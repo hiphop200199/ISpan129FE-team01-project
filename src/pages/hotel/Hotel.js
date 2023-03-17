@@ -63,6 +63,7 @@ function Hotel() {
                 <div className="h-card-footer">
                   {/* 愛心 */}
                   <span
+                    style={{ cursor: 'pointer' }}
                     onClick={() => {
                       const newItems = [...room]
                       newItems[i] = {

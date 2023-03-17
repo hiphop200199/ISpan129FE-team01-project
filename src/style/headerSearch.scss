@@ -9,13 +9,19 @@
 }
 
 .button__list {
-  :link {
+  button {
     text-align: center;
     text-decoration: none;
     background-color: #fcf09a;
-    padding: 5px 5px;
+    padding: 5px 10px;
     margin-right: 10px;
     border-radius: 60px;
+    color: var(--text-black);
+    font-weight: bold;
+    border: none;
+    &:hover {
+      box-shadow: inset -3px -3.5px 3px var(--field-frame);
+    }
   }
 }
 

@@ -17,7 +17,9 @@ import CartContextProvider, { CartContext } from './CartContext'
 import ModalContextProvider, { ModalContext } from './ModalContext'
 
 function MainLayouts() {
+
   const [isShowMenu, setIsShowMenu] = useState(false)
+
   const navigate = useNavigate()
   const { isModalOpen, setIsModalOpen, handleClose, handleShow } =
     useContext(ModalContext)
@@ -57,7 +59,9 @@ function MainLayouts() {
               <img src={Ball} alt="logo" />
             </Link>
             <Menu />
+
             <Button className="btn-outline-cart" onClick={handleShow}>
+
               <FontAwesomeIcon icon={faCartShopping} />
             </Button>
           </nav>
@@ -77,7 +81,7 @@ function MainLayouts() {
                   </Button>
                 </Modal.Header>
                 <Cart />
-                <div className="aside d-flex justify-content-center">
+                <div className="aside d-flex justify-content-center p-2">
                   <SquareAccounts
                     onClick={handleCheckoutClick}
                     className="more_color"

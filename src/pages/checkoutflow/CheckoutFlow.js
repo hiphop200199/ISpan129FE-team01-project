@@ -177,8 +177,8 @@ function CheckoutFlow() {
               id="tab1"
               onChange={handleChange}
               checked={tagCheck === 'tab1'}
-              // onChange={handleChange}
-              // checked={tagCheck}
+            // onChange={handleChange}
+            // checked={tagCheck}
             />
             <label htmlFor="tab1" className="tabs__label">
               我的購物車
@@ -216,9 +216,9 @@ function CheckoutFlow() {
                           />
                         </td>
                         <td>{product_name}</td>
-                        <td>{product_price}</td>
+                        <td>NT.{product_price}</td>
                         <td>{product_quantity}</td>
-                        <td>{product_quantity * product_price}</td>
+                        <td>NT.{product_quantity * product_price}</td>
                         {/* <td>從購物車刪除</td> */}
                       </tr>
                     )
@@ -234,7 +234,7 @@ function CheckoutFlow() {
             </div>
             <div className="d-flex justify-content-between mb-2 pb-2">
               <p className="m-0 p-0">合計:</p>
-              <p className="m-0 pe-3">{total}</p>
+              <p className="m-0 pe-3">NT.{total}</p>
             </div>
             <div className="d-flex justify-content-end">
               {showNextStep ? <NextStepLg onClick={handleNext} /> : ''}
@@ -376,8 +376,8 @@ function CheckoutFlow() {
               {orderData[0] && orderData[0].payment_method === 1
                 ? '信用卡付款'
                 : orderData[0] && orderData[0].payment_method === 2
-                ? '貨到付款'
-                : '現場付款'}
+                  ? '貨到付款'
+                  : '現場付款'}
             </p>
           </div>
           <div className="tabs col-10 ">
@@ -388,8 +388,8 @@ function CheckoutFlow() {
               id="tab1"
               onChange={handleChange}
               checked={tagCheck === 'tab1'}
-              // onChange={handleChange}
-              // checked={tagCheck}
+            // onChange={handleChange}
+            // checked={tagCheck}
             />
             <label htmlFor="tab1" className="tabs__label">
               訂單內容

@@ -365,7 +365,21 @@ function ReserveConfirm() {
                     {isOrderSuccess ? '查看訂單紀錄' : '前往登入'}
                   </button>
                 )}
-                {isOrderSuccess ? (
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => {
+                    closeModal()
+                    if (!isOrderSuccess) {
+                      navigate('/login')
+                    } else {
+                      navigate('/')
+                    }
+                  }}
+                >
+                  關閉
+                </button>
+                {/* {isOrderSuccess ? (
                   ''
                 ) : (
                   <button
@@ -375,7 +389,7 @@ function ReserveConfirm() {
                   >
                     關閉
                   </button>
-                )}
+                )} */}
               </div>
             </div>
           </div>

@@ -5,6 +5,8 @@ import ReactDatePicker, { registerLocale } from 'react-datepicker'
 import zhTW from 'date-fns/locale/zh-TW'
 import 'react-datepicker/dist/react-datepicker.css'
 import { AddToFavoritesLg } from '../../template'
+import Lightbox from 'react-image-lightbox'
+import 'react-image-lightbox/style.css'
 
 registerLocale('zh-TW', zhTW)
 
@@ -30,21 +32,31 @@ function Reserve() {
   })
   const { product_id } = useParams()
 
+  const [lightboxIsOpen, setLightboxIsOpen] = useState(false)
+
+  const [imageArray, setImageArray] = useState([])
+
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+
   useEffect(() => {
     fetch(`http://localhost:3002/product/list-detail/${product_id}`)
       .then((res) => res.json())
       .then((room) => {
         // setRoomDetail(room[0])
         console.log('room', room)
-        const imageArray = room[0].product_image.split(',')
-        const bigImage = imageArray[0]
-        const smallImage = imageArray.slice(1)
-        console.log('imageArray', imageArray)
+        const imageList = room[0].product_image.split(',')
+        const bigImage = imageList[0]
+        const smallImage = imageList.slice(1)
+        console.log('imageList', imageList)
         const imageObj = {
           product_image_big: bigImage,
           product_image_small: smallImage,
         }
         setRoomDetail({ ...room[0], ...imageObj })
+        setImageArray(imageList)
+        console.log('====imageArray====', imageArray)
+        // imageList = imageArray
+        // console.log('imageList', imageList)
 
         const changeReserveDataObj = {
           money: room[0].product_price,
@@ -62,6 +74,29 @@ function Reserve() {
 
       .catch((err) => console.error(err))
   }, [product_id])
+  // let selectedImageIndex = 0
+  const handleImageClick = (index) => {
+    setSelectedImageIndex(index)
+    setLightboxIsOpen(true)
+    console.log('====selectedImageIndex====', selectedImageIndex)
+    console.log('===index===', index)
+    console.log('===imageArray===', imageArray)
+    console.log(
+      '===imageArray[selectedImageIndex]===',
+      imageArray[selectedImageIndex]
+    )
+  }
+
+  const handlePrevRequest = () => {
+    setSelectedImageIndex(
+      (selectedImageIndex - 1 + imageArray.length) % imageArray.length
+    )
+  }
+
+  const handleNextRequest = () => {
+    setSelectedImageIndex((selectedImageIndex + 1) % imageArray.length)
+  }
+
   console.log('roomDetail', roomDetail)
 
   function calculateNumberOfNights(checkinDate, checkoutDate, keyName) {
@@ -98,8 +133,28 @@ function Reserve() {
   return (
     <>
       <div className="rd-wrap">
+        {lightboxIsOpen && (
+          <Lightbox
+            mainSrc={`http://localhost:3002/uploads/${imageArray[selectedImageIndex]}`}
+            prevSrc={`http://localhost:3002/uploads/${
+              imageArray[
+                (selectedImageIndex - 1 + imageArray.length) % imageArray.length
+              ]
+            }`}
+            nextSrc={`http://localhost:3002/uploads/${
+              imageArray[(selectedImageIndex + 1) % imageArray.length]
+            }`}
+            onCloseRequest={() => setLightboxIsOpen(false)}
+            onMovePrevRequest={handlePrevRequest}
+            onMoveNextRequest={handleNextRequest}
+          />
+        )}
         <div className="banner rwd-container">
           <div
+            onClick={() =>
+              // console.log(`You clicked on item ${i + 1}`)
+              handleImageClick(0)
+            }
             style={{
               backgroundImage: `url(http://localhost:3002/uploads/${roomDetail.product_image_big})`,
             }}
@@ -111,6 +166,10 @@ function Reserve() {
               ? roomDetail.product_image_small.map((item, i) => {
                   return (
                     <div
+                      onClick={() =>
+                        // console.log(`You clicked on item ${i + 1}`)
+                        handleImageClick(i + 1)
+                      }
                       className={`img img${i + 1}`}
                       style={{
                         backgroundImage: `url(http://localhost:3002/uploads/${item})`,
