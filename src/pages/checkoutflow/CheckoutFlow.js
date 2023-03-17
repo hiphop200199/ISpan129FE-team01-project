@@ -347,20 +347,13 @@ function CheckoutFlow() {
                 </form>
               </div>
             ) : (
-              <>
-                <h1 className="product-title col-10">猜你喜歡</h1>
-                <article className="product">
-                  <div className="card">
-                    <img src="" alt="" />
-                  </div>
-                </article>
-              </>
+              ''
             )}
           </section>
         </main>
       ) : (
         <main className="checkoutFlow d-flex justify-content-center align-items-center">
-          <div className="cardwrap">
+          <div className="row">
             <p> 訂單編號:{orderID}</p>
             <p>
               訂單日期:
@@ -374,7 +367,7 @@ function CheckoutFlow() {
             <p>
               付款方式:
               {orderData[0] && orderData[0].payment_method === 1
-                ? '信用卡付款'
+                ? 'LinePay付款'
                 : orderData[0] && orderData[0].payment_method === 2
                   ? '貨到付款'
                   : '現場付款'}
@@ -427,7 +420,7 @@ function CheckoutFlow() {
               </table>
               <div className="d-flex justify-content-between mb-2 pb-2">
                 <p className="m-0 p-0">合計:</p>
-                <p className="m-0 pe-3">{totalOrder}</p>
+                <p className="m-0 pe-3">NT.{totalOrder}</p>
               </div>
             </div>
           </div>
