@@ -164,7 +164,7 @@
           flex-direction: column;
           justify-content: space-evenly;
           background-color: var(--light-yellow);
-          width: max(360px,30%);
+          width: max(360px,29%);
           margin: 3vmax 1vmax;
           height: max(290px,46%);
           border-radius: 15px;
@@ -174,7 +174,9 @@
             flex-direction: column;
             justify-content: space-around;
             & .title {
+              position: relative;
               width: 60%;
+             bottom: 10%;
               font-size: 24px;
               font-weight: 900;
             }
@@ -230,7 +232,7 @@
               width: 49%;
               height: 72%;
               left: 57%;
-              top: 12%;
+              top: 14%;
               border-radius: 15px;
               object-fit: cover;
             }
@@ -488,7 +490,7 @@
                   & .title {
                   width: 80%;
                     font-size: 21px;
-               
+                    bottom: 5%;
                   }
                   & .text-unit{
                       font-size: 18px;
@@ -678,7 +680,7 @@
                   & .title {
                   
                     font-size: 20px;
-               
+                    bottom: none;
                   }
                   & .text-unit{
                       font-size: 16px;
