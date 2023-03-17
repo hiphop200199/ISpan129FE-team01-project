@@ -35,6 +35,16 @@ const Cart = () => {
       clearCart()
     }
   }, [items])
+
+  const totalPrice = () => {
+    let cartTotal = 0
+    items.forEach((items) => {
+      const itemTotal = items.product_quantity * items.product_price
+      cartTotal += itemTotal
+    })
+    return cartTotal
+  }
+  const total = totalPrice()
   return (
     <div className="cart__sidebar">
       <main>
@@ -90,8 +100,13 @@ const Cart = () => {
               )}
             </tbody>
           </table>
+
         </div>
-        {items.length == 0 ? '沒有選擇商品' : ''}
+        {items.length == 0 ? (
+          <p className="text-center">沒有選擇商品</p>
+        ) : (
+          <p className="text-center m-0">合計: NT.{total}</p>
+        )}
       </main>
     </div>
   )
