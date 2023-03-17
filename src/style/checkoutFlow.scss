@@ -179,10 +179,19 @@ tr>td:first-child {
   align-items: center;
   margin: auto;
   padding: 3px;
+  width: 100px;
+  height: 100px;
+  position: relative;
 
-  img {
-    width: 90px;
-  }
+  // & img {
+  //   padding: 2px;
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 100%;
+  //   object-fit: cover;
+  // }
 }
 
 .checkout-section {
@@ -252,4 +261,5 @@ tr>td:first-child {
 .button_group {
   display: flex;
   flex-direction: column;
+  margin: auto;
 }
