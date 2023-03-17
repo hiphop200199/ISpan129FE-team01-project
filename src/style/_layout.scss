@@ -249,6 +249,20 @@ a:link {
 //     top:50vh;
 //     left: 20%;
 // }
+// .modal-dialog {
+//   --bs-modal-width: 1000px;
+
+//   .modal-content {
+//     width: 70%;
+//   }
+// }
+.modal-dialog {
+  max-width: 800px;
+  // 覆蓋預設的最大寬度 
+  width: 100%;
+  // 讓 modal 使用整個父元素的寬度
+}
+
 .cart {
   width: 40px;
   height: 40px;
