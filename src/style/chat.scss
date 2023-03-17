@@ -173,6 +173,7 @@ body {
   border: 0;
   padding: 0 0.7em;
   font-size: 1em;
+  width:80%;
   // border-right: 1px dotted #607d8b;
 
   outline: none;
@@ -180,11 +181,12 @@ body {
 }
 
 .chat-window .chat-footer button {
+  width: 20%;
   border: 0;
   display: flex;
   place-items: center;
   cursor: pointer;
-  flex: auto;
+  flex:content;
   height: 100%;
   background: transparent;
   outline: none;
