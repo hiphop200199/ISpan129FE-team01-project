@@ -240,7 +240,7 @@ function CheckoutFlow() {
               {showNextStep ? <NextStepLg onClick={handleNext} /> : ''}
             </div>
           </div>
-          <section className="recommended-products">
+          <section className="recommended-products d-flex">
             {showFrom ? (
               <div className="d-flex flex-column col-12 m-auto">
                 <form htmlFor="orderForm" onSubmit={handelSubmit}>
@@ -296,6 +296,7 @@ function CheckoutFlow() {
                           id="recipient_name"
                           name="recipient_name"
                           placeholder="收件人姓名"
+                          required
                         />
                       </label>
                       <label className="mb-3">
@@ -305,6 +306,7 @@ function CheckoutFlow() {
                           id="recipient_address"
                           name="recipient_address"
                           placeholder="收件地址"
+                          required
                         />
                       </label>
                       <label className="mb-3">
@@ -314,6 +316,7 @@ function CheckoutFlow() {
                           id="recipient_phone"
                           name="recipient_phone"
                           placeholder="聯絡電話"
+                          required
                         />
                       </label>
                     </div>
@@ -334,15 +337,15 @@ function CheckoutFlow() {
                     <option value="1">信用卡</option>
                     <option value="2">貨到付款</option>
                   </select>
-                  <div className="d-flex justify-content-end">
+                  <div className="d-flex justify-content-end mb-3">
                     <PreviousStep onClick={handleNext} />
-
                     <button
                       type="submit"
-                      className="btn btn-primary btn-lg min-width-auto"
+                      className="btn btn-primary btn-lg m-auto"
                     >
                       確認
                     </button>
+
                   </div>
                 </form>
               </div>
