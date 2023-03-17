@@ -247,7 +247,6 @@ function ActivitySignUp() {
                     <div className="step2-form1-title">
                       <h5 className="step-form1-word">報名人資料</h5>
                     </div>
-
                     <div className="step-table-wrap">
                       <div className="step-table-title">姓名</div>
                       <div className="step-table-description">
@@ -270,22 +269,23 @@ function ActivitySignUp() {
                     <form name="formActivity" id="formActivity">
                       <div div className="step-table-wrap">
                         <div className="step-table-title">選擇攜帶寵物</div>
-
-                        {pets.map((el, idx) => {
-                          return (
-                            <div key={idx} className="step-table-description">
-                              <input
-                                type="radio"
-                                name="pets"
-                                id="pets"
-                                value={el.pet_id}
-                                checked
-                              />
-                              {el.pet_name}
-                              <label htmlFor="exampleRadios1"></label>
-                            </div>
-                          )
-                        })}
+                        <div className="pet-select">
+                          {pets.map((el, idx) => {
+                            return (
+                              <div key={idx} className="pet-select-box">
+                                <input
+                                  type="radio"
+                                  name="pets"
+                                  id="pets"
+                                  value={el.pet_id}
+                                  checked
+                                />
+                                {el.pet_name}
+                                <label htmlFor="exampleRadios1"></label>
+                              </div>
+                            )
+                          })}
+                        </div>
                       </div>
                     </form>
                   </div>
@@ -318,7 +318,7 @@ function ActivitySignUp() {
                       </label>
 
                       <div className="addpet-select">
-                        <span>寵物種類</span>
+                        <span className="step2-form-text">寵物種類</span>
                         <label className="addpet-type">
                           <input
                             onChange={handleFieldChange}
@@ -327,24 +327,24 @@ function ActivitySignUp() {
                             name="type"
                             checked
                           />
-                          貓
+                          <span className="step2-form-text">貓</span>
                           <input
                             onChange={handleFieldChange}
                             type="radio"
                             value="狗"
                             name="type"
                           />
-                          狗
+                          <span className="step2-form-text">狗</span>
                           <input
                             onChange={handleFieldChange}
                             type="radio"
                             value="其他"
                             name="type"
                           />
-                          其他
+                          <span className="step2-form-text">其他</span>
                         </label>
                         <br />
-                        <span>寵物性別</span>
+                        <span className="step2-form-text">寵物性別</span>
                         <label className="addpet-type">
                           <input
                             onChange={handleFieldChange}
@@ -353,14 +353,15 @@ function ActivitySignUp() {
                             name="gender"
                             checked
                           />
-                          男生
+                          <span className="step2-form-text">男生</span>
+
                           <input
                             onChange={handleFieldChange}
                             type="radio"
                             value="女生"
                             name="gender"
                           />
-                          女生
+                          <span className="step2-form-text">女生</span>
                         </label>
                       </div>
 
