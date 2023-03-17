@@ -1,12 +1,17 @@
 div.productPage {
+  padding-top: 15px;
   width: 95%;
   margin: auto;
-}
-
-div.productContent {
-  // width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  // justify-content: space-between;
-  gap: 50px;
+  .swiper-width {
+    img {
+      width: 80%;
+    }
+  }
+  div.productContent {
+    // width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    // justify-content: space-between;
+    gap: 50px;
+  }
 }

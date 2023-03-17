@@ -11,15 +11,18 @@
 
 .activity-banner{
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content:space-around;
 
     .activity-banner-word{
-        color: var(--primary);
-        font-size: var(--font-size-header);
-        font-weight: bolder;
-        letter-spacing: 1.5px;
-
+      color: var(--text-black);
+      font-size: 40px;
+      font-weight: bolder;
+      letter-spacing: 1.5px;
+    
     }
+
+    
 }
 
 
@@ -72,3 +75,98 @@
 }
 
 
+.upper-part{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
+  & .searchbar{
+      border-radius: 25px;
+      background-color: #FEFCEB;
+      display: flex;
+      margin: 0.5vmax;
+      & *{
+          outline: none;
+          border: none;
+          background: none;
+          padding: 10px;    
+   }
+   #search{
+      width: 20vw;
+   }
+  }
+  & .price-filter{
+    position: relative;
+    border-radius: 25px;
+    background-color: #FEFCEB;
+    width: fit-content;
+    height: fit-content;
+    font-size: 1.5vw;
+    font-weight: 400;
+    padding: 10px 15px;
+    transition: 0.5s;
+    border: none;
+    cursor: pointer;
+    margin: 0.5vmax;
+    & .price-button-wrapper{
+      position: absolute;
+      left: 0;
+      top: 100%;
+      display: flex;
+      flex-direction: column;
+      transform-origin: 50% 0%;
+      opacity: 0;
+      transform: scaleY(0);
+      background-color: #FEFCEB;
+      border-radius: 25px;
+      width: 100%;
+      transition: 0.5s;
+     
+      & button{
+        background: none;
+        border: none;
+        transition: 0.5s;
+         padding: 5px 15px;
+         font-size: 1.5vw;
+        &:hover{
+          background-color: #fffacd;
+        }
+      }
+      & #price-ascend-order{
+        border-radius: 25px 25px 0 0;
+      }
+      & #price-descend-order{
+        border-radius: 0 0 25px 25px;
+      }
+    }
+    &:hover{
+      background-color: #fffacd;
+    }
+    &.active{
+      
+      background-color: #fffacd;
+    }
+    &.active .price-button-wrapper{
+      
+      opacity: 1;
+      transform: scaleY(1);
+    }
+    
+  }
+ 
+.course-search-tags{
+    display: flex;
+    .course-search-tag{
+        padding: 5px 15px;
+        background-color: #FCF09A;
+        border-radius: 25px;
+        margin-inline: 0.5vmax;
+        font-size: 1.5vw;
+        border: none;
+        white-space: nowrap;
+        transition: 0.5s;
+            &:hover{
+                filter: brightness(105%);
+            }
+    }
+}}

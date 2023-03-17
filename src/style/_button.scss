@@ -28,22 +28,19 @@
     background-color: var(--primary);
     border-color: var(--primary);
     color: var(--text-white);
-
   }
 }
 
 .btn-secondary {
-  background-color: var(--light-yellow);
-
+  background-color: var(--secondary);
   border: 5px solid var(--light-yellow);
 
   &:hover,
   &:active,
   &:focus-visible {
     background-color: var(--secondary);
-    border: 5px solid var(--secondary);
+    border: 5px solid transparent;
     color: var(--text-black);
-
   }
 }
 
@@ -93,27 +90,31 @@ Button.btn-outline-cart {
 }
 
 
+
 .btn-outline-none{
   background-color: var(--light-white);
   color: var(--text-black) ;
-  &:hover,&:active,&:focus-visible{
+  &:hover,
+  &:active,
+  &:focus-visible{
     background-color: var(--text-white);
     color: var(--text-black);
+
   }
-  
 }
-.max-width-auto{
+.max-width-auto {
   width: 100%;
   background-color: var(--secondary);
-  border:5px solid var(--secondary);
-  &:hover,&:active,&:focus-visible{
-    background-color: var(--light-yellow) ;
-    border:5px solid var(--light-yellow) ;
-    color: var(--text-black) ;
+  border: 5px solid var(--secondary);
+  &:hover,
+  &:active,
+  &:focus-visible {
+    background-color: var(--light-yellow);
+    border: 5px solid var(--light-yellow);
+    color: var(--text-black);
   }
 }
-.min-width-auto{
-
+.min-width-auto {
   min-width: auto;
 }
 
@@ -161,9 +162,8 @@ Button.btn-outline-cart {
     font-size: 12px;
     margin: 3px auto;
     color: #515151;
-    content: "—";
+    content: '—';
   }
-
 }
 
 .add {
@@ -185,24 +185,26 @@ Button.btn-outline-cart {
     font-size: 25px;
     color: #515151;
     margin: 0;
-    content: "+";
+    content: '+';
   }
 }
 
-.btn:disabled, .btn.disabled, fieldset:disabled .btn {
+.btn:disabled,
+.btn.disabled,
+fieldset:disabled .btn {
   background-color: var(--light-blue);
   border-color: var(--light-blue);
 }
 
-.cancel-btn{
-  background:#FF5959;
+.cancel-btn {
+  background: #ff5959;
   color: var(--text-white);
   font-weight: bolder;
   padding: 20px 30px;
-  border:none;
+  border: none;
   border-radius: 20px;
-  &:hover{
-    background-color:#E00000 ;
-    color: var(--text-white) ;
+  &:hover {
+    background-color: #e00000;
+    color: var(--text-white);
   }
 }
