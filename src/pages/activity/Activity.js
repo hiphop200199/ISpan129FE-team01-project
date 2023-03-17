@@ -8,11 +8,14 @@ import cat from '../../img/activity/activityhome1.png'
 import dog from '../../img/activity/activityhome2.png'
 import twodog from '../../img/activity/activityhome3.png'
 import Paginationn from '../../template/Paginationn'
+import footer from '../../layouts/Footer'
+import Footer from '../../layouts/Footer'
 
 function Activity() {
   const [activity, setActivity] = useState([])
   const [activityName, setActivityName] = useState('')
-  const [isFilterActive, setIsFilterActive] = useState('')
+  // const [isFilterActive, setIsFilterActive] = useState('')
+  // const [button, setButton] = useState('')
 
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage, setPostsPerPage] = useState(9)
@@ -58,7 +61,7 @@ function Activity() {
   const TypeCat = () => {
     fetch(`http://localhost:3002/activity/activity-list/api`)
       .then((res) => res.json())
-      .then((activty) => {
+      .then((activity) => {
         const activities = [...activity]
         activities.forEach((el) => {
           console.log(el)
@@ -143,6 +146,47 @@ function Activity() {
 
   return (
     <>
+      <div className="activity-banner">
+        <div className="upper-part">
+          <span className="course-search-tags">
+            <button className="course-search-tag" onClick={TypeCat}>
+              貓
+            </button>
+
+            <button className="course-search-tag" onClick={TypeDog}>
+              狗
+            </button>
+
+            <button className="course-search-tag" onClick={TypeAll}>
+              所有
+            </button>
+          </span>
+          <div className="searchbar">
+            <input
+              type="search"
+              id="search"
+              onChange={(e) => {
+                setActivityName(e.target.value)
+              }}
+              onKeyUp={(e) => {
+                if (e.key === 'Enter') {
+                  findOneActivity()
+                }
+              }}
+              placeholder="搜尋"
+            />
+          </div>
+
+          {/* <div className="price-button-wrapper">
+          <button className="time-ascend-order" onClick={ascendTimeActivity}>
+            由遠至進
+          </button>
+          <button className="price-descend-order" onClick={descendTimeActivity}>
+            由進至遠
+          </button>
+        </div> */}
+        </div>
+      </div>
       <div className="banner-swiper">
         <Swiper
           style={{
@@ -183,11 +227,13 @@ function Activity() {
               onChange={(e) => {
                 setActivityName(e.target.value)
               }}
+              onKeyUp={(e) => {
+                if (e.key === 'Enter') {
+                  findOneActivity()
+                }
+              }}
               placeholder="搜尋"
             />
-            <button id="search-button" onClick={findOneActivity}>
-              &#128269;
-            </button>
           </div>
 
           {/* <div className="price-button-wrapper">
@@ -265,6 +311,7 @@ function Activity() {
         pageNumberLimit={pageNumberLimit}
         className="pagination-bar"
       />
+      <Footer />
     </>
   )
 }
