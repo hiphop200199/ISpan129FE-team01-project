@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react'
 import { Card } from '../../template'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import { Autoplay, Pagination } from 'swiper'
+import 'swiper/scss'
+import 'swiper/scss/pagination'
+import { Autoplay, Pagination, EffectFade } from 'swiper'
 function Product() {
   const { typeID } = useParams()
   const [product, setProduct] = useState([])
@@ -23,21 +23,23 @@ function Product() {
         }
 
         const data = await res.json()
-        const imageArray = data[0].product_image.split(',')
-        const bigImage = imageArray[0]
-        const smallImage = imageArray.slice(1)
-        const imgObj = {
-          bigImage,
-          smallImage,
-        }
-        setProduct(data, { ...imgObj })
+        const products = [...data]
+        products.forEach((el) => {
+          console.log(el)
+          const products = [...data]
+          const img = el.product_image.split(',')
+          const bigImage = img[0]
+          el.product_image = bigImage
+          console.log('products', el.product_image)
+        })
+        setProduct([...data])
       } catch (err) {
         console.log(err)
       }
     }
     fetchData()
   }, [typeID])
-  console.log(product)
+
   const handleFilter = (filteredProducts) => {
     setFilteredProduct(filteredProducts)
   }
@@ -55,21 +57,21 @@ function Product() {
         onFilter={handleFilter}
         handleClear={handleClear}
       />
-      <div className="swiper-Content pt-3">
+      <div className="swiper-Content ms-5 d-flex">
         <Swiper
-          className="swiper-width"
-          style={{
-            '--swiper-navigation-color': 'white',
-            '--swiper-navigation-size': '20px',
+          slidesPerView='3'
+          spaceBetween={30}
+          pagination={{
+            clickable: true,
           }}
-          centeredSlides={true}
+          speed={3000}
+          loop={true}
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
           }}
-          slidesPerView={1}
           modules={[Autoplay, Pagination]}
-          loop={true}
+          className="mySwiper"
         >
           {product.map((product, idx) => (
             <SwiperSlide key={idx}>
@@ -84,7 +86,8 @@ function Product() {
           ))}
         </Swiper>
       </div>
-      <div className="productContent col-12">
+      <h2 className='m-3'>全部商品</h2>
+      <div className="productContent col-12 ">
         {mapProduct.map((product) => (
           <Card
             key={product.id}
