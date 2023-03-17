@@ -1,6 +1,5 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
 import photo from '../../img/productDetails/cheese.jpg'
-import { AddToCartLg, AddToFavoritesLg } from '../../template'
+import { AddToCartLg, AddToFavoritesLg, BackToPrevious } from '../../template'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons'
 
@@ -59,8 +58,7 @@ function ProductDetail() {
 
   return (
     <>
-      <Header />
-      <FontAwesomeIcon icon={faAnglesLeft} onClick={() => navigate(-1)} />
+      <BackToPrevious />
       <div className="product-container">
         <section className="product-introduction">
           <div className="product-photo-wrapper">
@@ -75,7 +73,6 @@ function ProductDetail() {
             <span className="product-unit">{unit}</span>
             <p className="product-article">
               {descripttion}
-              想必大家都能了解潔牙零食的重要性。話雖如此，浦利尼斯二世在不經意間這樣說過，痛苦有個限度，恐懼則綿綿無際。這句話看似簡單，但其中的陰鬱不禁讓人深思。泰戈爾相信，完全理智的心，恰如一柄全是鋒刃的刀，會叫使用它的人手上流血。帶著這句話，我們還要更加慎重的審視這個問題。
             </p>
             <h2 className="product-price">NT.{price}</h2>
             <div className="product-button-wrapper">
