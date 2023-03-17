@@ -9,7 +9,7 @@
 }
 
 .button__list {
-  button {
+  .button {
     text-align: center;
     text-decoration: none;
     background-color: #fcf09a;
@@ -19,6 +19,7 @@
     color: var(--text-black);
     font-weight: bold;
     border: none;
+
     &:hover {
       box-shadow: inset -3px -3.5px 3px var(--field-frame);
     }
@@ -30,12 +31,14 @@ input {
   border: none;
   outline: none;
 }
+
 .header-search {
   display: flex;
   align-items: center;
   background-color: #fcf09a;
   padding: 0 10px;
   border-radius: 60px;
+
   //   margin-right: 20px;
   button {
     font-size: 14px;
