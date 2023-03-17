@@ -79,8 +79,8 @@ function OrderDetail() {
             {order[0] && order[0].payment_method === 1
               ? 'Line Pay'
               : order[0] && order[0].payment_method === 2
-              ? '貨到付款'
-              : '現場付款'}
+                ? '貨到付款'
+                : '現場付款'}
           </p>
           {order[0] && order[0].type_id === 3 && (
             <>
@@ -114,7 +114,7 @@ function OrderDetail() {
             <p>姓名:{order[0].recipient_name}</p>
             <p>連絡電話:{order[0].recipient_phone}</p>
             {order[0].type_id === 3 ? (
-              ''
+              <p>連絡信箱:{order[0].recipient_address}</p>
             ) : (
               <p>地址:{order[0].recipient_address}</p>
             )}
@@ -140,20 +140,19 @@ function OrderDetail() {
                   <tr key={orderItem.order_detail_id}>
                     <td>
                       <img
-                        src={`http://localhost:3002/uploads/${
-                          orderItem.type_id === 3
-                            ? orderItem.product_image_big
-                            : orderItem.product_image
-                        }`}
+                        src={`http://localhost:3002/uploads/${orderItem.type_id === 3
+                          ? orderItem.product_image_big
+                          : orderItem.product_image
+                          }`}
                         alt="product_img"
                       />
                     </td>
                     <td>{orderItem.product_name}</td>
                     <td>{orderItem.product_unit}</td>
-                    <td>{orderItem.product_price}</td>
+                    <td>NT.{orderItem.product_price}</td>
                     <td>{orderItem.product_quantity}</td>
                     <td>
-                      {orderItem.product_quantity *
+                      NT.{orderItem.product_quantity *
                         orderItem.product_price *
                         (orderItem.additional ? additional.differenceInDay : 1)}
                     </td>
@@ -164,10 +163,10 @@ function OrderDetail() {
         </div>
         <div className="money d-flex justify-content-between">
           <p>{order[0] && order[0].type_id === 3 ? '' : '免運'}</p>
-          <p>訂單總金額:{totalOrder}</p>
+          <p>訂單總金額 : NT.{totalOrder}</p>
         </div>
       </section>
-      <div className="return d-flex justify-content-center">
+      <div className="return d-flex justify-content-center mb-3">
         <button
           type="button"
           className="btn btn-primary btn-lg"
