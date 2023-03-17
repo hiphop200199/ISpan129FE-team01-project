@@ -1,10 +1,10 @@
-@mixin filterStyle($fontSize:1.5vw){
+@mixin filterStyle(){
   position: relative;
         border-radius: 25px;
         background-color: #FEFCEB;
         width: fit-content;
         height: fit-content;
-        font-size: $fontSize;
+        font-size: 1.5vw;
         font-weight: 400;
         padding: 10px 15px;
         transition: 0.5s;
@@ -26,12 +26,12 @@
   width: 100%;
   transition: 0.5s;
 }
-@mixin filterButton($fontSize:1.5vw){
+@mixin filterButton(){
   background: none;
   border: none;
   transition: 0.5s;
    padding: 5px 15px;
-   font-size: $fontSize;
+   font-size: 1.5vw;
 }
 .course-container{
     display: flex;
