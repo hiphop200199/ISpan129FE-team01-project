@@ -176,9 +176,13 @@ td>img {
 }
 
 tr>td:first-child {
-  display: flex;
   align-items: center;
-  justify-content: center;
+  margin: auto;
+  padding: 3px;
+
+  img {
+    width: 90px;
+  }
 }
 
 .checkout-section {
