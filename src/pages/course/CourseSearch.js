@@ -205,7 +205,6 @@ function CourseSearch() {
                   <span className="price">$.{item.product_price}</span>
                 </section>
                 <section className="buttons">
-                  <button className="button-collection">&#9825;</button>
                   <Link to={`/CourseDetail/${item.product_id}`}>
                     <button className="button-moreInfo">看更多</button>
                   </Link>
