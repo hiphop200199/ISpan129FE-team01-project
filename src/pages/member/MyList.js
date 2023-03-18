@@ -30,6 +30,10 @@ function MyList({ id, onDelete }) {
       console.log(`http://localhost:3002/member/likes/${id}`, like)
 
       // const [...orders] = order
+      like[0].likes.forEach((element) => {
+        const imageArray = element.product_image.split(',')
+        element.product_image = imageArray[0]
+      })
       setLike(like[0].likes)
     }
     fetchData()
