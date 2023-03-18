@@ -118,9 +118,9 @@ function CheckoutFlow() {
 
   // 取得最新結帳的訂單資料API
   const getOrderData = (orderID) => {
-    return fetch(`http://localhost:3002/orderList/orderDetail/${orderID}`).then(
-      (res) => res.json()
-    )
+    return fetch(`http://localhost:3002/orderList/orderDetail/${orderID}`, {
+      method: 'get',
+    }).then((res) => res.json())
   }
 
   const handelSubmit = async (e) => {
@@ -334,7 +334,7 @@ function CheckoutFlow() {
                     <option value="" disabled>
                       請選擇付款方式
                     </option>
-                    <option value="1">信用卡</option>
+                    <option value="1">LinePay</option>
                     <option value="2">貨到付款</option>
                   </select>
                   <div className="d-flex justify-content-end mb-3">
@@ -409,14 +409,13 @@ function CheckoutFlow() {
                       {/* <td>{index + 1}</td> */}
                       <td>
                         <img
-                          src={`http://localhost:3002/uploads/${item.product_image}`}
+                          src={`http://localhost:3002/uploads/${item.product_image[0]}`}
                           alt={item.product_name}
                         />
                       </td>
                       <td>{item.product_name}</td>
-                      <td>{item.product_price}</td>
+                      <td>NT.{item.product_price}</td>
                       <td>{item.product_quantity}</td>
-                      {/* <td>從購物車刪除</td> */}
                     </tr>
                   ))}
                 </tbody>
