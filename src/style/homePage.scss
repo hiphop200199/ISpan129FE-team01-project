@@ -118,4 +118,49 @@
   }
 }
 
-
+@media screen and (width<400px) {
+  .new-word-box {
+  font-size: var(--font-size-h1);
+  }
+  .new-container{
+    .new-box{
+      .swiper{
+        .swiper-wrapper{
+          .new{
+            .new-detail{
+              padding: 10px 15px;
+              .newcard-title{
+                font-size: var(--font-size-h4);
+              }
+              .newcard-text{
+                font-size: var(--font-size-h5);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .about-container{
+    .card-body{
+      .card-start{
+        font-size: var(--font-size-h1);
+      }
+      .card-title{
+        font-size: var(--font-size-h3);
+      }
+      .card-text{
+        font-size: var(--font-size-h3);
+      }
+    }
+  }
+  .homehotel-moreroom{
+    a{
+      .homehotel-word{
+        font-size: var(--font-size-p);
+      }
+    }
+  }
+ 
+  
+}
