@@ -10,6 +10,7 @@ function Product() {
   const { typeID } = useParams()
   const [product, setProduct] = useState([])
   const [filteredProduct, setFilteredProduct] = useState([])
+
   // 取得DB資料
   useEffect(() => {
     const fetchData = async () => {
@@ -22,23 +23,25 @@ function Product() {
           throw new Error('Network res was not ok')
         }
 
-        const data = await res.json()
-        const products = [...data]
-        products.forEach((el) => {
-          console.log(el)
-          const products = [...data]
-          const img = el.product_image.split(',')
-          const bigImage = img[0]
-          el.product_image = bigImage
-          console.log('products', el.product_image)
-        })
-        setProduct([...data])
+        const product = await res.json()
+        setProduct(product)
+        console.log(product)
       } catch (err) {
         console.log(err)
       }
     }
     fetchData()
   }, [typeID])
+  const {
+    product_id: productID,
+    product_name: name,
+    product_class: productClass,
+    product_descripttion: descripttion,
+    product_price: price,
+    product_unit: unit,
+    product_image: imageUrl,
+  } = product
+
 
   const handleFilter = (filteredProducts) => {
     setFilteredProduct(filteredProducts)
@@ -59,7 +62,7 @@ function Product() {
       />
       <div className="swiper-Content ms-5 d-flex">
         <Swiper
-          slidesPerView='3'
+          slidesPerView="3"
           spaceBetween={30}
           pagination={{
             clickable: true,
@@ -73,17 +76,24 @@ function Product() {
           modules={[Autoplay, Pagination]}
           className="mySwiper"
         >
-          {product.map((product, idx) => (
-            <SwiperSlide key={idx}>
-              <Link to={`/product/Detail/${product.product_id}`}>
-                <img
-                  src={`http://localhost:3002/uploads/${product.product_image}/`}
-                  alt=""
-                  className="swiper-img"
-                />
-              </Link>
-            </SwiperSlide>
-          ))}
+          {product.map((product, idx) => {
+            const imageUrls = product.product_image
+              ? product.product_image.split(',')
+              : []
+            const imageUrl = imageUrls.length > 0 ? imageUrls[0] : '';
+            console.log(imageUrl)
+            return (
+              <SwiperSlide key={idx}>
+                <Link to={`/product/Detail/${product.product_id}`}>
+                  <img
+                    src={`http://localhost:3002/uploads/${imageUrl}`}
+                    alt=""
+                    className="swiper-img"
+                  />
+                </Link>
+              </SwiperSlide>
+            )
+          })}
         </Swiper>
       </div>
       <h2 className='m-3'>全部商品</h2>

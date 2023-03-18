@@ -207,21 +207,25 @@ function CheckoutFlow() {
                         product_quantity,
                       },
                       index
-                    ) => (
-                      <tr key={product_id}>
-                        <td>
-                          <img
-                            src={`http://localhost:3002/uploads/${product_image}`}
-                            alt={product_name}
-                          />
-                        </td>
-                        <td>{product_name}</td>
-                        <td>NT.{product_price}</td>
-                        <td>{product_quantity}</td>
-                        <td>NT.{product_quantity * product_price}</td>
-                        {/* <td>從購物車刪除</td> */}
-                      </tr>
-                    )
+                    ) => {
+                      const imgUrl = product_image.split(',')
+                      const firstImgUrl = imgUrl[0]
+                      return (
+                        <tr key={product_id}>
+                          <td>
+                            <img
+                              src={`http://localhost:3002/uploads/${firstImgUrl}`}
+                              alt={product_name}
+                            />
+                          </td>
+                          <td>{product_name}</td>
+                          <td>NT.{product_price}</td>
+                          <td>{product_quantity}</td>
+                          <td>NT.{product_quantity * product_price}</td>
+                          {/* <td>從購物車刪除</td> */}
+                        </tr>)
+                    }
+
                   )}
                 </tbody>
               </table>
