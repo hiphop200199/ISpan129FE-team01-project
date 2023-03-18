@@ -28,22 +28,16 @@ function OrderDetail() {
       )
       const orderData = await res.json()
       const imageArray = orderData[0].product_image.split(',')
-      console.log('imageArray', imageArray)
       const bigImage = imageArray[0]
       const imageObj = {
         product_image_big: bigImage,
       }
       console.log('imageObj', imageObj)
       orderData[0].product_image_big = bigImage
-      console.log(orderData[0].additional)
       setAdditional(JSON.parse(orderData[0].additional))
       setOrders(orderData)
-      console.log('====orderData[0]====', orderData)
       setTotalOrder(totalOrderPrice(orderData))
-      console.log(
-        `http://localhost:3002/orderList/orderDetail/${order_id}`,
-        order_id
-      )
+
     }
     fetchData()
   }, [order_id])
@@ -52,7 +46,6 @@ function OrderDetail() {
   const totalOrderPrice = (orderData) => {
     let orderTotal = 0
     orderData.forEach((item) => {
-      console.log('=====item=====', JSON.parse(item.additional))
       const additionalObj = JSON.parse(item.additional)
       const itemTotal =
         item.product_quantity *
@@ -140,9 +133,9 @@ function OrderDetail() {
                   <tr key={orderItem.order_detail_id}>
                     <td>
                       <img
-                        src={`http://localhost:3002/uploads/${orderItem.type_id === 3
-                          ? orderItem.product_image_big
-                          : orderItem.product_image
+                        src={`http://localhost:3002/uploads/${orderItem.product_image_big === undefined
+                          ? orderItem.product_image
+                          : orderItem.product_image_big
                           }`}
                         alt="product_img"
                       />
