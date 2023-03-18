@@ -4,6 +4,7 @@ import { MdEmail } from 'react-icons/md'
 import { IoLocationSharp } from 'react-icons/io5'
 import { FaInstagramSquare } from 'react-icons/fa'
 import { MdOutlineFacebook } from 'react-icons/md'
+import { Link } from 'react-router-dom'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faBrandsLine } from '@fortawesome/free-solid-svg-icons'
 
@@ -19,10 +20,10 @@ function Footer() {
             <a className="footer-word" href="/">
               熱門推薦
             </a>
-            <a className="footer-word" href="/">
+            <a className="footer-word" href="/register">
               成為會員
             </a>
-            <a className="footer-word" href="/">
+            <a className="footer-word" href="/startToChat">
               聯絡我們
             </a>
           </div>
@@ -38,23 +39,17 @@ function Footer() {
               <IoLocationSharp />
               高雄市前金區中正四路211號
             </div>
-
-            {/* <ul class="icon">
-                <li>
-                  <FaInstagramSquare />
-                </li>
-                <li><FontAwesomeIcon icon={faBrandsLine} /></li>
-                <li>
-                  <a href="/">
-                    <MdOutlineFacebook />
-                  </a>
-                </li>
-              </ul> */}
           </div>
           <div class="footer-item3">
-            <button className="footer-btn">活動預約 ▸</button>
-            <button className="footer-btn">餐點預約 ▸</button>
-            <button className="footer-btn">住宿訂房 ▸</button>
+            <Link to="/activity">
+              <button className="footer-btn">活動預約 ▸</button>
+            </Link>
+            <Link to="/meals/4">
+              <button className="footer-btn">餐點預約 ▸</button>
+            </Link>
+            <Link to="/hotel/3">
+              <button className="footer-btn">住宿訂房 ▸</button>
+            </Link>
           </div>
         </div>
 
