@@ -196,7 +196,7 @@ function ActivitySignUp() {
                       <table>
                         <thead>
                           <tr>
-                            <th>商品圖</th>
+                            <th>活動圖</th>
                             <th>名稱</th>
                             <th>活動日期</th>
                             <th>截止日期</th>
