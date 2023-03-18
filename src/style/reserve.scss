@@ -225,3 +225,65 @@
     }
   }
 }
+
+@media screen and (max-width: 376px) {
+  .rd-content-left {
+    .title {
+      h1 {
+        font-size: calc(1rem + 1.5vw);
+      }
+      h2 {
+        font-size: calc(1rem + 0.9vw);
+      }
+    }
+    p {
+      font-size: var(--font-size-h5);
+      span {
+        font-size: var(--font-size-h4);
+      }
+    }
+    .notice {
+      span {
+        font-size: var(--font-size-h4);
+      }
+      ul li {
+        font-size: var(--font-size-h5);
+      }
+    }
+  }
+
+  .r-form-day {
+    p {
+      font-size: var(--font-size-h2);
+    }
+    input {
+      font-size: var(--font-size-h3);
+    }
+  }
+
+  .r-form-adult,.r-form-child,.r-form-pet {
+    p {
+      font-size: var(--font-size-h4);
+    }
+  }
+  .calculate-btn-box {
+    height: fit-content;
+  }
+
+  .r-price {
+    p {
+      font-size: var(--font-size-h5);
+    }
+  }
+
+  .r-btn-box {
+    button, svg {
+      font-size: medium;
+    }
+  }
+
+  .r-form .r-form-day .check-out {
+    padding-right: 5px;
+    padding-left: 0;
+  }
+}

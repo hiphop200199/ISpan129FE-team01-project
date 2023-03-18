@@ -35,11 +35,14 @@ function Hotel() {
   // test()
   return (
     <>
-      <img
-        src={require('../../img/hotels/hotel.js-banner.jpg')}
-        alt="girl&dog"
-        height="600"
-      />
+      <div className="h-banner">
+        <img
+          src={require('../../img/hotels/hotel.js-banner.jpg')}
+          alt="girl&dog"
+          height="600"
+        />
+      </div>
+
       <div className="h-text-title">住宿房型</div>
       {/* photo */}
       {/* <Card photo={room[0] && room[0].img} /> */}
