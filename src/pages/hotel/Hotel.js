@@ -23,6 +23,13 @@ function Hotel() {
         })
 
         setRoom(room)
+
+        if (sessionStorage.getItem('reserveData')) {
+          window.sessionStorage.removeItem('reserveData')
+        }
+        if (sessionStorage.getItem('roomDetail')) {
+          window.sessionStorage.removeItem('roomDetail')
+        }
       })
       .catch((err) => console.error(err))
   }, [typeID])

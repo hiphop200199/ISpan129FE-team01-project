@@ -52,6 +52,11 @@ function Login() {
           setName(data.name)
           setIsAuthenticated(true)
           Swal.fire('登入成功!', '', 'success')
+          const roomDetail = window.sessionStorage.getItem('roomDetail')
+          if (roomDetail) {
+            const productId = JSON.parse(roomDetail).product_id
+            navigate(`/reserve/${productId}`)
+          }
           // navigate('/')
         } else {
           // alert('登入失敗');
