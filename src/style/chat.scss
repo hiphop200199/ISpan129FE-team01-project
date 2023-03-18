@@ -74,8 +74,9 @@ body {
   cursor: pointer;
 }
 .chat-window .chat-header p {
-  display: block;
-  padding: 0 1em 0 2em;
+  display: flex;
+  justify-content: center;
+  // padding: 0 1em 0 2em;
   color: #fff;
   font-weight: 700;
   line-height: 45px;
@@ -164,14 +165,16 @@ body {
   height: auto;
   border: 1px solid var(--primary);
   border-top: none;
-  display: flex;
+  // display: flex;
+  position:relative;
 }
 
 .chat-window .chat-footer input {
   height: 100%;
-  flex: 85%;
+  // flex: 85%;
+  width: 85%;
   border: 0;
-  padding: 0 0.7em;
+  padding: 0;
   font-size: 1em;
   width:80%;
   // border-right: 1px dotted #607d8b;
@@ -183,10 +186,13 @@ body {
 .chat-window .chat-footer button {
   width: 20%;
   border: 0;
-  display: flex;
-  place-items: center;
+  position: absolute;
+  z-index: 2;
+  // display: flex;
+  // place-items: center;
+  right:0;
   cursor: pointer;
-  flex:content;
+  // flex: auto;
   height: 100%;
   background: transparent;
   outline: none;
