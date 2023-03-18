@@ -55,6 +55,12 @@
     margin: 20px;
     .rc-content-left {
       padding: 0px;
+      .rc-text-header {
+        font-size: 36px;
+      }
+    }
+    .rc-content-right {
+      box-shadow: .5rem .5rem .5rem rgba(187, 187, 187, 0.7333333333);
     }
   }
   .rd-wrap {
@@ -63,6 +69,8 @@
   .rd-container  {
     .rd-content-right {
       margin-left: 0px;
+      box-shadow: .5rem .5rem .5rem rgba(187, 187, 187, 0.7333333333);
+      margin-bottom: 1rem;
     }
   }
   .r-form {
