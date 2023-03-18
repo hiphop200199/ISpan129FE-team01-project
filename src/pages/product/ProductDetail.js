@@ -59,6 +59,7 @@ function ProductDetail() {
         <section className="product-introduction">
           <div className="product-photo-wrapper">
             {imageUrls[0] && (
+              // eslint-disable-next-line jsx-a11y/img-redundant-alt
               <img
                 className="product-photo"
                 src={`http://localhost:3002/uploads/${imageUrls[0]}`}
