@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination, Navigation, FreeMode, EffectFade } from 'swiper'
 import { Link } from 'react-router-dom'
 import HomehotelGallery from '../template/HomehotelGallery'
+import Footer from '../layouts/Footer'
 
 import 'swiper/css/effect-fade'
 import 'swiper/css/navigation'
@@ -142,8 +143,8 @@ function HomePage() {
             <div className="homehotel-word">查看更多房型</div>
           </Link>
         </div> */}
-        <HomehotelGallery/>
-        {/* <div className="homehotel">
+      <HomehotelGallery />
+      {/* <div className="homehotel">
           <div className="homehotel-box">
             <div className="homehotel-zoomin">
               <img
@@ -192,7 +193,7 @@ function HomePage() {
           </div>
         </div>
       </section> */}
-      
+      <Footer />
     </>
   )
 }

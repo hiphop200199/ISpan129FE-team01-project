@@ -31,7 +31,7 @@ function Stepper(props) {
           {({ accomplished, page }) => (
             <div className={`step ${accomplished ? 'completed' : ''}`}>
               <div className="stepper-number">3</div>
-              <div className="stepper-text">報名成功</div>
+              <div className="stepper-text">完成</div>
             </div>
           )}
         </Step>
