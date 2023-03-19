@@ -29,9 +29,7 @@ function ProductDetail() {
       console.error('Error fetching product data:', error)
     }
   }
-
-
-
+  const handleBackToPrevious = () => navigate(-1)
 
   const {
     product_id: productID,
@@ -44,17 +42,16 @@ function ProductDetail() {
     product_image: imageUrl,
   } = product
 
-  const imageUrls = imageUrl ? imageUrl.split(',') : [];
+  const imageUrls = imageUrl ? imageUrl.split(',') : []
   const id = localStorage.getItem('id')
 
   useEffect(() => {
-
     if (!product_id) return
     fetchProductDetails()
   }, [product_id])
   return (
     <>
-      <BackToPrevious />
+      <BackToPrevious onClick={handleBackToPrevious} />
       <div className="product-container">
         <section className="product-introduction">
           <div className="product-photo-wrapper">
@@ -81,8 +78,8 @@ function ProductDetail() {
           </div>
         </section>
         <section className="image-list">
-          <p className="col-9 pt-3 m-auto mt-3 mb-3 border-top border-warning white-space-pre">
-            收到商品之後，若因商品瑕疵、錯誤寄送，非人為因素之商品損毀、刮傷、或運輸過程造成包裝破損不完整的情形，可以申請退換貨
+          <p className="col-9 pt-3 pb-3 m-auto mt-3 mb-3 border-bottom border-warning white-space-pre">
+            商品介紹
           </p>
           {imageUrls.slice(1).map((imageUrl, index) => (
             // eslint-disable-next-line jsx-a11y/img-redundant-alt
@@ -93,7 +90,10 @@ function ProductDetail() {
               alt="product-photo"
             />
           ))}
-
+          <p className="col-9 pt-3 pb-3 m-auto mt-3 mb-3 border-top border-bottom border-warning white-space-pre">
+            退貨須知:
+            收到商品之後，若因商品瑕疵、錯誤寄送，非人為因素之商品損毀、刮傷、或運輸過程造成包裝破損不完整的情形，可以申請退換貨
+          </p>
         </section>
       </div>
     </>
