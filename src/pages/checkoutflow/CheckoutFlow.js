@@ -177,8 +177,8 @@ function CheckoutFlow() {
               id="tab1"
               onChange={handleChange}
               checked={tagCheck === 'tab1'}
-            // onChange={handleChange}
-            // checked={tagCheck}
+              // onChange={handleChange}
+              // checked={tagCheck}
             />
             <label htmlFor="tab1" className="tabs__label">
               我的購物車
@@ -223,9 +223,9 @@ function CheckoutFlow() {
                           <td>{product_quantity}</td>
                           <td>NT.{product_quantity * product_price}</td>
                           {/* <td>從購物車刪除</td> */}
-                        </tr>)
+                        </tr>
+                      )
                     }
-
                   )}
                 </tbody>
               </table>
@@ -349,7 +349,6 @@ function CheckoutFlow() {
                     >
                       確認
                     </button>
-
                   </div>
                 </form>
               </div>
@@ -360,7 +359,7 @@ function CheckoutFlow() {
         </main>
       ) : (
         <main className="checkoutFlow d-flex justify-content-center align-items-center">
-          <div className="row">
+          <div className="col-10 mt-3">
             <p> 訂單編號:{orderID}</p>
             <p>
               訂單日期:
@@ -376,8 +375,8 @@ function CheckoutFlow() {
               {orderData[0] && orderData[0].payment_method === 1
                 ? 'LinePay付款'
                 : orderData[0] && orderData[0].payment_method === 2
-                  ? '貨到付款'
-                  : '現場付款'}
+                ? '貨到付款'
+                : '現場付款'}
             </p>
           </div>
           <div className="tabs col-10 ">
@@ -388,8 +387,8 @@ function CheckoutFlow() {
               id="tab1"
               onChange={handleChange}
               checked={tagCheck === 'tab1'}
-            // onChange={handleChange}
-            // checked={tagCheck}
+              // onChange={handleChange}
+              // checked={tagCheck}
             />
             <label htmlFor="tab1" className="tabs__label">
               訂單內容
@@ -408,20 +407,35 @@ function CheckoutFlow() {
                   </tr>
                 </thead>
                 <tbody>
-                  {orderData.map((item, index) => (
-                    <tr key={item.product_id}>
-                      {/* <td>{index + 1}</td> */}
-                      <td>
-                        <img
-                          src={`http://localhost:3002/uploads/${item.product_image[0]}`}
-                          alt={item.product_name}
-                        />
-                      </td>
-                      <td>{item.product_name}</td>
-                      <td>NT.{item.product_price}</td>
-                      <td>{item.product_quantity}</td>
-                    </tr>
-                  ))}
+                  {orderData.map(
+                    (
+                      {
+                        product_id,
+                        product_name,
+                        product_price,
+                        product_image,
+                        product_quantity,
+                      },
+                      index
+                    ) => {
+                      const imgUrl = product_image.split(',')
+                      const firstImgUrl = imgUrl[0]
+                      return (
+                        <tr key={product_id}>
+                          <td>
+                            <img
+                              src={`http://localhost:3002/uploads/${firstImgUrl}`}
+                              alt={product_name}
+                            />
+                          </td>
+                          <td>{product_name}</td>
+                          <td>NT.{product_price}</td>
+                          <td>{product_quantity}</td>
+                          {/* <td>從購物車刪除</td> */}
+                        </tr>
+                      )
+                    }
+                  )}
                 </tbody>
               </table>
               <div className="d-flex justify-content-between mb-2 pb-2">
