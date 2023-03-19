@@ -25,9 +25,8 @@ function Product() {
 
         const product = await res.json()
         setProduct(product)
-        console.log(product)
-      } catch (err) {
-        console.log(err)
+      } catch (error) {
+        throw new Error('沒有商品資料')
       }
     }
     fetchData()
@@ -41,7 +40,6 @@ function Product() {
     product_unit: unit,
     product_image: imageUrl,
   } = product
-
 
   const handleFilter = (filteredProducts) => {
     setFilteredProduct(filteredProducts)
@@ -80,7 +78,7 @@ function Product() {
             const imageUrls = product.product_image
               ? product.product_image.split(',')
               : []
-            const imageUrl = imageUrls.length > 0 ? imageUrls[0] : '';
+            const imageUrl = imageUrls.length > 0 ? imageUrls[0] : ''
             console.log(imageUrl)
             return (
               <SwiperSlide key={idx}>
@@ -96,7 +94,7 @@ function Product() {
           })}
         </Swiper>
       </div>
-      <h2 className='m-3'>全部商品</h2>
+      <h2 className="m-3">全部商品</h2>
       <div className="productContent col-12 ">
         {mapProduct.map((product) => (
           <Card
