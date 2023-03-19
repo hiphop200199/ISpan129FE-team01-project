@@ -37,9 +37,9 @@ function OrderDetail() {
       setAdditional(JSON.parse(orderData[0].additional))
       setOrders(orderData)
       setTotalOrder(totalOrderPrice(orderData))
-
     }
     fetchData()
+    console.log(order)
   }, [order_id])
 
   // 計算訂單總金額
@@ -72,8 +72,8 @@ function OrderDetail() {
             {order[0] && order[0].payment_method === 1
               ? 'Line Pay'
               : order[0] && order[0].payment_method === 2
-                ? '貨到付款'
-                : '現場付款'}
+              ? '貨到付款'
+              : '現場付款'}
           </p>
           {order[0] && order[0].type_id === 3 && (
             <>
@@ -129,28 +129,43 @@ function OrderDetail() {
             </thead>
             <tbody>
               {order &&
-                order.map((orderItem) => (
-                  <tr key={orderItem.order_detail_id}>
-                    <td>
-                      <img
-                        src={`http://localhost:3002/uploads/${orderItem.product_image_big === undefined
-                          ? orderItem.product_image
-                          : orderItem.product_image_big
-                          }`}
-                        alt="product_img"
-                      />
-                    </td>
-                    <td>{orderItem.product_name}</td>
-                    <td>{orderItem.product_unit}</td>
-                    <td>NT.{orderItem.product_price}</td>
-                    <td>{orderItem.product_quantity}</td>
-                    <td>
-                      NT.{orderItem.product_quantity *
-                        orderItem.product_price *
-                        (orderItem.additional ? additional.differenceInDay : 1)}
-                    </td>
-                  </tr>
-                ))}
+                order.map(
+                  (
+                    {
+                      order_detail_id,
+                      product_name,
+                      product_image,
+                      product_unit,
+                      product_price,
+                      product_quantity,
+                      additional,
+                    },
+                    index
+                  ) => {
+                    const imgUrl = product_image.split(',')
+                    const firstImgUrl = imgUrl[0]
+                    return (
+                      <tr key={index}>
+                        <td>
+                          <img
+                            src={`http://localhost:3002/uploads/${firstImgUrl}`}
+                            alt="product_img"
+                          />
+                        </td>
+                        <td>{product_name}</td>
+                        <td>{product_unit}</td>
+                        <td>NT.{product_price}</td>
+                        <td>{product_quantity}</td>
+                        <td>
+                          NT.
+                          {product_quantity *
+                            product_price *
+                            (order.additional ? additional.differenceInDay : 1)}
+                        </td>
+                      </tr>
+                    )
+                  }
+                )}
             </tbody>
           </table>
         </div>
