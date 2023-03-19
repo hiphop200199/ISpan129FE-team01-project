@@ -444,6 +444,14 @@ function CheckoutFlow() {
               </div>
             </div>
           </div>
+          <button
+            className="toShoppingMall btn btn-secondary"
+            onClick={() => {
+              navigate(`/orderList`)
+            }}
+          >
+            查看訂單紀錄
+          </button>
         </main>
       )}
     </>
