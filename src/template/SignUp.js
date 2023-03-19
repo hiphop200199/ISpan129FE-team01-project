@@ -7,7 +7,7 @@ function SignUp() {
       {/* 藍色小按鈕 */}
       <button
         type="button"
-        className="btn btn-primary btn-sm min-width-auto radius-5px"
+        className="btn max-width-auto btn-sm min-width-auto radius-5px"
       >
         立即報名
       </button>

@@ -23,6 +23,13 @@ function Hotel() {
         })
 
         setRoom(room)
+
+        if (sessionStorage.getItem('reserveData')) {
+          window.sessionStorage.removeItem('reserveData')
+        }
+        if (sessionStorage.getItem('roomDetail')) {
+          window.sessionStorage.removeItem('roomDetail')
+        }
       })
       .catch((err) => console.error(err))
   }, [typeID])
@@ -35,11 +42,14 @@ function Hotel() {
   // test()
   return (
     <>
-      <img
-        src={require('../../img/hotels/hotel.js-banner.jpg')}
-        alt="girl&dog"
-        height="600"
-      />
+      <div className="h-banner">
+        <img
+          src={require('../../img/hotels/hotel.js-banner.jpg')}
+          alt="girl&dog"
+          height="600"
+        />
+      </div>
+
       <div className="h-text-title">住宿房型</div>
       {/* photo */}
       {/* <Card photo={room[0] && room[0].img} /> */}

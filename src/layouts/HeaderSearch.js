@@ -31,13 +31,13 @@ function HeaderSearch(props) {
           {productButtons.map((product_class, index) => (
             <button
               key={index}
-              className={productButtons.includes(product_class) ? 'active' : ''}
+              className={productButtons.includes(product_class) ? 'button ' : ''}
               onClick={() => handleFilter(product_class)}
             >
               {product_class}
             </button>
           ))}
-          <button
+          <button className='button '
             onClick={() => {
               props.handleClear()
             }}

@@ -73,6 +73,7 @@ function MainLayouts() {
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
+                className='modal'
               >
                 <Modal.Header>
                   <Modal.Title>購物車</Modal.Title>

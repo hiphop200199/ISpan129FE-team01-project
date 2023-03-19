@@ -71,8 +71,16 @@ function ReserveConfirm() {
 
         .catch((error) => console.error(error))
     }
-    setReserveConfirm(JSON.parse(sessionStorage.getItem('reserveData')))
-    setRoomDetail(JSON.parse(sessionStorage.getItem('roomDetail')))
+    if (sessionStorage.getItem('reserveData')) {
+      setReserveConfirm(JSON.parse(sessionStorage.getItem('reserveData')))
+    }
+    if (sessionStorage.getItem('roomDetail')) {
+      setRoomDetail(JSON.parse(sessionStorage.getItem('roomDetail')))
+    }
+    // if (sessionStorage.getItem('reserveFormData')) {
+    //   setFormData(JSON.parse(sessionStorage.getItem('reserveFormData')))
+    //   console.log('====formData====', formData)
+    // }
   }, [])
   function formatDate(date) {
     return date ? format(date, 'yyyy/MM/dd') : ''
@@ -264,6 +272,9 @@ function ReserveConfirm() {
                           console.log('data', data)
                           setIsOrderSuccess(data.success)
                           if (data.success === true) {
+                            window.sessionStorage.removeItem('reserveData')
+                            window.sessionStorage.removeItem('roomDetail')
+                            window.sessionStorage.removeItem('reserveFormData')
                             setMessage('預訂成功，可至訂單紀錄查看')
                             openModal()
                           } else {
@@ -358,6 +369,10 @@ function ReserveConfirm() {
                       if (isOrderSuccess) {
                         navigate('/orderList')
                       } else {
+                        sessionStorage.setItem(
+                          'reserveFormData',
+                          JSON.stringify(formData)
+                        )
                         navigate('/login')
                       }
                     }}
