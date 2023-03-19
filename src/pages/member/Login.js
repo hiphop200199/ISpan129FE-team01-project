@@ -7,11 +7,17 @@ import {
   faRectangleList,
   faPaw,
   faLock,
+  faEye,
+  faEyeSlash,
 } from '@fortawesome/free-solid-svg-icons'
 import RegisterMember from './RegisterMember'
 import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 function Login() {
+  const [showPassword, setShowPassword] = useState(false)
+  const passwordType = showPassword ? 'text' : 'password'
+  const passwordIcon = showPassword ? faEye : faEyeSlash
+
   function handleLinkClick(event) {
     event.preventDefault()
     Swal.fire('請透過信箱聯絡我們~', '', 'info')
@@ -84,6 +90,9 @@ function Login() {
     setIsAuthenticated(false)
     navigate('/')
   }
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword)
+  }
 
   return (
     <section className="login-container ">
@@ -141,11 +150,16 @@ function Login() {
               <input
                 className="form-control"
                 id="password"
-                type="password"
+                type={passwordType}
                 name="password"
                 placeholder="請輸入密碼"
                 required
                 onChange={handlePassword}
+              />
+              <FontAwesomeIcon
+                className="passwordGroup"
+                icon={passwordIcon}
+                onClick={handleShowPassword}
               />
               {/* </label> */}
             </div>
