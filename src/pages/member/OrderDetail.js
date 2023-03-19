@@ -84,8 +84,8 @@ function OrderDetail() {
                   .slice(0, 10)}{' '}
                 ~{new Date(order[0].end_time).toLocaleDateString().slice(0, 10)}
               </p>
-              <p>成人:{additional.adultCount}人</p>
-              <p>兒童:{additional.childCount}人</p>
+              <p>成人:{additional.adultCount}位</p>
+              <p>兒童:{additional.childCount}位</p>
               <p>寵物數量:{additional.petCount}隻</p>
               {/* <p>
                 寵物窩:
@@ -129,6 +129,7 @@ function OrderDetail() {
             </thead>
             <tbody>
               {order &&
+
                 order.map(
                   (
                     {
@@ -171,7 +172,9 @@ function OrderDetail() {
         </div>
         <div className="money d-flex justify-content-between">
           <p>{order[0] && order[0].type_id === 3 ? '' : '免運'}</p>
+
           <p>訂單總金額 : NT.{totalOrder}</p>
+
         </div>
       </section>
       <div className="return d-flex justify-content-center mb-3">
