@@ -1,12 +1,15 @@
 div.productPage {
-  padding-top: 15px;
+  padding: 15px 0 25px 0;
   width: 95%;
-  margin: auto;
-  .swiper-width {
+
+  .swiper-Content {
+    margin: auto;
+
     img {
-      width: 80%;
+      width: 100%;
     }
   }
+
   div.productContent {
     // width: 100%;
     display: flex;
