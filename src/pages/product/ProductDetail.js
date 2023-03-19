@@ -81,6 +81,9 @@ function ProductDetail() {
           </div>
         </section>
         <section className="image-list">
+          <p className="col-9 pt-3 m-auto mt-3 mb-3 border-top border-warning white-space-pre">
+            收到商品之後，若因商品瑕疵、錯誤寄送，非人為因素之商品損毀、刮傷、或運輸過程造成包裝破損不完整的情形，可以申請退換貨
+          </p>
           {imageUrls.slice(1).map((imageUrl, index) => (
             // eslint-disable-next-line jsx-a11y/img-redundant-alt
             <img
@@ -90,9 +93,7 @@ function ProductDetail() {
               alt="product-photo"
             />
           ))}
-          <p>
-            收到商品之後，若因商品瑕疵、錯誤寄送，非人為因素之商品損毀、刮傷、或運輸過程造成包裝破損不完整的情形，可以申請退換貨
-          </p>
+
         </section>
       </div>
     </>
