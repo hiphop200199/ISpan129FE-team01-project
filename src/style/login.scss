@@ -56,10 +56,17 @@
             padding:0 50px;
             .typeArea{
               margin: auto;
-              display: flex;
+              position: relative;
               flex-direction: column;
               width: 100%;
             }
+            .passwordGroup{
+              position:absolute;
+              right: 20px;
+              top: 77%;
+              transform: translateY(-23%);
+              color: #515151;
+          }
             .login-label{
               border-radius: 15px;
               font-size: 20px;
