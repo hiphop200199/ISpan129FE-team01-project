@@ -1,8 +1,18 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 
 function RegisterMember() {
+  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword2, setShowPassword2] = useState(false)
+  const passwordType = showPassword ? 'text' : 'password'
+  const passwordType2 = showPassword2 ? 'text' : 'password'
+
+  const passwordIcon = showPassword ? faEye : faEyeSlash
+  const passwordIcon2 = showPassword2 ? faEye : faEyeSlash
+
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -10,9 +20,9 @@ function RegisterMember() {
     password: '',
     mobile: '',
     birthday: '',
-    showPassword: false, //用於切換密碼欄位類型使用
+    // showPassword: false, //用於切換密碼欄位類型使用
     password2: '',
-    showPassword2: false, //用於切換密碼欄位類型使用
+    // showPassword2: false, //用於切換密碼欄位類型使用
   })
   //用於記錄錯誤訊息之用
   const [fieldErrors, setFieldErrors] = useState({
@@ -22,22 +32,9 @@ function RegisterMember() {
     password: '',
     password2: '',
   })
+
   //處理每個欄位的變動
   const handleFieldChange = (e) => {
-    //可利用下面三個觸發事件的東西來做進一步處理
-    // console.log(e.target.type, e.target.name, e.target.value);
-
-    //只針對checkbox(showPassword)使用
-    if (e.target.name === 'showPassword') {
-      setUser({ ...user, showPassword: e.target.checked })
-      return //!!注意: 這裡跳出函式執行 (沒有跳出，會繼續執行)
-    }
-    //只針對checkbox(showPassword)使用
-    if (e.target.name === 'showPassword2') {
-      setUser({ ...user, showPassword2: e.target.checked })
-      return //!!注意: 這裡跳出函式執行 (沒有跳出，會繼續執行)
-    }
-
     //以下要依照通用的三步驟原則來更新狀態
     setUser({ ...user, [e.target.name]: e.target.value }) //ex: email:e.target.value...
   }
@@ -102,6 +99,14 @@ function RegisterMember() {
       ...fieldErrors,
       [e.target.name]: '',
     })
+  }
+
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword)
+  }
+
+  const handleShowPassword2 = () => {
+    setShowPassword2(!showPassword2)
   }
 
   return (
@@ -181,11 +186,10 @@ function RegisterMember() {
                 onChange={handleFieldChange}
               />
             </label>
-
             <label className="member-label">
               <input
                 id="password"
-                type={user.showPassword ? 'text' : 'password'}
+                type={passwordType}
                 name="password"
                 value={user.password}
                 onChange={handleFieldChange}
@@ -194,6 +198,11 @@ function RegisterMember() {
                 minLength={6} //最少輸入6字元
                 maxLength={10} //最多輸入10字元
               />
+              <FontAwesomeIcon
+                className="passwordGroup"
+                icon={passwordIcon}
+                onClick={handleShowPassword}
+              />
 
               <span className="error">{fieldErrors.password}</span>
             </label>
@@ -201,7 +210,7 @@ function RegisterMember() {
             <label className="member-label">
               <input
                 id="password2"
-                type={user.showPassword2 ? 'text' : 'password'}
+                type={passwordType2}
                 name="password2"
                 placeholder="確認密碼"
                 value={user.password2}
@@ -210,7 +219,13 @@ function RegisterMember() {
                 minLength={6}
                 maxLength={10}
               />
-              <br />
+
+              <FontAwesomeIcon
+                className="passwordGroup"
+                icon={passwordIcon2}
+                onClick={handleShowPassword2}
+              />
+
               <span className="error">{fieldErrors.password2}</span>
             </label>
 
@@ -254,7 +269,7 @@ function RegisterMember() {
                     mobile: '093287457',
                     email: 'smart',
                     password: '123456',
-                    password2: '123455',
+                    password2: '12345',
                     showPassword: true,
                     showPassword2: true,
                   })

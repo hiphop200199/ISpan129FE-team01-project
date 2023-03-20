@@ -56,10 +56,17 @@
             padding:0 50px;
             .typeArea{
               margin: auto;
-              display: flex;
+              position: relative;
               flex-direction: column;
               width: 100%;
             }
+            .passwordGroup{
+              position:absolute;
+              right: 20px;
+              top: 77%;
+              transform: translateY(-23%);
+              color: #515151;
+          }
             .login-label{
               border-radius: 15px;
               font-size: 20px;
@@ -139,6 +146,17 @@
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
+        .login-form {
+          .passwordGroup {
+            right: 10%;
+            left: 75%;
+          }
+          .passwordGroup2 {
+            top: 60%;
+            right: 10%;
+            left: 75%;
+          }
+        }
       }
     }
   }
@@ -153,6 +171,17 @@
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
+        .login-form{
+          .passwordGroup {
+            right: 5%;
+            left: 70%;
+          }
+          .passwordGroup2 {
+            top: 65%;
+            right: 5%;
+            left: 70%;
+          }
+        }
       }
     }
   }
