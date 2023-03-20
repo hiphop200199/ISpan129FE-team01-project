@@ -102,7 +102,7 @@ function MyList({ id, onDelete }) {
               handleChange(0)
             }}
             checked={tagCheck === 0}
-          // checked={tagCheck === '所有'}
+            // checked={tagCheck === '所有'}
           />
           <label htmlFor="tab1" className="tabs__label">
             所有
@@ -117,7 +117,7 @@ function MyList({ id, onDelete }) {
               handleChange(1)
             }}
             checked={tagCheck === 1}
-          // checked={tagCheck}
+            // checked={tagCheck}
           />
           <label htmlFor="tab2" className="tabs__label">
             商城
@@ -179,47 +179,6 @@ function MyList({ id, onDelete }) {
               <tbody>
                 {tagCheck === 0
                   ? like.map((like, k) => (
-                    <tr key={`${like.sid}${k}`}>
-                      {/* <td>{like.sid}</td> */}
-                      <td>
-                        <img
-                          src={`http://localhost:3002/uploads/${like.product_image}`}
-                          alt="product_img"
-                        />
-                      </td>
-                      <td>
-                        {like.type_id === 1
-                          ? '商品'
-                          : like.type_id === 2
-                            ? '課程'
-                            : like.type_id === 3
-                              ? '住宿'
-                              : '餐點'}
-                      </td>
-                      <td>{like.product_name}</td>
-                      <td>
-                        <FontAwesomeIcon
-                          icon={faTrash}
-                          className="more-button"
-                          onClick={() => handleDelete(like.sid)}
-                        />
-                      </td>
-                      <td>
-                        <>
-                          <AddToCartLg
-                            product={like}
-                            className="more-button"
-                          />
-                          {/* <FontAwesomeIcon icon={faCartShopping} /> */}
-                        </>
-                      </td>
-                    </tr>
-                  ))
-                  : like
-                    .filter((el) => {
-                      return el.type_id === tagCheck
-                    })
-                    .map((like, k) => (
                       <tr key={`${like.sid}${k}`}>
                         {/* <td>{like.sid}</td> */}
                         <td>
@@ -232,27 +191,71 @@ function MyList({ id, onDelete }) {
                           {like.type_id === 1
                             ? '商品'
                             : like.type_id === 2
-                              ? '課程'
-                              : like.type_id === 3
-                                ? '住宿'
-                                : '餐點'}
+                            ? '課程'
+                            : like.type_id === 3
+                            ? '住宿'
+                            : '餐點'}
                         </td>
                         <td>{like.product_name}</td>
                         <td>
                           <FontAwesomeIcon
                             icon={faTrash}
-                            className="more-button cursor-pointer"
+                            className="more-button"
                             onClick={() => handleDelete(like.sid)}
                           />
                         </td>
                         <td>
                           <>
-
+                            <AddToCartLg
+                              product={like}
+                              className="more-button"
+                            />
                             {/* <FontAwesomeIcon icon={faCartShopping} /> */}
                           </>
                         </td>
                       </tr>
-                    ))}
+                    ))
+                  : like
+                      .filter((el) => {
+                        return el.type_id === tagCheck
+                      })
+                      .map((like, k) => (
+                        <tr key={`${like.sid}${k}`}>
+                          {/* <td>{like.sid}</td> */}
+                          <td>
+                            <img
+                              src={`http://localhost:3002/uploads/${like.product_image}`}
+                              alt="product_img"
+                            />
+                          </td>
+                          <td>
+                            {like.type_id === 1
+                              ? '商品'
+                              : like.type_id === 2
+                              ? '課程'
+                              : like.type_id === 3
+                              ? '住宿'
+                              : '餐點'}
+                          </td>
+                          <td>{like.product_name}</td>
+                          <td>
+                            <FontAwesomeIcon
+                              icon={faTrash}
+                              className="more-button cursor-pointer"
+                              onClick={() => handleDelete(like.sid)}
+                            />
+                          </td>
+                          <td>
+                            <>
+                              <AddToCartLg
+                                product={like}
+                                className="more-button"
+                              />
+                              {/* <FontAwesomeIcon icon={faCartShopping} /> */}
+                            </>
+                          </td>
+                        </tr>
+                      ))}
               </tbody>
             </table>
           </div>
