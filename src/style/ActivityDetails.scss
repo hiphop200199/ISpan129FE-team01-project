@@ -92,6 +92,13 @@
 
         }
 
+        .timeout{
+            font-size: var(--font-size-h1);
+            color: var(--field-frame);
+            font-weight: bolder;
+            text-align: center;
+        }
+
         .linkbox{
             display: flex;
             justify-content: space-evenly;
@@ -171,6 +178,12 @@
                 p{
                     display: none;
                 }
+                .timeout{
+                    // font-size: var(--font-size-h5);
+                    color: var(--text-black);
+                    font-weight:bold;
+                    border: 2px solid var(--text-black);
+                }
                 .linkbox{
                     margin-top: 0;
                     background: aliceblue;
@@ -194,7 +207,7 @@
 @media screen and (min-device-width: 400px) and (max-device-width: 800px){
     .activity-container {
         margin: auto;
-        padding: 20px 60px;
+        padding: 20px 60px 0 60px;
         display:flow-root;
         .container-box {
             font-size: 16px;
@@ -231,6 +244,13 @@
 
                 p{
                     display: none;
+                }
+
+                .timeout{
+                    color: var(--text-black);
+                    font-weight:bold;
+                    border: 2px solid var(--text-black);
+                    padding: 5px 50px;
                 }
                 .linkbox {
                     display: flex;

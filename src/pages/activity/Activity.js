@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Pagination, Navigation, FreeMode, EffectFade } from 'swiper'
 import cat from '../../img/activity/activityhome1.png'
 import dog from '../../img/activity/activityhome2.png'
-import twodog from '../../img/activity/activityhome3.png'
+// import twodog from '../../img/activity/activityhome3.png'
 import Paginationn from '../../template/Paginationn'
 import Footer from '../../layouts/Footer'
 import { FiSearch } from 'react-icons/fi'
@@ -170,9 +170,9 @@ function Activity() {
           <SwiperSlide>
             <img src={dog} alt="" className="swiper-img" />
           </SwiperSlide>
-          <SwiperSlide>
+          {/* <SwiperSlide>
             <img src={twodog} alt="" className="swiper-img" />
-          </SwiperSlide>
+          </SwiperSlide> */}
         </Swiper>
       </div>
 
@@ -224,7 +224,7 @@ function Activity() {
         <div className="activity-cards">
           {currentPost.map((el, idx) => {
             const endDate = new Date(el.activity_dateend).getTime()
-            const expired = endDate < now
+            const expired = endDate > now
             return (
               <Link to={`/activitydetail/${el.activity_id}`}>
                 <div className="acard" key={idx}>
@@ -245,10 +245,12 @@ function Activity() {
                       <Link to={`/activitydetail/${el.activity_id}`}>
                         <EventRegistration />
                       </Link>
-                      {!expired && (
+                      {expired ? (
                         <Link to={`/ActivitySignUp/${el.activity_id}`}>
                           <SignUp />
                         </Link>
+                      ) : (
+                        <p className="timeout">已結束</p>
                       )}
                     </div>
                   </div>
