@@ -28,31 +28,24 @@ function OrderDetail() {
       )
       const orderData = await res.json()
       const imageArray = orderData[0].product_image.split(',')
-      console.log('imageArray', imageArray)
       const bigImage = imageArray[0]
       const imageObj = {
         product_image_big: bigImage,
       }
       console.log('imageObj', imageObj)
       orderData[0].product_image_big = bigImage
-      console.log(orderData[0].additional)
       setAdditional(JSON.parse(orderData[0].additional))
       setOrders(orderData)
-      console.log('====orderData[0]====', orderData)
       setTotalOrder(totalOrderPrice(orderData))
-      console.log(
-        `http://localhost:3002/orderList/orderDetail/${order_id}`,
-        order_id
-      )
     }
     fetchData()
+    console.log(order)
   }, [order_id])
 
   // 計算訂單總金額
   const totalOrderPrice = (orderData) => {
     let orderTotal = 0
     orderData.forEach((item) => {
-      console.log('=====item=====', JSON.parse(item.additional))
       const additionalObj = JSON.parse(item.additional)
       const itemTotal =
         item.product_quantity *
@@ -114,7 +107,7 @@ function OrderDetail() {
             <p>姓名:{order[0].recipient_name}</p>
             <p>連絡電話:{order[0].recipient_phone}</p>
             {order[0].type_id === 3 ? (
-              ''
+              <p>連絡信箱:{order[0].recipient_address}</p>
             ) : (
               <p>地址:{order[0].recipient_address}</p>
             )}
@@ -136,39 +129,55 @@ function OrderDetail() {
             </thead>
             <tbody>
               {order &&
-                order.map((orderItem) => (
-                  <tr key={orderItem.order_detail_id}>
-                    <td>
-                      <img
-                        src={`http://localhost:3002/uploads/${
-                          orderItem.type_id === 3
-                            ? orderItem.product_image_big
-                            : orderItem.product_image
-                        }`}
-                        alt="product_img"
-                      />
-                    </td>
-                    <td>{orderItem.product_name}</td>
-                    <td>{orderItem.product_unit}</td>
-                    <td>{orderItem.product_price}</td>
-                    <td>{orderItem.product_quantity}</td>
-                    <td>
-                      NT.
-                      {orderItem.product_quantity *
-                        orderItem.product_price *
-                        (orderItem.additional ? additional.differenceInDay : 1)}
-                    </td>
-                  </tr>
-                ))}
+
+                order.map(
+                  (
+                    {
+                      order_detail_id,
+                      product_name,
+                      product_image,
+                      product_unit,
+                      product_price,
+                      product_quantity,
+                      additional,
+                    },
+                    index
+                  ) => {
+                    const imgUrl = product_image.split(',')
+                    const firstImgUrl = imgUrl[0]
+                    return (
+                      <tr key={index}>
+                        <td>
+                          <img
+                            src={`http://localhost:3002/uploads/${firstImgUrl}`}
+                            alt="product_img"
+                          />
+                        </td>
+                        <td>{product_name}</td>
+                        <td>{product_unit}</td>
+                        <td>NT.{product_price}</td>
+                        <td>{product_quantity}</td>
+                        <td>
+                          NT.
+                          {product_quantity *
+                            product_price *
+                            (order.additional ? additional.differenceInDay : 1)}
+                        </td>
+                      </tr>
+                    )
+                  }
+                )}
             </tbody>
           </table>
         </div>
         <div className="money d-flex justify-content-between">
           <p>{order[0] && order[0].type_id === 3 ? '' : '免運'}</p>
-          <p>訂單總金額: NT.{totalOrder}</p>
+
+          <p>訂單總金額 : NT.{totalOrder}</p>
+
         </div>
       </section>
-      <div className="return d-flex justify-content-center">
+      <div className="return d-flex justify-content-center mb-3">
         <button
           type="button"
           className="btn btn-primary btn-lg"

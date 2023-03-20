@@ -118,9 +118,9 @@ function CheckoutFlow() {
 
   // 取得最新結帳的訂單資料API
   const getOrderData = (orderID) => {
-    return fetch(`http://localhost:3002/orderList/orderDetail/${orderID}`).then(
-      (res) => res.json()
-    )
+    return fetch(`http://localhost:3002/orderList/orderDetail/${orderID}`, {
+      method: 'get',
+    }).then((res) => res.json())
   }
 
   const handelSubmit = async (e) => {
@@ -177,8 +177,8 @@ function CheckoutFlow() {
               id="tab1"
               onChange={handleChange}
               checked={tagCheck === 'tab1'}
-            // onChange={handleChange}
-            // checked={tagCheck}
+              // onChange={handleChange}
+              // checked={tagCheck}
             />
             <label htmlFor="tab1" className="tabs__label">
               我的購物車
@@ -207,21 +207,25 @@ function CheckoutFlow() {
                         product_quantity,
                       },
                       index
-                    ) => (
-                      <tr key={product_id}>
-                        <td>
-                          <img
-                            src={`http://localhost:3002/uploads/${product_image}`}
-                            alt={product_name}
-                          />
-                        </td>
-                        <td>{product_name}</td>
-                        <td>NT.{product_price}</td>
-                        <td>{product_quantity}</td>
-                        <td>NT.{product_quantity * product_price}</td>
-                        {/* <td>從購物車刪除</td> */}
-                      </tr>
-                    )
+                    ) => {
+                      const imgUrl = product_image.split(',')
+                      const firstImgUrl = imgUrl[0]
+                      return (
+                        <tr key={product_id}>
+                          <td>
+                            <img
+                              src={`http://localhost:3002/uploads/${firstImgUrl}`}
+                              alt={product_name}
+                            />
+                          </td>
+                          <td>{product_name}</td>
+                          <td>NT.{product_price}</td>
+                          <td>{product_quantity}</td>
+                          <td>NT.{product_quantity * product_price}</td>
+                          {/* <td>從購物車刪除</td> */}
+                        </tr>
+                      )
+                    }
                   )}
                 </tbody>
               </table>
@@ -240,7 +244,7 @@ function CheckoutFlow() {
               {showNextStep ? <NextStepLg onClick={handleNext} /> : ''}
             </div>
           </div>
-          <section className="recommended-products">
+          <section className="recommended-products d-flex">
             {showFrom ? (
               <div className="d-flex flex-column col-12 m-auto">
                 <form htmlFor="orderForm" onSubmit={handelSubmit}>
@@ -296,6 +300,7 @@ function CheckoutFlow() {
                           id="recipient_name"
                           name="recipient_name"
                           placeholder="收件人姓名"
+                          required
                         />
                       </label>
                       <label className="mb-3">
@@ -305,6 +310,7 @@ function CheckoutFlow() {
                           id="recipient_address"
                           name="recipient_address"
                           placeholder="收件地址"
+                          required
                         />
                       </label>
                       <label className="mb-3">
@@ -314,6 +320,7 @@ function CheckoutFlow() {
                           id="recipient_phone"
                           name="recipient_phone"
                           placeholder="聯絡電話"
+                          required
                         />
                       </label>
                     </div>
@@ -331,15 +338,14 @@ function CheckoutFlow() {
                     <option value="" disabled>
                       請選擇付款方式
                     </option>
-                    <option value="1">信用卡</option>
+                    <option value="1">LinePay</option>
                     <option value="2">貨到付款</option>
                   </select>
-                  <div className="d-flex justify-content-end">
+                  <div className="d-flex justify-content-end mb-3">
                     <PreviousStep onClick={handleNext} />
-
                     <button
                       type="submit"
-                      className="btn btn-primary btn-lg min-width-auto"
+                      className="btn btn-primary btn-lg m-auto"
                     >
                       確認
                     </button>
@@ -347,20 +353,13 @@ function CheckoutFlow() {
                 </form>
               </div>
             ) : (
-              <>
-                <h1 className="product-title col-10">猜你喜歡</h1>
-                <article className="product">
-                  <div className="card">
-                    <img src="" alt="" />
-                  </div>
-                </article>
-              </>
+              ''
             )}
           </section>
         </main>
       ) : (
         <main className="checkoutFlow d-flex justify-content-center align-items-center">
-          <div className="cardwrap">
+          <div className="col-10 mt-3">
             <p> 訂單編號:{orderID}</p>
             <p>
               訂單日期:
@@ -374,10 +373,10 @@ function CheckoutFlow() {
             <p>
               付款方式:
               {orderData[0] && orderData[0].payment_method === 1
-                ? '信用卡付款'
+                ? 'LinePay付款'
                 : orderData[0] && orderData[0].payment_method === 2
-                  ? '貨到付款'
-                  : '現場付款'}
+                ? '貨到付款'
+                : '現場付款'}
             </p>
           </div>
           <div className="tabs col-10 ">
@@ -388,8 +387,8 @@ function CheckoutFlow() {
               id="tab1"
               onChange={handleChange}
               checked={tagCheck === 'tab1'}
-            // onChange={handleChange}
-            // checked={tagCheck}
+              // onChange={handleChange}
+              // checked={tagCheck}
             />
             <label htmlFor="tab1" className="tabs__label">
               訂單內容
@@ -408,29 +407,51 @@ function CheckoutFlow() {
                   </tr>
                 </thead>
                 <tbody>
-                  {orderData.map((item, index) => (
-                    <tr key={item.product_id}>
-                      {/* <td>{index + 1}</td> */}
-                      <td>
-                        <img
-                          src={`http://localhost:3002/uploads/${item.product_image}`}
-                          alt={item.product_name}
-                        />
-                      </td>
-                      <td>{item.product_name}</td>
-                      <td>{item.product_price}</td>
-                      <td>{item.product_quantity}</td>
-                      {/* <td>從購物車刪除</td> */}
-                    </tr>
-                  ))}
+                  {orderData.map(
+                    (
+                      {
+                        product_id,
+                        product_name,
+                        product_price,
+                        product_image,
+                        product_quantity,
+                      },
+                      index
+                    ) => {
+                      const imgUrl = product_image.split(',')
+                      const firstImgUrl = imgUrl[0]
+                      return (
+                        <tr key={product_id}>
+                          <td>
+                            <img
+                              src={`http://localhost:3002/uploads/${firstImgUrl}`}
+                              alt={product_name}
+                            />
+                          </td>
+                          <td>{product_name}</td>
+                          <td>NT.{product_price}</td>
+                          <td>{product_quantity}</td>
+                          {/* <td>從購物車刪除</td> */}
+                        </tr>
+                      )
+                    }
+                  )}
                 </tbody>
               </table>
               <div className="d-flex justify-content-between mb-2 pb-2">
                 <p className="m-0 p-0">合計:</p>
-                <p className="m-0 pe-3">{totalOrder}</p>
+                <p className="m-0 pe-3">NT.{totalOrder}</p>
               </div>
             </div>
           </div>
+          <button
+            className="toShoppingMall btn btn-secondary"
+            onClick={() => {
+              navigate(`/orderList`)
+            }}
+          >
+            查看訂單紀錄
+          </button>
         </main>
       )}
     </>

@@ -8,11 +8,14 @@ import cat from '../../img/activity/activityhome1.png'
 import dog from '../../img/activity/activityhome2.png'
 import twodog from '../../img/activity/activityhome3.png'
 import Paginationn from '../../template/Paginationn'
+import Footer from '../../layouts/Footer'
+import { FiSearch } from 'react-icons/fi'
 
 function Activity() {
   const [activity, setActivity] = useState([])
   const [activityName, setActivityName] = useState('')
-  const [isFilterActive, setIsFilterActive] = useState('')
+  // const [isFilterActive, setIsFilterActive] = useState('')
+  // const [button, setButton] = useState('')
 
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage, setPostsPerPage] = useState(9)
@@ -58,7 +61,7 @@ function Activity() {
   const TypeCat = () => {
     fetch(`http://localhost:3002/activity/activity-list/api`)
       .then((res) => res.json())
-      .then((activty) => {
+      .then((activity) => {
         const activities = [...activity]
         activities.forEach((el) => {
           console.log(el)
@@ -173,21 +176,37 @@ function Activity() {
         </Swiper>
       </div>
 
-      <div className="activity-banner">
+      <div className="activity-title">
         <h1 className="activity-banner-word">館內活動</h1>
-        <div className="upper-part">
-          <div className="searchbar">
+        <div className="activity-title-box">
+          <span className="activity-search-tags">
+            <button className="activity-tag" onClick={TypeCat}>
+              #貓
+            </button>
+
+            <button className="activity-tag" onClick={TypeDog}>
+              #狗
+            </button>
+
+            <button className="activity-tag" onClick={TypeAll}>
+              #所有
+            </button>
+          </span>
+          <div className="activity-searchbar">
             <input
-              type="search"
-              id="search"
+              type="text"
+              className="activity-search-input"
               onChange={(e) => {
                 setActivityName(e.target.value)
               }}
+              onKeyUp={(e) => {
+                if (e.key === 'Enter') {
+                  findOneActivity()
+                }
+              }}
               placeholder="搜尋"
             />
-            <button id="search-button" onClick={findOneActivity}>
-              &#128269;
-            </button>
+            <FiSearch className="activity-search-icon" />
           </div>
 
           {/* <div className="price-button-wrapper">
@@ -198,19 +217,6 @@ function Activity() {
             由進至遠
           </button>
         </div> */}
-          <span className="course-search-tags">
-            <button className="course-search-tag" onClick={TypeCat}>
-              貓
-            </button>
-
-            <button className="course-search-tag" onClick={TypeDog}>
-              狗
-            </button>
-
-            <button className="course-search-tag" onClick={TypeAll}>
-              所有
-            </button>
-          </span>
         </div>
       </div>
 
@@ -265,6 +271,7 @@ function Activity() {
         pageNumberLimit={pageNumberLimit}
         className="pagination-bar"
       />
+      <Footer />
     </>
   )
 }

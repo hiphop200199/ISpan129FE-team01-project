@@ -3,13 +3,14 @@ import { useState, useEffect } from 'react'
 import { Card } from '../../template'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import { Autoplay, Pagination } from 'swiper'
+import 'swiper/scss'
+import 'swiper/scss/pagination'
+import { Autoplay, Pagination, EffectFade } from 'swiper'
 function Product() {
   const { typeID } = useParams()
   const [product, setProduct] = useState([])
   const [filteredProduct, setFilteredProduct] = useState([])
+
   // 取得DB資料
   useEffect(() => {
     const fetchData = async () => {
@@ -22,22 +23,24 @@ function Product() {
           throw new Error('Network res was not ok')
         }
 
-        const data = await res.json()
-        const imageArray = data[0].product_image.split(',')
-        const bigImage = imageArray[0]
-        const smallImage = imageArray.slice(1)
-        const imgObj = {
-          bigImage,
-          smallImage,
-        }
-        setProduct(data, { ...imgObj })
-      } catch (err) {
-        console.log(err)
+        const product = await res.json()
+        setProduct(product)
+      } catch (error) {
+        throw new Error('沒有商品資料')
       }
     }
     fetchData()
   }, [typeID])
-  console.log(product)
+  const {
+    product_id: productID,
+    product_name: name,
+    product_class: productClass,
+    product_descripttion: descripttion,
+    product_price: price,
+    product_unit: unit,
+    product_image: imageUrl,
+  } = product
+
   const handleFilter = (filteredProducts) => {
     setFilteredProduct(filteredProducts)
   }
@@ -55,36 +58,44 @@ function Product() {
         onFilter={handleFilter}
         handleClear={handleClear}
       />
-      <div className="swiper-Content pt-3">
+      <div className="swiper-Content ms-5 d-flex">
         <Swiper
-          className="swiper-width"
-          style={{
-            '--swiper-navigation-color': 'white',
-            '--swiper-navigation-size': '20px',
+          slidesPerView="3"
+          spaceBetween={30}
+          pagination={{
+            clickable: true,
           }}
-          centeredSlides={true}
+          speed={3000}
+          loop={true}
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
           }}
-          slidesPerView={1}
           modules={[Autoplay, Pagination]}
-          loop={true}
+          className="mySwiper"
         >
-          {product.map((product, idx) => (
-            <SwiperSlide key={idx}>
-              <Link to={`/product/Detail/${product.product_id}`}>
-                <img
-                  src={`http://localhost:3002/uploads/${product.product_image}/`}
-                  alt=""
-                  className="swiper-img"
-                />
-              </Link>
-            </SwiperSlide>
-          ))}
+          {product.map((product, idx) => {
+            const imageUrls = product.product_image
+              ? product.product_image.split(',')
+              : []
+            const imageUrl = imageUrls.length > 0 ? imageUrls[0] : ''
+            console.log(imageUrl)
+            return (
+              <SwiperSlide key={idx}>
+                <Link to={`/product/Detail/${product.product_id}`}>
+                  <img
+                    src={`http://localhost:3002/uploads/${imageUrl}`}
+                    alt=""
+                    className="swiper-img"
+                  />
+                </Link>
+              </SwiperSlide>
+            )
+          })}
         </Swiper>
       </div>
-      <div className="productContent col-12">
+      <h2 className="m-3">全部商品</h2>
+      <div className="productContent col-12 ">
         {mapProduct.map((product) => (
           <Card
             key={product.id}

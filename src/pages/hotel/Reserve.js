@@ -38,6 +38,15 @@ function Reserve() {
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
 
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const [isLogin, setIsLogin] = useState(false)
+
+  const [message, setMessage] = useState('')
+
+  const openModal = () => setIsModalOpen(true)
+  const closeModal = () => setIsModalOpen(false)
+
   useEffect(() => {
     fetch(`http://localhost:3002/product/list-detail/${product_id}`)
       .then((res) => res.json())
@@ -65,10 +74,21 @@ function Reserve() {
             reserveData.differenceInDay *
             reserveData.roomCount,
         }
-        setReserveData({
-          ...reserveData,
-          ...changeReserveDataObj,
-        })
+        const reserveDataSession = sessionStorage.getItem('reserveData')
+        console.log('======reserveData======', reserveData)
+        console.log(
+          '======JSON.parse(reserveDataSession)======',
+          JSON.parse(reserveDataSession)
+        )
+        if (reserveDataSession) {
+          setReserveData(JSON.parse(reserveDataSession))
+        } else {
+          setReserveData({
+            ...reserveData,
+            ...changeReserveDataObj,
+          })
+        }
+        console.log('======reserveData222======', reserveData)
         // getRoomDetailImg(room[0])
       })
 
@@ -423,6 +443,7 @@ function Reserve() {
                         id="forest"
                         name="petBed"
                         value="forest"
+                        checked={reserveData.selectPet === 'forest'}
                         onChange={petOptionChange}
                       />
                     </div>
@@ -439,6 +460,7 @@ function Reserve() {
                         id="house"
                         name="petBed"
                         value="house"
+                        checked={reserveData.selectPet === 'house'}
                         onChange={petOptionChange}
                       />
                     </div>
@@ -473,13 +495,22 @@ function Reserve() {
                 {/* <Link to="/ReserveConfirm"> */}
                 <button
                   onClick={() => {
-                    console.log('reserveData-', reserveData)
-                    console.log('roomDetail', roomDetail)
-                    navigate('/ReserveConfirm')
-                    sessionStorage.setItem(
-                      'reserveData',
-                      JSON.stringify(reserveData)
-                    )
+                    const memberId = localStorage.getItem('id')
+                    setIsLogin(memberId ? true : false)
+                    if (memberId) {
+                      navigate('/ReserveConfirm')
+                    } else {
+                      setMessage('您尚未登入，無法預訂，請先登入會員')
+                      openModal()
+                    }
+                    const data = {
+                      ...reserveData,
+                      ...{
+                        startDate: new Date(reserveData.startDate).getTime(),
+                        endDate: new Date(reserveData.endDate).getTime(),
+                      },
+                    }
+                    sessionStorage.setItem('reserveData', JSON.stringify(data))
                     const sessionRoomDetail = {
                       product_image_big: roomDetail.product_image_big,
                       product_type: roomDetail.product_type,
@@ -506,6 +537,77 @@ function Reserve() {
             </div>
           </div>
         </div>
+      </div>
+
+      <div>
+        <div
+          className={`modal ${isModalOpen ? 'show' : ''}`}
+          tabIndex="-1"
+          role="dialog"
+          style={{ display: isModalOpen ? 'block' : 'none' }}
+        >
+          {/* modal-dialog-centered 垂直置中 */}
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">訊息</h5>
+
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                  onClick={closeModal}
+                ></button>
+              </div>
+              <div className="modal-body text-center">
+                <p>{message}</p>
+              </div>
+              <div className="modal-footer justify-content-center">
+                {isLogin ? (
+                  ''
+                ) : (
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-dismiss="modal"
+                    onClick={() => {
+                      closeModal()
+                      navigate('/login')
+                    }}
+                  >
+                    前往登入
+                  </button>
+                )}
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => {
+                    closeModal()
+                  }}
+                >
+                  關閉
+                </button>
+                {/* {isOrderSuccess ? (
+                  ''
+                ) : (
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={closeModal}
+                  >
+                    關閉
+                  </button>
+                )} */}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          className={`modal-backdrop ${isModalOpen ? 'show' : ''}`}
+          style={{ display: isModalOpen ? 'block' : 'none' }}
+        ></div>
       </div>
     </>
   )
