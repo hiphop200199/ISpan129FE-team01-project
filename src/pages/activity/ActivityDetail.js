@@ -41,7 +41,7 @@ function ActivityDetail() {
 
   const now = new Date().getTime()
   const endDate = new Date(activity.activity_dateend).getTime()
-  const expired = endDate < now
+  const expired = endDate > now
 
   console.log(activity)
 
@@ -114,10 +114,12 @@ function ActivityDetail() {
                 截止日期 :
                 {new Date(activity.activity_dateend).toString('yyyy-MM-dd')}
               </p>
-              {!expired && (
+              {expired ? (
                 <Link to={`/ActivitySignUp/${activity_id}`}>
                   <DetailSignUp className="btn-signup" />
                 </Link>
+              ) : (
+                <div className="timeout">已結束</div>
               )}
               <div className="linkbox">
                 <IoCalendarSharp
