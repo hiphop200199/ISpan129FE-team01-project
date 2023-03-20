@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import MealsHeaderSearch from './MealsHeaderSearch'
 
-
 function Food() {
   const { product_id } = useParams()
   const id = localStorage.getItem('id')
@@ -19,8 +18,7 @@ function Food() {
 
   return (
     <>
-    
-    <MealsHeaderSearch />
+      <MealsHeaderSearch />
       {Food.map((item, i) => {
         return (
           <div className="course-detail-container" key={i}>
@@ -38,7 +36,7 @@ function Food() {
               <div className="product-button-wrapper">
                 {/* <button className="product-add-collection">加入收藏</button>
               <button className="product-add-cart">加入購物車</button> */}
-                <AddToFavoritesLg product={item} typeID={2} />
+                <AddToFavoritesLg product={item} typeID={4} />
                 <AddToCartLg product={item} />
               </div>
             </div>
