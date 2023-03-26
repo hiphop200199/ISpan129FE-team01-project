@@ -14,15 +14,15 @@ function MoreSquare({ product_id, typeID }) {
     3: `/reserve/${product_id}`,
     4: `/meals/${product_id}`,
   }
+  const handleClick = () => {
+    navigate(URL)
+  }
 
   useEffect(() => {
     setURL(urlMap[typeID] || '/')
   }, [product_id, typeID])
 
   // console.log(product_id)
-  const handleClick = () => {
-    navigate(URL)
-  }
 
   return (
     <>
@@ -34,7 +34,7 @@ function MoreSquare({ product_id, typeID }) {
       // onClick={setID}
       >
         {/* <Link to={'/product/Detail/' + product_id}>看更多</Link> */}
-        <Link to={URL} product_id={product_id}>
+        <Link to={URL}>
           看更多
         </Link>
       </button>

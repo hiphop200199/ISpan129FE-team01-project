@@ -177,8 +177,8 @@ function CheckoutFlow() {
               id="tab1"
               onChange={handleChange}
               checked={tagCheck === 'tab1'}
-              // onChange={handleChange}
-              // checked={tagCheck}
+            // onChange={handleChange}
+            // checked={tagCheck}
             />
             <label htmlFor="tab1" className="tabs__label">
               我的購物車
@@ -278,7 +278,7 @@ function CheckoutFlow() {
                           id="recipient_address"
                           name="recipient_address"
                           defaultValue={member.address}
-                          readOnly
+
                         />
                       </label>
                       <label className="mb-3">
@@ -288,6 +288,7 @@ function CheckoutFlow() {
                           id="recipient_phone"
                           name="recipient_phone"
                           defaultValue={member.mobile}
+                          pattern="09\d{2}?\d{3}?\d{3}"
                         />
                       </label>
                     </div>
@@ -375,8 +376,8 @@ function CheckoutFlow() {
               {orderData[0] && orderData[0].payment_method === 1
                 ? 'LinePay付款'
                 : orderData[0] && orderData[0].payment_method === 2
-                ? '貨到付款'
-                : '現場付款'}
+                  ? '貨到付款'
+                  : '現場付款'}
             </p>
           </div>
           <div className="tabs col-10 ">
@@ -387,8 +388,8 @@ function CheckoutFlow() {
               id="tab1"
               onChange={handleChange}
               checked={tagCheck === 'tab1'}
-              // onChange={handleChange}
-              // checked={tagCheck}
+            // onChange={handleChange}
+            // checked={tagCheck}
             />
             <label htmlFor="tab1" className="tabs__label">
               訂單內容

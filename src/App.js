@@ -12,7 +12,7 @@ import Hotel from './pages/hotel/Hotel'
 import Reserve from './pages/hotel/Reserve'
 // import LatestNews from './pages/latestNews/LatestNews'
 import Meals from './pages/meals/Meals'
-import Food from './pages/meals/Food'
+import Food from './pages/meals/food'
 import Food1 from './pages/meals/Food1'
 import Drinks from './pages/meals/Drinks'
 import Dog from './pages/meals/Dog'
@@ -54,7 +54,7 @@ function App() {
             <Route path="/" element={<MainLayouts />}>
               <Route index element={<HomePage />}></Route>
               <Route path="Header" element={<Header />}></Route>
-              {/* product帶入type_id的quretString */}
+              {/* product帶入type_id*/}
               <Route path="/product/:typeID" element={<Product />}></Route>
               <Route
                 path="/product/Detail/:product_id"
